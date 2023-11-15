@@ -1,10 +1,10 @@
 # Nova Pull Request
 ## Issue no JIRA
 
-- (Código no JIRA)[Link para o item do JIRA]
-- Exemplo: (UNI-1)[https://unifood.atlassian.net/browse/UNI-1]
+- [Código da Issue no JIRA](Link para a Issue no JIRA)
+- Exemplo: [UNI-1](https://unifood.atlassian.net/browse/UNI-1)
 
-## Observações
+## Descrição
 
 Descrição do que foi feito.
 
