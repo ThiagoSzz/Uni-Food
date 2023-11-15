@@ -26,6 +26,11 @@ jobs:
       - name: Change to front-end directory
         run: cd front-end
 
+      - name: Debug Working Directory Again
+        run: |
+          pwd
+          ls -al
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
