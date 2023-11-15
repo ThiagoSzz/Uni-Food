@@ -18,8 +18,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Debug Working Directory
-        run: ls -al
+      - name: Change to front-end directory
+        run: cd front-end
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -40,6 +40,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+
+      - name: Change to front-end directory
+        run: cd front-end
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
