@@ -39,12 +39,21 @@ jobs:
         working-directory: ./front-end
         
     steps:
-      - name: Cypress.io
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install && npm install -g cypress
+        
+      - name: Run Cypress Tests
         uses: cypress-io/github-action@v6.5.0
         with:
           command: npx cypress run
-          start: npm run start
-          install-command: npm install && npm install -g cypress
           wait-on: https://localhost:3000
           
 
