@@ -47,14 +47,19 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Dependencies
-        run: npm install && npm install -g cypress
+      - name: Run API in Background
+        run: |
+          npm install
+        env:
+          PORT: 3000
 
-      - name: Run Local Server
-        run: npm run start
-
-      - name: Run Cypress Tests
-        run: npx cypress run
+      - name: Run Local Server and Run Cypress Tests
+        run: |
+          npm run build
+          npm run start &
+          npx cypress run
+        env:
+          API_URI: http://localhost:3000/
           
   prettier:
     runs-on: ubuntu-latest
