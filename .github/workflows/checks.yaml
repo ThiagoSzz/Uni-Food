@@ -37,24 +37,35 @@ jobs:
     defaults:
       run:
         working-directory: ./front-end
-        
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node-version: [13.2.x]
+
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: ${{ matrix.node-version }}
 
-      - name: Install Dependencies
-        run: npm install && npm install -g cypress
-        
-      - name: Run Cypress Tests
-        uses: cypress-io/github-action@v6.5.0
-        with:
-          command: npx cypress run
-          wait-on: https://localhost:3000
+      - name: Run API in background
+        run: |
+          yarn install
+          yarn mock &
+        env:
+          PORT: 3000
+
+      - name: Run and test app
+        run: |
+          yarn install
+          yarn build
+          yarn start &
+          yarn test
+          yarn cypress:run
+        env:
+          API_URI: http://localhost:3000/
           
 
   prettier:
