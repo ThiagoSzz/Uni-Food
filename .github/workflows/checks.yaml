@@ -37,27 +37,24 @@ jobs:
     defaults:
       run:
         working-directory: ./front-end
-    timeout-minutes: 10
-    strategy:
-      matrix:
-        node-version: [13.2.x]
 
     steps:
+      - name: Checkout Repository
       - uses: actions/checkout@v1
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
 
-      - name: Run API in background
+      - name: Run API in Background
         run: |
           yarn install
           yarn mock &
         env:
           PORT: 3000
 
-      - name: Run and test app
+      - name: Run Local Server and Run Cypress Tests
         run: |
           yarn install
           yarn build
