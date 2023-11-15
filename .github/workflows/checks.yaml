@@ -39,7 +39,6 @@ jobs:
         working-directory: ./front-end
 
     steps:
-      - name: Checkout Repository
       - uses: actions/checkout@v1
 
       - name: Setup Node.js
