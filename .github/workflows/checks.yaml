@@ -56,10 +56,9 @@ jobs:
       - name: Run Local Server and Run Cypress Tests
         run: |
           npm install
-          npm build
-          npm start &
-          npm test
-          npm cypress:run
+          npm run build
+          npm run start &
+          npx cypress run
         env:
           API_URI: http://localhost:3000/
           
