@@ -50,11 +50,13 @@ jobs:
       - name: Install Dependencies
         run: npm install && npm install -g cypress
 
-      - name: Start Server
-        run: npm run start
-
-      - name: Run Cypress Tests
-        run: npx cypress run
+      - name: Start Server and Run Cypress Tests
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          config: baseUrl=http://localhost:3000
+          run: npx cypress run
 
   prettier:
     runs-on: ubuntu-latest
