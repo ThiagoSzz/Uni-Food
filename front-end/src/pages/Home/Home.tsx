@@ -1,16 +1,24 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import {
   FlexBox,
   FlexBoxAlignItems,
   FlexBoxDirection,
   FlexBoxJustifyContent,
   ShellBar,
-} from "@ui5/webcomponents-react";
+  Text,
+} from '@ui5/webcomponents-react';
 
-import { useStyles } from "./Home.jss";
+import { useStyles } from './Home.jss';
+import useTestStore from '../../store/useTestStore';
 
 export const Home: React.FC = () => {
+  const { testNumber, testSetNumber } = useTestStore();
   const classes = useStyles();
+
+  useEffect(() => {
+    testSetNumber(testNumber + 1);
+  }, []);
 
   return (
     <>
@@ -21,7 +29,7 @@ export const Home: React.FC = () => {
         alignItems={FlexBoxAlignItems.Center}
         className={classes.contentContainer}
       >
-        Testing
+        <Text data-testid="home-flexbox">Testing</Text>
       </FlexBox>
     </>
   );

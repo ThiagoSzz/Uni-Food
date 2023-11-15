@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page Should match the snapshot 1`] = `
+<div>
+  <ui5-shellbar
+    primary-title="UniFood"
+    ui5-shellbar=""
+  />
+  <div
+    class="FlexBox-flexBox-0-2-2 FlexBox-flexBoxDirectionColumn-0-2-10 FlexBox-justifyContentCenter-0-2-7 FlexBox-alignItemsCenter-0-2-16 FlexBox-flexWrapNoWrap-0-2-19 Home-contentContainer-0-2-1"
+  >
+    <span
+      class="Text-text-0-2-22"
+      data-testid="home-flexbox"
+    >
+      Testing
+    </span>
+  </div>
+</div>
+`;
