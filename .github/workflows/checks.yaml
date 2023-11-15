@@ -39,28 +39,22 @@ jobs:
         working-directory: ./front-end
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Run API in Background
-        run: |
-          npm install
-          npm mock &
-        env:
-          PORT: 3000
+      - name: Install Dependencies
+        run: npm install && npm install -g cypress
 
-      - name: Run Local Server and Run Cypress Tests
-        run: |
-          npm install
-          npm run build
-          npm run start &
-          npx cypress run
-        env:
-          API_URI: http://localhost:3000/
+      - name: Run Local Server
+        run: npm run start
+
+      - name: Run Cypress Tests
+        run: npx cypress run
           
   prettier:
     runs-on: ubuntu-latest
