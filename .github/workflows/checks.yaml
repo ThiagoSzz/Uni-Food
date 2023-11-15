@@ -1,0 +1,38 @@
+name: Run checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  push:
+    branches:
+      - main
+
+jobs:
+  test-and-format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install -g jest cypress prettier
+
+      - name: Run Jest Tests
+        run: npm run test
+
+      - name: Run Cypress Tests
+        run: npm run cypress:run
+
+      - name: Format Code with Prettier
+        run: prettier --write "src/**/*.ts" "src/**/*.tsx"
