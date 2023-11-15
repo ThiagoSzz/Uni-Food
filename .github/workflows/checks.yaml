@@ -27,7 +27,7 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: npm install && npm install -g jest
+        run: npm install
 
       - name: Run Jest Tests
         run: npm run test
@@ -47,9 +47,8 @@ jobs:
         with:
           node-version: 18
 
-      - name: Run API in Background
-        run: |
-          npm install
+      - name: Install Dependencies
+        run: npm install
         env:
           PORT: 3000
 
