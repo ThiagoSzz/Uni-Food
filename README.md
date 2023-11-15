@@ -8,11 +8,14 @@ A plataforma UniFood é uma aplicação que permite aos estudantes avaliar resta
 ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=white)
 ![Jest](https://img.shields.io/badge/-Jest-C21325?style=flat-square&logo=jest&logoColor=white)
+![Cypress](https://img.shields.io/badge/-Cypress-17202C?style=flat-square&logo=cypress&logoColor=white)
 ![UI5 Web Components](https://img.shields.io/badge/-UI5%20Web%20Components-0C77B6?style=flat-square&logo=sap&logoColor=white)
+![HTML](https://img.shields.io/badge/-HTML-E34F26?style=flat-square&logo=html5&logoColor=white)
+![JSS](https://img.shields.io/badge/-JSS-2C2D72?style=flat-square&logo=styled-components&logoColor=white)
 
-![Java](https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white)
-![JUnit](https://img.shields.io/badge/-JUnit-25A162?style=flat-square&logo=junit&logoColor=white)
-![JBoss](https://img.shields.io/badge/-JBoss-E71A0F?style=flat-square&logo=jboss&logoColor=white)
+![Java](https://img.shields.io/badge/Java-blue.svg?style=flat-square&logo=coffeescript)
+![JUnit](https://img.shields.io/badge/JUnit-green.svg?style=flat-square&logo=testing-library)
+![JBoss](https://img.shields.io/badge/JBoss-WildFly-red.svg?style=flat-square&logo=apache)
 
 ## Instalação e Execução
 
@@ -24,7 +27,7 @@ Certifique-se de ter a versão 18.18.2 do [Node](https://nodejs.org/en/about/pre
 1. Clone o repositório:
 
     ```bash
-    https://github.com/ThiagoSzz/Uni-Food.git
+    git clone https://github.com/ThiagoSzz/Uni-Food.git
     ```
 
 2. Navegue até o diretório do front-end:
@@ -67,15 +70,17 @@ O front-end estará disponível em http://localhost:3000.
     npx cypress run
     ```
 
-    3.1. Caso queira executar os testes do Cypress utilizando a GUI do Cypress, utilize o seguinte comando:
+Caso queira executar os testes do Cypress utilizando a GUI do Cypress, siga os passos: 
 
-      ```bash
-      npx cypress open
-      ```
+1. Utilize o seguinte comando:
 
-    3.2. Selecione o navegador `Electron` (ou `Google Chrome`, caso haja a opção) e navegue até a área de execução dos testes.
+    ```bash
+    npx cypress open
+    ```
 
-    3.3. Execute os testes.
+2. Selecione o navegador `Electron` (ou `Google Chrome`, caso haja a opção) e navegue até a área de execução dos testes.
+
+3. Execute os testes.
 
 ### Back-End
 
