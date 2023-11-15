@@ -21,11 +21,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Debug Working Directory
-        run: |
-          pwd
-          ls -al
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,13 +34,13 @@ jobs:
 
   prettier:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front-end
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-
-      - name: Change to front-end directory
-        run: cd front-end
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
