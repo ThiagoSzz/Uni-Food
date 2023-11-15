@@ -48,22 +48,21 @@ jobs:
 
       - name: Run API in Background
         run: |
-          yarn install
-          yarn mock &
+          npm install
+          npm mock &
         env:
           PORT: 3000
 
       - name: Run Local Server and Run Cypress Tests
         run: |
-          yarn install
-          yarn build
-          yarn start &
-          yarn test
-          yarn cypress:run
+          npm install
+          npm build
+          npm start &
+          npm test
+          npm cypress:run
         env:
           API_URI: http://localhost:3000/
           
-
   prettier:
     runs-on: ubuntu-latest
     defaults:
