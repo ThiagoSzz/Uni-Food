@@ -50,7 +50,7 @@ Certifique-se de ter a versão 18.18.2 do [Node](https://nodejs.org/en/about/pre
 
 O front-end estará disponível em http://localhost:3000.
 
-#### Rodar os testes
+#### Rodar os testes - Jest
 
 1. Navegue até o diretório do front-end:
 
@@ -64,23 +64,43 @@ O front-end estará disponível em http://localhost:3000.
     npm run test
     ```
 
-3. (Indisponível no momento) Para executar os testes do Cypress, utilize o seguinte comando:
+#### Rodar os testes - Cypress
+
+1. Verifique se o servidor local de desenvolvimento está rodando em localhost:3000.
+
+2. Navegue até o diretório do front-end:
+
+    ```bash
+    cd Uni-Food/front-end
+    ```
+
+3. Utilize o seguinte comando:
 
     ```bash
     npx cypress run
     ```
 
-Caso queira executar os testes do Cypress utilizando a GUI do Cypress, siga os passos: 
+Caso queira executar os testes do Cypress utilizando a interface do Cypress, siga os passos:
 
-1. Utilize o seguinte comando:
+1. Verifique se o servidor local de desenvolvimento está rodando em localhost:3000.
+
+2. Navegue até o diretório do front-end:
+
+    ```bash
+    cd Uni-Food/front-end
+    ```
+
+3. Utilize o seguinte comando:
 
     ```bash
     npx cypress open
     ```
 
-2. Selecione o navegador `Electron` (ou `Google Chrome`, caso haja a opção) e navegue até a área de execução dos testes.
+4. Selecione o navegador `Electron` (ou `Google Chrome`, caso haja a opção) e navegue até a área de execução dos testes.
 
-3. Execute os testes.
+5. Selecione a spec que deseja testar.
+
+6. Execute os testes.
 
 ### Back-End
 

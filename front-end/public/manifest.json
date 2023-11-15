@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "UniFood",
+  "name": "Crie avaliações e busque recomendações de restaurantes universitários",
   "icons": [
     {
       "src": "favicon.ico",
