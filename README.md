@@ -5,17 +5,18 @@ A plataforma UniFood é uma aplicação que permite aos estudantes avaliar resta
 
 ## Tecnologias
 
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![React](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=white)
-![Jest](https://img.shields.io/badge/-Jest-C21325?style=flat-square&logo=jest&logoColor=white)
-![Cypress](https://img.shields.io/badge/-Cypress-17202C?style=flat-square&logo=cypress&logoColor=white)
-![UI5 Web Components](https://img.shields.io/badge/-UI5%20Web%20Components-0C77B6?style=flat-square&logo=sap&logoColor=white)
-![HTML](https://img.shields.io/badge/-HTML-E34F26?style=flat-square&logo=html5&logoColor=white)
-![JSS](https://img.shields.io/badge/-JSS-2C2D72?style=flat-square&logo=styled-components&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)
+![Jest](https://img.shields.io/badge/-Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
+![Cypress](https://img.shields.io/badge/-Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)
+![React Query](https://img.shields.io/badge/React%20Query-FF4154.svg?style=for-the-badge&logo=React-Query&logoColor=white)
+![UI5 Web Components](https://img.shields.io/badge/-UI5%20Web%20Components-0C77B6?style=for-the-badge&logo=sap&logoColor=white)
+![HTML](https://img.shields.io/badge/-HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![JSS](https://img.shields.io/badge/JSS-F7DF1E.svg?style=for-the-badge&logo=JSS&logoColor=black)
 
-![Java](https://img.shields.io/badge/Java-blue.svg?style=flat-square&logo=coffeescript)
-![JUnit](https://img.shields.io/badge/JUnit-green.svg?style=flat-square&logo=testing-library)
-![JBoss](https://img.shields.io/badge/JBoss-WildFly-red.svg?style=flat-square&logo=apache)
+![Java](https://img.shields.io/badge/Java-blue.svg?style=for-the-badge&logo=coffeescript)
+![JUnit](https://img.shields.io/badge/JUnit5-25A162.svg?style=for-the-badge&logo=JUnit5&logoColor=white)
+![JBoss](https://img.shields.io/badge/JBoss-WildFly-red.svg?style=for-the-badge&logo=apache)
 
 ## Instalação e Execução
 

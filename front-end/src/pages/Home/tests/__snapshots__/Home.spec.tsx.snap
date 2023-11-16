@@ -3,18 +3,111 @@
 exports[`Home page Should match the snapshot 1`] = `
 <div>
   <ui5-shellbar
+    data-sap-ui-fastnavgroup="true"
+    notifications-count="2"
     primary-title="UniFood"
+    secondary-title="Crie avaliações e busque recomendações de restaurantes universitários"
+    show-notifications="true"
     ui5-shellbar=""
-  />
-  <div
-    class="FlexBox-flexBox-0-2-2 FlexBox-flexBoxDirectionColumn-0-2-10 FlexBox-justifyContentCenter-0-2-7 FlexBox-alignItemsCenter-0-2-16 FlexBox-flexWrapNoWrap-0-2-19 Home-contentContainer-0-2-1"
   >
-    <span
-      class="Text-text-0-2-22"
-      data-testid="home-flexbox"
+    <img
+      alt="UniFood Logo"
+      slot="logo"
+      src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
+    />
+    <ui5-avatar
+      slot="profile"
+      ui5-avatar=""
     >
-      Testing
-    </span>
+      <img
+        alt="Person"
+        src="https://sap.github.io/ui5-webcomponents-react/assets/Person-eb847016.png"
+      />
+    </ui5-avatar>
+  </ui5-shellbar>
+  <div
+    class="FlexBox-flexBox-0-2-2 FlexBox-flexBoxDirectionColumn-0-2-15 FlexBox-justifyContentCenter-0-2-7 FlexBox-alignItemsCenter-0-2-12 FlexBox-flexWrapNoWrap-0-2-19 Home-contentContainer-0-2-1"
+  >
+    <ui5-message-strip
+      design="Information"
+      style="width: 300px; margin-bottom: 20px;"
+      ui5-message-strip=""
+    >
+      Information
+    </ui5-message-strip>
+    <ui5-message-strip
+      design="Positive"
+      style="width: 300px; margin-bottom: 20px;"
+      ui5-message-strip=""
+    >
+      Positive
+    </ui5-message-strip>
+    <ui5-message-strip
+      design="Negative"
+      style="width: 300px; margin-bottom: 20px;"
+      ui5-message-strip=""
+    >
+      Negative
+    </ui5-message-strip>
+    <ui5-message-strip
+      design="Warning"
+      style="width: 300px; margin-bottom: 20px;"
+      ui5-message-strip=""
+    >
+      Warning
+    </ui5-message-strip>
+    <ui5-card
+      style="width: 300px;"
+      ui5-card=""
+    >
+      <ui5-card-header
+        slot="header"
+        status="3 of 3"
+        subtitle-text="Members"
+        title-text="Scrum Team"
+        ui5-card-header=""
+      >
+        <img
+          alt="Person"
+          slot="avatar"
+          src="https://sap.github.io/ui5-webcomponents-react/assets/Person-eb847016.png"
+        />
+      </ui5-card-header>
+      <ui5-list
+        accessible-role="list"
+        busy-delay="1000"
+        data-sap-ui-fastnavgroup="true"
+        growing="None"
+        mode="None"
+        separators="All"
+        ui5-list=""
+      >
+        <ui5-li
+          additional-text-state="None"
+          description="PO, Scrum Master, Dev"
+          type="Active"
+          ui5-li=""
+        >
+          Thiago Haab
+        </ui5-li>
+        <ui5-li
+          additional-text-state="None"
+          description="UX Designer, Dev"
+          type="Active"
+          ui5-li=""
+        >
+          Laura Speggiorin
+        </ui5-li>
+        <ui5-li
+          additional-text-state="None"
+          description="Dev"
+          type="Active"
+          ui5-li=""
+        >
+          Rui Cardozo
+        </ui5-li>
+      </ui5-list>
+    </ui5-card>
   </div>
 </div>
 `;

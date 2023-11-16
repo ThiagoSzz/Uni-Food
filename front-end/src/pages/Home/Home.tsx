@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import {
@@ -8,19 +9,45 @@ import {
   FlexBoxAlignItems,
   FlexBoxDirection,
   FlexBoxJustifyContent,
-  Icon,
   List,
   MessageStrip,
+  MessageStripDesign,
   ShellBar,
   StandardListItem,
 } from '@ui5/webcomponents-react';
 
 import { useStyles } from './Home.jss';
 import useTestStore from '../../store/useTestStore';
+import { useTestMutation } from '../../hooks/useTestMutation';
+import { useTestQuery } from '../../hooks/useTestQuery';
+import { useIsMutating } from 'react-query';
 
 export const Home: React.FC = () => {
   const { testNumber, testSetNumber } = useTestStore();
   const classes = useStyles();
+
+  const { data, refetch, isLoading, isFetching, isRefetching } = useTestQuery({
+    testParam: 'teste',
+  });
+
+  const testMutation = useTestMutation();
+  const isMutating = useIsMutating({ mutationKey: 'testMutation' });
+
+  const callMutation = () => {
+    if (isMutating === 0) {
+      testMutation
+        .mutateAsync({
+          testData: 'teste',
+        })
+        .then((result) => {
+          console.log(result.data);
+        });
+    } else {
+      return Promise.reject(
+        new Error("Mutation 'testMutation' already in progress.")
+      );
+    }
+  };
 
   useEffect(() => {
     testSetNumber(testNumber + 1);
@@ -58,16 +85,30 @@ export const Home: React.FC = () => {
         alignItems={FlexBoxAlignItems.Center}
         className={classes.contentContainer}
       >
-        <MessageStrip onClose={function Ta() {}}>
-          MessageStrip Text
-        </MessageStrip>
+        {Object.values(MessageStripDesign).map((design) => {
+          return (
+            <MessageStrip
+              key={design}
+              design={design}
+              onClose={function Ta() {}}
+              style={{ width: '300px', marginBottom: '20px' }}
+            >
+              {design as String}
+            </MessageStrip>
+          );
+        })}
         <Card
           header={
             <CardHeader
-              avatar={<Icon name="person-placeholder" />}
-              status="3 of 5"
-              subtitleText="Direct Reports"
-              titleText="TeamSpace"
+              avatar={
+                <img
+                  alt="Person"
+                  src="https://sap.github.io/ui5-webcomponents-react/assets/Person-eb847016.png"
+                />
+              }
+              status="3 of 3"
+              subtitleText="Members"
+              titleText="Scrum Team"
             />
           }
           style={{
@@ -75,15 +116,13 @@ export const Home: React.FC = () => {
           }}
         >
           <List>
-            <StandardListItem description="Software Architect">
-              Richard Wilson
+            <StandardListItem description="PO, Scrum Master, Dev">
+              Thiago Haab
             </StandardListItem>
-            <StandardListItem description="Visual Designer">
-              Elena Petrova
+            <StandardListItem description="UX Designer, Dev">
+              Laura Speggiorin
             </StandardListItem>
-            <StandardListItem description="Quality Specialist">
-              John Miller
-            </StandardListItem>
+            <StandardListItem description="Dev">Rui Cardozo</StandardListItem>
           </List>
         </Card>
       </FlexBox>
