@@ -79,4 +79,4 @@ jobs:
         run: npm install
 
       - name: Format Code with Prettier
-        run: npx prettier {src,cypress} -w
+        run: npx prettier {src,cypress} -c
