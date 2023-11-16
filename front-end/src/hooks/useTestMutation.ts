@@ -15,7 +15,7 @@ export const useTestMutation = (options?) => {
   return useMutation<AxiosResponse<any, any>, Error, TestMutationRequest>({
     mutationKey: TEST_MUTATION_NAME,
     mutationFn: (data) => setTestMutation(data),
-    ...options,
+    ...options
   });
 };
 
@@ -24,11 +24,7 @@ const setTestMutation = (data: TestMutationRequest) => {
 
   // aqui também pode ser um api.post()
   return api
-    .patch(
-      TEST_MUTATION_API,
-      { testData },
-      { params, timeout: TIMEOUT_MUTATION }
-    )
+    .patch(TEST_MUTATION_API, { testData }, { params, timeout: TIMEOUT_MUTATION })
     .then((result) => {
       return result;
     });

@@ -76,7 +76,7 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: npm install && npm install -g prettier
+        run: npm install
 
       - name: Format Code with Prettier
-        run: prettier --write "src/**/*.ts" "src/**/*.tsx"
+        run: npx prettier {src,cypress} -w

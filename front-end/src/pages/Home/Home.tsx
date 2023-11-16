@@ -13,7 +13,7 @@ import {
   MessageStrip,
   MessageStripDesign,
   ShellBar,
-  StandardListItem,
+  StandardListItem
 } from '@ui5/webcomponents-react';
 
 import { useStyles } from './Home.jss';
@@ -27,7 +27,7 @@ export const Home: React.FC = () => {
   const classes = useStyles();
 
   const { data, refetch, isLoading, isFetching, isRefetching } = useTestQuery({
-    testParam: 'teste',
+    testParam: 'teste'
   });
 
   const testMutation = useTestMutation();
@@ -37,15 +37,13 @@ export const Home: React.FC = () => {
     if (isMutating === 0) {
       testMutation
         .mutateAsync({
-          testData: 'teste',
+          testData: 'teste'
         })
         .then((result) => {
           console.log(result.data);
         });
     } else {
-      return Promise.reject(
-        new Error("Mutation 'testMutation' already in progress.")
-      );
+      return Promise.reject(new Error("Mutation 'testMutation' already in progress."));
     }
   };
 
@@ -112,16 +110,12 @@ export const Home: React.FC = () => {
             />
           }
           style={{
-            width: '300px',
+            width: '300px'
           }}
         >
           <List>
-            <StandardListItem description="PO, Scrum Master, Dev">
-              Thiago Haab
-            </StandardListItem>
-            <StandardListItem description="UX Designer, Dev">
-              Laura Speggiorin
-            </StandardListItem>
+            <StandardListItem description="PO, Scrum Master, Dev">Thiago Haab</StandardListItem>
+            <StandardListItem description="UX Designer, Dev">Laura Speggiorin</StandardListItem>
             <StandardListItem description="Dev">Rui Cardozo</StandardListItem>
           </List>
         </Card>

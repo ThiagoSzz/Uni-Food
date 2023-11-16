@@ -9,7 +9,7 @@ const initialNumber: number = 0;
 
 const useTestStore = create<TestStore>((set, get) => ({
   testNumber: initialNumber,
-  testSetNumber: (value: number) => set(() => ({ testNumber: value })),
+  testSetNumber: (value: number) => set(() => ({ testNumber: value }))
 }));
 
 export default useTestStore;

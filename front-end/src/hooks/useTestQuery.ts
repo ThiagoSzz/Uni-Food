@@ -19,14 +19,12 @@ export const useTestQuery = (params: TestQueryRequest, options?) => {
     queryKey: TEST_QUERY_NAME,
     queryFn: () => getTestQuery(params),
     enabled: false,
-    ...options,
+    ...options
   });
 };
 
 const getTestQuery = (params: TestQueryRequest) => {
-  return api
-    .get(TEST_QUERY_API, { params, timeout: TIMEOUT_QUERY })
-    .then((result) => {
-      return result.data;
-    });
+  return api.get(TEST_QUERY_API, { params, timeout: TIMEOUT_QUERY }).then((result) => {
+    return result.data;
+  });
 };

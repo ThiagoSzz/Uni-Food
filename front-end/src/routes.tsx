@@ -1,7 +1,7 @@
-import { BrowserRouter, Route } from "react-router-dom";
-import { ThemeProvider } from "@ui5/webcomponents-react";
+import { BrowserRouter, Route } from 'react-router-dom';
+import { ThemeProvider } from '@ui5/webcomponents-react';
 
-import { Home } from "./pages/Home/Home";
+import { Home } from './pages/Home/Home';
 
 function Routes() {
   return (
