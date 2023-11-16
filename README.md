@@ -103,6 +103,28 @@ Caso queira executar os testes do Cypress utilizando a interface do Cypress, sig
 
 6. Execute os testes.
 
+#### Rodar o formatador de código - Prettier
+
+1. Navegue até o diretório do front-end:
+
+    ```bash
+    cd Uni-Food/front-end
+    ```
+    
+2. Para verificar se a formatação está correta, execute o comando:
+
+    ```bash
+    npx prettier {src,cypress} -c
+    ```
+
+3. Caso a formatação de algum arquivo esteja incorreta, execute o comando:
+
+    ```bash
+    npx prettier {src,cypress} -w
+    ```
+
+Após a execução do Prettier, deve ser exibida uma mensagem indicando que a formatação foi concluída.
+
 ### Back-End
 
 TBD
