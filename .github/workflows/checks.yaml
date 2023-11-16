@@ -78,5 +78,5 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Format Code with Prettier
+      - name: Check Code Formatting with Prettier
         run: npx prettier {src,cypress} -c
