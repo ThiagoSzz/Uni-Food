@@ -11,6 +11,26 @@ on:
       - main
 
 jobs:
+  show_diff:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front-end
+        
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
+      - name: Get changes
+        id: getchange
+        run: |
+          echo "::set-output name=changes::$(git diff origin/${{ github.base_ref }}..origin/${{ github.head_ref }})"
+          
+      - name: Echo changes
+        run: |
+          echo "Changes in this PR:"
+          echo "${{ steps.getchange.outputs.changes }}"
+          
   jest:
     runs-on: ubuntu-latest
     defaults:
