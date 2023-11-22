@@ -13,9 +13,6 @@ on:
 jobs:
   show_diff:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./front-end
         
     steps:
       - name: Checkout Repository
