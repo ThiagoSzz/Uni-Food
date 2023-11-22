@@ -1,19 +1,16 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import {
   Avatar,
-  Card,
-  CardHeader,
   FlexBox,
-  FlexBoxAlignItems,
   FlexBoxDirection,
-  FlexBoxJustifyContent,
-  List,
-  MessageStrip,
-  MessageStripDesign,
   ShellBar,
-  StandardListItem
+  SideNavigation,
+  SideNavigationItem,
+  SideNavigationSubItem,
+  Text
 } from '@ui5/webcomponents-react';
 
 import { useStyles } from './Home.jss';
@@ -21,6 +18,7 @@ import useTestStore from '../../store/useTestStore';
 import { useTestMutation } from '../../hooks/useTestMutation';
 import { useTestQuery } from '../../hooks/useTestQuery';
 import { useIsMutating } from 'react-query';
+import '@ui5/webcomponents-icons/dist/AllIcons';
 
 export const Home: React.FC = () => {
   const { testNumber, testSetNumber } = useTestStore();
@@ -52,74 +50,74 @@ export const Home: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <ShellBar
-        logo={
-          <img
-            alt="UniFood Logo"
-            src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
-          />
-        }
-        notificationsCount="2"
-        onLogoClick={function Ta() {}}
-        onNotificationsClick={function Ta() {}}
-        onProfileClick={function Ta() {}}
-        primaryTitle="UniFood"
-        profile={
-          <Avatar>
-            <img
-              alt="Person"
-              src="https://sap.github.io/ui5-webcomponents-react/assets/Person-eb847016.png"
-            />
-          </Avatar>
-        }
-        secondaryTitle="Crie avaliações e busque recomendações de restaurantes universitários"
-        showNotifications
-      ></ShellBar>
+    <FlexBox direction={FlexBoxDirection.Column}>
+      <FlexBox className={classes.floating}>
+        <SideNavigation
+          className={classes.sidebar}
+          fixedItems={
+            <>
+              <SideNavigationItem expanded wholeItemToggleable icon="visits" text="Entrar" />
+              <SideNavigationItem
+                expanded
+                wholeItemToggleable
+                icon="add-employee"
+                text="Cadastrar-se"
+              />
+            </>
+          }
+        >
+          <SideNavigationItem icon="home" text="Home" />
+          <SideNavigationItem expanded wholeItemToggleable icon="activity-2" text="Avaliações">
+            <SideNavigationSubItem icon="add" text="Criar" />
+            <SideNavigationItem icon="bar-chart" text="Notas médias" />
+            <SideNavigationSubItem icon="search" text="Pesquisar" />
+          </SideNavigationItem>
+          <SideNavigationItem icon="travel-request" text="FAQ" />
+          <SideNavigationItem icon="letter" text="Contato" />
+        </SideNavigation>
 
-      <FlexBox
-        direction={FlexBoxDirection.Column}
-        justifyContent={FlexBoxJustifyContent.Center}
-        alignItems={FlexBoxAlignItems.Center}
-        className={classes.contentContainer}
-      >
-        {Object.values(MessageStripDesign).map((design) => {
-          return (
-            <MessageStrip
-              key={design}
-              design={design}
-              onClose={function Ta() {}}
-              style={{ width: '300px', marginBottom: '20px' }}
-            >
-              {design as String}
-            </MessageStrip>
-          );
-        })}
-        <Card
-          header={
-            <CardHeader
-              avatar={
-                <img
-                  alt="Person"
-                  src="https://sap.github.io/ui5-webcomponents-react/assets/Person-eb847016.png"
-                />
-              }
-              status="3 of 3"
-              subtitleText="Members"
-              titleText="Scrum Team"
+        <ShellBar
+          className={classes.navbar}
+          logo={
+            <img
+              alt="UniFood Logo"
+              src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
             />
           }
-          style={{
-            width: '300px'
-          }}
-        >
-          <List>
-            <StandardListItem description="PO, Scrum Master, Dev">Thiago Haab</StandardListItem>
-            <StandardListItem description="UX Designer, Dev">Laura Speggiorin</StandardListItem>
-            <StandardListItem description="Dev">Rui Cardozo</StandardListItem>
-          </List>
-        </Card>
+          primaryTitle="UniFood"
+          showNotifications
+          notificationsCount="2"
+          profile={
+            <Avatar>
+              <img src="https://sap.github.io/ui5-webcomponents-react/assets/Person-eb847016.png" />
+            </Avatar>
+          }
+        />
       </FlexBox>
-    </>
+
+      <FlexBox direction={FlexBoxDirection.Column} className={classes.firstSection}>
+        <FlexBox direction={FlexBoxDirection.Column} className={classes.mainContainer}>
+          <Text className={classes.mainText}>
+            Compartilhe suas experiências gastronômicas em restaurantes universitários!
+          </Text>
+          <Text className={classes.secondaryText}>
+            Sua opinião importa! Junte-se a nós e ajude a transformar a experiência gastronômica
+            estudantil nas universidades brasileiras.
+          </Text>
+        </FlexBox>
+      </FlexBox>
+
+      <FlexBox direction={FlexBoxDirection.Column} className={classes.secondSection}></FlexBox>
+      <FlexBox direction={FlexBoxDirection.Column} className={classes.thirdSection}></FlexBox>
+      <FlexBox direction={FlexBoxDirection.Row} className={classes.footer}>
+        {/* <Text className={classes.footerText}>
+          A missão da plataforma UniFood é tornar a experiência gastronômica universitária ainda
+          mais especial e prática. Nossa proposta é simples: fornecer um espaço onde você possa
+          avaliar os restaurantes universitários (RUs) com facilidade e compartilhar suas
+          experiências. Suas avaliações podem contribuir para melhorar a experiência de todos que
+          utilizam os mesmos RUs que você!
+        </Text> */}
+      </FlexBox>
+    </FlexBox>
   );
 };
