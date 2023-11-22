@@ -13,21 +13,36 @@ on:
 jobs:
   show_diff:
     runs-on: ubuntu-latest
-        
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-        
+        with:
+          fetch-depth: 0
+
       - name: Get changes
         id: getchange
         run: |
-          echo "::set-output name=changes::$(git diff origin/${{ github.base_ref }}..origin/${{ github.head_ref }})"
-          
-      - name: Echo changes
-        run: |
-          echo "Changes in this PR:"
-          echo "${{ steps.getchange.outputs.changes }}"
-          
+          echo "::set-output name=changes::$(git diff --name-only origin/main..origin/${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}})"
+
+      - name: Add comments
+        uses: actions/github-script@v5
+        with:
+          github-token: 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
+          script: |
+            var changes = '${{ steps.getchange.outputs.changes }}'
+            var files = changes.split('\n')
+            for (var i = 0; i < files.length; i++) {
+              var comment = `The file ${files[i]} is modified.`
+              var issue_number = ${{ github.event.pull_request.number }}
+              github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue_number,
+                body: comment
+              })
+            }
+
   jest:
     runs-on: ubuntu-latest
     defaults:
@@ -76,7 +91,7 @@ jobs:
           npx cypress run
         env:
           API_URI: http://localhost:3000/
-          
+
   prettier:
     runs-on: ubuntu-latest
     defaults:
