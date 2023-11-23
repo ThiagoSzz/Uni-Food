@@ -4,12 +4,19 @@
 import React, { useEffect } from 'react';
 import {
   Avatar,
+  AvatarColorScheme,
+  Button,
+  ButtonDesign,
+  Card,
+  CardHeader,
+  Carousel,
   FlexBox,
   FlexBoxDirection,
+  Icon,
+  List,
   ShellBar,
-  SideNavigation,
-  SideNavigationItem,
-  SideNavigationSubItem,
+  ShellBarItem,
+  StandardListItem,
   Text
 } from '@ui5/webcomponents-react';
 
@@ -51,51 +58,29 @@ export const Home: React.FC = () => {
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
-      <FlexBox className={classes.floating}>
-        <SideNavigation
-          className={classes.sidebar}
-          fixedItems={
-            <>
-              <SideNavigationItem expanded wholeItemToggleable icon="visits" text="Entrar" />
-              <SideNavigationItem
-                expanded
-                wholeItemToggleable
-                icon="add-employee"
-                text="Cadastrar-se"
-              />
-            </>
-          }
-        >
-          <SideNavigationItem icon="home" text="Home" />
-          <SideNavigationItem expanded wholeItemToggleable icon="activity-2" text="Avaliações">
-            <SideNavigationSubItem icon="add" text="Criar" />
-            <SideNavigationItem icon="bar-chart" text="Notas médias" />
-            <SideNavigationSubItem icon="search" text="Pesquisar" />
-          </SideNavigationItem>
-          <SideNavigationItem icon="travel-request" text="FAQ" />
-          <SideNavigationItem icon="letter" text="Contato" />
-        </SideNavigation>
+      <ShellBar
+        className={classes.navbar}
+        logo={
+          <img
+            alt="UniFood Logo"
+            src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
+          />
+        }
+        primaryTitle="UniFood"
+        profile={<Avatar colorScheme={AvatarColorScheme.Accent6} initials="TH"></Avatar>}
+      >
+        <ShellBarItem icon="visits" text="Entrar" />
+        <ShellBarItem icon="add-employee" text="Cadastrar-se" />
+        <ShellBarItem icon="home" text="Home" />
+        <ShellBarItem icon="activity-2" text="Avaliações" />
+        <ShellBarItem icon="add" text="Criar" />
+        <ShellBarItem icon="bar-chart" text="Notas médias" />
+        <ShellBarItem icon="search" text="Pesquisar" />
+        <ShellBarItem icon="travel-request" text="FAQ" />
+        <ShellBarItem icon="letter" text="Contato" />
+      </ShellBar>
 
-        <ShellBar
-          className={classes.navbar}
-          logo={
-            <img
-              alt="UniFood Logo"
-              src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
-            />
-          }
-          primaryTitle="UniFood"
-          showNotifications
-          notificationsCount="2"
-          profile={
-            <Avatar>
-              <img src="https://sap.github.io/ui5-webcomponents-react/assets/Person-eb847016.png" />
-            </Avatar>
-          }
-        />
-      </FlexBox>
-
-      <FlexBox direction={FlexBoxDirection.Column} className={classes.firstSection}>
+      <FlexBox direction={FlexBoxDirection.Row} className={classes.firstSection}>
         <FlexBox direction={FlexBoxDirection.Column} className={classes.mainContainer}>
           <Text className={classes.mainText}>
             Compartilhe suas experiências gastronômicas em restaurantes universitários!
@@ -104,6 +89,46 @@ export const Home: React.FC = () => {
             Sua opinião importa! Junte-se a nós e ajude a transformar a experiência gastronômica
             estudantil nas universidades brasileiras.
           </Text>
+          <FlexBox direction={FlexBoxDirection.Row} className={classes.buttonsFlexBox}>
+            <Button design={ButtonDesign.Transparent} className={classes.newReviewButton}>
+              Deixar Avaliação
+            </Button>
+            <Button design={ButtonDesign.Emphasized} className={classes.searchReviewsButton}>
+              Pesquisar Avaliações
+            </Button>
+          </FlexBox>
+        </FlexBox>
+
+        <FlexBox className={classes.secondaryContainer}>
+          <Carousel className={classes.carousel}>
+            <Card
+              header={<CardHeader avatar={<Icon name="card" />} titleText="Placeholder card" />}
+              className={classes.carouselCards}
+            >
+              <List>
+                <StandardListItem description="Teste">Teste</StandardListItem>
+                <StandardListItem description="Teste">Teste</StandardListItem>
+              </List>
+            </Card>
+            <Card
+              header={<CardHeader avatar={<Icon name="card" />} titleText="Placeholder card" />}
+              className={classes.carouselCards}
+            >
+              <List>
+                <StandardListItem description="Teste">Teste</StandardListItem>
+                <StandardListItem description="Teste">Teste</StandardListItem>
+              </List>
+            </Card>
+            <Card
+              header={<CardHeader avatar={<Icon name="card" />} titleText="Placeholder card" />}
+              className={classes.carouselCards}
+            >
+              <List>
+                <StandardListItem description="Teste">Teste</StandardListItem>
+                <StandardListItem description="Teste">Teste</StandardListItem>
+              </List>
+            </Card>
+          </Carousel>
         </FlexBox>
       </FlexBox>
 

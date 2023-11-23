@@ -23,26 +23,30 @@ const colors = {
 };
 
 const styles = {
-  floating: {
-    position: 'fixed',
-    height: '100%',
-    width: '100%'
-  },
-  sidebar: {
-    height: '100%'
-  },
-  navbar: {
-    height: 'min-content'
-  },
+  navbar: {},
   firstSection: {
-    paddingLeft: '285px',
     height: '100vh',
     width: '100%',
     allignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    gap: '80px',
+    position: 'relative',
+    top: '50%',
+    transform: 'translateY(20%)'
   },
   mainContainer: {
-    width: '70%'
+    width: '50%'
+  },
+  secondaryContainer: {
+    width: '30%'
+  },
+  carousel: {
+    width: 'auto',
+    height: '350px'
+  },
+  carouselCards: {
+    width: '70%',
+    height: 'auto'
   },
   mainText: {
     fontSize: '54px',
@@ -54,21 +58,28 @@ const styles = {
     fontWeight: '600',
     letterSpacing: '-1px',
     marginTop: '20px',
-    width: '60%'
+    width: '70%'
+  },
+  buttonsFlexBox: {
+    marginTop: '20px',
+    gap: '20px'
+  },
+  newReviewButton: {
+    width: '150px'
+  },
+  searchReviewsButton: {
+    width: '200px'
   },
   secondSection: {
-    paddingLeft: '285px',
     height: '100vh',
     width: '100%'
   },
   thirdSection: {
-    paddingLeft: '285px',
     height: '100vh',
     width: '100%'
   },
   footer: {
     background: colors.colorBoxBase,
-    paddingLeft: '285px',
     height: '20vh',
     width: '100%'
   },
