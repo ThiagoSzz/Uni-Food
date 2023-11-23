@@ -11,49 +11,6 @@ on:
       - main
 
 jobs:
-  show_diff:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write 
-      issues: write
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Get changes
-        id: getchange
-        run: |
-          file_changes=$(git diff --name-only origin/main..origin/${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}})
-          echo "::set-output name=changes::${file_changes//$'\n'/;}"
-
-      - name: Log changes
-        run: |
-          echo "${{ steps.getchange.outputs.changes }}"
-          
-      - name: Add comments
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            var changes = '${{ steps.getchange.outputs.changes }}'
-            var files = changes.split(';')
-            var comment = ''
-            for (var i = 0; i < files.length; i++) {
-              comment += `The file ${files[i]} is modified.\n`
-            }
-            console.log(changes, comment)
-            var issue_number = ${{ github.event.pull_request.number }}
-            github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issue_number,
-              body: comment
-            })
-
   jest:
     runs-on: ubuntu-latest
     defaults:
