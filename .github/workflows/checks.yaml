@@ -29,6 +29,10 @@ jobs:
         run: |
           echo "::set-output name=changes::$(git diff --name-only origin/main..origin/${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}})"
 
+      - name: Log changes
+        run: |
+          echo "${{ steps.getchange.outputs.changes }}"
+          
       - name: Add comments
         uses: actions/github-script@v5
         with:
