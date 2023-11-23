@@ -28,6 +28,7 @@ jobs:
       - name: Add comments
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             var changes = '${{ steps.getchange.outputs.changes }}'
             var files = changes.split('\n')
