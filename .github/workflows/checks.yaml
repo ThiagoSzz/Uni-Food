@@ -26,9 +26,9 @@ jobs:
           echo "::set-output name=changes::$(git diff --name-only origin/main..origin/${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}})"
 
       - name: Add comments
-        uses: actions/github-script@v7
+        uses: actions/github-script@v5
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PR_PAT }}
           script: |
             var changes = '${{ steps.getchange.outputs.changes }}'
             var files = changes.split('\n')
