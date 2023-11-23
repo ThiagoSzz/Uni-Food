@@ -36,16 +36,17 @@ jobs:
           script: |
             var changes = '${{ steps.getchange.outputs.changes }}'
             var files = changes.split('\n')
+            var comment = ''
             for (var i = 0; i < files.length; i++) {
-              var comment = `The file ${files[i]} is modified.`
-              var issue_number = ${{ github.event.pull_request.number }}
-              github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue_number,
-                body: comment
-              })
+              comment += `The file ${files[i]} is modified.\n`
             }
+            var issue_number = ${{ github.event.pull_request.number }}
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue_number,
+              body: comment
+            })
 
   jest:
     runs-on: ubuntu-latest
