@@ -13,6 +13,9 @@ on:
 jobs:
   show_diff:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write 
+      issues: write
 
     steps:
       - name: Checkout Repository
@@ -28,7 +31,7 @@ jobs:
       - name: Add comments
         uses: actions/github-script@v5
         with:
-          github-token: ${{ secrets.PR_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             var changes = '${{ steps.getchange.outputs.changes }}'
             var files = changes.split('\n')
