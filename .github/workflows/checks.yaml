@@ -27,7 +27,8 @@ jobs:
       - name: Get changes
         id: getchange
         run: |
-          echo "::set-output name=changes::$(git diff --name-only origin/main..origin/${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}})"
+          file_changes=$(git diff --name-only origin/main..origin/${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}})
+          echo "::set-output name=changes::${file_changes//$'\n'/;}"
 
       - name: Log changes
         run: |
@@ -39,7 +40,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             var changes = '${{ steps.getchange.outputs.changes }}'
-            var files = changes.split('\n')
+            var files = changes.split(';')
             var comment = ''
             for (var i = 0; i < files.length; i++) {
               comment += `The file ${files[i]} is modified.\n`
