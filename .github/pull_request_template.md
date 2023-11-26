@@ -2,7 +2,7 @@
 ## Issue no JIRA
 
 - [Código da Issue no JIRA](Link para a Issue no JIRA)
-- [UNI-1](https://unifood.atlassian.net/browse/UNI-1)
+- Exemplo: [UNI-1](https://unifood.atlassian.net/browse/UNI-1)
 
 ## Descrição
 
