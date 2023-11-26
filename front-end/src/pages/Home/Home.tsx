@@ -5,15 +5,18 @@ import React, { useEffect } from 'react';
 import {
   Avatar,
   AvatarColorScheme,
+  Badge,
   Button,
   ButtonDesign,
   Card,
   CardHeader,
-  Carousel,
   FlexBox,
   FlexBoxDirection,
   Icon,
   List,
+  ListItemType,
+  ListSeparators,
+  RatingIndicator,
   ShellBar,
   ShellBarItem,
   StandardListItem,
@@ -26,6 +29,7 @@ import { useTestMutation } from '../../hooks/useTestMutation';
 import { useTestQuery } from '../../hooks/useTestQuery';
 import { useIsMutating } from 'react-query';
 import '@ui5/webcomponents-icons/dist/AllIcons';
+import { CardTagsEnum } from '../../enums/CardTagsEnum';
 
 export const Home: React.FC = () => {
   const { testNumber, testSetNumber } = useTestStore();
@@ -59,7 +63,6 @@ export const Home: React.FC = () => {
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
       <ShellBar
-        className={classes.navbar}
         logo={
           <img
             alt="UniFood Logo"
@@ -69,79 +72,187 @@ export const Home: React.FC = () => {
         primaryTitle="UniFood"
         profile={<Avatar colorScheme={AvatarColorScheme.Accent6} initials="TH"></Avatar>}
       >
-        <ShellBarItem icon="visits" text="Entrar" />
+        <ShellBarItem icon="visits" text="Entrar" onClick={function Ta() {}} />
         <ShellBarItem icon="add-employee" text="Cadastrar-se" />
-        <ShellBarItem icon="home" text="Home" />
-        <ShellBarItem icon="activity-2" text="Avaliações" />
-        <ShellBarItem icon="add" text="Criar" />
-        <ShellBarItem icon="bar-chart" text="Notas médias" />
-        <ShellBarItem icon="search" text="Pesquisar" />
-        <ShellBarItem icon="travel-request" text="FAQ" />
-        <ShellBarItem icon="letter" text="Contato" />
       </ShellBar>
 
       <FlexBox direction={FlexBoxDirection.Row} className={classes.firstSection}>
         <FlexBox direction={FlexBoxDirection.Column} className={classes.mainContainer}>
-          <Text className={classes.mainText}>
+          <Text className={classes.firstSectionMainText}>
             Compartilhe suas experiências gastronômicas em restaurantes universitários!
           </Text>
-          <Text className={classes.secondaryText}>
+          <Text className={classes.firstSectionSecondaryText}>
             Sua opinião importa! Junte-se a nós e ajude a transformar a experiência gastronômica
             estudantil nas universidades brasileiras.
           </Text>
           <FlexBox direction={FlexBoxDirection.Row} className={classes.buttonsFlexBox}>
-            <Button design={ButtonDesign.Transparent} className={classes.newReviewButton}>
+            <Button design={ButtonDesign.Emphasized} className={classes.newReviewButton}>
               Deixar Avaliação
             </Button>
-            <Button design={ButtonDesign.Emphasized} className={classes.searchReviewsButton}>
+            <Button design={ButtonDesign.Default} className={classes.searchReviewsButton}>
               Pesquisar Avaliações
             </Button>
           </FlexBox>
         </FlexBox>
 
         <FlexBox className={classes.secondaryContainer}>
-          <Carousel className={classes.carousel}>
-            <Card
-              header={<CardHeader avatar={<Icon name="card" />} titleText="Placeholder card" />}
-              className={classes.carouselCards}
-            >
-              <List>
-                <StandardListItem description="Teste">Teste</StandardListItem>
-                <StandardListItem description="Teste">Teste</StandardListItem>
-              </List>
-            </Card>
-            <Card
-              header={<CardHeader avatar={<Icon name="card" />} titleText="Placeholder card" />}
-              className={classes.carouselCards}
-            >
-              <List>
-                <StandardListItem description="Teste">Teste</StandardListItem>
-                <StandardListItem description="Teste">Teste</StandardListItem>
-              </List>
-            </Card>
-            <Card
-              header={<CardHeader avatar={<Icon name="card" />} titleText="Placeholder card" />}
-              className={classes.carouselCards}
-            >
-              <List>
-                <StandardListItem description="Teste">Teste</StandardListItem>
-                <StandardListItem description="Teste">Teste</StandardListItem>
-              </List>
-            </Card>
-          </Carousel>
+          <Card
+            className={classes.reviewCard}
+            header={
+              <CardHeader
+                avatar={<Icon name="official-service" />}
+                titleText="RU1 - UFRGS"
+                subtitleText="Porto Alegre, Rio Grande do Sul"
+              />
+            }
+          >
+            <List separators={ListSeparators.None}>
+              <StandardListItem type={ListItemType.Inactive}>
+                <RatingIndicator readonly value={4} className={classes.reviewCardStars} />
+              </StandardListItem>
+              <StandardListItem
+                type={ListItemType.Inactive}
+                style={{ height: 'auto', marginTop: '20px' }}
+              >
+                <h4>Comentários</h4>
+                <p className={classes.reviewCardComments}>
+                  Recomendo o Restaurante Universitário! A comida era deliciosa e bem preparada, com
+                  opções vegetarianas e saudáveis. O atendimento foi amigável e o ambiente era
+                  espaçoso e limpo.
+                </p>
+              </StandardListItem>
+              <StandardListItem
+                type={ListItemType.Inactive}
+                style={{ height: 'auto', marginTop: '20px' }}
+              >
+                <h4>Tags</h4>
+                <FlexBox className={classes.badgesList}>
+                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Positive}>
+                    Fila curta
+                  </Badge>
+                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Neutral}>
+                    Sem guardanapos
+                  </Badge>
+                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Negative}>
+                    Sem opção vegetariana
+                  </Badge>
+                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Positive}>
+                    Boa variedade
+                  </Badge>
+                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Positive}>
+                    Limpeza
+                  </Badge>
+                </FlexBox>
+              </StandardListItem>
+            </List>
+          </Card>
         </FlexBox>
       </FlexBox>
 
-      <FlexBox direction={FlexBoxDirection.Column} className={classes.secondSection}></FlexBox>
-      <FlexBox direction={FlexBoxDirection.Column} className={classes.thirdSection}></FlexBox>
+      <FlexBox direction={FlexBoxDirection.Column} className={classes.secondSection}>
+        <Text className={classes.secondSectionMainText}>
+          Veja as avaliações dos RUs mais frequentados!
+        </Text>
+        <Text className={classes.secondSectionSecondaryText}>
+          Veja a média das avaliações deixadas por outros estudantes.
+        </Text>
+      </FlexBox>
+
+      <FlexBox direction={FlexBoxDirection.Column} className={classes.thirdSection}>
+        <Text className={classes.secondSectionMainText}>
+          Leia avaliações reais de estudantes como você
+        </Text>
+        <Text className={classes.secondSectionSecondaryText}>
+          Descubra as experiências mais recentes dos estudantes nos RUs.
+        </Text>
+      </FlexBox>
+
+      <FlexBox direction={FlexBoxDirection.Column} className={classes.fourthSection}>
+        <FlexBox direction={FlexBoxDirection.Column} className={classes.fourthSectionMainContainer}>
+          <Badge
+            colorScheme={CardTagsEnum.Positive}
+            style={{ padding: '5px', width: 'min-content' }}
+          >
+            FAQ
+          </Badge>
+          <Text className={classes.fourthSectionMainText}>Perguntas comuns</Text>
+        </FlexBox>
+
+        <FlexBox direction={FlexBoxDirection.Column} style={{ padding: '100px', gap: '50px' }}>
+          <FlexBox direction={FlexBoxDirection.Column}>
+            <Text className={classes.questionText}>O que devo considerar em minha avaliação?</Text>
+            <Text className={classes.answerText}>
+              Ao avaliar o restaurante universitário, você pode considerar diversos aspectos, tais
+              como a qualidade da comida, o atendimento, a limpeza do ambiente e a variedade de
+              opções oferecidas. <br /> <br />É importante que você leve em conta a realidade dos
+              RUs ao fazer comparações, evitando considerar restaurantes que podem ter preços muito
+              mais altos. Afinal, o valor pago no RU é significativamente mais acessível e a
+              proposta do local é atender às necessidades dos estudantes.
+            </Text>
+          </FlexBox>
+
+          <FlexBox direction={FlexBoxDirection.Column}>
+            <Text className={classes.questionText}>Meu nome ficará exposto na avaliação?</Text>
+            <Text className={classes.answerText}>
+              Não, todas as avaliações são anônimas. Seu nome não será exibido e sua identidade será
+              mantida em sigilo.
+            </Text>
+          </FlexBox>
+
+          <FlexBox direction={FlexBoxDirection.Column}>
+            <Text className={classes.questionText}>Qual é o objetivo da plataforma?</Text>
+            <Text className={classes.answerText}>
+              O objetivo da plataforma é proporcionar um espaço para que estudantes possam
+              compartilhar suas experiências nos restaurantes universitários, permitindo que outros
+              alunos conheçam as avaliações e façam escolhas informadas sobre onde comer. <br />
+              <br /> Além disso, acreditamos que os orgãos gerenciadores dos RUs avaliados pelos
+              usuários em nossa plataforma podem contribuir para a evolução dos restaurantes de um
+              modo geral. Dessa forma, as avaliações podem servir como uma métrica de qualidade
+              destes estabelecimentos.
+            </Text>
+          </FlexBox>
+
+          <FlexBox direction={FlexBoxDirection.Column}>
+            <Text className={classes.questionText}>
+              Durante quanto tempo uma avaliação fica disponível?
+            </Text>
+            <Text className={classes.answerText}>
+              Uma avaliação fica disponível por até um mês após ser enviada. Nós optamos por manter
+              as avaliações temporárias porque acreditamos que os RUs têm a capacidade de evoluir e
+              se adaptar às necessidades dos estudantes ao longo do tempo.
+            </Text>
+          </FlexBox>
+
+          <FlexBox direction={FlexBoxDirection.Column}>
+            <Text className={classes.questionText}>
+              Sou estudante e gostaria de obter acesso às avaliações, é possível?
+            </Text>
+            <Text className={classes.answerText}>
+              Sim, é possível obter acesso às avaliações em nossa plataforma. Se você é estudante e
+              deseja ter acesso às avaliações, por favor, entre em contato conosco pelo e-mail{' '}
+              <u>unifood.tech@gmail.com</u>. Vamos avaliar sua solicitação e fornecer os detalhes
+              sobre as condições de utilização dos dados de avaliações em nossa plataforma. <br />
+              <br /> Lembramos que é fundamental respeitar a Lei Geral de Proteção de Dados (LGPD) e
+              as políticas de privacidade em vigor. Portanto, as informações fornecidas a você
+              estarão de acordo com as regulamentações e garantirão a privacidade e anonimato dos
+              avaliadores.
+            </Text>
+          </FlexBox>
+        </FlexBox>
+      </FlexBox>
+
       <FlexBox direction={FlexBoxDirection.Row} className={classes.footer}>
-        {/* <Text className={classes.footerText}>
+        <Text className={classes.footerText}>
           A missão da plataforma UniFood é tornar a experiência gastronômica universitária ainda
           mais especial e prática. Nossa proposta é simples: fornecer um espaço onde você possa
           avaliar os restaurantes universitários (RUs) com facilidade e compartilhar suas
           experiências. Suas avaliações podem contribuir para melhorar a experiência de todos que
           utilizam os mesmos RUs que você!
-        </Text> */}
+        </Text>
+        <FlexBox direction={FlexBoxDirection.Column}>
+          <Text className={classes.footerContactHeader}>Contato: </Text>
+          <Text className={classes.footerContact}>unifood.tech@gmail.com</Text>
+        </FlexBox>
       </FlexBox>
     </FlexBox>
   );

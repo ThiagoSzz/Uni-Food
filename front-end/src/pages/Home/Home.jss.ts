@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createUseStyles } from 'react-jss';
 
+type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
+
 const colors = {
   colorBackground: '#f0f0f7',
   colorPrimaryLighter: '#9871f5',
@@ -19,41 +21,36 @@ const colors = {
   colorInputBackground: '#f8f8fc',
   colorButtonText: '#ffffff',
   colorBoxBase: '#ffffff',
-  colorBoxFooter: '#fafafc'
+  colorBoxFooter: '#fafafc',
+  colorWhite: '#ffffff',
+  colorBlack: '#000000'
 };
 
-const styles = {
-  navbar: {},
+const styles: JSSStyles = {
   firstSection: {
     height: '100vh',
     width: '100%',
-    allignItems: 'center',
-    justifyContent: 'center',
     gap: '80px',
     position: 'relative',
-    top: '50%',
-    transform: 'translateY(20%)'
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: '-40px'
   },
   mainContainer: {
-    width: '50%'
+    width: '50%',
+    height: 'min-content'
   },
   secondaryContainer: {
-    width: '30%'
+    width: '30%',
+    justifyContent: 'center',
+    height: 'min-content'
   },
-  carousel: {
-    width: 'auto',
-    height: '350px'
-  },
-  carouselCards: {
-    width: '70%',
-    height: 'auto'
-  },
-  mainText: {
+  firstSectionMainText: {
     fontSize: '54px',
     fontWeight: '700',
     letterSpacing: '-3px'
   },
-  secondaryText: {
+  firstSectionSecondaryText: {
     fontSize: '22px',
     fontWeight: '600',
     letterSpacing: '-1px',
@@ -71,24 +68,121 @@ const styles = {
     width: '200px'
   },
   secondSection: {
+    padding: '100px',
     height: '100vh',
-    width: '100%'
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: colors.colorBoxBase
+  },
+  secondSectionMainText: {
+    fontSize: '54px',
+    fontWeight: '700',
+    letterSpacing: '-3px'
+  },
+  secondSectionSecondaryText: {
+    fontSize: '22px',
+    fontWeight: '600',
+    letterSpacing: '-1px',
+    marginTop: '20px'
+  },
+  reviewCard: {
+    width: '80%',
+    height: 'min-content'
+  },
+  reviewCardStars: {},
+  reviewCardComments: {
+    marginTop: '10px',
+    maxHeight: '100px',
+    wordWrap: 'break-word',
+    overflowWrap: 'break-word',
+    whiteSpace: 'pre-wrap',
+    overflowY: 'scroll'
+  },
+  badgesList: {
+    marginTop: '10px',
+    flexWrap: 'wrap',
+    gap: '8px',
+    maxHeight: '100px',
+    overflow: 'auto',
+    marginBottom: '20px'
   },
   thirdSection: {
+    padding: '100px',
     height: '100vh',
-    width: '100%'
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: colors.colorBackground
+  },
+  thirdSectionMainText: {
+    marginTop: '20px',
+    fontSize: '54px',
+    fontWeight: '700',
+    letterSpacing: '-3px'
+  },
+  thirdSectionSecondaryText: {
+    fontSize: '22px',
+    fontWeight: '600',
+    letterSpacing: '-1px',
+    marginTop: '20px'
+  },
+  fourthSection: {
+    padding: '100px',
+    height: 'auto',
+    width: '100%',
+    backgroundColor: colors.colorBoxBase
+  },
+  fourthSectionMainContainer: {
+    alignItems: 'center',
+    gap: '20px'
+  },
+  fourthSectionMainText: {
+    fontSize: '54px',
+    fontWeight: '700',
+    letterSpacing: '-3px'
+  },
+  fourthSectionSecondaryText: {
+    fontSize: '22px',
+    fontWeight: '600',
+    letterSpacing: '-1px'
+  },
+  questionText: {
+    fontSize: '20px',
+    fontWeight: '700',
+    letterSpacing: '-1px'
+  },
+  answerText: {
+    marginTop: '10px',
+    fontSize: '18px',
+    fontWeight: '500',
+    letterSpacing: '-0.5px'
   },
   footer: {
-    background: colors.colorBoxBase,
-    height: '20vh',
-    width: '100%'
+    backgroundColor: colors.colorBlack,
+    height: '30vh',
+    width: '100%',
+    alignItems: 'center',
+    gap: '100px'
   },
   footerText: {
-    fontSize: '15px',
-    letterSpacing: '-1px',
-    allignItems: 'center',
-    justifyContent: 'center',
-    width: '50%'
+    color: colors.colorWhite,
+    fontSize: '18px',
+    fontWeight: '500',
+    letterSpacing: '-0.5px',
+    width: '40%',
+    marginLeft: '50px'
+  },
+  footerContactHeader: {
+    color: colors.colorWhite,
+    fontSize: '18px',
+    fontWeight: '600',
+    letterSpacing: '-0.5px'
+  },
+  footerContact: {
+    color: colors.colorWhite,
+    fontSize: '18px',
+    fontWeight: '500',
+    letterSpacing: '-0.5px',
+    marginTop: '10px'
   }
 };
 
