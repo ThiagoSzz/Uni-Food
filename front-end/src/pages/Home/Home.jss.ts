@@ -28,13 +28,12 @@ const colors = {
 
 const styles: JSSStyles = {
   firstSection: {
-    height: '100vh',
+    height: 'calc(100vh - 52px)',
     width: '100%',
     gap: '80px',
     position: 'relative',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '-40px'
+    justifyContent: 'center'
   },
   mainContainer: {
     width: '50%',
@@ -65,7 +64,7 @@ const styles: JSSStyles = {
     width: '150px'
   },
   searchReviewsButton: {
-    width: '200px'
+    width: '180px'
   },
   secondSection: {
     padding: '100px',

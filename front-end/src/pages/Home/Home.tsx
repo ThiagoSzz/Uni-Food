@@ -72,7 +72,7 @@ export const Home: React.FC = () => {
         primaryTitle="UniFood"
         profile={<Avatar colorScheme={AvatarColorScheme.Accent6} initials="TH"></Avatar>}
       >
-        <ShellBarItem icon="visits" text="Entrar" onClick={function Ta() {}} />
+        <ShellBarItem icon="visits" text="Entrar" />
         <ShellBarItem icon="add-employee" text="Cadastrar-se" />
       </ShellBar>
 
@@ -116,9 +116,11 @@ export const Home: React.FC = () => {
               >
                 <h4>Comentários</h4>
                 <p className={classes.reviewCardComments}>
-                  Recomendo o Restaurante Universitário! A comida era deliciosa e bem preparada, com
-                  opções vegetarianas e saudáveis. O atendimento foi amigável e o ambiente era
-                  espaçoso e limpo.
+                  Minha experiência no Restaurante Universitário foi positiva em vários aspectos. A
+                  agilidade no atendimento, com filas curtas, facilitou bastante o processo de
+                  refeição. No entanto, a ausência de guardanapos foi um ponto negativo que não pude
+                  ignorar. A diversidade de pratos disponíveis é uma vantagem, embora tenha sentido
+                  falta de opções vegetarianas para atender diferentes preferências alimentares.
                 </p>
               </StandardListItem>
               <StandardListItem
