@@ -19,6 +19,7 @@ export const useTestQuery = (params: TestQueryRequest, options?) => {
     queryKey: TEST_QUERY_NAME,
     queryFn: () => getTestQuery(params),
     enabled: false,
+    retry: false,
     ...options
   });
 };

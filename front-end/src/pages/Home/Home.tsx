@@ -72,8 +72,8 @@ export const Home: React.FC = () => {
         primaryTitle="UniFood"
         profile={<Avatar colorScheme={AvatarColorScheme.Accent6} initials="TH"></Avatar>}
       >
-        <ShellBarItem icon="visits" text="Entrar" />
-        <ShellBarItem icon="add-employee" text="Cadastrar-se" />
+        <ShellBarItem icon="visits" text="Entrar" onClick={() => callMutation()} />
+        <ShellBarItem icon="add-employee" text="Cadastrar-se" onClick={() => refetch()} />
       </ShellBar>
 
       <FlexBox direction={FlexBoxDirection.Row} className={classes.firstSection}>

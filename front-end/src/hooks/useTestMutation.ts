@@ -15,6 +15,7 @@ export const useTestMutation = (options?) => {
   return useMutation<AxiosResponse<any, any>, Error, TestMutationRequest>({
     mutationKey: TEST_MUTATION_NAME,
     mutationFn: (data) => setTestMutation(data),
+    retry: false,
     ...options
   });
 };
