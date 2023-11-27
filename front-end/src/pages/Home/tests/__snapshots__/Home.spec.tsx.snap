@@ -2,112 +2,343 @@
 
 exports[`Home page Should match the snapshot 1`] = `
 <div>
-  <ui5-shellbar
-    data-sap-ui-fastnavgroup="true"
-    notifications-count="2"
-    primary-title="UniFood"
-    secondary-title="Crie avaliações e busque recomendações de restaurantes universitários"
-    show-notifications="true"
-    ui5-shellbar=""
+  <div
+    class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
   >
-    <img
-      alt="UniFood Logo"
-      slot="logo"
-      src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
-    />
-    <ui5-avatar
-      slot="profile"
-      ui5-avatar=""
+    <ui5-shellbar
+      data-sap-ui-fastnavgroup="true"
+      primary-title="UniFood"
+      ui5-shellbar=""
     >
       <img
-        alt="Person"
-        src="https://sap.github.io/ui5-webcomponents-react/assets/Person-eb847016.png"
+        alt="UniFood Logo"
+        slot="logo"
+        src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
       />
-    </ui5-avatar>
-  </ui5-shellbar>
-  <div
-    class="FlexBox-flexBox-0-2-2 FlexBox-flexBoxDirectionColumn-0-2-15 FlexBox-justifyContentCenter-0-2-7 FlexBox-alignItemsCenter-0-2-12 FlexBox-flexWrapNoWrap-0-2-19 Home-contentContainer-0-2-1"
-  >
-    <ui5-message-strip
-      design="Information"
-      style="width: 300px; margin-bottom: 20px;"
-      ui5-message-strip=""
+      <ui5-avatar
+        color-scheme="Accent6"
+        initials="TH"
+        slot="profile"
+        ui5-avatar=""
+      />
+      <ui5-shellbar-item
+        icon="visits"
+        text="Entrar"
+        ui5-shellbar-item=""
+      />
+      <ui5-shellbar-item
+        icon="add-employee"
+        text="Cadastrar-se"
+        ui5-shellbar-item=""
+      />
+    </ui5-shellbar>
+    <div
+      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-firstSection-0-2-1"
     >
-      Information
-    </ui5-message-strip>
-    <ui5-message-strip
-      design="Positive"
-      style="width: 300px; margin-bottom: 20px;"
-      ui5-message-strip=""
-    >
-      Positive
-    </ui5-message-strip>
-    <ui5-message-strip
-      design="Negative"
-      style="width: 300px; margin-bottom: 20px;"
-      ui5-message-strip=""
-    >
-      Negative
-    </ui5-message-strip>
-    <ui5-message-strip
-      design="Warning"
-      style="width: 300px; margin-bottom: 20px;"
-      ui5-message-strip=""
-    >
-      Warning
-    </ui5-message-strip>
-    <ui5-card
-      style="width: 300px;"
-      ui5-card=""
-    >
-      <ui5-card-header
-        slot="header"
-        status="3 of 3"
-        subtitle-text="Members"
-        title-text="Scrum Team"
-        ui5-card-header=""
+      <div
+        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-mainContainer-0-2-2"
       >
-        <img
-          alt="Person"
-          slot="avatar"
-          src="https://sap.github.io/ui5-webcomponents-react/assets/Person-eb847016.png"
-        />
-      </ui5-card-header>
-      <ui5-list
-        accessible-role="list"
-        busy-delay="1000"
-        data-sap-ui-fastnavgroup="true"
-        growing="None"
-        mode="None"
-        separators="All"
-        ui5-list=""
+        <span
+          class="Text-text-0-2-49 Home-firstSectionMainText-0-2-4"
+        >
+          Compartilhe suas experiências gastronômicas em restaurantes universitários!
+        </span>
+        <span
+          class="Text-text-0-2-49 Home-firstSectionSecondaryText-0-2-5"
+        >
+          Sua opinião importa! Junte-se a nós e ajude a transformar a experiência gastronômica estudantil nas universidades brasileiras.
+        </span>
+        <div
+          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-buttonsFlexBox-0-2-6"
+        >
+          <ui5-button
+            class="Home-newReviewButton-0-2-7"
+            design="Emphasized"
+            type="Button"
+            ui5-button=""
+          >
+            Deixar Avaliação
+          </ui5-button>
+          <ui5-button
+            class="Home-searchReviewsButton-0-2-8"
+            design="Default"
+            type="Button"
+            ui5-button=""
+          >
+            Pesquisar Avaliações
+          </ui5-button>
+        </div>
+      </div>
+      <div
+        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-secondaryContainer-0-2-3"
       >
-        <ui5-li
-          additional-text-state="None"
-          description="PO, Scrum Master, Dev"
-          type="Active"
-          ui5-li=""
+        <ui5-card
+          class="Home-reviewCard-0-2-12"
+          ui5-card=""
         >
-          Thiago Haab
-        </ui5-li>
-        <ui5-li
-          additional-text-state="None"
-          description="UX Designer, Dev"
-          type="Active"
-          ui5-li=""
+          <ui5-card-header
+            slot="header"
+            subtitle-text="Porto Alegre, Rio Grande do Sul"
+            title-text="RU1 - UFRGS"
+            ui5-card-header=""
+          >
+            <ui5-icon
+              design="Default"
+              name="official-service"
+              slot="avatar"
+              ui5-icon=""
+            />
+          </ui5-card-header>
+          <ui5-list
+            accessible-role="list"
+            busy-delay="1000"
+            data-sap-ui-fastnavgroup="true"
+            growing="None"
+            mode="None"
+            separators="None"
+            ui5-list=""
+          >
+            <ui5-li
+              additional-text-state="None"
+              type="Inactive"
+              ui5-li=""
+            >
+              <ui5-rating-indicator
+                max="5"
+                readonly="true"
+                ui5-rating-indicator=""
+                value="4"
+              />
+            </ui5-li>
+            <ui5-li
+              additional-text-state="None"
+              style="height: auto; margin-top: 20px;"
+              type="Inactive"
+              ui5-li=""
+            >
+              <h4>
+                Comentários
+              </h4>
+              <p
+                class="Home-reviewCardComments-0-2-13"
+              >
+                Minha experiência no Restaurante Universitário foi positiva em vários aspectos. A agilidade no atendimento, com filas curtas, facilitou bastante o processo de refeição. No entanto, a ausência de guardanapos foi um ponto negativo que não pude ignorar. A diversidade de pratos disponíveis é uma vantagem, embora tenha sentido falta de opções vegetarianas para atender diferentes preferências alimentares.
+              </p>
+            </ui5-li>
+            <ui5-li
+              additional-text-state="None"
+              style="height: auto; margin-top: 20px;"
+              type="Inactive"
+              ui5-li=""
+            >
+              <h4>
+                Tags
+              </h4>
+              <div
+                class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-badgesList-0-2-14"
+              >
+                <ui5-badge
+                  class="Home-badge-0-2-15"
+                  color-scheme="8"
+                  ui5-badge=""
+                >
+                  Fila curta
+                </ui5-badge>
+                <ui5-badge
+                  class="Home-badge-0-2-15"
+                  color-scheme="1"
+                  ui5-badge=""
+                >
+                  Sem guardanapos
+                </ui5-badge>
+                <ui5-badge
+                  class="Home-badge-0-2-15"
+                  color-scheme="2"
+                  ui5-badge=""
+                >
+                  Sem opção vegetariana
+                </ui5-badge>
+                <ui5-badge
+                  class="Home-badge-0-2-15"
+                  color-scheme="8"
+                  ui5-badge=""
+                >
+                  Boa variedade
+                </ui5-badge>
+                <ui5-badge
+                  class="Home-badge-0-2-15"
+                  color-scheme="8"
+                  ui5-badge=""
+                >
+                  Limpeza
+                </ui5-badge>
+              </div>
+            </ui5-li>
+          </ui5-list>
+        </ui5-card>
+      </div>
+    </div>
+    <div
+      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-secondSection-0-2-9"
+    >
+      <span
+        class="Text-text-0-2-49 Home-secondSectionMainText-0-2-10"
+      >
+        Veja as avaliações dos RUs mais frequentados!
+      </span>
+      <span
+        class="Text-text-0-2-49 Home-secondSectionSecondaryText-0-2-11"
+      >
+        Veja a média das avaliações deixadas por outros estudantes.
+      </span>
+    </div>
+    <div
+      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-thirdSection-0-2-16"
+    >
+      <span
+        class="Text-text-0-2-49 Home-secondSectionMainText-0-2-10"
+      >
+        Leia avaliações reais de estudantes como você
+      </span>
+      <span
+        class="Text-text-0-2-49 Home-secondSectionSecondaryText-0-2-11"
+      >
+        Descubra as experiências mais recentes dos estudantes nos RUs.
+      </span>
+    </div>
+    <div
+      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-fourthSection-0-2-19"
+    >
+      <div
+        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-fourthSectionMainContainer-0-2-20"
+      >
+        <ui5-badge
+          color-scheme="8"
+          style="padding: 5px;"
+          ui5-badge=""
         >
-          Laura Speggiorin
-        </ui5-li>
-        <ui5-li
-          additional-text-state="None"
-          description="Dev"
-          type="Active"
-          ui5-li=""
+          FAQ
+        </ui5-badge>
+        <span
+          class="Text-text-0-2-49 Home-fourthSectionMainText-0-2-21"
         >
-          Rui Cardozo
-        </ui5-li>
-      </ui5-list>
-    </ui5-card>
+          Perguntas comuns
+        </span>
+      </div>
+      <div
+        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+        style="padding: 100px; gap: 50px;"
+      >
+        <div
+          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+        >
+          <span
+            class="Text-text-0-2-49 Home-questionText-0-2-23"
+          >
+            O que devo considerar em minha avaliação?
+          </span>
+          <span
+            class="Text-text-0-2-49 Home-answerText-0-2-24"
+          >
+            Ao avaliar o restaurante universitário, você pode considerar diversos aspectos, tais como a qualidade da comida, o atendimento, a limpeza do ambiente e a variedade de opções oferecidas. 
+            <br />
+             
+            <br />
+            É importante que você leve em conta a realidade dos RUs ao fazer comparações, evitando considerar restaurantes que podem ter preços muito mais altos. Afinal, o valor pago no RU é significativamente mais acessível e a proposta do local é atender às necessidades dos estudantes.
+          </span>
+        </div>
+        <div
+          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+        >
+          <span
+            class="Text-text-0-2-49 Home-questionText-0-2-23"
+          >
+            Meu nome ficará exposto na avaliação?
+          </span>
+          <span
+            class="Text-text-0-2-49 Home-answerText-0-2-24"
+          >
+            Não, todas as avaliações são anônimas. Seu nome não será exibido e sua identidade será mantida em sigilo.
+          </span>
+        </div>
+        <div
+          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+        >
+          <span
+            class="Text-text-0-2-49 Home-questionText-0-2-23"
+          >
+            Qual é o objetivo da plataforma?
+          </span>
+          <span
+            class="Text-text-0-2-49 Home-answerText-0-2-24"
+          >
+            O objetivo da plataforma é proporcionar um espaço para que estudantes possam compartilhar suas experiências nos restaurantes universitários, permitindo que outros alunos conheçam as avaliações e façam escolhas informadas sobre onde comer. 
+            <br />
+            <br />
+             Além disso, acreditamos que os orgãos gerenciadores dos RUs avaliados pelos usuários em nossa plataforma podem contribuir para a evolução dos restaurantes de um modo geral. Dessa forma, as avaliações podem servir como uma métrica de qualidade destes estabelecimentos.
+          </span>
+        </div>
+        <div
+          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+        >
+          <span
+            class="Text-text-0-2-49 Home-questionText-0-2-23"
+          >
+            Durante quanto tempo uma avaliação fica disponível?
+          </span>
+          <span
+            class="Text-text-0-2-49 Home-answerText-0-2-24"
+          >
+            Uma avaliação fica disponível por até um mês após ser enviada. Nós optamos por manter as avaliações temporárias porque acreditamos que os RUs têm a capacidade de evoluir e se adaptar às necessidades dos estudantes ao longo do tempo.
+          </span>
+        </div>
+        <div
+          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+        >
+          <span
+            class="Text-text-0-2-49 Home-questionText-0-2-23"
+          >
+            Sou estudante e gostaria de obter acesso às avaliações, é possível?
+          </span>
+          <span
+            class="Text-text-0-2-49 Home-answerText-0-2-24"
+          >
+            Sim, é possível obter acesso às avaliações em nossa plataforma. Se você é estudante e deseja ter acesso às avaliações, por favor, entre em contato conosco pelo e-mail
+             
+            <u>
+              unifood.tech@gmail.com
+            </u>
+            . Vamos avaliar sua solicitação e fornecer os detalhes sobre as condições de utilização dos dados de avaliações em nossa plataforma. 
+            <br />
+            <br />
+             Lembramos que é fundamental respeitar a Lei Geral de Proteção de Dados (LGPD) e as políticas de privacidade em vigor. Portanto, as informações fornecidas a você estarão de acordo com as regulamentações e garantirão a privacidade e anonimato dos avaliadores.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-footer-0-2-25"
+    >
+      <span
+        class="Text-text-0-2-49 Home-footerText-0-2-26"
+      >
+        A missão da plataforma UniFood é tornar a experiência gastronômica universitária ainda mais especial e prática. Nossa proposta é simples: fornecer um espaço onde você possa avaliar os restaurantes universitários (RUs) com facilidade e compartilhar suas experiências. Suas avaliações podem contribuir para melhorar a experiência de todos que utilizam os mesmos RUs que você!
+      </span>
+      <div
+        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+      >
+        <span
+          class="Text-text-0-2-49 Home-footerContactHeader-0-2-27"
+        >
+          Contato: 
+        </span>
+        <span
+          class="Text-text-0-2-49 Home-footerContact-0-2-28"
+        >
+          unifood.tech@gmail.com
+        </span>
+      </div>
+    </div>
   </div>
 </div>
 `;
