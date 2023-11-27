@@ -89,7 +89,6 @@ const styles: JSSStyles = {
     width: '80%',
     height: 'min-content'
   },
-  reviewCardStars: {},
   reviewCardComments: {
     marginTop: '10px',
     maxHeight: '100px',
@@ -105,6 +104,9 @@ const styles: JSSStyles = {
     maxHeight: '100px',
     overflow: 'auto',
     marginBottom: '20px'
+  },
+  badge: {
+    padding: '5px'
   },
   thirdSection: {
     padding: '100px',

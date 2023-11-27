@@ -127,19 +127,19 @@ export const Home: React.FC = () => {
               >
                 <h4>Tags</h4>
                 <FlexBox className={classes.badgesList}>
-                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Positive}>
+                  <Badge className={classes.badge} colorScheme={CardTagsEnum.Positive}>
                     Fila curta
                   </Badge>
-                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Neutral}>
+                  <Badge className={classes.badge} colorScheme={CardTagsEnum.Neutral}>
                     Sem guardanapos
                   </Badge>
-                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Negative}>
+                  <Badge className={classes.badge} colorScheme={CardTagsEnum.Negative}>
                     Sem opção vegetariana
                   </Badge>
-                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Positive}>
+                  <Badge className={classes.badge} colorScheme={CardTagsEnum.Positive}>
                     Boa variedade
                   </Badge>
-                  <Badge style={{ padding: '5px' }} colorScheme={CardTagsEnum.Positive}>
+                  <Badge className={classes.badge} colorScheme={CardTagsEnum.Positive}>
                     Limpeza
                   </Badge>
                 </FlexBox>
