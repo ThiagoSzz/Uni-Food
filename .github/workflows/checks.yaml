@@ -1,0 +1,82 @@
+name: Run checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  push:
+    branches:
+      - main
+
+jobs:
+  jest:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front-end
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Jest Tests
+        run: npm run test
+
+  cypress:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front-end
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+        env:
+          PORT: 3000
+
+      - name: Run Local Server and Run Cypress Tests
+        run: |
+          npm run build
+          npm run start &
+          npx cypress run
+        env:
+          API_URI: http://localhost:3000/
+
+  prettier:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front-end
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Check Code Formatting with Prettier
+        run: npx prettier {src,cypress} -c
