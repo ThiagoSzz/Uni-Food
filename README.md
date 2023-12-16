@@ -5,6 +5,8 @@ A plataforma UniFood é uma aplicação que permite aos estudantes avaliar resta
 
 ## Tecnologias
 
+### Front-End
+
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)
 ![Jest](https://img.shields.io/badge/-Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
@@ -14,36 +16,41 @@ A plataforma UniFood é uma aplicação que permite aos estudantes avaliar resta
 ![HTML](https://img.shields.io/badge/-HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![JSS](https://img.shields.io/badge/JSS-F7DF1E.svg?style=for-the-badge&logo=JSS&logoColor=black)
 
-![Java](https://img.shields.io/badge/Java-blue.svg?style=for-the-badge&logo=coffeescript)
-![JUnit](https://img.shields.io/badge/JUnit5-25A162.svg?style=for-the-badge&logo=JUnit5&logoColor=white)
-![JBoss](https://img.shields.io/badge/JBoss-WildFly-red.svg?style=for-the-badge&logo=apache)
+### Back-End
+
+![Node.js](https://img.shields.io/badge/Node.js-339933.svg?style=for-the-badge&logo=Node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000.svg?style=for-the-badge&logo=Express&logoColor=white)
+![Nodemon](https://img.shields.io/badge/Nodemon-76D04B.svg?style=for-the-badge&logo=Nodemon&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
+![Jest](https://img.shields.io/badge/-Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
+
 
 ## Instalação e Execução
 
-### Front-End
-#### Rodar o projeto
+1. Certifique-se de ter a versão 18.18.2 do [Node](https://nodejs.org/en/about/previous-releases) instalada.
 
-Certifique-se de ter a versão 18.18.2 do [Node](https://nodejs.org/en/about/previous-releases) instalada.
-
-1. Clone o repositório:
+2. Clone o repositório:
 
     ```bash
     git clone https://github.com/ThiagoSzz/Uni-Food.git
     ```
 
-2. Navegue até o diretório do front-end:
+### Front-End
+#### Rodar o projeto
+
+1. Navegue até o diretório do front-end:
 
     ```bash
     cd Uni-Food/front-end
     ```
 
-3. Instale as dependências:
+2. Instale as dependências:
 
     ```bash
     npm install
     ```
 
-4. Inicie o servidor de desenvolvimento:
+3. Inicie o servidor de desenvolvimento:
 
     ```bash
     npm run start
@@ -126,8 +133,27 @@ Caso queira executar os testes do Cypress utilizando a interface do Cypress, sig
 Após a execução do Prettier, deve ser exibida uma mensagem indicando que a formatação foi concluída.
 
 ### Back-End
+#### Rodar o projeto
 
-TBD
+1. Navegue até o diretório do back-end:
+
+    ```bash
+    cd Uni-Food/back-end
+    ```
+
+2. Instale as dependências:
+
+    ```bash
+    npm install
+    ```
+
+3. Inicie o servidor de desenvolvimento:
+
+    ```bash
+    npm run start
+    ```
+
+O back-end estará disponível em http://localhost:8080.
 
 ## Créditos
 

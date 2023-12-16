@@ -7,10 +7,7 @@ function Routes() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <Route path="/" exact component={Home} />
-        {/* <Route path="/new-review" exact component={NewReview} />
-        <Route path="/authentication/register" exact component={Register} />
-        <Route path="/authentication/login" exact component={Login} /> */}
+        <Route path="/" exact render={() => <Home />} />
       </BrowserRouter>
     </ThemeProvider>
   );
