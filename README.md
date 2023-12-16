@@ -29,6 +29,10 @@ A plataforma UniFood é uma aplicação que permite aos estudantes avaliar resta
 
 1. Certifique-se de ter a versão 18.18.2 do [Node](https://nodejs.org/en/about/previous-releases) instalada.
 
+    ```bash
+    node -v
+    ```
+
 2. Clone o repositório:
 
     ```bash
