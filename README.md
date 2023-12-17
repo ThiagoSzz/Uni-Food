@@ -139,19 +139,21 @@ Após a execução do Prettier, deve ser exibida uma mensagem indicando que a fo
 ### Back-End
 #### Rodar o projeto
 
-1. Navegue até o diretório do back-end:
+1. Certifique-se de ter o arquivo `.env` na raiz do diretório `back-end`. O arquivo deve possuir os campos assim como descrito no arquivo `env-template`.
+
+2. Navegue até o diretório do back-end:
 
     ```bash
     cd Uni-Food/back-end
     ```
 
-2. Instale as dependências:
+3. Instale as dependências:
 
     ```bash
     npm install
     ```
 
-3. Inicie o servidor de desenvolvimento:
+4. Inicie o servidor de desenvolvimento:
 
     ```bash
     npm run start
