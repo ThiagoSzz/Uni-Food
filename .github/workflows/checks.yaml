@@ -11,7 +11,7 @@ on:
       - main
 
 jobs:
-  '[FE] Test/Jest':
+  FE_jest:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -32,7 +32,7 @@ jobs:
       - name: Run Jest Tests
         run: npm run test
 
-  '[FE] Test/Cypress':
+  FE_cypress:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -60,7 +60,7 @@ jobs:
         env:
           API_URI: http://localhost:3000/
 
-  '[FE] Format/Prettier':
+  FE_prettier:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -81,7 +81,7 @@ jobs:
       - name: Check Code Formatting with Prettier
         run: npm run format:check
 
-  '[BE] Test/Jest':
+  BE_jest:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -102,7 +102,7 @@ jobs:
       - name: Run Jest Tests
         run: npm run test
 
-  '[BE] Format/Prettier':
+  BE_prettier:
     runs-on: ubuntu-latest
     defaults:
       run:
