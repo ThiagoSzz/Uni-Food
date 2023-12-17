@@ -4,15 +4,13 @@ import { TestService } from "../service/testService";
 const TEST_QUERY_API = "/testquery";
 const router = express.Router();
 
-const testService = new TestService(0);
+const testService = new TestService();
 
 router.get(TEST_QUERY_API, (req: express.Request, res: express.Response) => {
-  const testParam = testService.testServiceFunc(
-    req.query.testParam!.toString()
-  );
+  testService.testServiceFunc();
 
-  const testReturnedValue = `testQueryResponse is ${testParam}`;
-  res.json({ testReturnedValue });
+  const testReturnedValue = `Query executed`;
+  res.status(200).json({ testReturnedValue });
 });
 
 export default router;

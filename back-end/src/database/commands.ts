@@ -1,28 +1,28 @@
-import { QueryResult } from "pg";
-import pool from "./config";
+import { sqlOperation } from "./config";
 
-export const insert = async <T>(
-  sql: string,
-  values: any[] = []
-): Promise<T> => {
-  try {
-    const result: QueryResult = await pool.query(sql, values);
-    return result.rows[0];
-  } catch (error) {
-    console.error("Error in INSERT operation:", error);
-    throw error;
-  }
-};
+export const getAllReviews = async (): Promise<Record<string, any>[]> => {
+  const operationCommand = `
+    SELECT
+      R.sigla_ru AS sigla_restaurante,
+      R.sigla_universidade AS sigla_universidade,
+      N.nota_estrelas AS nota_dada,
+      N.comentario,
+      N.tags,
+      N.periodo_nota
+    FROM
+      Avaliacao A
+    JOIN
+      Nota N ON A.cod_nota = N.cod_nota
+    JOIN
+      Restaurante R ON A.cod_ru = R.cod_ru;
+  `;
 
-export const select = async <T>(
-  sql: string,
-  values: any[] = []
-): Promise<T[]> => {
+  const operationDescription = "Get all reviews";
+
   try {
-    const result: QueryResult = await pool.query(sql, values);
-    return result.rows;
+    return sqlOperation(operationCommand, [], operationDescription);
   } catch (error) {
-    console.error("Error in SELECT operation:", error);
+    console.error(`Error in ${operationCommand} operation:`, error);
     throw error;
   }
 };

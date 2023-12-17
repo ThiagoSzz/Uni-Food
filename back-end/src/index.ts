@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { config } from "dotenv";
 import router from "./controller/testQueryController";
+import { logger } from "./config/logger";
 
 config();
 const UNIFOOD = express();
@@ -13,5 +14,5 @@ UNIFOOD.use(cors());
 UNIFOOD.use("/", router);
 
 UNIFOOD.listen(PORT, () => {
-  console.log(`UniFood back-end is running at http://localhost:${PORT}`);
+  logger.info(`UniFood back-end is running at http://localhost:${PORT}`);
 });
