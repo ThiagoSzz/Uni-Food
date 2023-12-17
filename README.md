@@ -125,13 +125,13 @@ Caso queira executar os testes do Cypress utilizando a interface do Cypress, sig
 2. Para verificar se a formatação está correta, execute o comando:
 
     ```bash
-    npx prettier {src,cypress} -c
+    npm run format:check
     ```
 
 3. Caso a formatação de algum arquivo esteja incorreta, execute o comando:
 
     ```bash
-    npx prettier {src,cypress} -w
+    npm run format
     ```
 
 Após a execução do Prettier, deve ser exibida uma mensagem indicando que a formatação foi concluída.
@@ -160,6 +160,42 @@ Após a execução do Prettier, deve ser exibida uma mensagem indicando que a fo
     ```
 
 O back-end estará disponível em http://localhost:8080.
+
+#### Rodar os testes - Jest
+
+1. Navegue até o diretório do back-end:
+
+    ```bash
+    cd Uni-Food/back-end
+    ```
+
+2. Para executar os testes do Jest, utilize o seguinte comando:
+
+    ```bash
+    npm run test
+    ```
+
+#### Rodar o formatador de código - Prettier
+
+1. Navegue até o diretório do back-end:
+
+    ```bash
+    cd Uni-Food/back-end
+    ```
+    
+2. Para verificar se a formatação está correta, execute o comando:
+
+    ```bash
+    npm run format:check
+    ```
+
+3. Caso a formatação de algum arquivo esteja incorreta, execute o comando:
+
+    ```bash
+    npm run format
+    ```
+
+Após a execução do Prettier, deve ser exibida uma mensagem indicando que a formatação foi concluída.
 
 ## Créditos
 

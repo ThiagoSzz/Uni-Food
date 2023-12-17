@@ -83,6 +83,9 @@ jobs:
 
   BE_jest:
     runs-on: ubuntu-latest
+    env:
+      PORT: ${{ secrets.PORT }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     defaults:
       run:
         working-directory: ./back-end
