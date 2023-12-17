@@ -1,7 +1,7 @@
-import express from "express";
-import { TestService } from "../service/testService";
+import express from 'express';
+import { TestService } from '../service/testService';
 
-const TEST_QUERY_API = "/testquery";
+const TEST_QUERY_API = '/testquery';
 const router = express.Router();
 
 const testService = new TestService();

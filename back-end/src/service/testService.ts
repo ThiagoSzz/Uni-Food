@@ -1,4 +1,4 @@
-import { getAllReviews } from "../database/commands";
+import { getAllReviews } from '../database/commands';
 
 export class TestService {
   public testServiceFunc = async () => {

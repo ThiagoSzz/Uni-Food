@@ -1,5 +1,5 @@
-import winston from "winston";
-import colors from "colors/safe";
+import winston from 'winston';
+import colors from 'colors/safe';
 
 interface LogColors {
   [key: string]: (text: string) => string;
@@ -8,7 +8,7 @@ interface LogColors {
 const logColors: LogColors = {
   info: colors.blue,
   warn: colors.yellow,
-  error: colors.red,
+  error: colors.red
 };
 
 export const logger = winston.createLogger({
@@ -19,5 +19,5 @@ export const logger = winston.createLogger({
       return `[${timestamp}] ${coloredLevel}: ${message}`;
     })
   ),
-  transports: [new winston.transports.Console()],
+  transports: [new winston.transports.Console()]
 });

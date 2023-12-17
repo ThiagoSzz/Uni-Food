@@ -1,4 +1,4 @@
-import { sqlOperation } from "./config";
+import { sqlOperation } from './config';
 
 export const getAllReviews = async (): Promise<Record<string, any>[]> => {
   const operationCommand = `
@@ -17,7 +17,7 @@ export const getAllReviews = async (): Promise<Record<string, any>[]> => {
       Restaurante R ON A.cod_ru = R.cod_ru;
   `;
 
-  const operationDescription = "Get all reviews";
+  const operationDescription = 'Get all reviews';
 
   try {
     return sqlOperation(operationCommand, [], operationDescription);
