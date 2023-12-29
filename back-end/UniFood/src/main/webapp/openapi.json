@@ -1,0 +1,329 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "UniFood",
+    "description" : "API REST do UniFood",
+    "version" : "v1"
+  },
+  "servers" : [ {
+    "url" : "/UniFood/rest",
+    "variables" : { }
+  } ],
+  "paths" : {
+    "/avaliacao/lista" : {
+      "post" : {
+        "operationId" : "lista",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/frequentacao/lista" : {
+      "post" : {
+        "operationId" : "lista_1",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FrequentacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/funcao/lista" : {
+      "post" : {
+        "operationId" : "lista_2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FuncaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/nota/lista" : {
+      "post" : {
+        "operationId" : "lista_3",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NotaED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/restaurante/lista" : {
+      "post" : {
+        "operationId" : "lista_4",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestauranteED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/api/json" : {
+      "get" : {
+        "operationId" : "testaServicoJson",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/universidade/lista" : {
+      "post" : {
+        "operationId" : "lista_5",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UniversidadeED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/lista" : {
+      "post" : {
+        "operationId" : "lista_6",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UsuarioED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "AvaliacaoED" : {
+        "type" : "object",
+        "properties" : {
+          "codAvaliacao" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "codNota" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "emailUsuario" : {
+            "type" : "string"
+          },
+          "codRU" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "FrequentacaoED" : {
+        "type" : "object",
+        "properties" : {
+          "codFrequentacao" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "emailUsuario" : {
+            "type" : "string"
+          },
+          "siglaUniversidade" : {
+            "type" : "string"
+          }
+        }
+      },
+      "FuncaoED" : {
+        "type" : "object",
+        "properties" : {
+          "codFuncao" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "tipo" : {
+            "type" : "string"
+          },
+          "nomeCurso" : {
+            "type" : "string"
+          },
+          "periodo" : {
+            "type" : "string"
+          }
+        }
+      },
+      "NotaED" : {
+        "type" : "object",
+        "properties" : {
+          "codNota" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "emailUsuario" : {
+            "type" : "string"
+          },
+          "periodoNota" : {
+            "type" : "string"
+          },
+          "notaEstrelas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "comentario" : {
+            "type" : "string"
+          },
+          "tags" : {
+            "type" : "string"
+          },
+          "duracaoNota" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "RestauranteED" : {
+        "type" : "object",
+        "properties" : {
+          "codRU" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "siglaRU" : {
+            "type" : "string"
+          },
+          "campus" : {
+            "type" : "string"
+          },
+          "siglaUniversidade" : {
+            "type" : "string"
+          },
+          "mediaAvaliacao" : {
+            "type" : "string"
+          }
+        }
+      },
+      "UniversidadeED" : {
+        "type" : "object",
+        "properties" : {
+          "sigla" : {
+            "type" : "string"
+          },
+          "nome" : {
+            "type" : "string"
+          },
+          "estadoUF" : {
+            "type" : "string"
+          },
+          "cidade" : {
+            "type" : "string"
+          }
+        }
+      },
+      "UsuarioED" : {
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          },
+          "senha" : {
+            "type" : "string"
+          },
+          "nome" : {
+            "type" : "string"
+          },
+          "sexo" : {
+            "type" : "string"
+          },
+          "preferenciaAlimentar" : {
+            "type" : "string"
+          },
+          "tipo" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      }
+    }
+  }
+}
