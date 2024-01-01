@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.unifood.util.ED;
+import com.unifood.util.PropriedadesLista;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @EqualsAndHashCode(callSuper=false)
 @Table(name = "avaliacao")
-public class AvaliacaoED extends ED
+public class AvaliacaoED implements ED<Integer>
 {
 	@Id
 	@Column(name = "cod_avaliacao")
@@ -28,5 +29,17 @@ public class AvaliacaoED extends ED
 
 	@Column(name = "cod_ru")
 	private Integer codRU;
+
+	@Override
+	public Integer getId()
+	{
+		return codAvaliacao;
+	}
+
+	@Override
+	public void setId(Integer codAvaliacao)
+	{
+		this.codAvaliacao = codAvaliacao;
+	}
 
 }

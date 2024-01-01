@@ -1,17 +1,16 @@
 package com.unifood.rn;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.unifood.bd.UsuarioBD;
 import com.unifood.ed.UsuarioED;
-import com.unifood.util.BD;
 import com.unifood.util.RN;
-import com.unifood.util.Val;
 import com.unifood.val.UsuarioVal;
 
 @Stateless
-public class UsuarioRN extends RN<UsuarioED>
+public class UsuarioRN extends RN<UsuarioED, String>
 {
 	@Inject
    private UsuarioBD usuarioBD;
@@ -19,16 +18,9 @@ public class UsuarioRN extends RN<UsuarioED>
 	@Inject
 	private UsuarioVal usuarioVal;
 
-	@Override
-	public BD<UsuarioED> getBD()
+	@PostConstruct
+	public void initBDVal()
 	{
-		return usuarioBD;
+		init(usuarioBD, usuarioVal);
 	}
-
-	@Override
-	public Val<UsuarioED> getVal()
-	{
-		return usuarioVal;
-	}
-
 }

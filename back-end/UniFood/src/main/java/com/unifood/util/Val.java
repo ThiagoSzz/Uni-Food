@@ -1,6 +1,6 @@
 package com.unifood.util;
 
-public abstract class Val<E extends ED>
+public abstract class Val<E extends ED<PK>, PK>
 {
 	public void validaLista(E ed)
 	{

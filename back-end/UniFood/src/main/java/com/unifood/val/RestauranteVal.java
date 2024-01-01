@@ -6,7 +6,7 @@ import com.unifood.ed.RestauranteED;
 import com.unifood.util.Val;
 
 @Stateless
-public class RestauranteVal extends Val<RestauranteED>
+public class RestauranteVal extends Val<RestauranteED, Integer>
 {
 
 }

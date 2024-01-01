@@ -13,7 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 @Stateful
-public abstract class BD<E extends ED>
+public abstract class BD<E extends ED<PK>, PK>
 {
 	private Class<E> entidade;
 
@@ -23,7 +23,7 @@ public abstract class BD<E extends ED>
 	public List<E> lista(E e)
 	{
 		String sql = montaSqlSelect(e);
-		Query query = getEntityManager().createNativeQuery(sql, entidade);
+		Query query = getEntityManager().createNativeQuery(sql, getEntidade());
 		System.out.println(String.format("[ %s ]", sql));
 
 		return query.getResultList();
@@ -134,6 +134,7 @@ public abstract class BD<E extends ED>
 
 		return entidade;
 	}
+	
 
 }
 

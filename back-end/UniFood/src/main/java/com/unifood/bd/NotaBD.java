@@ -8,7 +8,7 @@ import com.unifood.ed.NotaED;
 import com.unifood.util.BD;
 
 @Stateless
-public class NotaBD extends BD<NotaED>
+public class NotaBD extends BD<NotaED, Integer>
 {
 	@PersistenceContext(unitName = "UniFood")
 	private EntityManager em;

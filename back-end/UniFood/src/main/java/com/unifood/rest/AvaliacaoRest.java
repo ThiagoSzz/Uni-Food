@@ -11,6 +11,9 @@ import com.unifood.ed.AvaliacaoED;
 import com.unifood.rn.AvaliacaoRN;
 import com.unifood.util.Rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+
 @Path("/avaliacao")
 public class AvaliacaoRest extends Rest
 {
@@ -21,6 +24,7 @@ public class AvaliacaoRest extends Rest
 	@Path("/lista")
 	@Consumes("application/json")
 	@Produces("application/json")
+	@Tag(name = "Avaliações", description = "Operações relacionadas a avaliações")
 	public Response lista(AvaliacaoED avaliacaoED) {
 		return  addCorsHeaders(Response.ok(avaliacaoRN.lista(avaliacaoED))).build();
 	}

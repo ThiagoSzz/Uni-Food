@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @EqualsAndHashCode(callSuper=false)
 @Table(name = "universidade")
-public class UniversidadeED extends ED
+public class UniversidadeED implements ED<String>
 {
 	@Id
 	@Column
@@ -28,4 +28,18 @@ public class UniversidadeED extends ED
 
 	@Column
 	private String cidade;
+
+	@Override
+	public String getId()
+	{
+		return sigla;
+	}
+
+	@Override
+	public void setId(String sigla)
+	{
+		this.sigla = sigla;
+	}
+	
+	
 }

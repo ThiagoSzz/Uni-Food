@@ -8,7 +8,7 @@ import com.unifood.ed.FuncaoED;
 import com.unifood.util.BD;
 
 @Stateless
-public class FuncaoBD extends BD<FuncaoED>
+public class FuncaoBD extends BD<FuncaoED, Integer>
 {
 	@PersistenceContext(unitName = "UniFood")
 	private EntityManager em;

@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @EqualsAndHashCode(callSuper=false)
 @Table(name = "nota")
-public class NotaED extends ED
+public class NotaED implements ED<Integer>
 {
 	@Id
 	@Column(name = "cod_nota")
@@ -37,5 +37,17 @@ public class NotaED extends ED
 
 	@Column(name = "duracao_nota")
 	private Integer duracaoNota;
+
+	@Override
+	public Integer getId()
+	{
+		return codNota;
+	}
+
+	@Override
+	public void setId(Integer codNota)
+	{
+		this.codNota = codNota;
+	}
 
 }

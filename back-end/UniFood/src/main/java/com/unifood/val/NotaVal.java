@@ -6,7 +6,7 @@ import com.unifood.ed.NotaED;
 import com.unifood.util.Val;
 
 @Stateless
-public class NotaVal extends Val<NotaED>
+public class NotaVal extends Val<NotaED, Integer>
 {
 
 }

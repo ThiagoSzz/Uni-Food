@@ -9,9 +9,14 @@
     "url" : "/UniFood/rest",
     "variables" : { }
   } ],
+  "tags" : [ {
+    "name" : "Avaliações",
+    "description" : "Operações relacionadas a avaliações"
+  } ],
   "paths" : {
     "/avaliacao/lista" : {
       "post" : {
+        "tags" : [ "Avaliações" ],
         "operationId" : "lista",
         "requestBody" : {
           "content" : {
@@ -197,6 +202,10 @@
           "codRU" : {
             "type" : "integer",
             "format" : "int32"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
           }
         }
       },
@@ -212,6 +221,10 @@
           },
           "siglaUniversidade" : {
             "type" : "string"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
           }
         }
       },
@@ -230,6 +243,10 @@
           },
           "periodo" : {
             "type" : "string"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
           }
         }
       },
@@ -259,6 +276,10 @@
           "duracaoNota" : {
             "type" : "integer",
             "format" : "int32"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
           }
         }
       },
@@ -280,6 +301,10 @@
           },
           "mediaAvaliacao" : {
             "type" : "string"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
           }
         }
       },
@@ -296,6 +321,9 @@
             "type" : "string"
           },
           "cidade" : {
+            "type" : "string"
+          },
+          "id" : {
             "type" : "string"
           }
         }
@@ -321,6 +349,9 @@
           "tipo" : {
             "type" : "integer",
             "format" : "int32"
+          },
+          "id" : {
+            "type" : "string"
           }
         }
       }

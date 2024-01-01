@@ -6,7 +6,7 @@ import com.unifood.ed.UniversidadeED;
 import com.unifood.util.Val;
 
 @Stateless
-public class UniversidadeVal extends Val<UniversidadeED>
+public class UniversidadeVal extends Val<UniversidadeED, String>
 {
 
 }

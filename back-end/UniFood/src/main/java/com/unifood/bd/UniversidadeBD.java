@@ -8,7 +8,7 @@ import com.unifood.ed.UniversidadeED;
 import com.unifood.util.BD;
 
 @Stateless
-public class UniversidadeBD extends BD<UniversidadeED>
+public class UniversidadeBD extends BD<UniversidadeED, String>
 {
 	@PersistenceContext(unitName = "UniFood")
 	private EntityManager em;
