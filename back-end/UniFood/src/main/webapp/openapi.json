@@ -14,6 +14,98 @@
     "description" : "Operações relacionadas a avaliações"
   } ],
   "paths" : {
+    "/avaliacao/altera" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "altera",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/consulta" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "consulta",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/consulta/{id}" : {
+      "get" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "consulta_1",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/inclui" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "inclui",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/avaliacao/lista" : {
       "post" : {
         "tags" : [ "Avaliações" ],
@@ -23,6 +115,55 @@
             "application/json" : {
               "schema" : {
                 "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/remove" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "remove",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/removelista" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "removeLista",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/AvaliacaoED"
+                }
               }
             }
           }
@@ -188,7 +329,7 @@
       "AvaliacaoED" : {
         "type" : "object",
         "properties" : {
-          "codAvaliacao" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -202,17 +343,13 @@
           "codRU" : {
             "type" : "integer",
             "format" : "int32"
-          },
-          "id" : {
-            "type" : "integer",
-            "format" : "int32"
           }
         }
       },
       "FrequentacaoED" : {
         "type" : "object",
         "properties" : {
-          "codFrequentacao" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -221,17 +358,13 @@
           },
           "siglaUniversidade" : {
             "type" : "string"
-          },
-          "id" : {
-            "type" : "integer",
-            "format" : "int32"
           }
         }
       },
       "FuncaoED" : {
         "type" : "object",
         "properties" : {
-          "codFuncao" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -243,17 +376,13 @@
           },
           "periodo" : {
             "type" : "string"
-          },
-          "id" : {
-            "type" : "integer",
-            "format" : "int32"
           }
         }
       },
       "NotaED" : {
         "type" : "object",
         "properties" : {
-          "codNota" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -276,17 +405,13 @@
           "duracaoNota" : {
             "type" : "integer",
             "format" : "int32"
-          },
-          "id" : {
-            "type" : "integer",
-            "format" : "int32"
           }
         }
       },
       "RestauranteED" : {
         "type" : "object",
         "properties" : {
-          "codRU" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -301,17 +426,13 @@
           },
           "mediaAvaliacao" : {
             "type" : "string"
-          },
-          "id" : {
-            "type" : "integer",
-            "format" : "int32"
           }
         }
       },
       "UniversidadeED" : {
         "type" : "object",
         "properties" : {
-          "sigla" : {
+          "id" : {
             "type" : "string"
           },
           "nome" : {
@@ -323,7 +444,7 @@
           "cidade" : {
             "type" : "string"
           },
-          "id" : {
+          "sigla" : {
             "type" : "string"
           }
         }
@@ -331,7 +452,7 @@
       "UsuarioED" : {
         "type" : "object",
         "properties" : {
-          "email" : {
+          "id" : {
             "type" : "string"
           },
           "senha" : {
@@ -350,7 +471,7 @@
             "type" : "integer",
             "format" : "int32"
           },
-          "id" : {
+          "email" : {
             "type" : "string"
           }
         }

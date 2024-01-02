@@ -18,7 +18,7 @@ public class FuncaoED implements ED<Integer>
 {
 	@Id
 	@Column(name = "cod_funcao")
-	private Integer codFuncao;
+	private Integer id;
 
 	@Column
 	private String tipo;
@@ -29,15 +29,4 @@ public class FuncaoED implements ED<Integer>
 	@Column
 	private String periodo;
 
-	@Override
-	public Integer getId()
-	{
-		return codFuncao;
-	}
-
-	@Override
-	public void setId(Integer codFuncao)
-	{
-		this.codFuncao = codFuncao;
-	}
 }

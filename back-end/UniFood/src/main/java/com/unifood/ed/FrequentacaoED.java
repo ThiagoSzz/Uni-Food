@@ -18,7 +18,7 @@ public class FrequentacaoED implements ED<Integer>
 {
 	@Id
 	@Column(name = "cod_frequentacao")
-	private Integer codFrequentacao;
+	private Integer id;
 
 	@Column(name = "email_usuario")
 	private String emailUsuario;
@@ -26,15 +26,4 @@ public class FrequentacaoED implements ED<Integer>
 	@Column(name = "sigla_universidade")
 	private String siglaUniversidade;
 
-	@Override
-	public Integer getId()
-	{
-		return codFrequentacao;
-	}
-
-	@Override
-	public void setId(Integer codFrequentacao)
-	{
-		this.codFrequentacao = codFrequentacao;		
-	}
 }

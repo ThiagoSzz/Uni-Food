@@ -18,7 +18,7 @@ public class NotaED implements ED<Integer>
 {
 	@Id
 	@Column(name = "cod_nota")
-	private Integer codNota;
+	private Integer id;
 
 	@Column(name = "email_usuario")
 	private String emailUsuario;
@@ -37,17 +37,5 @@ public class NotaED implements ED<Integer>
 
 	@Column(name = "duracao_nota")
 	private Integer duracaoNota;
-
-	@Override
-	public Integer getId()
-	{
-		return codNota;
-	}
-
-	@Override
-	public void setId(Integer codNota)
-	{
-		this.codNota = codNota;
-	}
 
 }

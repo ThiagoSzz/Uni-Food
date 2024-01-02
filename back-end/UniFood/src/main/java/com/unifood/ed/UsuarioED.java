@@ -17,8 +17,8 @@ import lombok.EqualsAndHashCode;
 public class UsuarioED implements ED<String>
 {
 	@Id
-	@Column
-	private String email;
+	@Column(name = "email")
+	private String id;
 
 	@Column
 	private String senha;
@@ -34,17 +34,14 @@ public class UsuarioED implements ED<String>
 
 	@Column
 	private Integer tipo;
-
-	@Override
-	public String getId()
+	
+	public void setEmail(String email)
 	{
-		return email;
-	}
-
-	@Override
-	public void setId(String email)
-	{
-		this.email = email;		
+		setId(email);
 	}
 	
+	public String getEmail()
+	{
+		return id;
+	}
 }

@@ -18,7 +18,7 @@ public class RestauranteED implements ED<Integer>
 {
 	@Id
 	@Column(name = "cod_ru")
-	private Integer codRU;
+	private Integer id;
 
 	@Column(name = "sigla_ru")
 	private String siglaRU;
@@ -31,17 +31,5 @@ public class RestauranteED implements ED<Integer>
 
 	@Column(name = "media_avaliacao")
 	private String mediaAvaliacao;
-
-	@Override
-	public Integer getId()
-	{
-		return codRU;
-	}
-
-	@Override
-	public void setId(Integer codRU)
-	{
-		this.codRU = codRU;
-	}
 	
 }

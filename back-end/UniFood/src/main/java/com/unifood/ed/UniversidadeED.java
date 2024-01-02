@@ -17,8 +17,8 @@ import lombok.EqualsAndHashCode;
 public class UniversidadeED implements ED<String>
 {
 	@Id
-	@Column
-	private String sigla;
+	@Column(name = "sigla")
+	private String id;
 
 	@Column
 	private String nome;
@@ -29,17 +29,14 @@ public class UniversidadeED implements ED<String>
 	@Column
 	private String cidade;
 
-	@Override
-	public String getId()
+	public String getSigla()
 	{
-		return sigla;
+		return getId();
 	}
 
-	@Override
-	public void setId(String sigla)
+	public void setSigla(String sigla)
 	{
-		this.sigla = sigla;
+		setId(sigla);
 	}
-	
 	
 }
