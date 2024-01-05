@@ -1,6 +1,9 @@
 package com.unifood.util;
 
-public abstract class ED
+public abstract interface ED<PK>
 {
+	public abstract PK getId();
+	
+	public void setId(PK id);
 
 }

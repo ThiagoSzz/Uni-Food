@@ -14,11 +14,11 @@ import lombok.EqualsAndHashCode;
 @Entity
 @EqualsAndHashCode(callSuper=false)
 @Table(name = "nota")
-public class NotaED extends ED
+public class NotaED implements ED<Integer>
 {
 	@Id
 	@Column(name = "cod_nota")
-	private Integer codNota;
+	private Integer id;
 
 	@Column(name = "email_usuario")
 	private String emailUsuario;

@@ -9,9 +9,150 @@
     "url" : "/UniFood/rest",
     "variables" : { }
   } ],
+  "tags" : [ {
+    "name" : "Avaliações",
+    "description" : "Operações relacionadas a avaliações"
+  }, {
+    "name" : "Frequentações",
+    "description" : "Operações relacionadas a frequentações"
+  }, {
+    "name" : "Funcões",
+    "description" : "Operações relacionadas a funções"
+  }, {
+    "name" : "Notas",
+    "description" : "Operações relacionadas a notas"
+  }, {
+    "name" : "Restaurantes",
+    "description" : "Operações relacionadas a restaurantes"
+  }, {
+    "name" : "Teste",
+    "description" : "Serviço para testar a responsividade do Servidor UniFood"
+  }, {
+    "name" : "Universidade",
+    "description" : "Operações relacionadas a universidade"
+  }, {
+    "name" : "Usuarios",
+    "description" : "Operações relacionadas a usuarios"
+  } ],
   "paths" : {
+    "/avaliacao/altera" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "altera",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/consulta" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "consulta",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/consulta/{id}" : {
+      "get" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "consulta_1",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/conta" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "conta",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/inclui" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "inclui",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/avaliacao/lista" : {
       "post" : {
+        "tags" : [ "Avaliações" ],
         "operationId" : "lista",
         "requestBody" : {
           "content" : {
@@ -32,8 +173,173 @@
         }
       }
     },
+    "/avaliacao/remove" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "remove",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/removelista" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "removeLista",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/AvaliacaoED"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/frequentacao/altera" : {
+      "post" : {
+        "tags" : [ "Frequentações" ],
+        "operationId" : "altera_1",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FrequentacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/frequentacao/consulta" : {
+      "post" : {
+        "tags" : [ "Frequentações" ],
+        "operationId" : "consulta_2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FrequentacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/frequentacao/consulta/{id}" : {
+      "get" : {
+        "tags" : [ "Frequentações" ],
+        "operationId" : "consulta_3",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/frequentacao/conta" : {
+      "post" : {
+        "tags" : [ "Frequentações" ],
+        "operationId" : "conta_1",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FrequentacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/frequentacao/inclui" : {
+      "post" : {
+        "tags" : [ "Frequentações" ],
+        "operationId" : "inclui_1",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FrequentacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/frequentacao/lista" : {
       "post" : {
+        "tags" : [ "Frequentações" ],
         "operationId" : "lista_1",
         "requestBody" : {
           "content" : {
@@ -54,8 +360,173 @@
         }
       }
     },
+    "/frequentacao/remove" : {
+      "post" : {
+        "tags" : [ "Frequentações" ],
+        "operationId" : "remove_1",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FrequentacaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/frequentacao/removelista" : {
+      "post" : {
+        "tags" : [ "Frequentações" ],
+        "operationId" : "removeLista_1",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/FrequentacaoED"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/funcao/altera" : {
+      "post" : {
+        "tags" : [ "Funcões" ],
+        "operationId" : "altera_2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FuncaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/funcao/consulta" : {
+      "post" : {
+        "tags" : [ "Funcões" ],
+        "operationId" : "consulta_4",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FuncaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/funcao/consulta/{id}" : {
+      "get" : {
+        "tags" : [ "Funcões" ],
+        "operationId" : "consulta_5",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/funcao/conta" : {
+      "post" : {
+        "tags" : [ "Funcões" ],
+        "operationId" : "conta_2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FuncaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/funcao/inclui" : {
+      "post" : {
+        "tags" : [ "Funcões" ],
+        "operationId" : "inclui_2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FuncaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/funcao/lista" : {
       "post" : {
+        "tags" : [ "Funcões" ],
         "operationId" : "lista_2",
         "requestBody" : {
           "content" : {
@@ -76,8 +547,173 @@
         }
       }
     },
+    "/funcao/remove" : {
+      "post" : {
+        "tags" : [ "Funcões" ],
+        "operationId" : "remove_2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FuncaoED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/funcao/removelista" : {
+      "post" : {
+        "tags" : [ "Funcões" ],
+        "operationId" : "removeLista_2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/FuncaoED"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/nota/altera" : {
+      "post" : {
+        "tags" : [ "Notas" ],
+        "operationId" : "altera_3",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NotaED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/nota/consulta" : {
+      "post" : {
+        "tags" : [ "Notas" ],
+        "operationId" : "consulta_6",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NotaED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/nota/consulta/{id}" : {
+      "get" : {
+        "tags" : [ "Notas" ],
+        "operationId" : "consulta_7",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/nota/conta" : {
+      "post" : {
+        "tags" : [ "Notas" ],
+        "operationId" : "conta_3",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NotaED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/nota/inclui" : {
+      "post" : {
+        "tags" : [ "Notas" ],
+        "operationId" : "inclui_3",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NotaED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/nota/lista" : {
       "post" : {
+        "tags" : [ "Notas" ],
         "operationId" : "lista_3",
         "requestBody" : {
           "content" : {
@@ -98,8 +734,173 @@
         }
       }
     },
+    "/nota/remove" : {
+      "post" : {
+        "tags" : [ "Notas" ],
+        "operationId" : "remove_3",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NotaED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/nota/removelista" : {
+      "post" : {
+        "tags" : [ "Notas" ],
+        "operationId" : "removeLista_3",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/NotaED"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/restaurante/altera" : {
+      "post" : {
+        "tags" : [ "Restaurantes" ],
+        "operationId" : "altera_4",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestauranteED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/restaurante/consulta" : {
+      "post" : {
+        "tags" : [ "Restaurantes" ],
+        "operationId" : "consulta_8",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestauranteED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/restaurante/consulta/{id}" : {
+      "get" : {
+        "tags" : [ "Restaurantes" ],
+        "operationId" : "consulta_9",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/restaurante/conta" : {
+      "post" : {
+        "tags" : [ "Restaurantes" ],
+        "operationId" : "conta_4",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestauranteED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/restaurante/inclui" : {
+      "post" : {
+        "tags" : [ "Restaurantes" ],
+        "operationId" : "inclui_4",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestauranteED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/restaurante/lista" : {
       "post" : {
+        "tags" : [ "Restaurantes" ],
         "operationId" : "lista_4",
         "requestBody" : {
           "content" : {
@@ -120,9 +921,173 @@
         }
       }
     },
+    "/restaurante/remove" : {
+      "post" : {
+        "tags" : [ "Restaurantes" ],
+        "operationId" : "remove_4",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestauranteED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/restaurante/removelista" : {
+      "post" : {
+        "tags" : [ "Restaurantes" ],
+        "operationId" : "removeLista_4",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/RestauranteED"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/api/json" : {
       "get" : {
+        "tags" : [ "Teste" ],
         "operationId" : "testaServicoJson",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/universidade/altera" : {
+      "post" : {
+        "tags" : [ "Universidade" ],
+        "operationId" : "altera_5",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UniversidadeED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/universidade/consulta" : {
+      "post" : {
+        "tags" : [ "Universidade" ],
+        "operationId" : "consulta_10",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UniversidadeED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/universidade/consulta/{id}" : {
+      "get" : {
+        "tags" : [ "Universidade" ],
+        "operationId" : "consulta_11",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/universidade/conta" : {
+      "post" : {
+        "tags" : [ "Universidade" ],
+        "operationId" : "conta_5",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UniversidadeED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/universidade/inclui" : {
+      "post" : {
+        "tags" : [ "Universidade" ],
+        "operationId" : "inclui_5",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UniversidadeED"
+              }
+            }
+          }
+        },
         "responses" : {
           "default" : {
             "description" : "default response",
@@ -135,6 +1100,7 @@
     },
     "/universidade/lista" : {
       "post" : {
+        "tags" : [ "Universidade" ],
         "operationId" : "lista_5",
         "requestBody" : {
           "content" : {
@@ -155,14 +1121,227 @@
         }
       }
     },
+    "/universidade/remove" : {
+      "post" : {
+        "tags" : [ "Universidade" ],
+        "operationId" : "remove_5",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UniversidadeED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/universidade/removelista" : {
+      "post" : {
+        "tags" : [ "Universidade" ],
+        "operationId" : "removeLista_5",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/UniversidadeED"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/altera" : {
+      "post" : {
+        "tags" : [ "Usuarios" ],
+        "operationId" : "altera_6",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UsuarioED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/consulta" : {
+      "post" : {
+        "tags" : [ "Usuarios" ],
+        "operationId" : "consulta_12",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UsuarioED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/consulta/{id}" : {
+      "get" : {
+        "tags" : [ "Usuarios" ],
+        "operationId" : "consulta_13",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/conta" : {
+      "post" : {
+        "tags" : [ "Usuarios" ],
+        "operationId" : "conta_6",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UsuarioED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/inclui" : {
+      "post" : {
+        "tags" : [ "Usuarios" ],
+        "operationId" : "inclui_6",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UsuarioED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/usuario/lista" : {
       "post" : {
+        "tags" : [ "Usuarios" ],
         "operationId" : "lista_6",
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
                 "$ref" : "#/components/schemas/UsuarioED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/remove" : {
+      "post" : {
+        "tags" : [ "Usuarios" ],
+        "operationId" : "remove_6",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UsuarioED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/removelista" : {
+      "post" : {
+        "tags" : [ "Usuarios" ],
+        "operationId" : "removeLista_6",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/UsuarioED"
+                }
               }
             }
           }
@@ -183,7 +1362,7 @@
       "AvaliacaoED" : {
         "type" : "object",
         "properties" : {
-          "codAvaliacao" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -203,7 +1382,7 @@
       "FrequentacaoED" : {
         "type" : "object",
         "properties" : {
-          "codFrequentacao" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -218,7 +1397,7 @@
       "FuncaoED" : {
         "type" : "object",
         "properties" : {
-          "codFuncao" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -236,7 +1415,7 @@
       "NotaED" : {
         "type" : "object",
         "properties" : {
-          "codNota" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -265,7 +1444,7 @@
       "RestauranteED" : {
         "type" : "object",
         "properties" : {
-          "codRU" : {
+          "id" : {
             "type" : "integer",
             "format" : "int32"
           },
@@ -286,7 +1465,7 @@
       "UniversidadeED" : {
         "type" : "object",
         "properties" : {
-          "sigla" : {
+          "id" : {
             "type" : "string"
           },
           "nome" : {
@@ -297,13 +1476,16 @@
           },
           "cidade" : {
             "type" : "string"
+          },
+          "sigla" : {
+            "type" : "string"
           }
         }
       },
       "UsuarioED" : {
         "type" : "object",
         "properties" : {
-          "email" : {
+          "id" : {
             "type" : "string"
           },
           "senha" : {
@@ -321,6 +1503,9 @@
           "tipo" : {
             "type" : "integer",
             "format" : "int32"
+          },
+          "email" : {
+            "type" : "string"
           }
         }
       }

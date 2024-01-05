@@ -14,11 +14,11 @@ import lombok.EqualsAndHashCode;
 @Entity
 @EqualsAndHashCode(callSuper=false)
 @Table(name = "funcao")
-public class FuncaoED extends ED
+public class FuncaoED implements ED<Integer>
 {
 	@Id
 	@Column(name = "cod_funcao")
-	private Integer codFuncao;
+	private Integer id;
 
 	@Column
 	private String tipo;
@@ -28,4 +28,5 @@ public class FuncaoED extends ED
 
 	@Column
 	private String periodo;
+
 }

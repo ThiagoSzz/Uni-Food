@@ -6,6 +6,7 @@ import javax.ws.rs.core.Application;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @OpenAPIDefinition(
 	    info = @Info(title = "UniFood", version = "v1", description = "API REST do UniFood"),

@@ -6,7 +6,7 @@ import com.unifood.ed.UsuarioED;
 import com.unifood.util.Val;
 
 @Stateful
-public class UsuarioVal extends Val<UsuarioED>
+public class UsuarioVal extends Val<UsuarioED, String>
 {
 
 }
