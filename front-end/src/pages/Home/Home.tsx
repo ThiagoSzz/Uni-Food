@@ -29,10 +29,10 @@ export const Home: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <FlexBox direction={FlexBoxDirection.Column} className={classes.pageContainer}>
-      <CustomShellBar />
+    <FlexBox direction={FlexBoxDirection.Column}>
+      <CustomShellBar searchDisabled />
 
-      <FlexBox direction={FlexBoxDirection.Column} className={classes.contentContainer}>
+      <FlexBox direction={FlexBoxDirection.Column}>
         <FlexBox direction={FlexBoxDirection.Row} className={classes.boxesContainer}>
           <FlexBox className={classes.box} direction={FlexBoxDirection.Row}>
             <FlexBox className={classes.boxTextContainer} direction={FlexBoxDirection.Column}>
