@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FlexBox,
   FlexBoxDirection,
@@ -29,9 +29,23 @@ import {
 import { useStyles } from './CreateReview.jss';
 import '@ui5/webcomponents-icons/dist/AllIcons';
 import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomShellBar';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../enums/AppRoutesEnum';
 
 export const CreateReview: React.FC = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
+  const [ruCode, setRuCode] = useState<string>();
+  const [universityName, setUniversityName] = useState<string>();
+  const [mealPeriod, setMealPeriod] = useState<string>();
+  const [comment, setComment] = useState<string>();
+  const [tags, setTags] = useState<string>();
+  const [rating, setRating] = useState<number>();
+  const [courseName, setCourseName] = useState<string>();
+  const [coursePeriod, setCoursePeriod] = useState<string>();
+  const [dietaryPreference, setDietaryPreference] = useState<string>();
+  const [city, setCity] = useState<string>();
 
   const positiveTags = [
     'Proteína macia',
@@ -60,6 +74,16 @@ export const CreateReview: React.FC = () => {
     'Mau atendimento',
     'Fila grande'
   ];
+
+  const onMealPeriodMultiComboBoxChange = (oEvent) => {
+    setTags(oEvent.detail.items.map((item) => item.dataset.key));
+  };
+
+  const onSendButtonClick = () => {};
+
+  const onCancelButtonClick = () => {
+    navigate(AppRoute.Home);
+  };
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
@@ -90,8 +114,8 @@ export const CreateReview: React.FC = () => {
       >
         <FlexBox className={classes.formBox} direction={FlexBoxDirection.Column}>
           <FlexBox direction={FlexBoxDirection.Column}>
-            <Title level={TitleLevel.H4}>1. Informação do Restaurante Universitário</Title>
-            <Text style={{ paddingLeft: '22px', marginTop: '20px', marginBottom: '20px' }}>
+            <Title level={TitleLevel.H4}>1. Informações da Avaliação</Title>
+            <Text className={classes.text}>
               Precisamos de algumas informações para poder identificar o RU da sua avaliação.
             </Text>
             <FlexBox direction={FlexBoxDirection.Column}>
@@ -108,72 +132,59 @@ export const CreateReview: React.FC = () => {
               >
                 <FormGroup>
                   <FormItem label="Código do RU e Sigla da Universidade">
-                    <Input></Input>
-                    <Input></Input>
+                    <Input
+                      placeholder="Ex.: RU01"
+                      onChange={(e) => setRuCode(e.target.value)}
+                      className={classes.ruInput}
+                      required
+                    ></Input>
+                    <Input
+                      placeholder="Ex.: UFRGS"
+                      onChange={(e) => setUniversityName(e.target.value)}
+                      className={classes.universityInput}
+                      required
+                    ></Input>
                   </FormItem>
                   <FormItem label="Período da Refeição">
-                    <Select>
-                      <Option>Café da manhã</Option>
-                      <Option>Almoço</Option>
-                      <Option>Jantar</Option>
+                    <Select
+                      onChange={(e) => setMealPeriod(e.detail.selectedOption.dataset.id)}
+                      className={classes.mealPeriodSelect}
+                    >
+                      <Option data-id="Select">Selecionar</Option>
+                      <Option data-id="Café da manhã">Café da manhã</Option>
+                      <Option data-id="Almoço">Almoço</Option>
+                      <Option data-id="Jantar">Jantar</Option>
                     </Select>
                   </FormItem>
-                </FormGroup>
-              </Form>
-            </FlexBox>
-          </FlexBox>
-          <FlexBox direction={FlexBoxDirection.Column}>
-            <Title level={TitleLevel.H4}>2. Informações da Avaliação</Title>
-            <Text style={{ paddingLeft: '22px', marginTop: '20px', marginBottom: '20px' }}>
-              Conte-nos um pouco sobre sua experiência.
-            </Text>
-            <FlexBox direction={FlexBoxDirection.Column}>
-              <Form
-                backgroundDesign={FormBackgroundDesign.Transparent}
-                columnsL={1}
-                columnsM={1}
-                columnsS={1}
-                columnsXL={2}
-                labelSpanL={3}
-                labelSpanM={2}
-                labelSpanS={12}
-                labelSpanXL={4}
-                style={{
-                  alignItems: 'center'
-                }}
-              >
-                <FormGroup>
-                  <FormItem
-                    label={
-                      <Label style={{ alignSelf: 'start', paddingTop: '0.25rem' }}>
-                        Comentário
-                      </Label>
-                    }
-                  >
+                  <FormItem label={<Label className={classes.commentLabel}>Comentário</Label>}>
                     <TextArea
-                      placeholder="Ex.: Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat placerat. In iaculis arcu eros, eget tempus orci facilisis id. Praesent lorem orci, mattis non efficitur id, ultricies vel nibh. Sed volutpat lacus vitae gravida viverra. Fusce vel tempor elit. Proin tempus,."
-                      rows={6}
+                      className={classes.textArea}
+                      placeholder="Ex.: Muito bom o restaurante!"
+                      rows={8}
+                      onChange={(e) => setComment(e.target.value)}
                     />
                   </FormItem>
                   <FormItem label="Tags">
-                    <MultiComboBox>
-                      {[...positiveTags, ...negativeTags].map((tag) => {
-                        return <MultiComboBoxItem text={tag} />;
+                    <MultiComboBox
+                      placeholder="Ex.: Comida saborosa"
+                      onSelectionChange={onMealPeriodMultiComboBoxChange}
+                      className={classes.multiComboBox}
+                    >
+                      {[...positiveTags, ...negativeTags].map((tag, index) => {
+                        return <MultiComboBoxItem text={tag} data-key={tag} key={index} />;
                       })}
                     </MultiComboBox>
                   </FormItem>
                   <FormItem label="Nota">
-                    <RatingIndicator></RatingIndicator>
+                    <RatingIndicator onChange={(e) => setRating(e.target.value)} />
                   </FormItem>
                 </FormGroup>
               </Form>
             </FlexBox>
           </FlexBox>
           <FlexBox direction={FlexBoxDirection.Column}>
-            <Title level={TitleLevel.H4}>3. Informações Opcionais</Title>
-            <Text style={{ paddingLeft: '22px', marginTop: '20px', marginBottom: '20px' }}>
-              Queremos saber um pouco mais sobre seu perfil.
-            </Text>
+            <Title level={TitleLevel.H4}>2. Informações Opcionais</Title>
+            <Text className={classes.text}>Queremos saber um pouco mais sobre seu perfil.</Text>
             <FlexBox direction={FlexBoxDirection.Column}>
               <Form
                 backgroundDesign={FormBackgroundDesign.Transparent}
@@ -185,24 +196,37 @@ export const CreateReview: React.FC = () => {
                 labelSpanM={2}
                 labelSpanS={12}
                 labelSpanXL={4}
-                style={{
-                  alignItems: 'center'
-                }}
               >
                 <FormGroup>
                   <FormItem label="Curso e Período">
-                    <Input></Input>
-                    <Input></Input>
+                    <Input
+                      placeholder="Ex.: Ciência da Computação"
+                      onChange={(e) => setCourseName(e.target.value)}
+                      className={classes.courseNameInput}
+                    ></Input>
+                    <Input
+                      placeholder="Ex.: 6"
+                      onChange={(e) => setCoursePeriod(e.target.value)}
+                      className={classes.coursePeriodInput}
+                    ></Input>
                   </FormItem>
                   <FormItem label="Preferência alimentar">
-                    <Select>
-                      <Option>Café da manhã</Option>
-                      <Option>Almoço</Option>
-                      <Option>Jantar</Option>
+                    <Select
+                      onChange={(e) => setDietaryPreference(e.detail.selectedOption.dataset.id)}
+                      className={classes.dietaryPreferenceSelect}
+                    >
+                      <Option data-id="Select">Selecionar</Option>
+                      <Option data-id="Onívora">Onívora</Option>
+                      <Option data-id="Vegetariana">Vegetariana</Option>
+                      <Option data-id="Vegana">Vegana</Option>
                     </Select>
                   </FormItem>
                   <FormItem label="Cidade">
-                    <Input></Input>
+                    <Input
+                      placeholder="Ex.: Porto Alegre"
+                      onChange={(e) => setCity(e.target.value)}
+                      className={classes.cityInput}
+                    ></Input>
                   </FormItem>
                 </FormGroup>
               </Form>
@@ -215,15 +239,23 @@ export const CreateReview: React.FC = () => {
         design={BarDesign.FloatingFooter}
         endContent={
           <>
-            <Button design={ButtonDesign.Default} style={{ marginRight: '10px', height: '30px' }}>
+            <Button
+              design={ButtonDesign.Default}
+              className={classes.cancelButton}
+              onClick={onCancelButtonClick}
+            >
               Cancelar
             </Button>
-            <Button design={ButtonDesign.Emphasized} style={{ height: '30px' }}>
+            <Button
+              design={ButtonDesign.Emphasized}
+              className={classes.sendButton}
+              onClick={onSendButtonClick}
+            >
               Enviar
             </Button>
           </>
         }
-        style={{ position: 'fixed', bottom: '0', margin: '15px', width: 'calc(100vw - 30px)' }}
+        className={classes.floatingBar}
       />
     </FlexBox>
   );

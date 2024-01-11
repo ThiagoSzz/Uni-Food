@@ -1,13 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createUseStyles } from 'react-jss';
 
-type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
+// type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
 
-const styles: JSSStyles = {
+interface ReviewCardStyleProps {
+  isAvatarGreen: boolean;
+}
+
+const styles = {
   reviewCard: {
     width: '323px',
     marginTop: '2px',
     marginBottom: '4px'
+  },
+  reviewCardAvatar: {
+    backgroundColor: ({ isAvatarGreen }: ReviewCardStyleProps) =>
+      isAvatarGreen ? '#EBF5CB' : '#D1EFFF',
+    borderColor: ({ isAvatarGreen }: ReviewCardStyleProps) =>
+      isAvatarGreen ? '#EBF5CB' : '#D1EFFF',
+    color: ({ isAvatarGreen }: ReviewCardStyleProps) => (isAvatarGreen ? '#256F3A' : '#0057D2')
   },
   reviewCardComments: {
     fontSize: '15px',
@@ -31,6 +42,6 @@ const styles: JSSStyles = {
   }
 };
 
-export const useStyles = createUseStyles(styles, {
+export const useStyles = createUseStyles<string, ReviewCardStyleProps>(styles, {
   name: 'ReviewCard'
 });

@@ -28,7 +28,9 @@ interface ReviewCardProps {
 
 export const ReviewCard = (props: ReviewCardProps) => {
   const { ruCode, universityName, universityLocation, rating, comment, tags } = props;
-  const classes = useStyles();
+
+  const isAvatarGreen = Math.floor(Math.random() * 100) + 1 <= 50;
+  const classes = useStyles({ isAvatarGreen });
 
   const positiveTags = [
     'Proteína macia',
@@ -63,7 +65,7 @@ export const ReviewCard = (props: ReviewCardProps) => {
       className={classes.reviewCard}
       header={
         <CardHeader
-          avatar={<Avatar icon="employee" />}
+          avatar={<Avatar icon="employee" className={classes.reviewCardAvatar} />}
           titleText={ruCode + ' - ' + universityName}
           subtitleText={universityLocation}
         />

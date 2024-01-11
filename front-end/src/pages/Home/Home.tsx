@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   ButtonDesign,
@@ -24,9 +24,20 @@ import '@ui5/webcomponents-icons/dist/AllIcons';
 import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomShellBar';
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
 import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../enums/AppRoutesEnum';
+import { FilterPopover } from '../../components/FilterPopover/FilterPopover';
 
 export const Home: React.FC = () => {
   const classes = useStyles();
+
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const navigateToCreateReviewPage = () => {
+    navigate(AppRoute.CreateReview);
+  };
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
@@ -47,6 +58,7 @@ export const Home: React.FC = () => {
                 design={ButtonDesign.Emphasized}
                 icon="navigation-right-arrow"
                 iconEnd
+                onClick={() => navigateToCreateReviewPage()}
               >
                 Criar avaliação
               </Button>
@@ -73,7 +85,15 @@ export const Home: React.FC = () => {
               icon={<Icon className={classes.searchBarIcon} name="search" />}
             />
             <SegmentedButton className={classes.segmentedButton}>
-              <SegmentedButtonItem icon="filter">Filtrar</SegmentedButtonItem>
+              <SegmentedButtonItem
+                icon="filter"
+                id={'openPopoverBtn'}
+                onClick={() => {
+                  setIsPopoverOpen((prevState) => !prevState);
+                }}
+              >
+                Filtrar
+              </SegmentedButtonItem>
               <SegmentedButtonItem icon="sys-cancel">Limpar filtros</SegmentedButtonItem>
             </SegmentedButton>
             <FlexBox className={classes.switchContainer}>
@@ -84,6 +104,7 @@ export const Home: React.FC = () => {
             </FlexBox>
           </FlexBox>
         </FlexBox>
+        <FilterPopover isPopoverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen} />
 
         <FlexBox className={classes.textContainer}>
           <FlexBox className={classes.centeredContainer}>
@@ -153,33 +174,37 @@ export const Home: React.FC = () => {
             ruCode="RU01"
             universityName="UFRGS"
             universityLocation="Porto Alegre"
-            rating={4}
+            rating={5}
             comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
             tags={['Proteína macia', 'Carboidrato de qualidade', 'Fila grande', 'Sem guardanapos']}
+          />
+          <ReviewCard
+            ruCode="RU05"
+            universityName="USP"
+            universityLocation="São Paulo"
+            rating={2}
+            comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
+            tags={[
+              'Carboidrato de baixa qualidade',
+              'Poucas opções de saladas',
+              'Comida de baixa qualidade'
+            ]}
+          />
+          <ReviewCard
+            ruCode="RU05"
+            universityName="UFRGS"
+            universityLocation="Porto Alegre"
+            rating={4}
+            comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
+            tags={['Leguminosa saborosa', 'Fila grande']}
           />
           <ReviewCard
             ruCode="RU01"
             universityName="UFRGS"
             universityLocation="Porto Alegre"
-            rating={4}
+            rating={3}
             comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
-            tags={['Proteína macia', 'Carboidrato de qualidade', 'Fila grande', 'Sem guardanapos']}
-          />
-          <ReviewCard
-            ruCode="RU01"
-            universityName="UFRGS"
-            universityLocation="Porto Alegre"
-            rating={4}
-            comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
-            tags={['Proteína macia', 'Carboidrato de qualidade', 'Fila grande', 'Sem guardanapos']}
-          />
-          <ReviewCard
-            ruCode="RU01"
-            universityName="UFRGS"
-            universityLocation="Porto Alegre"
-            rating={4}
-            comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
-            tags={['Proteína macia', 'Carboidrato de qualidade', 'Fila grande', 'Sem guardanapos']}
+            tags={['Proteína macia', 'Temperatura inadequada dos pratos', 'Sem guardanapos']}
           />
           <ReviewCard
             ruCode="RU01"

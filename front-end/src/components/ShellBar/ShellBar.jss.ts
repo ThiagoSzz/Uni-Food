@@ -21,7 +21,8 @@ const styles: JSSStyles = {
   },
   logoImage: {
     width: '30px',
-    marginRight: '10px'
+    marginRight: '10px',
+    cursor: 'pointer'
   },
   logoText: {
     fontSize: '16px',
