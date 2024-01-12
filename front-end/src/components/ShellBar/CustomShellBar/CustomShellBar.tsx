@@ -9,11 +9,7 @@ import {
 import { ShellBar } from '../ShellBar';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../../enums/AppRoutesEnum';
-
-interface CustomShellBarProps {
-  searchDisabled?: boolean;
-  createReviewDisabled?: boolean;
-}
+import { CustomShellBarProps } from '../../../interfaces/props/CustomShellBarProps';
 
 export const CustomShellBar = (props: CustomShellBarProps) => {
   const { searchDisabled, createReviewDisabled } = props;

@@ -16,15 +16,7 @@ import {
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
 
 import { useStyles } from './ReviewCard.jss';
-
-interface ReviewCardProps {
-  ruCode: string;
-  universityName: string;
-  universityLocation: string;
-  rating: number;
-  comment: string;
-  tags: Array<string>;
-}
+import { ReviewCardProps } from '../../interfaces/props/ReviewCardProps';
 
 export const ReviewCard = (props: ReviewCardProps) => {
   const { ruCode, universityName, universityLocation, rating, comment, tags } = props;

@@ -1,11 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createUseStyles } from 'react-jss';
+import { ReviewCardStyleProps } from '../../interfaces/props/ReviewCardStyleProps';
 
 // type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
-
-interface ReviewCardStyleProps {
-  isAvatarGreen: boolean;
-}
 
 const styles = {
   reviewCard: {

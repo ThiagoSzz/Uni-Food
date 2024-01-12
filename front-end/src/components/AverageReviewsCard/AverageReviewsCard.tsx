@@ -4,25 +4,9 @@ import { Badge, Card, CardHeader, FlexBox, Icon, Label, Text } from '@ui5/webcom
 import { IconBadgeColors } from '../../enums/IconBadgeColorsEnum';
 import { useStyles } from '../AverageReviewsCard/AverageReviewsCard.jss';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
+import { AverageReviewCardProps, CardTags } from '../../interfaces/props/AverageReviewCardProps';
 
-interface ReviewCardProps {
-  ruCode: string;
-  universityName: string;
-  universityLocation: string;
-  averageRating: number;
-  reviewsAmount: number;
-  isRising?: boolean;
-  isDescending?: boolean;
-  isBestReviewed?: boolean;
-  isWorstReviewed?: boolean;
-}
-
-interface CardTags {
-  name: string;
-  status: string;
-}
-
-export const AverageReviewsCard = (props: ReviewCardProps) => {
+export const AverageReviewsCard = (props: AverageReviewCardProps) => {
   const {
     ruCode,
     universityName,

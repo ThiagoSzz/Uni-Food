@@ -12,13 +12,9 @@ import {
   StandardListItem,
   Option
 } from '@ui5/webcomponents-react';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import { useStyles } from './FilterPopover.jss';
-
-interface FilterPopoverProps {
-  isPopoverOpen: boolean;
-  setIsPopoverOpen: Dispatch<SetStateAction<boolean>>;
-}
+import { FilterPopoverProps } from '../../interfaces/props/FilterPopoverProps';
 
 export const FilterPopover = (props: FilterPopoverProps) => {
   const { isPopoverOpen, setIsPopoverOpen } = props;

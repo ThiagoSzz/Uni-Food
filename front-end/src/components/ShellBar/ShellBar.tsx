@@ -2,12 +2,7 @@ import { FlexBox, Title, TitleLevel } from '@ui5/webcomponents-react';
 import { useStyles } from './ShellBar.jss';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../enums/AppRoutesEnum';
-
-interface ShellBarProps {
-  image: string;
-  text: string;
-  children: any;
-}
+import { ShellBarProps } from '../../interfaces/props/ShellBarProps';
 
 export const ShellBar = (props: ShellBarProps) => {
   const { image, text, children } = props;
@@ -22,7 +17,12 @@ export const ShellBar = (props: ShellBarProps) => {
   return (
     <FlexBox className={classes.shellbar}>
       <FlexBox className={classes.logoContainer}>
-        <img src={image} alt="Logo" className={classes.logoImage} onClick={() => navigateToHomePage()} />
+        <img
+          src={image}
+          alt="Logo"
+          className={classes.logoImage}
+          onClick={() => navigateToHomePage()}
+        />
         <Title level={TitleLevel.H5}>{text}</Title>
       </FlexBox>
       <FlexBox className={classes.itemsContainer}>{children}</FlexBox>
