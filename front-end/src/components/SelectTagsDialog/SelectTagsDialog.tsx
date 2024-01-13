@@ -13,7 +13,7 @@ import {
 } from '@ui5/webcomponents-react';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
 import { SelectTagsDialogProps } from '../../interfaces/props/SelectTagsDialogProps';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getNegativeTags, getNeutralTags, getPositiveTags } from '../../fixtures/TagStatesFixture';
 
 export const SelectTagsDialog = (props: SelectTagsDialogProps) => {
