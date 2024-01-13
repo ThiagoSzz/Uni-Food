@@ -100,6 +100,9 @@ const styles: JSSStyles = {
     height: '30px',
     padding: '8px',
     width: 'fit-content'
+  },
+  ratingIndicator: {
+    marginTop: '5px'
   }
 };
 

@@ -17,9 +17,9 @@ import {
   Form
 } from '@ui5/webcomponents-react';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useStyles } from '../ReviewInfoForm/ReviewInfoForm.jss';
-import { ReviewInfoFormProps } from '../../interfaces/props/ReviewInfoFormProps';
+import { ReviewInfoFormProps, Tag } from '../../interfaces/props/ReviewInfoFormProps';
 
 export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
   const { setIsSelectTagsDialogOpen, selectedTags, setSelectedTags } = props;
@@ -29,8 +29,12 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
   const [universityName, setUniversityName] = useState<string>();
   const [mealPeriod, setMealPeriod] = useState<string>();
   const [comment, setComment] = useState<string>();
-  const [tags, setTags] = useState<string>();
+  const [tags, setTags] = useState<Tag[]>();
   const [rating, setRating] = useState<number>();
+
+  useEffect(() => {
+    setTags(selectedTags);
+  }, [selectedTags]);
 
   return (
     <Form
@@ -110,9 +114,11 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
             </FlexBox>
           </FlexBox>
         </FormItem>
-
         <FormItem label="Nota">
-          <RatingIndicator onChange={(e) => setRating(e.target.value)} />
+          <RatingIndicator
+            className={classes.ratingIndicator}
+            onChange={(e) => setRating(e.target.value)}
+          />
         </FormItem>
       </FormGroup>
     </Form>

@@ -64,16 +64,16 @@ export const CreateReview: React.FC = () => {
             <Text className={classes.text}>Queremos saber um pouco mais sobre seu perfil.</Text>
             <FlexBox direction={FlexBoxDirection.Column}>
               <OptionalInfoForm />
+              <SelectTagsDialog
+                isSelectTagsDialogOpen={isSelectTagsDialogOpen}
+                setIsSelectTagsDialogOpen={setIsSelectTagsDialogOpen}
+                selectedTags={selectedTags}
+                setSelectedTags={setSelectedTags}
+              />
             </FlexBox>
           </FlexBox>
         </FlexBox>
       </FlexBox>
-      <SelectTagsDialog
-        isSelectTagsDialogOpen={isSelectTagsDialogOpen}
-        setIsSelectTagsDialogOpen={setIsSelectTagsDialogOpen}
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
-      />
 
       <FloatingBar />
     </FlexBox>
