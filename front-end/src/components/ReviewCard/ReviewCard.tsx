@@ -17,6 +17,7 @@ import { CardTagColors } from '../../enums/CardTagColorsEnum';
 
 import { useStyles } from './ReviewCard.jss';
 import { ReviewCardProps } from '../../interfaces/props/ReviewCardProps';
+import { getPositiveTags, getNegativeTags } from '../../fixtures/TagStatesFixture';
 
 export const ReviewCard = (props: ReviewCardProps) => {
   const { ruCode, universityName, universityLocation, rating, comment, tags } = props;
@@ -24,33 +25,8 @@ export const ReviewCard = (props: ReviewCardProps) => {
   const isAvatarGreen = Math.floor(Math.random() * 100) + 1 <= 50;
   const classes = useStyles({ isAvatarGreen });
 
-  const positiveTags = [
-    'Proteína macia',
-    'Carboidrato de qualidade',
-    'Leguminosa saborosa',
-    'Variedade de saladas',
-    'Com opção de sobremesa',
-    'Ambiente harmonioso',
-    'Bom cozimento dos alimentos',
-    'Comida saborosa',
-    'Boa temperatura dos pratos',
-    'Bom atendimento',
-    'Fila curta'
-  ];
-
-  const negativeTags = [
-    'Proteína dura',
-    'Carboidrato de baixa qualidade',
-    'Leguminosa sem sabor',
-    'Poucas opções de saladas',
-    'Sem opção de sobremesa',
-    'Ambiente barulhento',
-    'Mau cozimento dos alimentos',
-    'Comida de baixa qualidade',
-    'Temperatura inadequada dos pratos',
-    'Mau atendimento',
-    'Fila grande'
-  ];
+  const positiveTags = getPositiveTags();
+  const negativeTags = getNegativeTags();
 
   return (
     <Card

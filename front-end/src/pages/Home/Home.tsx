@@ -2,42 +2,25 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
-import {
-  Button,
-  ButtonDesign,
-  FlexBox,
-  FlexBoxDirection,
-  Icon,
-  Input,
-  Label,
-  SegmentedButton,
-  SegmentedButtonItem,
-  Switch,
-  Text,
-  Title,
-  TitleLevel,
-  WrappingType
-} from '@ui5/webcomponents-react';
+import { FlexBox, FlexBoxDirection, Text, Title, TitleLevel } from '@ui5/webcomponents-react';
 
 import { useStyles } from './Home.jss';
 import '@ui5/webcomponents-icons/dist/AllIcons';
 import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomShellBar';
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
 import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
-import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../enums/AppRoutesEnum';
 import { FilterPopover } from '../../components/FilterPopover/FilterPopover';
+import { getAverageReviewsList, getReviewsList } from '../../fixtures/ReviewsFixture';
+import { CreateReviewInfoBox } from '../../components/CreateReviewInfoBox/CreateReviewInfoBox';
+import { SearchReviewInfoBox } from '../../components/SearchReviewInfoBox/SearchReviewInfoBox';
+import { ReviewsSearchBar } from '../../components/ReviewsSearchBar/ReviewsSearchBar';
 
 export const Home: React.FC = () => {
   const classes = useStyles();
-
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  const navigate = useNavigate();
-
-  const navigateToCreateReviewPage = () => {
-    navigate(AppRoute.CreateReview);
-  };
+  const averageReviews = getAverageReviewsList();
+  const reviews = getReviewsList();
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
@@ -45,119 +28,41 @@ export const Home: React.FC = () => {
 
       <FlexBox direction={FlexBoxDirection.Column}>
         <FlexBox direction={FlexBoxDirection.Row} className={classes.boxesContainer}>
-          <FlexBox className={classes.box} direction={FlexBoxDirection.Row}>
-            <FlexBox className={classes.boxTextContainer} direction={FlexBoxDirection.Column}>
-              <Title level={TitleLevel.H4}>Avalie sua experiência em um RU!</Title>
-              <Text className={classes.boxSubtitle}>
-                Ajude outros universitários a escolher o melhor RU para frequentar.
-              </Text>
-            </FlexBox>
-            <FlexBox className={classes.boxButtonContainer}>
-              <Button
-                className={classes.boxButton}
-                design={ButtonDesign.Emphasized}
-                icon="navigation-right-arrow"
-                iconEnd
-                onClick={() => navigateToCreateReviewPage()}
-              >
-                Criar avaliação
-              </Button>
-            </FlexBox>
-          </FlexBox>
-          <FlexBox className={classes.box}>
-            <FlexBox className={classes.boxTextContainer} direction={FlexBoxDirection.Column}>
-              <Title wrappingType={WrappingType.Normal} level={TitleLevel.H4}>
-                Descubra avaliações dos RUs que você frequenta!
-              </Title>
-              <Text wrapping className={classes.boxSubtitle}>
-                Procure por avaliações deixadas por outros usuários e filtre-as com base em diversas
-                opções.
-              </Text>
-            </FlexBox>
-          </FlexBox>
+          <CreateReviewInfoBox />
+          <SearchReviewInfoBox />
         </FlexBox>
 
         <FlexBox className={classes.boxesContainer}>
-          <FlexBox className={classes.searchBox}>
-            <Input
-              className={classes.searchBar}
-              placeholder="Pesquisar"
-              icon={<Icon className={classes.searchBarIcon} name="search" />}
-            />
-            <SegmentedButton className={classes.segmentedButton}>
-              <SegmentedButtonItem
-                icon="filter"
-                id={'openPopoverBtn'}
-                onClick={() => {
-                  setIsPopoverOpen((prevState) => !prevState);
-                }}
-              >
-                Filtrar
-              </SegmentedButtonItem>
-              <SegmentedButtonItem icon="sys-cancel">Limpar filtros</SegmentedButtonItem>
-            </SegmentedButton>
-            <FlexBox className={classes.switchContainer}>
-              <Switch />
-              <Label className={classes.switchLabelText}>Filtrar médias</Label>
-              <Switch checked />
-              <Label className={classes.switchLabelText}>Filtrar avaliações</Label>
-            </FlexBox>
-          </FlexBox>
+          <ReviewsSearchBar setIsPopoverOpen={setIsPopoverOpen} />
+          <FilterPopover isPopoverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen} />
         </FlexBox>
-        <FilterPopover isPopoverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen} />
 
         <FlexBox className={classes.textContainer}>
           <FlexBox className={classes.centeredContainer}>
             <Title className={classes.sectionText} level={TitleLevel.H4}>
               Médias por Restaurante Universitário
             </Title>
-            <Text className={classes.sectionText}>(14 RUs)</Text>
+            <Text className={classes.sectionText}>({averageReviews.length} RUs)</Text>
           </FlexBox>
         </FlexBox>
 
         <FlexBox className={classes.averageReviewsContainer}>
-          <AverageReviewsCard
-            ruCode="RU01"
-            universityName="UFRGS"
-            universityLocation="Porto Alegre"
-            averageRating={4.4}
-            reviewsAmount={230}
-            isRising
-            isBestReviewed
-          />
-          <AverageReviewsCard
-            ruCode="RU03"
-            universityName="UFRGS"
-            universityLocation="Porto Alegre"
-            averageRating={4.2}
-            reviewsAmount={491}
-          />
-          <AverageReviewsCard
-            ruCode="RU01"
-            universityName="PUCRS"
-            universityLocation="Porto Alegre"
-            averageRating={2.1}
-            reviewsAmount={1092}
-            isDescending
-            isWorstReviewed
-          />
-          <AverageReviewsCard
-            ruCode="RU02"
-            universityName="UFRJ"
-            universityLocation="Rio de Janeiro"
-            averageRating={3.3}
-            reviewsAmount={112}
-            isRising
-          />
-          <AverageReviewsCard
-            ruCode="RU04"
-            universityName="USP"
-            universityLocation="São Paulo"
-            averageRating={3.8}
-            reviewsAmount={992}
-            isRising
-            isBestReviewed
-          />
+          {averageReviews.map((averageReview, index) => {
+            return (
+              <AverageReviewsCard
+                key={index}
+                ruCode={averageReview.ruCode}
+                universityName={averageReview.universityName}
+                universityLocation={averageReview.universityLocation}
+                averageRating={averageReview.averageRating}
+                reviewsAmount={averageReview.reviewsAmount}
+                isRising={averageReview.isRising}
+                isDescending={averageReview.isDescending}
+                isBestReviewed={averageReview.isBestReviewed}
+                isWorstReviewed={averageReview.isWorstReviewed}
+              />
+            );
+          })}
         </FlexBox>
 
         <FlexBox className={classes.textContainer}>
@@ -165,55 +70,24 @@ export const Home: React.FC = () => {
             <Title className={classes.sectionText} level={TitleLevel.H4}>
               Avaliações por Refeição
             </Title>
-            <Text className={classes.sectionText}>(2023 avaliações)</Text>
+            <Text className={classes.sectionText}>({reviews.length} avaliações)</Text>
           </FlexBox>
         </FlexBox>
 
         <FlexBox className={classes.reviewsContainer}>
-          <ReviewCard
-            ruCode="RU01"
-            universityName="UFRGS"
-            universityLocation="Porto Alegre"
-            rating={5}
-            comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
-            tags={['Proteína macia', 'Carboidrato de qualidade', 'Fila grande', 'Sem guardanapos']}
-          />
-          <ReviewCard
-            ruCode="RU05"
-            universityName="USP"
-            universityLocation="São Paulo"
-            rating={2}
-            comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
-            tags={[
-              'Carboidrato de baixa qualidade',
-              'Poucas opções de saladas',
-              'Comida de baixa qualidade'
-            ]}
-          />
-          <ReviewCard
-            ruCode="RU05"
-            universityName="UFRGS"
-            universityLocation="Porto Alegre"
-            rating={4}
-            comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
-            tags={['Leguminosa saborosa', 'Fila grande']}
-          />
-          <ReviewCard
-            ruCode="RU01"
-            universityName="UFRGS"
-            universityLocation="Porto Alegre"
-            rating={3}
-            comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
-            tags={['Proteína macia', 'Temperatura inadequada dos pratos', 'Sem guardanapos']}
-          />
-          <ReviewCard
-            ruCode="RU01"
-            universityName="UFRGS"
-            universityLocation="Porto Alegre"
-            rating={4}
-            comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris."
-            tags={['Proteína macia', 'Carboidrato de qualidade', 'Fila grande', 'Sem guardanapos']}
-          />
+          {reviews.map((review, index) => {
+            return (
+              <ReviewCard
+                key={index}
+                ruCode={review.ruCode}
+                universityName={review.universityName}
+                universityLocation={review.universityLocation}
+                rating={review.rating}
+                comment={review.comment}
+                tags={review.tags}
+              />
+            );
+          })}
         </FlexBox>
       </FlexBox>
     </FlexBox>

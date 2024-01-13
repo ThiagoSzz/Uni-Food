@@ -8,19 +8,32 @@ import {
   MessageStripDesign,
   FlexBox,
   FlexBoxDirection,
-  Badge
+  Badge,
+  Text
 } from '@ui5/webcomponents-react';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
 import { SelectTagsDialogProps } from '../../interfaces/props/SelectTagsDialogProps';
+import { useEffect, useState } from 'react';
+import { getNegativeTags, getNeutralTags, getPositiveTags } from '../../fixtures/TagStatesFixture';
 
 export const SelectTagsDialog = (props: SelectTagsDialogProps) => {
   const { isSelectTagsDialogOpen, setIsSelectTagsDialogOpen, selectedTags, setSelectedTags } =
     props;
   const classes = useStyles();
 
+  const positiveTags = getPositiveTags();
+  const negativeTags = getNegativeTags();
+  const neutralTags = getNeutralTags();
   const hasRightAmountOfTags = selectedTags.length > 5;
 
-  const handleBadgeClick = (tag: string, type: 'positive' | 'negative') => {
+  const [searchText, setSearchText] = useState('');
+
+  const handleSearch = (event: CustomEvent) => {
+    const newSearchText = event.detail?.value?.toLowerCase() || '';
+    setSearchText(newSearchText);
+  };
+
+  const handleBadgeClick = (tag: string, type: 'positive' | 'negative' | 'neutral') => {
     setSelectedTags((prevSelectedTags) => {
       const tagIndex = prevSelectedTags.findIndex(({ name }) => name === tag);
       const isTagSelected = tagIndex !== -1;
@@ -49,40 +62,50 @@ export const SelectTagsDialog = (props: SelectTagsDialogProps) => {
     setIsSelectTagsDialogOpen(false);
   };
 
-  const positiveTags = [
-    'Proteína macia',
-    'Carboidrato de qualidade',
-    'Leguminosa saborosa',
-    'Variedade de saladas',
-    'Com opção de sobremesa',
-    'Ambiente harmonioso',
-    'Bom cozimento dos alimentos',
-    'Comida saborosa',
-    'Boa temperatura dos pratos',
-    'Bom atendimento',
-    'Fila curta'
-  ];
+  const renderTags = (tags: string[], type: string) => {
+    const filteredTags = tags.filter((tag) => tag.toLowerCase().includes(searchText));
 
-  const negativeTags = [
-    'Proteína dura',
-    'Carboidrato de baixa qualidade',
-    'Leguminosa sem sabor',
-    'Poucas opções de saladas',
-    'Sem opção de sobremesa',
-    'Ambiente barulhento',
-    'Mau cozimento dos alimentos',
-    'Comida de baixa qualidade',
-    'Temperatura inadequada dos pratos',
-    'Mau atendimento',
-    'Fila grande'
-  ];
+    if (filteredTags.length === 0) {
+      return (
+        <FlexBox className={classes.noTagsFilteredContainer}>
+          <Text className={classes.noTagsFilteredText}>
+            Nenhuma tag{' '}
+            {type === 'positive' ? 'positiva' : type === 'negative' ? 'negativa' : 'neutra'} foi
+            filtrada com a pesquisa.
+          </Text>
+        </FlexBox>
+      );
+    }
+
+    return filteredTags.map((tag, index) => {
+      const isSelected = selectedTags.some(
+        ({ name, type: selectedType }) => name === tag && type === selectedType
+      );
+      return (
+        <Badge
+          key={index}
+          className={`${classes.badge} ${isSelected ? classes.selectedBadge : ''}`}
+          colorScheme={
+            type === 'positive'
+              ? CardTagColors.Positive
+              : type === 'negative'
+                ? CardTagColors.Negative
+                : CardTagColors.Neutral
+          }
+          onClick={() => handleBadgeClick(tag, type as 'positive' | 'negative' | 'neutral')}
+        >
+          {tag}
+        </Badge>
+      );
+    });
+  };
 
   return (
     <SelectDialog
       headerText="Selecione até 5 tags"
       open={isSelectTagsDialogOpen}
       onAfterClose={handleCloseSelectTagsDialog}
-      onTouchCancel={() => console.log('teste')}
+      onSearch={handleSearch}
     >
       {hasRightAmountOfTags ? (
         <MessageStrip
@@ -97,38 +120,13 @@ export const SelectTagsDialog = (props: SelectTagsDialogProps) => {
       )}
       <FlexBox className={classes.selectDialogContainer} direction={FlexBoxDirection.Row}>
         <FlexBox direction={FlexBoxDirection.Column} className={classes.badgesList}>
-          {positiveTags.map((tag, index) => {
-            const isSelected = selectedTags.some(
-              ({ name, type }) => name === tag && type === 'positive'
-            );
-            return (
-              <Badge
-                key={index}
-                className={`${classes.badge} ${isSelected ? classes.selectedBadge : ''}`}
-                colorScheme={CardTagColors.Positive}
-                onClick={() => handleBadgeClick(tag, 'positive')}
-              >
-                {tag}
-              </Badge>
-            );
-          })}
+          {renderTags(positiveTags, 'positive')}
         </FlexBox>
         <FlexBox direction={FlexBoxDirection.Column} className={classes.badgesList}>
-          {negativeTags.map((tag, index) => {
-            const isSelected = selectedTags.some(
-              ({ name, type }) => name === tag && type === 'negative'
-            );
-            return (
-              <Badge
-                key={index}
-                className={`${classes.badge} ${isSelected ? classes.selectedBadge : ''}`}
-                colorScheme={CardTagColors.Negative}
-                onClick={() => handleBadgeClick(tag, 'negative')}
-              >
-                {tag}
-              </Badge>
-            );
-          })}
+          {renderTags(negativeTags, 'negative')}
+        </FlexBox>
+        <FlexBox direction={FlexBoxDirection.Column} className={classes.badgesList}>
+          {renderTags(neutralTags, 'neutral')}
         </FlexBox>
       </FlexBox>
     </SelectDialog>

@@ -6,15 +6,15 @@ type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
 const styles: JSSStyles = {
   selectDialogContainer: {
     width: '100%',
+    height: '290px',
     gap: '5px',
-    padding: '5px'
+    padding: '5px',
   },
   badgesList: {
     gap: '5px',
-    width: '50%',
-    height: '200px',
-    overflow: 'auto',
-    marginBottom: '2px'
+    width: '33%',
+    height: 'fit-content',
+    overflow: 'auto'
   },
   badge: {
     padding: '5px',
@@ -23,8 +23,9 @@ const styles: JSSStyles = {
     cursor: 'pointer'
   },
   selectedBadge: {
-    height: '27px',
-    border: '2px solid'
+    height: '33px',
+    border: '2px solid',
+    boxSizing: 'border-box'
   },
   tagListContainer: {
     border: '1px solid #CAD2D8',
@@ -64,6 +65,15 @@ const styles: JSSStyles = {
     height: '30px',
     padding: '8px',
     width: 'fit-content'
+  },
+  noTagsFilteredContainer: {
+    textAlign: 'center',
+    width: '275px',
+    justifyContent: 'center'
+  },
+  noTagsFilteredText: {
+    fontSize: '15px',
+    width: '200px'
   }
 };
 

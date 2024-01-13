@@ -96,7 +96,11 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
                     className={classes.selectedBadgeItem}
                     key={index}
                     colorScheme={
-                      tag.type === 'positive' ? CardTagColors.Positive : CardTagColors.Negative
+                      tag.type === 'positive'
+                        ? CardTagColors.Positive
+                        : tag.type === 'negative'
+                          ? CardTagColors.Negative
+                          : CardTagColors.Neutral
                     }
                   >
                     {tag.name}

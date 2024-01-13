@@ -1,6 +1,6 @@
 export interface Tag {
   name: string;
-  type: 'positive' | 'negative';
+  type: 'positive' | 'negative' | 'neutral';
 }
 
 export interface ReviewInfoFormProps {
