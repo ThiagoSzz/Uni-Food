@@ -8,7 +8,7 @@ const styles: JSSStyles = {
     width: '100%',
     height: '290px',
     gap: '5px',
-    padding: '5px',
+    padding: '5px'
   },
   badgesList: {
     gap: '5px',

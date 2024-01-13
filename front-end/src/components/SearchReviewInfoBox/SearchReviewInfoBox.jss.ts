@@ -27,7 +27,7 @@ const styles: JSSStyles = {
   },
   boxSubtitle: {
     marginTop: 'auto'
-  },
+  }
 };
 
 export const useStyles = createUseStyles(styles, {

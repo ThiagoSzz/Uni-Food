@@ -16,7 +16,7 @@ const styles: JSSStyles = {
   },
   cityInput: {
     width: '430px'
-  },
+  }
 };
 
 export const useStyles = createUseStyles(styles, {

@@ -42,7 +42,7 @@ const styles: JSSStyles = {
     paddingLeft: '22px',
     marginTop: '20px',
     marginBottom: '20px'
-  },
+  }
 };
 
 export const useStyles = createUseStyles(styles, {

@@ -42,7 +42,7 @@ const neutralTags = [
 
 export const getPositiveTags = () => {
   return positiveTags;
-}
+};
 
 export const getNegativeTags = () => {
   return negativeTags;

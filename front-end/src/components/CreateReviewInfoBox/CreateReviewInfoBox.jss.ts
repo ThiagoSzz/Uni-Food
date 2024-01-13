@@ -42,7 +42,7 @@ const styles: JSSStyles = {
     '@media (min-width: 1024px) and (max-width: 1439px)': {
       width: '100%'
     }
-  },
+  }
 };
 
 export const useStyles = createUseStyles(styles, {
