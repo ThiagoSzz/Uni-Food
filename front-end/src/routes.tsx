@@ -1,19 +1,21 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@ui5/webcomponents-react';
 
 import { Home } from './pages/Home/Home';
+import { AppRoute } from './enums/AppRoutesEnum';
+import { CreateReview } from './pages/CreateReview/CreateReview';
 
-function Routes() {
+function AppRoutes() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <Route path="/" exact component={Home} />
-        {/* <Route path="/new-review" exact component={NewReview} />
-        <Route path="/authentication/register" exact component={Register} />
-        <Route path="/authentication/login" exact component={Login} /> */}
+        <Routes>
+          <Route path={AppRoute.Home} element={<Home />} />
+          <Route path={AppRoute.CreateReview} element={<CreateReview />} />
+        </Routes>
       </BrowserRouter>
     </ThemeProvider>
   );
 }
 
-export default Routes;
+export default AppRoutes;

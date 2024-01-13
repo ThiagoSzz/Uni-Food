@@ -2,10 +2,14 @@
 
 Este documento serve como um registro das alterações realizadas na aplicação ao longo do tempo. Nossa changelog servirá para manter uma documentação das evoluções do código.
 
+## 2401B
+
+### Adições
+
+- [N/A] Rework da UI
+
 ## 2311B
 
 ### Adições
 
 - [UNI-3] Criar a base do Front-End
-
-### Correções
