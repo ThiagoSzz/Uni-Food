@@ -10,16 +10,31 @@ import {
   Option,
   Form
 } from '@ui5/webcomponents-react';
-import { useState } from 'react';
 import { useStyles } from '../OptionalInfoForm/OptionalInfoForm.jss';
+import useNewReviewStore from '../../store/NewReviewStore';
+import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
 
 export const OptionalInfoForm = () => {
   const classes = useStyles();
 
-  const [courseName, setCourseName] = useState<string>();
-  const [coursePeriod, setCoursePeriod] = useState<string>();
-  const [dietaryPreference, setDietaryPreference] = useState<string>();
-  const [city, setCity] = useState<string>();
+  const [setCourseName, setCoursePeriod, setDietaryPreference, setCity] = useNewReviewStore(
+    (value) => [
+      value.setCourseName,
+      value.setCoursePeriod,
+      value.setDietaryPreference,
+      value.setCity
+    ]
+  );
+
+  const handleChangeDietaryPreferenceSelection = (dietaryPreference: string) => {
+    setDietaryPreference(
+      dietaryPreference === 'Onívora'
+        ? DietaryPreference.OMNIVORE
+        : dietaryPreference === 'Vegetariana'
+          ? DietaryPreference.VEGETARIAN
+          : DietaryPreference.VEGAN
+    );
+  };
 
   return (
     <Form
@@ -48,7 +63,7 @@ export const OptionalInfoForm = () => {
         </FormItem>
         <FormItem label="Preferência Alimentar">
           <Select
-            onChange={(e) => setDietaryPreference(e.detail.selectedOption.dataset.id)}
+            onChange={(e) => handleChangeDietaryPreferenceSelection(e.detail.selectedOption.dataset.id)}
             className={classes.dietaryPreferenceSelect}
           >
             <Option data-id="Select">Selecionar</Option>

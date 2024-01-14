@@ -15,6 +15,7 @@ import {
 import React, { useState } from 'react';
 import { useStyles } from './FilterPopover.jss';
 import { FilterPopoverProps } from '../../interfaces/props/FilterPopoverProps';
+import { MealPeriod } from '../../enums/MealPeriodEnum';
 
 export const FilterPopover = (props: FilterPopoverProps) => {
   const { isPopoverOpen, setIsPopoverOpen } = props;
@@ -120,9 +121,9 @@ export const FilterPopover = (props: FilterPopoverProps) => {
                 <FlexBox className={classes.lineFlexBox}>
                   <Select className={classes.mealPeriodSelect}>
                     <Option data-id="Select">Turno da refeição</Option>
-                    <Option data-id="Café da manhã">Café da manhã</Option>
-                    <Option data-id="Almoço">Almoço</Option>
-                    <Option data-id="Jantar">Jantar</Option>
+                    <Option data-id={MealPeriod.BREAKFAST}>Café da manhã</Option>
+                    <Option data-id={MealPeriod.LUNCH}>Almoço</Option>
+                    <Option data-id={MealPeriod.DINNER}>Jantar</Option>
                   </Select>
                   <Button
                     icon="decline"

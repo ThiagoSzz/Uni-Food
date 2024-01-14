@@ -17,20 +17,35 @@ import {
   Form
 } from '@ui5/webcomponents-react';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useStyles } from '../ReviewInfoForm/ReviewInfoForm.jss';
-import { ReviewInfoFormProps, Tag } from '../../interfaces/props/ReviewInfoFormProps';
+import { ReviewInfoFormProps } from '../../interfaces/props/ReviewInfoFormProps';
+import useNewReviewStore from '../../store/NewReviewStore';
+import { MealPeriod } from '../../enums/MealPeriodEnum';
 
 export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
   const { setIsSelectTagsDialogOpen, selectedTags, setSelectedTags } = props;
   const classes = useStyles();
 
-  const [ruCode, setRuCode] = useState<string>();
-  const [universityName, setUniversityName] = useState<string>();
-  const [mealPeriod, setMealPeriod] = useState<string>();
-  const [comment, setComment] = useState<string>();
-  const [tags, setTags] = useState<Tag[]>();
-  const [rating, setRating] = useState<number>();
+  const [setRuCode, setUniversityName, setMealPeriod, setComment, setTags, setRating] =
+    useNewReviewStore((value) => [
+      value.setRuCode,
+      value.setUniversityName,
+      value.setMealPeriod,
+      value.setComment,
+      value.setTags,
+      value.setRating
+    ]);
+
+  const handleChangeMealPeriodSelection = (mealPeriod: string) => {
+    setMealPeriod(
+      mealPeriod === MealPeriod.BREAKFAST
+        ? MealPeriod.BREAKFAST
+        : mealPeriod === MealPeriod.LUNCH
+          ? MealPeriod.LUNCH
+          : MealPeriod.DINNER
+    );
+  };
 
   useEffect(() => {
     setTags(selectedTags);
@@ -65,13 +80,13 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
         </FormItem>
         <FormItem label="Período da Refeição">
           <Select
-            onChange={(e) => setMealPeriod(e.detail.selectedOption.dataset.id)}
+            onChange={(e) => handleChangeMealPeriodSelection(e.detail.selectedOption.dataset.id)}
             className={classes.mealPeriodSelect}
           >
             <Option data-id="Select">Selecionar</Option>
-            <Option data-id="Café da manhã">Café da manhã</Option>
-            <Option data-id="Almoço">Almoço</Option>
-            <Option data-id="Jantar">Jantar</Option>
+            <Option data-id={MealPeriod.BREAKFAST}>Café da manhã</Option>
+            <Option data-id={MealPeriod.LUNCH}>Almoço</Option>
+            <Option data-id={MealPeriod.DINNER}>Jantar</Option>
           </Select>
         </FormItem>
         <FormItem label={<Label className={classes.commentLabel}>Comentário</Label>}>
