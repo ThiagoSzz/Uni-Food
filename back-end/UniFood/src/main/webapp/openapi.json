@@ -173,6 +173,20 @@
         }
       }
     },
+    "/avaliacao/lista_restaurante_nota" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "listaRestaurateNota",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/avaliacao/remove" : {
       "post" : {
         "tags" : [ "Avaliações" ],

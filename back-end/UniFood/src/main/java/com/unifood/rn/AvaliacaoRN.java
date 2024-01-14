@@ -1,11 +1,14 @@
 package com.unifood.rn;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.unifood.bd.AvaliacaoBD;
 import com.unifood.ed.AvaliacaoED;
+import com.unifood.ed.RestauranteNotaED;
 import com.unifood.util.RN;
 import com.unifood.val.AvaliacaoVal;
 
@@ -22,6 +25,11 @@ public class AvaliacaoRN extends RN<AvaliacaoED, Integer>
 	public void initBDVal()
 	{
 		init(avaliacaoBD, avaliacaoVal);
+	}
+	
+	public List<RestauranteNotaED> listaRestauranteNota() 
+	{
+		return avaliacaoBD.listaRestauranteNota();
 	}
 
 }
