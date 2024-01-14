@@ -3,6 +3,14 @@
 ## Sobre
 A plataforma UniFood é uma aplicação que permite aos estudantes avaliar restaurantes universitários, compartilhando suas experiências sobre a qualidade da comida, atendimento, ambiente e outras considerações relevantes. A plataforma busca incentivar melhorias nos estabelecimentos e auxiliar os estudantes na escolha de onde fazer suas refeições com base em avaliações escritas por outros usuários, bem como auxiliar os administradores de restaurantes universitários como métrica da qualidade de seus estabelecimentos.
 
+## Mockups
+
+### Página inicial (pesquisa de avaliações)
+<img width="1440" alt="Search reviews page" src="https://github.com/ThiagoSzz/Uni-Food/assets/49589136/ad61e7bf-d426-409c-b74d-99295b0e4cf7">
+
+### Página de criação de avaliações
+<img width="1440" alt="Create review page" src="https://github.com/ThiagoSzz/Uni-Food/assets/49589136/4018aa8b-408a-480a-a244-62d3f6d738a7">
+
 ## Tecnologias
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
