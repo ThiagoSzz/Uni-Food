@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import {
   FormBackgroundDesign,
   FormGroup,
@@ -63,7 +60,9 @@ export const OptionalInfoForm = () => {
         </FormItem>
         <FormItem label="Preferência Alimentar">
           <Select
-            onChange={(e) => handleChangeDietaryPreferenceSelection(e.detail.selectedOption.dataset.id)}
+            onChange={(e) =>
+              handleChangeDietaryPreferenceSelection(e.detail.selectedOption.dataset.id)
+            }
             className={classes.dietaryPreferenceSelect}
           >
             <Option data-id="Select">Selecionar</Option>

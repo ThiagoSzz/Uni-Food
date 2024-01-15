@@ -1,7 +1,5 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlexBox, FlexBoxDirection, Title, Text, TitleLevel } from '@ui5/webcomponents-react';
 
 import { useStyles } from './CreateReview.jss';
@@ -12,12 +10,19 @@ import { ReviewInfoForm } from '../../components/ReviewInfoForm/ReviewInfoForm';
 import { OptionalInfoForm } from '../../components/OptionalInfoForm/OptionalInfoForm';
 import { SelectTagsDialog } from '../../components/SelectTagsDialog/SelectTagsDialog';
 import { FloatingBar } from '../../components/FloatingBar/FloatingBar';
+import useNewReviewStore from '../../store/NewReviewStore';
 
 export const CreateReview: React.FC = () => {
   const classes = useStyles();
 
+  const clearNewReview = useNewReviewStore((value) => value.clearNewReview);
+
   const [isSelectTagsDialogOpen, setIsSelectTagsDialogOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState<Array<Tag>>([]);
+
+  useEffect(() => {
+    clearNewReview();
+  }, []);
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>

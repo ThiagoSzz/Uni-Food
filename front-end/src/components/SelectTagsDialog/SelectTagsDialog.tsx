@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useStyles } from '../SelectTagsDialog/SelectTagsDialog.jss';
 import {
   SelectDialog,

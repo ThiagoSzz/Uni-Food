@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-eval */
 import {
   Button,
   ButtonDesign,
@@ -14,31 +12,34 @@ import {
 } from '@ui5/webcomponents-react';
 import React, { useState } from 'react';
 import { useStyles } from './FilterPopover.jss';
-import { FilterPopoverProps } from '../../interfaces/props/FilterPopoverProps';
 import { MealPeriod } from '../../enums/MealPeriodEnum';
+import useSearchStore from '../../store/SearchStore';
 
-export const FilterPopover = (props: FilterPopoverProps) => {
-  const { isPopoverOpen, setIsPopoverOpen } = props;
+export const FilterPopover = () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useSearchStore((value) => [
+    value.filterPopoverState,
+    value.setFilterPopoverState
+  ]);
 
   const classes = useStyles();
-  const [isCourseNameFilterActive, setisCourseNameFilterActive] = useState<boolean>(false);
-  const [isDietaryPreferenceFilterActive, setisDietaryPreferenceFilterActive] =
+  const [isCourseNameFilterActive, setIsCourseNameFilterActive] = useState<boolean>(false);
+  const [isDietaryPreferenceFilterActive, setIsDietaryPreferenceFilterActive] =
     useState<boolean>(false);
-  const [isMealPeriodFilterActive, setisMealPeriodFilterActive] = useState<boolean>(false);
+  const [isMealPeriodFilterActive, setIsMealPeriodFilterActive] = useState<boolean>(false);
 
   const filterOptions = [
     {
-      activeState: 'isCourseNameFilterActive',
+      name: 'courseName',
       label: 'Nome do curso',
       placeholder: 'Nome do curso'
     },
     {
-      activeState: 'isDietaryPreferenceFilterActive',
+      name: 'dietaryPreference',
       label: 'Preferência alimentar',
       placeholder: 'Preferência alimentar'
     },
     {
-      activeState: 'isMealPeriodFilterActive',
+      name: 'mealPeriod',
       label: 'Turno da refeição',
       placeholder: 'Turno da refeição'
     }
@@ -47,19 +48,27 @@ export const FilterPopover = (props: FilterPopoverProps) => {
   const handlePopoverClose = () => {
     setIsPopoverOpen(false);
 
-    filterOptions.forEach((option) => {
-      option.activeState && eval(`set${option.activeState}(false)`);
-    });
+    setIsCourseNameFilterActive(false);
+    setIsDietaryPreferenceFilterActive(false);
+    setIsMealPeriodFilterActive(false);
   };
 
-  const handleFilterInputToggle = (option: any) => {
-    const { activeState, label, placeholder } = option;
+  const handleFilterInputToggle = (option) => {
+    const { name } = option;
 
-    if (eval(activeState)) {
-      eval(`set${activeState}(false)`);
-    } else {
-      eval(`set${activeState}(true)`);
-    }
+    name === 'courseName' && setIsCourseNameFilterActive((prevState) => !prevState);
+    name === 'dietaryPreference' && setIsDietaryPreferenceFilterActive((prevState) => !prevState);
+    name === 'mealPeriod' && setIsMealPeriodFilterActive((prevState) => !prevState);
+  };
+
+  const isFilterActive = (option) => {
+    const { name } = option;
+
+    return (
+      (name === 'courseName' && !isCourseNameFilterActive) ||
+      (name === 'dietaryPreference' && !isDietaryPreferenceFilterActive) ||
+      (name === 'mealPeriod' && !isMealPeriodFilterActive)
+    );
   };
 
   return (
@@ -69,7 +78,7 @@ export const FilterPopover = (props: FilterPopoverProps) => {
       className={classes.popover}
       onAfterClose={handlePopoverClose}
       placementType={PopoverPlacementType.Right}
-      headerText={'Filtrar por'}
+      headerText="Filtrar por"
       footer={
         <FlexBox className={classes.footer}>
           <Button design={ButtonDesign.Emphasized} className={classes.button}>
@@ -85,7 +94,7 @@ export const FilterPopover = (props: FilterPopoverProps) => {
         {filterOptions.map((option) => (
           <React.Fragment key={option.label}>
             <FlexBox>
-              {!eval(option.activeState) ? (
+              {isFilterActive(option) ? (
                 <StandardListItem
                   icon="navigation-right-arrow"
                   iconEnd
@@ -94,7 +103,7 @@ export const FilterPopover = (props: FilterPopoverProps) => {
                 >
                   {option.label}
                 </StandardListItem>
-              ) : option.activeState === 'isCourseNameFilterActive' ? (
+              ) : option.name === 'courseName' ? (
                 <FlexBox className={classes.lineFlexBox}>
                   <Input className={classes.input} placeholder={option.placeholder} />
                   <Button
@@ -103,7 +112,7 @@ export const FilterPopover = (props: FilterPopoverProps) => {
                     onClick={() => handleFilterInputToggle(option)}
                   />
                 </FlexBox>
-              ) : option.activeState === 'isDietaryPreferenceFilterActive' ? (
+              ) : option.name === 'dietaryPreference' ? (
                 <FlexBox className={classes.lineFlexBox}>
                   <Select className={classes.dietaryPreferenceSelect}>
                     <Option data-id="Select">Preferência alimentar</Option>

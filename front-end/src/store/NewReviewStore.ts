@@ -2,6 +2,8 @@ import { create } from 'zustand';
 import { Tag } from '../interfaces/props/ReviewInfoFormProps';
 import { DietaryPreference } from '../enums/DietaryPreferenceEnum';
 import { MealPeriod } from '../enums/MealPeriodEnum';
+import { Review } from '../interfaces/Review';
+import { ValidationError } from '../enums/NewReviewValidationErrorsEnum';
 
 export type NewReviewStore = {
   ruCode: string;
@@ -14,6 +16,8 @@ export type NewReviewStore = {
   coursePeriod: string;
   dietaryPreference: DietaryPreference;
   city: string;
+  newReview: Review | undefined;
+  validationErrors: ValidationError[];
   setRuCode: (value: string) => void;
   setUniversityName: (value: string) => void;
   setMealPeriod: (value: MealPeriod) => void;
@@ -24,29 +28,146 @@ export type NewReviewStore = {
   setCoursePeriod: (value: string) => void;
   setDietaryPreference: (value: DietaryPreference) => void;
   setCity: (value: string) => void;
+  createNewReview: () => void;
+  clearNewReview: () => void;
+  clearValidationErrors: () => void;
+  validateFields: () => boolean;
+};
+
+const toString = function (this: Review): string {
+  return `
+    Review:
+    - RU Code: ${this.ruCode}
+    - University Name: ${this.universityName}
+    - Meal Period: ${this.mealPeriod}
+    - Comment: ${this.comment}
+    - Tags: ${JSON.stringify(this.tags)}
+    - Rating: ${this.rating}
+    - Course Name: ${this.courseName}
+    - Course Period: ${this.coursePeriod}
+    - Dietary Preference: ${this.dietaryPreference}
+    - City: ${this.city}
+  `;
 };
 
 const useNewReviewStore = create<NewReviewStore>((set, get) => ({
-  ruCode: undefined,
+  ruCode: '',
   setRuCode: (value: string) => set(() => ({ ruCode: value })),
-  universityName: undefined,
+  universityName: '',
   setUniversityName: (value: string) => set(() => ({ universityName: value })),
-  mealPeriod: undefined,
+  mealPeriod: MealPeriod.UNDEFINED,
   setMealPeriod: (value: MealPeriod) => set(() => ({ mealPeriod: value })),
-  comment: undefined,
+  comment: '',
   setComment: (value: string) => set(() => ({ comment: value })),
-  tags: undefined,
+  tags: [],
   setTags: (value: Tag[]) => set(() => ({ tags: value })),
-  rating: undefined,
+  rating: 0,
   setRating: (value: number) => set(() => ({ rating: value })),
-  courseName: undefined,
+  courseName: '',
   setCourseName: (value: string) => set(() => ({ courseName: value })),
-  coursePeriod: undefined,
+  coursePeriod: '',
   setCoursePeriod: (value: string) => set(() => ({ coursePeriod: value })),
-  dietaryPreference: undefined,
+  dietaryPreference: DietaryPreference.UNDEFINED,
   setDietaryPreference: (value: DietaryPreference) => set(() => ({ dietaryPreference: value })),
-  city: undefined,
-  setCity: (value: string) => set(() => ({ city: value }))
+  city: '',
+  setCity: (value: string) => set(() => ({ city: value })),
+  newReview: undefined,
+  createNewReview: () => {
+    const newReview: Review = {
+      ruCode: get().ruCode,
+      universityName: get().universityName,
+      mealPeriod: get().mealPeriod,
+      comment: get().comment,
+      tags: get().tags,
+      rating: get().rating,
+      courseName: get().courseName,
+      coursePeriod: get().coursePeriod,
+      dietaryPreference: get().dietaryPreference,
+      city: get().city,
+      toString
+    };
+
+    set(() => ({ newReview }));
+  },
+  clearNewReview: () => set(() => ({ newReview: undefined })),
+  validationErrors: [],
+  clearValidationErrors: () => set((state) => ({ validationErrors: [] })),
+  validateFields: () => {
+    const {
+      ruCode,
+      universityName,
+      mealPeriod,
+      comment,
+      tags,
+      rating,
+      courseName,
+      coursePeriod,
+      dietaryPreference,
+      city
+    } = get();
+
+    const errors: ValidationError[] = [];
+
+    if (!ruCode) {
+      errors.push(ValidationError.RUCodeRequired);
+    }
+
+    let updatedRUCode = ruCode;
+    if (ruCode && !updatedRUCode.toUpperCase().startsWith('RU')) {
+      updatedRUCode = `RU${updatedRUCode.slice(2)}`;
+
+      if (!updatedRUCode.startsWith('RU')) {
+        errors.push(ValidationError.RUCodeFormat);
+      }
+    }
+    set(() => ({ ruCode: updatedRUCode }));
+
+    if (!universityName) {
+      errors.push(ValidationError.UniversityNameRequired);
+    }
+    set(() => ({ universityName: universityName.toUpperCase() }));
+
+    if (![MealPeriod.BREAKFAST, MealPeriod.LUNCH, MealPeriod.DINNER].includes(mealPeriod)) {
+      errors.push(ValidationError.InvalidMealPeriod);
+    }
+
+    if (comment.length < 10 || comment.length > 340) {
+      errors.push(ValidationError.InvalidCommentLength);
+    }
+
+    if (tags.length < 2 || tags.length > 5) {
+      errors.push(ValidationError.InvalidTagsCount);
+    }
+
+    if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
+      errors.push(ValidationError.RatingRequired);
+    }
+
+    if (courseName && !coursePeriod) {
+      errors.push(ValidationError.CoursePeriodRequired);
+    }
+
+    if (!courseName && coursePeriod) {
+      errors.push(ValidationError.CourseNameRequired);
+    }
+
+    if (
+      dietaryPreference &&
+      ![DietaryPreference.OMNIVORE, DietaryPreference.VEGETARIAN, DietaryPreference.VEGAN].includes(
+        dietaryPreference
+      )
+    ) {
+      errors.push(ValidationError.InvalidDietaryPreference);
+    }
+
+    if (city && city.length > 50) {
+      errors.push(ValidationError.InvalidCityLength);
+    }
+
+    set(() => ({ validationErrors: errors }));
+
+    return errors.length === 0;
+  }
 }));
 
 export default useNewReviewStore;

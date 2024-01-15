@@ -12,11 +12,15 @@ import {
   SegmentedButtonItem,
   Switch
 } from '@ui5/webcomponents-react';
-import { ReviewsSearchBarProps } from '../../interfaces/props/ReviewsSearchBarProps';
+import useSearchStore from '../../store/SearchStore';
 
-export const ReviewsSearchBar = (props: ReviewsSearchBarProps) => {
-  const { setIsPopoverOpen } = props;
+export const ReviewsSearchBar = () => {
   const classes = useStyles();
+
+  const [isPopoverOpen, setIsPopoverOpen] = useSearchStore((value) => [
+    value.filterPopoverState,
+    value.setFilterPopoverState
+  ]);
 
   return (
     <FlexBox className={classes.searchBox}>
@@ -29,9 +33,7 @@ export const ReviewsSearchBar = (props: ReviewsSearchBarProps) => {
         <SegmentedButtonItem
           icon="filter"
           id={'openPopoverBtn'}
-          onClick={() => {
-            setIsPopoverOpen((prevState) => !prevState);
-          }}
+          onClick={() => setIsPopoverOpen(!isPopoverOpen)}
         >
           Filtrar
         </SegmentedButtonItem>

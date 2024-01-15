@@ -1,7 +1,5 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { FlexBox, FlexBoxDirection, Text, Title, TitleLevel } from '@ui5/webcomponents-react';
 
 import { useStyles } from './Home.jss';
@@ -14,13 +12,19 @@ import { getAverageReviewsList, getReviewsList } from '../../fixtures/ReviewsFix
 import { CreateReviewInfoBox } from '../../components/CreateReviewInfoBox/CreateReviewInfoBox';
 import { SearchReviewInfoBox } from '../../components/SearchReviewInfoBox/SearchReviewInfoBox';
 import { ReviewsSearchBar } from '../../components/ReviewsSearchBar/ReviewsSearchBar';
+import useNewReviewStore from '../../store/NewReviewStore';
 
 export const Home: React.FC = () => {
   const classes = useStyles();
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const averageReviews = getAverageReviewsList();
   const reviews = getReviewsList();
+
+  const clearValidationErrors = useNewReviewStore((value) => value.clearValidationErrors);
+
+  useEffect(() => {
+    clearValidationErrors();
+  }, []);
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
@@ -33,8 +37,8 @@ export const Home: React.FC = () => {
         </FlexBox>
 
         <FlexBox className={classes.boxesContainer}>
-          <ReviewsSearchBar setIsPopoverOpen={setIsPopoverOpen} />
-          <FilterPopover isPopoverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen} />
+          <ReviewsSearchBar />
+          <FilterPopover />
         </FlexBox>
 
         <FlexBox className={classes.textContainer}>
