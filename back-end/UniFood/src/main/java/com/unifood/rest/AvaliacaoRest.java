@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.unifood.ed.AvaliacaoED;
+import com.unifood.ed.AvaliacaoUsuarioED;
 import com.unifood.ed.RestauranteNotaED;
 import com.unifood.rn.AvaliacaoRN;
 import com.unifood.util.RespostaMensagem;
@@ -126,6 +127,27 @@ public class AvaliacaoRest extends Rest
 		} catch (Exception e)
 		{
 			RespostaMensagem respostaMensagem = new RespostaMensagem(String.format("Erro ao listar RestauranteNota: %s", e.getMessage()));
+			response = addCorsHeaders(Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity(respostaMensagem)).build(); 
+		}		
+		return response;				
+	}
+	
+	@POST
+	@Path("/inclui_avaliacao_usuario")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Tag(name = "Avaliações", description = "Operações relacionadas a avaliações")
+	public Response incluiAvaliacaoUsuario(AvaliacaoUsuarioED avaliacaoUsuarioED) 
+	{		
+		Response response;
+		try
+		{
+			avaliacaoRN.incluiAvaliacaoUsuario(avaliacaoUsuarioED);			
+			response = addCorsHeaders(Response.ok()).build(); 
+		} catch (Exception e)
+		{
+			RespostaMensagem respostaMensagem = new RespostaMensagem(String.format("Erro ao incluir Avaliação do Usuário: %s", e.getMessage()));
 			response = addCorsHeaders(Response.status(Response.Status.INTERNAL_SERVER_ERROR)
 					.entity(respostaMensagem)).build(); 
 		}		

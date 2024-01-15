@@ -49,5 +49,5 @@ public class AvaliacaoBD extends BD<AvaliacaoED, Integer>
 		
 		return lista;		
 	}
-	
+
 }
