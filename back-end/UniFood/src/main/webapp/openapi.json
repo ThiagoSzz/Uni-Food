@@ -150,6 +150,29 @@
         }
       }
     },
+    "/avaliacao/inclui_avaliacao_usuario" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "incluiAvaliacaoUsuario",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AvaliacaoUsuarioED"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/avaliacao/lista" : {
       "post" : {
         "tags" : [ "Avaliações" ],
@@ -163,6 +186,20 @@
             }
           }
         },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/avaliacao/lista_restaurante_nota" : {
+      "post" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "listaRestaurateNota",
         "responses" : {
           "default" : {
             "description" : "default response",
@@ -1374,6 +1411,37 @@
             "type" : "string"
           },
           "codRU" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "AvaliacaoUsuarioED" : {
+        "type" : "object",
+        "properties" : {
+          "siglaRU" : {
+            "type" : "string"
+          },
+          "siglaUniversidade" : {
+            "type" : "string"
+          },
+          "emailUsuario" : {
+            "type" : "string"
+          },
+          "periodoNota" : {
+            "type" : "string"
+          },
+          "notaEstrelas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "comentario" : {
+            "type" : "string"
+          },
+          "tags" : {
+            "type" : "string"
+          },
+          "duracaoNota" : {
             "type" : "integer",
             "format" : "int32"
           }
