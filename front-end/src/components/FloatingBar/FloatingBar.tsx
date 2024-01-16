@@ -12,7 +12,7 @@ import {
 } from '@ui5/webcomponents-react';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../enums/AppRoutesEnum';
-import useNewReviewStore from '../../store/NewReviewStore';
+import useNewReviewStore from '../../stores/useNewReviewStore';
 
 export const FloatingBar = () => {
   const classes = useStyles();

@@ -18,7 +18,7 @@ import { CardTagColors } from '../../enums/CardTagColorsEnum';
 import { useEffect } from 'react';
 import { useStyles } from '../ReviewInfoForm/ReviewInfoForm.jss';
 import { ReviewInfoFormProps } from '../../interfaces/props/ReviewInfoFormProps';
-import useNewReviewStore from '../../store/NewReviewStore';
+import useNewReviewStore from '../../stores/useNewReviewStore';
 import { MealPeriod } from '../../enums/MealPeriodEnum';
 
 export const ReviewInfoForm = (props: ReviewInfoFormProps) => {

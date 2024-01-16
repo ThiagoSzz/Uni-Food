@@ -1,7 +1,4 @@
-export interface Tag {
-  name: string;
-  type: 'positive' | 'negative' | 'neutral';
-}
+import { Tag } from '../Tags';
 
 export interface ReviewInfoFormProps {
   setIsSelectTagsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;

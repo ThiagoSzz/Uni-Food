@@ -8,7 +8,7 @@ import {
   Form
 } from '@ui5/webcomponents-react';
 import { useStyles } from '../OptionalInfoForm/OptionalInfoForm.jss';
-import useNewReviewStore from '../../store/NewReviewStore';
+import useNewReviewStore from '../../stores/useNewReviewStore';
 import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
 
 export const OptionalInfoForm = () => {

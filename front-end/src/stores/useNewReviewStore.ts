@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import { Tag } from '../interfaces/props/ReviewInfoFormProps';
 import { DietaryPreference } from '../enums/DietaryPreferenceEnum';
 import { MealPeriod } from '../enums/MealPeriodEnum';
 import { Review } from '../interfaces/Review';
 import { ValidationError } from '../enums/NewReviewValidationErrorsEnum';
+import { Tag } from '../interfaces/Tags';
 
 export type NewReviewStore = {
   ruCode: string;

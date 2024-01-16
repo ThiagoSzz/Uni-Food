@@ -17,16 +17,12 @@ import { CardTagColors } from '../../enums/CardTagColorsEnum';
 
 import { useStyles } from './ReviewCard.jss';
 import { ReviewCardProps } from '../../interfaces/props/ReviewCardProps';
-import { getPositiveTags, getNegativeTags } from '../../fixtures/TagStatesFixture';
 
 export const ReviewCard = (props: ReviewCardProps) => {
-  const { ruCode, universityName, universityLocation, rating, comment, tags } = props;
+  const { review } = props;
 
   const isAvatarGreen = Math.floor(Math.random() * 100) + 1 <= 50;
   const classes = useStyles({ isAvatarGreen });
-
-  const positiveTags = getPositiveTags();
-  const negativeTags = getNegativeTags();
 
   return (
     <Card
@@ -34,21 +30,21 @@ export const ReviewCard = (props: ReviewCardProps) => {
       header={
         <CardHeader
           avatar={<Avatar icon="employee" className={classes.reviewCardAvatar} />}
-          titleText={ruCode + ' - ' + universityName}
-          subtitleText={universityLocation}
+          titleText={review.ruCode + ' - ' + review.universityName}
+          subtitleText={review.city}
         />
       }
     >
       <List separators={ListSeparators.None}>
         <StandardListItem type={ListItemType.Inactive}>
-          <RatingIndicator readonly value={rating} className={classes.reviewCardStars} />
+          <RatingIndicator readonly value={review.rating} className={classes.reviewCardStars} />
         </StandardListItem>
         <StandardListItem
           type={ListItemType.Inactive}
           style={{ height: 'auto', marginTop: '20px' }}
         >
           <Title level={TitleLevel.H5}>Comentários</Title>
-          <Text className={classes.reviewCardComments}>{comment}</Text>
+          <Text className={classes.reviewCardComments}>{review.comment}</Text>
         </StandardListItem>
         <StandardListItem
           type={ListItemType.Inactive}
@@ -56,14 +52,13 @@ export const ReviewCard = (props: ReviewCardProps) => {
         >
           <Title level={TitleLevel.H5}>Tags</Title>
           <FlexBox className={classes.badgesList}>
-            {tags.map((tag, index) => {
-              const isTagPositive = positiveTags.includes(tag);
-              const isTagNegative = negativeTags.includes(tag);
+            {review.tags.map((tag) => {
+              const isTagPositive = tag.type === 'positive';
+              const isTagNegative = tag.type === 'negative';
 
               return (
                 <Badge
                   className={classes.badge}
-                  key={index}
                   colorScheme={
                     isTagPositive
                       ? CardTagColors.Positive
@@ -72,7 +67,7 @@ export const ReviewCard = (props: ReviewCardProps) => {
                         : CardTagColors.Neutral
                   }
                 >
-                  {tag}
+                  {tag.name}
                 </Badge>
               );
             })}

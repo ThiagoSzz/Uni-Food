@@ -12,7 +12,7 @@ import {
   SegmentedButtonItem,
   Switch
 } from '@ui5/webcomponents-react';
-import useSearchStore from '../../store/SearchStore';
+import useSearchStore from '../../stores/useSearchStore';
 
 export const ReviewsSearchBar = () => {
   const classes = useStyles();

@@ -31,6 +31,11 @@ const styles: JSSStyles = {
     marginRight: '10px',
     marginBottom: '20px'
   },
+  busyIndicator: {
+    position: 'absolute',
+    alignSelf: 'center',
+    left: '50%'
+  },
   averageReviewsContainer: {
     gap: '20.5px',
     width: '1360px',

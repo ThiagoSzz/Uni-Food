@@ -5,12 +5,12 @@ import { FlexBox, FlexBoxDirection, Title, Text, TitleLevel } from '@ui5/webcomp
 import { useStyles } from './CreateReview.jss';
 import '@ui5/webcomponents-icons/dist/AllIcons';
 import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomShellBar';
-import { Tag } from '../../interfaces/props/ReviewInfoFormProps';
 import { ReviewInfoForm } from '../../components/ReviewInfoForm/ReviewInfoForm';
 import { OptionalInfoForm } from '../../components/OptionalInfoForm/OptionalInfoForm';
 import { SelectTagsDialog } from '../../components/SelectTagsDialog/SelectTagsDialog';
 import { FloatingBar } from '../../components/FloatingBar/FloatingBar';
-import useNewReviewStore from '../../store/NewReviewStore';
+import useNewReviewStore from '../../stores/useNewReviewStore';
+import { Tag } from '../../interfaces/Tags';
 
 export const CreateReview: React.FC = () => {
   const classes = useStyles();

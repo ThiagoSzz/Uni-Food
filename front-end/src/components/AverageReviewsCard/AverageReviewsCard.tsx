@@ -4,7 +4,10 @@ import { Badge, Card, CardHeader, FlexBox, Icon, Label, Text } from '@ui5/webcom
 import { IconBadgeColors } from '../../enums/IconBadgeColorsEnum';
 import { useStyles } from '../AverageReviewsCard/AverageReviewsCard.jss';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
-import { AverageReviewCardProps, CardTags } from '../../interfaces/props/AverageReviewCardProps';
+import {
+  AverageReviewBadge,
+  AverageReviewCardProps
+} from '../../interfaces/props/AverageReviewCardProps';
 
 export const AverageReviewsCard = (props: AverageReviewCardProps) => {
   const {
@@ -20,10 +23,10 @@ export const AverageReviewsCard = (props: AverageReviewCardProps) => {
   } = props;
   const classes = useStyles();
 
-  const [cardTags, setCardTags] = useState<Array<CardTags>>([]);
+  const [cardTags, setCardTags] = useState<AverageReviewBadge[]>([]);
 
   useEffect(() => {
-    const updatedCardTags = [];
+    const updatedCardTags: AverageReviewBadge[] = [];
 
     if (isBestReviewed) {
       updatedCardTags.push({ name: 'Melhor da universidade', status: CardTagColors.Positive });

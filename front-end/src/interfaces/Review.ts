@@ -1,6 +1,6 @@
 import { DietaryPreference } from '../enums/DietaryPreferenceEnum';
 import { MealPeriod } from '../enums/MealPeriodEnum';
-import { Tag } from './props/ReviewInfoFormProps';
+import { Tag } from './Tags';
 
 export interface Review {
   ruCode: string;
@@ -13,5 +13,5 @@ export interface Review {
   coursePeriod: string;
   dietaryPreference: DietaryPreference;
   city: string;
-  toString: () => string;
+  toString?: () => string;
 }

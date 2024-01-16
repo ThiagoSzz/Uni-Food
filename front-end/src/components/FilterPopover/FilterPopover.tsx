@@ -13,7 +13,7 @@ import {
 import React, { useState } from 'react';
 import { useStyles } from './FilterPopover.jss';
 import { MealPeriod } from '../../enums/MealPeriodEnum';
-import useSearchStore from '../../store/SearchStore';
+import useSearchStore from '../../stores/useSearchStore';
 
 export const FilterPopover = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useSearchStore((value) => [

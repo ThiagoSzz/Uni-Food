@@ -1,4 +1,4 @@
-import { Tag } from './ReviewInfoFormProps';
+import { Tag } from '../Tags';
 
 export interface SelectTagsDialogProps {
   isSelectTagsDialogOpen: boolean;
