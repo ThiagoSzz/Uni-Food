@@ -28,15 +28,24 @@ export const Home: React.FC = () => {
   const classes = useStyles();
 
   const clearValidationErrors = useNewReviewStore((value) => value.clearValidationErrors);
-  const [reviews, numReviews, setReviews] = useReviewsStore((value) => [
-    value.reviews,
-    value.numReviews,
-    value.setReviews
-  ]);
-  const [averageReviews, numAverageReviews, setAverageReviews] = useAverageReviewsStore((value) => [
+  const [reviews, setReviews, filteredReviews, setFilteredReviews] = useReviewsStore(
+    (value) => [
+      value.reviews,
+      value.setReviews,
+      value.filteredReviews,
+      value.setFilteredReviews
+    ]
+  );
+  const [
+    averageReviews,
+    setAverageReviews,
+    filteredAverageReviews,
+    setFilteredAverageReviews
+  ] = useAverageReviewsStore((value) => [
     value.averageReviews,
-    value.numAverageReviews,
-    value.setAverageReviews
+    value.setAverageReviews,
+    value.filteredAverageReviews,
+    value.setFilteredAverageReviews
   ]);
 
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true);
@@ -52,13 +61,18 @@ export const Home: React.FC = () => {
 
     const reviewsFixture = getReviewsList();
     setReviews(reviewsFixture);
+    setFilteredReviews(reviewsFixture);
   }, []);
 
   useEffect(() => {
-    const bestAndWorst = getUniversityRuStandings(reviews);
-    const groupedReviews = groupReviewsByRuAndUniversity(reviews, bestAndWorst);
+    const bestAndWorstRusByUniversity = getUniversityRuStandings(reviews);
+    const reviewsGroupedByRuAndUniversity = groupReviewsByRuAndUniversity(
+      reviews,
+      bestAndWorstRusByUniversity
+    );
 
-    setAverageReviews(groupedReviews);
+    setAverageReviews(reviewsGroupedByRuAndUniversity);
+    setFilteredAverageReviews(reviewsGroupedByRuAndUniversity);
   }, [reviews]);
 
   useEffect(() => {
@@ -88,7 +102,7 @@ export const Home: React.FC = () => {
             <Title className={classes.sectionText} level={TitleLevel.H4}>
               Médias por Restaurante Universitário
             </Title>
-            <Text className={classes.sectionText}>({numAverageReviews} RUs)</Text>
+            <Text className={classes.sectionText}>({filteredAverageReviews.length} RUs)</Text>
           </FlexBox>
         </FlexBox>
 
@@ -99,7 +113,7 @@ export const Home: React.FC = () => {
             className={classes.busyIndicator}
           />
           {!isLoadingAverageReviews &&
-            averageReviews.map((averageReview, index) => {
+            filteredAverageReviews.map((averageReview, index) => {
               return (
                 <AverageReviewsCard
                   key={index}
@@ -122,7 +136,7 @@ export const Home: React.FC = () => {
             <Title className={classes.sectionText} level={TitleLevel.H4}>
               Avaliações por Refeição
             </Title>
-            <Text className={classes.sectionText}>({numReviews} avaliações)</Text>
+            <Text className={classes.sectionText}>({filteredReviews.length} avaliações)</Text>
           </FlexBox>
         </FlexBox>
 
@@ -134,7 +148,7 @@ export const Home: React.FC = () => {
             style={{ marginBottom: '300px' }}
           />
           {!isLoadingReviews &&
-            reviews.map((review, index) => {
+            filteredReviews.map((review, index) => {
               return <ReviewCard key={index} review={review} />;
             })}
         </FlexBox>

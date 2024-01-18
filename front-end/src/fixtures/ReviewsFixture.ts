@@ -29,10 +29,8 @@ const reviews: Review[] = [
     comment:
       'Gostei bastante! A comida estava saborosa, e o atendimento foi muito bom. Ambiente tranquilo e limpo.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
       { name: 'Proteína dura', type: 'negative' },
       { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Bom atendimento', type: 'positive' },
       { name: 'Ambiente harmonioso', type: 'positive' }
     ],
     mealPeriod: MealPeriod.LUNCH,

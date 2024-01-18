@@ -7,6 +7,7 @@ import { ReviewCardStyleProps } from '../../interfaces/props/ReviewCardStyleProp
 const styles = {
   reviewCard: {
     width: '323px',
+    height: '350px',
     marginTop: '2px',
     marginBottom: '4px'
   },
