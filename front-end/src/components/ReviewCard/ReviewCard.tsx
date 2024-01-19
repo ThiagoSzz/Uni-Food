@@ -17,12 +17,35 @@ import { CardTagColors } from '../../enums/CardTagColorsEnum';
 
 import { useStyles } from './ReviewCard.jss';
 import { ReviewCardProps } from '../../interfaces/props/ReviewCardProps';
+import { AvatarBackgroundColors, AvatarIconColors } from '../../enums/AvatarColorsEnum';
+import { useEffect, useState } from 'react';
 
 export const ReviewCard = (props: ReviewCardProps) => {
   const { review } = props;
 
-  const isAvatarGreen = Math.floor(Math.random() * 100) + 1 <= 50;
-  const classes = useStyles({ isAvatarGreen });
+  const [avatarColors, setAvatarColors] = useState<{
+    background: AvatarBackgroundColors;
+    icon: AvatarIconColors;
+  }>({
+    background: undefined,
+    icon: undefined
+  });
+
+  useEffect(() => {
+    const backgroundKeys = Object.keys(AvatarBackgroundColors);
+    const randomIndex = Math.floor(Math.random() * backgroundKeys.length);
+    const randomKey = backgroundKeys[randomIndex];
+
+    setAvatarColors({
+      background: AvatarBackgroundColors[randomKey],
+      icon: AvatarIconColors[randomKey]
+    });
+  }, []);
+
+  const classes = useStyles({
+    backgroundColor: avatarColors.background,
+    iconColor: avatarColors.icon
+  });
 
   return (
     <Card
@@ -36,20 +59,14 @@ export const ReviewCard = (props: ReviewCardProps) => {
       }
     >
       <List separators={ListSeparators.None}>
-        <StandardListItem type={ListItemType.Inactive}>
+        <StandardListItem style={{ marginTop: '-5px' }} type={ListItemType.Inactive}>
           <RatingIndicator readonly value={review.rating} className={classes.reviewCardStars} />
         </StandardListItem>
-        <StandardListItem
-          type={ListItemType.Inactive}
-          style={{ height: 'auto', marginTop: '20px' }}
-        >
+        <StandardListItem type={ListItemType.Inactive} style={{ height: 'auto', marginTop: '0px' }}>
           <Title level={TitleLevel.H5}>Comentários</Title>
           <Text className={classes.reviewCardComments}>{review.comment}</Text>
         </StandardListItem>
-        <StandardListItem
-          type={ListItemType.Inactive}
-          style={{ height: 'auto', marginTop: '20px' }}
-        >
+        <StandardListItem type={ListItemType.Inactive} style={{ height: 'auto', marginTop: '5px' }}>
           <Title level={TitleLevel.H5}>Tags</Title>
           <FlexBox className={classes.badgesList}>
             {review.tags.map((tag) => {

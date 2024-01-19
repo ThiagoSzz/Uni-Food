@@ -95,12 +95,12 @@ export const ReviewsSearchBar = () => {
     <FlexBox className={classes.searchBox}>
       <Input
         className={classes.searchBar}
-        placeholder="Pesquisar"
+        placeholder="Pesquisar (código do RU, nome da universidade, cidade, tags)"
         icon={<Icon className={classes.searchBarIcon} name="search" />}
         onInputCapture={handleInputChange}
         valueState={shouldShowNoFilteredReviewsMessage ? ValueState.Information : ValueState.None}
         valueStateMessage={
-          <Text className={classes.valueStateMessageText}>Nenhuma avaliação foi filtrada com sua pesquisa</Text>
+          <Text style={{ fontSize: '13px' }}>Nenhuma avaliação foi filtrada com sua pesquisa.</Text>
         }
       />
       <SegmentedButton className={classes.segmentedButton}>

@@ -28,8 +28,7 @@ const styles: JSSStyles = {
   },
   sectionText: {
     alignSelf: 'center',
-    marginRight: '10px',
-    marginBottom: '20px'
+    marginBottom: '12px'
   },
   busyIndicator: {
     position: 'absolute',
@@ -39,7 +38,7 @@ const styles: JSSStyles = {
   averageReviewsContainer: {
     gap: '20.5px',
     width: '1360px',
-    height: '150px',
+    height: '146px',
     padding: '2px',
     flexWrap: 'wrap',
     alignSelf: 'center',
@@ -52,7 +51,7 @@ const styles: JSSStyles = {
   reviewsContainer: {
     gap: '20.5px',
     width: '1360px',
-    height: '730px',
+    height: '750px',
     padding: '2px',
     flexWrap: 'wrap',
     alignSelf: 'center',

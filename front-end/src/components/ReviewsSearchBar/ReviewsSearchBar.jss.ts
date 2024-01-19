@@ -34,9 +34,6 @@ const styles: JSSStyles = {
     fontSize: '14px',
     fontWeight: 'bold',
     marginRight: '10px'
-  },
-  valueStateMessageText: {
-    fontSize: '13px'
   }
 };
 

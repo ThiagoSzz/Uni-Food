@@ -28,25 +28,19 @@ export const Home: React.FC = () => {
   const classes = useStyles();
 
   const clearValidationErrors = useNewReviewStore((value) => value.clearValidationErrors);
-  const [reviews, setReviews, filteredReviews, setFilteredReviews] = useReviewsStore(
-    (value) => [
-      value.reviews,
-      value.setReviews,
-      value.filteredReviews,
-      value.setFilteredReviews
-    ]
-  );
-  const [
-    averageReviews,
-    setAverageReviews,
-    filteredAverageReviews,
-    setFilteredAverageReviews
-  ] = useAverageReviewsStore((value) => [
-    value.averageReviews,
-    value.setAverageReviews,
-    value.filteredAverageReviews,
-    value.setFilteredAverageReviews
+  const [reviews, setReviews, filteredReviews, setFilteredReviews] = useReviewsStore((value) => [
+    value.reviews,
+    value.setReviews,
+    value.filteredReviews,
+    value.setFilteredReviews
   ]);
+  const [averageReviews, setAverageReviews, filteredAverageReviews, setFilteredAverageReviews] =
+    useAverageReviewsStore((value) => [
+      value.averageReviews,
+      value.setAverageReviews,
+      value.filteredAverageReviews,
+      value.setFilteredAverageReviews
+    ]);
 
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true);
   const [isLoadingAverageReviews, setIsLoadingAverageReviews] = useState<boolean>(true);

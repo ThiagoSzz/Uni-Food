@@ -27,9 +27,10 @@ const reviews: Review[] = [
     universityName: 'UFRGS',
     rating: 2,
     comment:
-      'Gostei bastante! A comida estava saborosa, e o atendimento foi muito bom. Ambiente tranquilo e limpo.',
+      'Não gostei muito. A proteína estava dura demais, e não tinha muitas opções de proteína animal. Poderiam limpar melhor as mesas e cadeiras do RU.',
     tags: [
       { name: 'Proteína dura', type: 'negative' },
+      { name: 'Sem palitos de dente', type: 'neutral' },
       { name: 'Não aceita cartão', type: 'negative' },
       { name: 'Ambiente harmonioso', type: 'positive' }
     ],
@@ -44,13 +45,11 @@ const reviews: Review[] = [
     universityName: 'UFRGS',
     rating: 1,
     comment:
-      'Gostei bastante! A comida estava saborosa, e o atendimento foi muito bom. Ambiente tranquilo e limpo.',
+      'A comida estava fria e não tinha talheres para todos. Alguns frequentadores tiveram que comer só com garfo. Não tinha água pois o filtro estava quebrado.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
       { name: 'Proteína dura', type: 'negative' },
       { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' }
+      { name: 'Sinal de Wi-Fi ruim', type: 'neutral' }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',

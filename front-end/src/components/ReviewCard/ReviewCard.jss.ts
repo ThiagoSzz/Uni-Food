@@ -7,21 +7,23 @@ import { ReviewCardStyleProps } from '../../interfaces/props/ReviewCardStyleProp
 const styles = {
   reviewCard: {
     width: '323px',
-    height: '350px',
+    height: '335px',
     marginTop: '2px',
     marginBottom: '4px'
   },
+  reviewCardStars: {
+    transform: 'scale(0.9)',
+    transformOrigin: 'left'
+  },
   reviewCardAvatar: {
-    backgroundColor: ({ isAvatarGreen }: ReviewCardStyleProps) =>
-      isAvatarGreen ? '#EBF5CB' : '#D1EFFF',
-    borderColor: ({ isAvatarGreen }: ReviewCardStyleProps) =>
-      isAvatarGreen ? '#EBF5CB' : '#D1EFFF',
-    color: ({ isAvatarGreen }: ReviewCardStyleProps) => (isAvatarGreen ? '#256F3A' : '#0057D2')
+    backgroundColor: ({ backgroundColor }: ReviewCardStyleProps) => backgroundColor,
+    borderColor: ({ backgroundColor }: ReviewCardStyleProps) => backgroundColor,
+    color: ({ iconColor }: ReviewCardStyleProps) => iconColor
   },
   reviewCardComments: {
     fontSize: '15px',
-    marginTop: '10px',
-    maxHeight: '100px',
+    marginTop: '5px',
+    height: '72px',
     wordWrap: 'break-word',
     overflowWrap: 'break-word',
     whiteSpace: 'pre-wrap',
@@ -30,13 +32,12 @@ const styles = {
   badgesList: {
     marginTop: '10px',
     flexWrap: 'wrap',
-    gap: '5px',
-    height: '55px',
-    overflow: 'auto',
-    marginBottom: '20px'
+    gap: '4px',
+    maxHeight: '62px',
+    overflow: 'auto'
   },
   badge: {
-    padding: '5px'
+    padding: '4px'
   }
 };
 
