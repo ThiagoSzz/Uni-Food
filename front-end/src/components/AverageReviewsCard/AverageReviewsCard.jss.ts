@@ -6,6 +6,7 @@ type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
 const styles: JSSStyles = {
   averageCard: {
     width: '323px',
+    height: '138px',
     marginTop: '2px',
     marginBottom: '4px'
   },
@@ -32,7 +33,9 @@ const styles: JSSStyles = {
   ratingContainer: {
     alignItems: 'flex-end',
     marginLeft: '17px',
-    marginTop: '-5px'
+    marginTop: '-5px',
+    transform: 'scale(1.06)',
+    transformOrigin: 'left'
   },
   rating: {
     fill: '#D27700'
