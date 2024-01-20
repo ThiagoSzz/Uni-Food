@@ -3,7 +3,7 @@ import { Review } from '../interfaces/Review';
 
 export type ReviewsStore = {
   reviews: Review[];
-  filterPopoverState: boolean;
+  filterDialogState: boolean;
   searchQuery: string;
   filteredReviews: Review[];
   shouldFilterReviews: boolean;
@@ -11,14 +11,14 @@ export type ReviewsStore = {
   setSearchQuery: (value: string) => void;
   setReviews: (value: Review[]) => void;
   addReview: (value: Review) => void;
-  setFilterPopoverState: (value: boolean) => void;
+  setFilterDialogState: (value: boolean) => void;
   setFilteredReviews: (value: Review[]) => void;
   getFilteredReviews: () => void;
   setShouldFilterReviews: (value: boolean) => void;
   setShouldShowNoFilteredReviewsMessage: (value: boolean) => void;
 };
 
-const initialFilterPopoverState: boolean = false;
+const initialFilterDialogState: boolean = false;
 const initialShouldFilterReviews: boolean = true;
 const initialShouldShowNoFilteredReviewsMessage: boolean = false;
 
@@ -30,8 +30,8 @@ const useReviewsStore = create<ReviewsStore>((set, get) => ({
       reviews: [...get().reviews, value],
       numReviews: [...get().reviews, value].length
     })),
-  filterPopoverState: initialFilterPopoverState,
-  setFilterPopoverState: (value: boolean) => set(() => ({ filterPopoverState: value })),
+  filterDialogState: initialFilterDialogState,
+  setFilterDialogState: (value: boolean) => set(() => ({ filterDialogState: value })),
   searchQuery: '',
   setSearchQuery: (value: string) => set(() => ({ searchQuery: value })),
   shouldFilterReviews: initialShouldFilterReviews,

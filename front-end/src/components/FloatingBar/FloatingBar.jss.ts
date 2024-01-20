@@ -33,7 +33,20 @@ const styles: JSSStyles = {
   messageStrip: {
     margin: '2px',
     height: '33px',
+    width: '100%'
+  },
+  footer: {
+    gap: '10px',
+    margin: '7px',
     width: '100%',
+    height: '30px',
+    justifyContent: 'flex-end'
+  },
+  button: {
+    height: '30px'
+  },
+  text: {
+    fontSize: '15px'
   }
 };
 

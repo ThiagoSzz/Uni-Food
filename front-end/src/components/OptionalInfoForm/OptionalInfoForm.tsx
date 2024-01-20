@@ -25,9 +25,9 @@ export const OptionalInfoForm = () => {
 
   const handleChangeDietaryPreferenceSelection = (dietaryPreference: string) => {
     setDietaryPreference(
-      dietaryPreference === 'Onívora'
+      dietaryPreference === DietaryPreference.OMNIVORE
         ? DietaryPreference.OMNIVORE
-        : dietaryPreference === 'Vegetariana'
+        : dietaryPreference === DietaryPreference.VEGETARIAN
           ? DietaryPreference.VEGETARIAN
           : DietaryPreference.VEGAN
     );
@@ -66,9 +66,9 @@ export const OptionalInfoForm = () => {
             className={classes.dietaryPreferenceSelect}
           >
             <Option data-id="Select">Selecionar</Option>
-            <Option data-id="Onívora">Onívora</Option>
-            <Option data-id="Vegetariana">Vegetariana</Option>
-            <Option data-id="Vegana">Vegana</Option>
+            <Option data-id={DietaryPreference.OMNIVORE}>{DietaryPreference.OMNIVORE}</Option>
+            <Option data-id={DietaryPreference.VEGETARIAN}>{DietaryPreference.VEGETARIAN}</Option>
+            <Option data-id={DietaryPreference.VEGAN}>{DietaryPreference.VEGAN}</Option>
           </Select>
         </FormItem>
         <FormItem label="Cidade">

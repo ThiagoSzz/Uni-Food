@@ -5,10 +5,12 @@ import {
   BarDesign,
   Button,
   ButtonDesign,
+  Dialog,
   FlexBox,
   FlexBoxDirection,
   MessageStrip,
-  MessageStripDesign
+  MessageStripDesign,
+  Text
 } from '@ui5/webcomponents-react';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../enums/AppRoutesEnum';
@@ -18,15 +20,22 @@ export const FloatingBar = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const [createNewReview, validateFields, validationErrors, clearValidationErrors] =
-    useNewReviewStore((value) => [
-      value.createNewReview,
-      value.validateFields,
-      value.validationErrors,
-      value.clearValidationErrors
-    ]);
+  const [
+    createNewReview,
+    validateFields,
+    validationErrors,
+    clearValidationErrors,
+    hasFilledFields
+  ] = useNewReviewStore((value) => [
+    value.createNewReview,
+    value.validateFields,
+    value.validationErrors,
+    value.clearValidationErrors,
+    value.hasFilledFields
+  ]);
 
   const [showMessageStrip, setShowMessageStrip] = useState<boolean[]>([]);
+  const [confirmActionDialogOpen, setConfirmActionDialogOpen] = useState<boolean>(false);
 
   const navigateToHomePage = () => {
     navigate(AppRoute.Home);
@@ -40,8 +49,11 @@ export const FloatingBar = () => {
   };
 
   const onCancelButtonClick = () => {
+    const isFilled = hasFilledFields();
     clearValidationErrors();
-    navigateToHomePage();
+
+    if (isFilled) setConfirmActionDialogOpen(true);
+    else navigateToHomePage();
   };
 
   const onCloseMessageStrip = (index) => {
@@ -112,6 +124,32 @@ export const FloatingBar = () => {
             )
           )}
       </FlexBox>
+      <Dialog
+        headerText="Confirmar ação"
+        open={confirmActionDialogOpen}
+        footer={
+          <FlexBox className={classes.footer}>
+            <Button
+              design={ButtonDesign.Emphasized}
+              onClick={() => navigateToHomePage()}
+              className={classes.button}
+            >
+              Continuar
+            </Button>
+            <Button
+              design={ButtonDesign.Transparent}
+              onClick={() => setConfirmActionDialogOpen(false)}
+              className={classes.button}
+            >
+              Cancelar
+            </Button>
+          </FlexBox>
+        }
+      >
+        <Text className={classes.text}>
+          Caso prossiga, os campos preenchidos serão desconsiderados. Deseja continuar?
+        </Text>
+      </Dialog>
     </FlexBox>
   );
 };

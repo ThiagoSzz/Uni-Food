@@ -32,6 +32,7 @@ export type NewReviewStore = {
   clearNewReview: () => void;
   clearValidationErrors: () => void;
   validateFields: () => boolean;
+  hasFilledFields: () => boolean;
 };
 
 const toString = function (this: Review): string {
@@ -167,6 +168,35 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
     set(() => ({ validationErrors: errors }));
 
     return errors.length === 0;
+  },
+  hasFilledFields: () => {
+    const newReview: Review = {
+      ruCode: get().ruCode,
+      universityName: get().universityName,
+      mealPeriod: get().mealPeriod,
+      comment: get().comment,
+      tags: get().tags,
+      rating: get().rating,
+      courseName: get().courseName,
+      coursePeriod: get().coursePeriod,
+      dietaryPreference: get().dietaryPreference,
+      city: get().city
+    };
+
+    if (
+      newReview.ruCode !== '' ||
+      newReview.universityName !== '' ||
+      newReview.mealPeriod !== '' ||
+      newReview.comment !== '' ||
+      newReview.tags.length !== 0 ||
+      newReview.rating !== 0 ||
+      newReview.courseName !== '' ||
+      newReview.coursePeriod !== '' ||
+      newReview.dietaryPreference !== '' ||
+      newReview.city !== ''
+    )
+      return true;
+    else return false;
   }
 }));
 

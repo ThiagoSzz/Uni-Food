@@ -18,7 +18,7 @@ export const CreateReview: React.FC = () => {
   const clearNewReview = useNewReviewStore((value) => value.clearNewReview);
 
   const [isSelectTagsDialogOpen, setIsSelectTagsDialogOpen] = useState(false);
-  const [selectedTags, setSelectedTags] = useState<Array<Tag>>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   useEffect(() => {
     clearNewReview();

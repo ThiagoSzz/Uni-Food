@@ -22,16 +22,16 @@ export const ReviewsSearchBar = () => {
   const classes = useStyles();
 
   const [
-    isPopoverOpen,
-    setIsPopoverOpen,
+    isDialogOpen,
+    setIsDialogOpen,
     setReviewsSearchQuery,
     getFilteredReviews,
     shouldFilterReviews,
     setShouldFilterReviews,
     shouldShowNoFilteredReviewsMessage
   ] = useReviewsStore((value) => [
-    value.filterPopoverState,
-    value.setFilterPopoverState,
+    value.filterDialogState,
+    value.setFilterDialogState,
     value.setSearchQuery,
     value.getFilteredReviews,
     value.shouldFilterReviews,
@@ -106,8 +106,7 @@ export const ReviewsSearchBar = () => {
       <SegmentedButton className={classes.segmentedButton}>
         <SegmentedButtonItem
           icon="filter"
-          id={'openPopoverBtn'}
-          onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+          onClick={() => setIsDialogOpen(!isDialogOpen)}
         >
           Filtrar
         </SegmentedButtonItem>

@@ -14,7 +14,7 @@ import '@ui5/webcomponents-icons/dist/AllIcons';
 import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomShellBar';
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
 import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
-import { FilterPopover } from '../../components/FilterPopover/FilterPopover';
+import { FilterDialog } from '../../components/FiltersDialog/FiltersDialog';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
 import { CreateReviewInfoBox } from '../../components/CreateReviewInfoBox/CreateReviewInfoBox';
 import { SearchReviewInfoBox } from '../../components/SearchReviewInfoBox/SearchReviewInfoBox';
@@ -88,7 +88,7 @@ export const Home: React.FC = () => {
 
         <FlexBox className={classes.boxesContainer}>
           <ReviewsSearchBar />
-          <FilterPopover />
+          <FilterDialog />
         </FlexBox>
 
         <FlexBox className={classes.textContainer}>
@@ -108,20 +108,7 @@ export const Home: React.FC = () => {
           />
           {!isLoadingAverageReviews &&
             filteredAverageReviews.map((averageReview, index) => {
-              return (
-                <AverageReviewsCard
-                  key={index}
-                  ruCode={averageReview.ruCode}
-                  universityName={averageReview.universityName}
-                  universityLocation={averageReview.city}
-                  averageRating={averageReview.averageRating}
-                  reviewsAmount={averageReview.reviewsAmount}
-                  isRising={averageReview.isRising}
-                  isDescending={averageReview.isDescending}
-                  isBestReviewed={averageReview.isBestReviewed}
-                  isWorstReviewed={averageReview.isWorstReviewed}
-                />
-              );
+              return <AverageReviewsCard key={index} averageReview={averageReview} />;
             })}
         </FlexBox>
 

@@ -10,17 +10,7 @@ import {
 } from '../../interfaces/props/AverageReviewCardProps';
 
 export const AverageReviewsCard = (props: AverageReviewCardProps) => {
-  const {
-    ruCode,
-    universityName,
-    universityLocation,
-    isRising,
-    averageRating,
-    reviewsAmount,
-    isDescending,
-    isBestReviewed,
-    isWorstReviewed
-  } = props;
+  const { averageReview } = props;
   const classes = useStyles();
 
   const [cardTags, setCardTags] = useState<AverageReviewBadge[]>([]);
@@ -28,15 +18,15 @@ export const AverageReviewsCard = (props: AverageReviewCardProps) => {
   useEffect(() => {
     const updatedCardTags: AverageReviewBadge[] = [];
 
-    if (isBestReviewed) {
+    if (averageReview.isBestReviewed) {
       updatedCardTags.push({ name: 'Melhor da universidade', status: CardTagColors.Positive });
-    } else if (isWorstReviewed) {
+    } else if (averageReview.isWorstReviewed) {
       updatedCardTags.push({ name: 'Pior da universidade', status: CardTagColors.Negative });
     }
 
-    if (averageRating >= 3.9) {
+    if (averageReview.averageRating >= 3.9) {
       updatedCardTags.push({ name: 'Bem avaliado', status: CardTagColors.Positive });
-    } else if (averageRating <= 2.6) {
+    } else if (averageReview.averageRating <= 2.6) {
       updatedCardTags.push({ name: 'Mal avaliado', status: CardTagColors.Negative });
     } else {
       updatedCardTags.push({ name: 'Na média', status: CardTagColors.Neutral });
@@ -56,9 +46,9 @@ export const AverageReviewsCard = (props: AverageReviewCardProps) => {
               <div
                 className={classes.iconBadge}
                 style={{
-                  backgroundColor: isRising
+                  backgroundColor: averageReview.isRising
                     ? IconBadgeColors.Positive
-                    : isDescending
+                    : averageReview.isDescending
                       ? IconBadgeColors.Negative
                       : IconBadgeColors.Neutral
                 }}
@@ -66,21 +56,27 @@ export const AverageReviewsCard = (props: AverageReviewCardProps) => {
                 <Icon
                   className={classes.badgeIcon}
                   name={
-                    isRising ? 'trend-up' : isDescending ? 'trend-down' : 'bo-strategy-management'
+                    averageReview.isRising
+                      ? 'trend-up'
+                      : averageReview.isDescending
+                        ? 'trend-down'
+                        : 'bo-strategy-management'
                   }
                 ></Icon>
               </div>
             </>
           }
-          titleText={ruCode + ' - ' + universityName}
-          subtitleText={universityLocation}
+          titleText={averageReview.ruCode + ' - ' + averageReview.universityName}
+          subtitleText={averageReview.city}
         />
       }
     >
       <FlexBox className={classes.ratingContainer}>
         <Icon name="favorite" className={classes.rating}></Icon>
-        <Label className={classes.ratingLabelTitle}>{averageRating}</Label>
-        <Text className={classes.ratingLabelSubtitle}>({reviewsAmount} avaliações)</Text>
+        <Label className={classes.ratingLabelTitle}>{averageReview.averageRating}</Label>
+        <Text className={classes.ratingLabelSubtitle}>
+          ({averageReview.reviewsAmount} avaliações)
+        </Text>
       </FlexBox>
 
       <FlexBox className={classes.badgesContainer}>

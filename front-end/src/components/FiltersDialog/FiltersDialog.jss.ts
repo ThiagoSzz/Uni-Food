@@ -4,31 +4,33 @@ import { createUseStyles } from 'react-jss';
 type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
 
 const styles: JSSStyles = {
-  popover: {
-    width: '300px'
+  dialog: {
+    width: '525px',
+    height: 'fit-content'
   },
-  listItem: {
-    width: '100%',
-    marginBottom: '5px',
-    border: 'solid 1px',
-    borderRadius: '8px',
-    borderColor: '#CAD2D8'
-  },
-  lineFlexBox: {
-    alignItems: 'center'
+  objectPage: {
+    border: '1px solid',
+    borderColor: '#CAD2D8',
+    borderRadius: '8px'
   },
   input: {
-    width: '215px',
+    width: '100%',
     height: '44px',
     marginBottom: '5px'
   },
+  inputIcon: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    fill: '#0064D9',
+    marginRight: '10px'
+  },
   dietaryPreferenceSelect: {
-    width: '215px',
+    width: '100%',
     height: '44px',
     marginBottom: '5px'
   },
   mealPeriodSelect: {
-    width: '215px',
+    width: '100%',
     height: '44px',
     marginBottom: '5px'
   },
@@ -36,23 +38,14 @@ const styles: JSSStyles = {
     gap: '10px',
     margin: '7px',
     width: '100%',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end'
+    height: '30px',
+    justifyContent: 'flex-end'
   },
   button: {
     height: '30px'
-  },
-  closeButton: {
-    height: '30px',
-    marginBottom: '5px',
-    marginLeft: '10px'
-  },
-  searchBarIcon: {
-    alignItems: 'center',
-    alignSelf: 'center'
   }
 };
 
 export const useStyles = createUseStyles(styles, {
-  name: 'FilterPopover'
+  name: 'FilterDialog'
 });
