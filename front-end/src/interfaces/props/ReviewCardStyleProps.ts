@@ -1,4 +1,4 @@
 export interface ReviewCardStyleProps {
-  backgroundColor: string,
-  iconColor: string
+  backgroundColor: string;
+  iconColor: string;
 }
