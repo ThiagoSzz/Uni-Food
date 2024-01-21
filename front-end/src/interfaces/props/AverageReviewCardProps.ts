@@ -1,16 +1,11 @@
+import { CardTagColors } from '../../enums/CardTagColorsEnum';
+import { AverageReview } from '../AverageReview';
+
 export interface AverageReviewCardProps {
-  ruCode: string;
-  universityName: string;
-  universityLocation: string;
-  averageRating: number;
-  reviewsAmount: number;
-  isRising?: boolean;
-  isDescending?: boolean;
-  isBestReviewed?: boolean;
-  isWorstReviewed?: boolean;
+  averageReview: AverageReview;
 }
 
-export interface CardTags {
+export interface AverageReviewBadge {
   name: string;
-  status: string;
+  status: CardTagColors;
 }

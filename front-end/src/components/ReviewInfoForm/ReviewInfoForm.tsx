@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   FormBackgroundDesign,
@@ -17,20 +15,66 @@ import {
   Form
 } from '@ui5/webcomponents-react';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useStyles } from '../ReviewInfoForm/ReviewInfoForm.jss';
-import { ReviewInfoFormProps, Tag } from '../../interfaces/props/ReviewInfoFormProps';
+import { ReviewInfoFormProps } from '../../interfaces/props/ReviewInfoFormProps';
+import useNewReviewStore from '../../stores/useNewReviewStore';
+import { MealPeriod } from '../../enums/MealPeriodEnum';
 
 export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
   const { setIsSelectTagsDialogOpen, selectedTags, setSelectedTags } = props;
   const classes = useStyles();
 
-  const [ruCode, setRuCode] = useState<string>();
-  const [universityName, setUniversityName] = useState<string>();
-  const [mealPeriod, setMealPeriod] = useState<string>();
-  const [comment, setComment] = useState<string>();
-  const [tags, setTags] = useState<Tag[]>();
-  const [rating, setRating] = useState<number>();
+  const [
+    ruCode,
+    universityName,
+    mealPeriod,
+    comment,
+    rating,
+    setRuCode,
+    setUniversityName,
+    setMealPeriod,
+    setComment,
+    setTags,
+    setRating
+  ] = useNewReviewStore((value) => [
+    value.ruCode,
+    value.universityName,
+    value.mealPeriod,
+    value.comment,
+    value.rating,
+    value.setRuCode,
+    value.setUniversityName,
+    value.setMealPeriod,
+    value.setComment,
+    value.setTags,
+    value.setRating
+  ]);
+
+  const handleRuCodeValueChange = (event) => {
+    const { value } = event.target;
+    setRuCode(value);
+  };
+
+  const handleUniversityNameValueChange = (event) => {
+    const { value } = event.target;
+    setUniversityName(value);
+  };
+
+  const handleCommentValueChange = (event) => {
+    const { value } = event.target;
+    setComment(value);
+  };
+
+  const handleChangeMealPeriodSelection = (mealPeriod: string) => {
+    setMealPeriod(
+      mealPeriod === MealPeriod.BREAKFAST
+        ? MealPeriod.BREAKFAST
+        : mealPeriod === MealPeriod.LUNCH
+          ? MealPeriod.LUNCH
+          : MealPeriod.DINNER
+    );
+  };
 
   useEffect(() => {
     setTags(selectedTags);
@@ -52,37 +96,46 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
         <FormItem label="Código do RU e Sigla da Universidade">
           <Input
             placeholder="Ex.: RU01"
-            onChange={(e) => setRuCode(e.target.value)}
+            onInputCapture={handleRuCodeValueChange}
             className={classes.ruInput}
+            value={ruCode}
             required
           ></Input>
           <Input
             placeholder="Ex.: UFRGS"
-            onChange={(e) => setUniversityName(e.target.value)}
+            onChange={handleUniversityNameValueChange}
             className={classes.universityInput}
+            value={universityName}
             required
           ></Input>
         </FormItem>
         <FormItem label="Período da Refeição">
           <Select
-            onChange={(e) => setMealPeriod(e.detail.selectedOption.dataset.id)}
+            onChange={(e) => handleChangeMealPeriodSelection(e.detail.selectedOption.dataset.id)}
             className={classes.mealPeriodSelect}
           >
             <Option data-id="Select">Selecionar</Option>
-            <Option data-id="Café da manhã">Café da manhã</Option>
-            <Option data-id="Almoço">Almoço</Option>
-            <Option data-id="Jantar">Jantar</Option>
+            <Option selected={mealPeriod === MealPeriod.BREAKFAST} data-id={MealPeriod.BREAKFAST}>
+              {MealPeriod.BREAKFAST}
+            </Option>
+            <Option selected={mealPeriod === MealPeriod.LUNCH} data-id={MealPeriod.LUNCH}>
+              {MealPeriod.LUNCH}
+            </Option>
+            <Option selected={mealPeriod === MealPeriod.DINNER} data-id={MealPeriod.DINNER}>
+              {MealPeriod.DINNER}
+            </Option>
           </Select>
         </FormItem>
         <FormItem label={<Label className={classes.commentLabel}>Comentário</Label>}>
           <TextArea
             className={classes.textArea}
             placeholder="Ex.: Muito bom o restaurante!"
+            value={comment}
             rows={8}
-            onChange={(e) => setComment(e.target.value)}
+            onInputCapture={handleCommentValueChange}
           />
         </FormItem>
-        <FormItem label="Tags (máx. 5)">
+        <FormItem label="Tags (2 a 5)">
           <FlexBox direction="Row" className={classes.tagListContainer}>
             <Button
               className={classes.tagsListButton}
@@ -118,6 +171,7 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
           <RatingIndicator
             className={classes.ratingIndicator}
             onChange={(e) => setRating(e.target.value)}
+            value={rating}
           />
         </FormItem>
       </FormGroup>

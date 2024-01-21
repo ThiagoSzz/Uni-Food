@@ -6,6 +6,7 @@ type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
 const styles: JSSStyles = {
   averageCard: {
     width: '323px',
+    height: '138px',
     marginTop: '2px',
     marginBottom: '4px'
   },
@@ -30,9 +31,11 @@ const styles: JSSStyles = {
     transform: 'scale(0.8)'
   },
   ratingContainer: {
-    alignItems: 'center',
+    alignItems: 'flex-end',
     marginLeft: '17px',
-    marginBottom: '10px'
+    marginTop: '-5px',
+    transform: 'scale(1.06)',
+    transformOrigin: 'left'
   },
   rating: {
     fill: '#D27700'
@@ -41,7 +44,8 @@ const styles: JSSStyles = {
     color: '#D27700',
     fontSize: '16px',
     fontWeight: 'bold',
-    marginLeft: '5px',
+    lineHeight: '15px',
+    marginLeft: '7px',
     marginRight: '5px'
   },
   ratingLabelSubtitle: {
@@ -50,16 +54,16 @@ const styles: JSSStyles = {
     fontStyle: 'italic'
   },
   badgesContainer: {
-    marginTop: '10px',
+    marginTop: '12px',
     flexWrap: 'wrap',
-    gap: '5px',
+    gap: '4px',
     maxHeight: '100px',
     overflow: 'auto',
     marginLeft: '17px',
     marginBottom: '17px'
   },
   badge: {
-    padding: '5px'
+    padding: '4px'
   }
 };
 

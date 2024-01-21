@@ -24,7 +24,8 @@ const styles: JSSStyles = {
   searchBarIcon: {
     alignItems: 'center',
     alignSelf: 'center',
-    fill: '#0064D9'
+    fill: '#0064D9',
+    marginRight: '10px'
   },
   switchContainer: {
     alignItems: 'center'

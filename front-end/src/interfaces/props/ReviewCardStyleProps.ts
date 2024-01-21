@@ -1,3 +1,4 @@
 export interface ReviewCardStyleProps {
-  isAvatarGreen: boolean;
+  backgroundColor: string;
+  iconColor: string;
 }

@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import {
   FormBackgroundDesign,
   FormGroup,
@@ -10,16 +7,57 @@ import {
   Option,
   Form
 } from '@ui5/webcomponents-react';
-import { useState } from 'react';
 import { useStyles } from '../OptionalInfoForm/OptionalInfoForm.jss';
+import useNewReviewStore from '../../stores/useNewReviewStore';
+import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
 
 export const OptionalInfoForm = () => {
   const classes = useStyles();
 
-  const [courseName, setCourseName] = useState<string>();
-  const [coursePeriod, setCoursePeriod] = useState<string>();
-  const [dietaryPreference, setDietaryPreference] = useState<string>();
-  const [city, setCity] = useState<string>();
+  const [
+    courseName,
+    coursePeriod,
+    dietaryPreference,
+    city,
+    setCourseName,
+    setCoursePeriod,
+    setDietaryPreference,
+    setCity
+  ] = useNewReviewStore((value) => [
+    value.courseName,
+    value.coursePeriod,
+    value.dietaryPreference,
+    value.city,
+    value.setCourseName,
+    value.setCoursePeriod,
+    value.setDietaryPreference,
+    value.setCity
+  ]);
+
+  const handleCourseNameChange = (event) => {
+    const { value } = event.target;
+    setCourseName(value);
+  };
+
+  const handleCoursePeriodChange = (event) => {
+    const { value } = event.target;
+    setCoursePeriod(value);
+  };
+
+  const handleChangeDietaryPreferenceSelection = (dietaryPreference: string) => {
+    setDietaryPreference(
+      dietaryPreference === 'Onívora'
+        ? DietaryPreference.OMNIVORE
+        : dietaryPreference === 'Vegetariana'
+          ? DietaryPreference.VEGETARIAN
+          : DietaryPreference.VEGAN
+    );
+  };
+
+  const handleCityChange = (event) => {
+    const { value } = event.target;
+    setCity(value);
+  };
 
   return (
     <Form
@@ -37,31 +75,51 @@ export const OptionalInfoForm = () => {
         <FormItem label="Curso e Período">
           <Input
             placeholder="Ex.: Ciência da Computação"
-            onChange={(e) => setCourseName(e.target.value)}
+            onInputCapture={handleCourseNameChange}
             className={classes.courseNameInput}
+            value={courseName}
           ></Input>
           <Input
             placeholder="Ex.: 6"
-            onChange={(e) => setCoursePeriod(e.target.value)}
+            onInputCapture={handleCoursePeriodChange}
             className={classes.coursePeriodInput}
+            value={coursePeriod}
           ></Input>
         </FormItem>
         <FormItem label="Preferência Alimentar">
           <Select
-            onChange={(e) => setDietaryPreference(e.detail.selectedOption.dataset.id)}
+            onChange={(e) =>
+              handleChangeDietaryPreferenceSelection(e.detail.selectedOption.dataset.id)
+            }
             className={classes.dietaryPreferenceSelect}
           >
             <Option data-id="Select">Selecionar</Option>
-            <Option data-id="Onívora">Onívora</Option>
-            <Option data-id="Vegetariana">Vegetariana</Option>
-            <Option data-id="Vegana">Vegana</Option>
+            <Option
+              selected={dietaryPreference === DietaryPreference.OMNIVORE}
+              data-id={DietaryPreference.OMNIVORE}
+            >
+              {DietaryPreference.OMNIVORE}
+            </Option>
+            <Option
+              selected={dietaryPreference === DietaryPreference.VEGETARIAN}
+              data-id={DietaryPreference.VEGETARIAN}
+            >
+              {DietaryPreference.VEGETARIAN}
+            </Option>
+            <Option
+              selected={dietaryPreference === DietaryPreference.VEGAN}
+              data-id={DietaryPreference.VEGAN}
+            >
+              {DietaryPreference.VEGAN}
+            </Option>
           </Select>
         </FormItem>
         <FormItem label="Cidade">
           <Input
             placeholder="Ex.: Porto Alegre"
-            onChange={(e) => setCity(e.target.value)}
+            onInputCapture={handleCityChange}
             className={classes.cityInput}
+            value={city}
           ></Input>
         </FormItem>
       </FormGroup>
