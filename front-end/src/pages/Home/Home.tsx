@@ -6,7 +6,8 @@ import {
   FlexBoxDirection,
   Text,
   Title,
-  TitleLevel
+  TitleLevel,
+  MessageStrip
 } from '@ui5/webcomponents-react';
 
 import { useStyles } from './Home.jss';
@@ -28,11 +29,20 @@ export const Home: React.FC = () => {
   const classes = useStyles();
 
   const clearValidationErrors = useNewReviewStore((value) => value.clearValidationErrors);
-  const [reviews, setReviews, filteredReviews, setFilteredReviews] = useReviewsStore((value) => [
+  const [
+    reviews,
+    setReviews,
+    filteredReviews,
+    setFilteredReviews,
+    shouldShowNoFilteredReviewsMessage,
+    searchQuery
+  ] = useReviewsStore((value) => [
     value.reviews,
     value.setReviews,
     value.filteredReviews,
-    value.setFilteredReviews
+    value.setFilteredReviews,
+    value.shouldShowNoFilteredReviewsMessage,
+    value.searchQuery
   ]);
   const [averageReviews, setAverageReviews, filteredAverageReviews, setFilteredAverageReviews] =
     useAverageReviewsStore((value) => [
@@ -44,8 +54,27 @@ export const Home: React.FC = () => {
 
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true);
   const [isLoadingAverageReviews, setIsLoadingAverageReviews] = useState<boolean>(true);
+  const [showMessageStrip, setShowMessageStrip] = useState<boolean>();
 
   const { getUniversityRuStandings, groupReviewsByRuAndUniversity } = useAverageReviews();
+
+  useEffect(() => {
+    if (shouldShowNoFilteredReviewsMessage) {
+      setShowMessageStrip(true);
+
+      const timeoutId = setTimeout(() => {
+        setShowMessageStrip(false);
+      }, 5000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [shouldShowNoFilteredReviewsMessage]);
+
+  useEffect(() => {
+    setShowMessageStrip(false);
+  }, [searchQuery]);
 
   useEffect(() => {
     setIsLoadingReviews(true);
@@ -85,12 +114,24 @@ export const Home: React.FC = () => {
           <CreateReviewInfoBox />
           <SearchReviewInfoBox />
         </FlexBox>
-
-        <FlexBox className={classes.boxesContainer}>
+        {showMessageStrip ? (
+          <FlexBox className={classes.messageStripContainer}>
+            <MessageStrip
+              className={classes.messageStrip}
+              onClose={() => setShowMessageStrip(false)}
+            >
+              <Text style={{ fontSize: '15px' }}>
+                Nenhuma avaliação foi filtrada com sua pesquisa.
+              </Text>
+            </MessageStrip>
+          </FlexBox>
+        ) : (
+          <></>
+        )}
+        <FlexBox className={classes.boxesContainer} style={{ marginTop: '10px', marginBottom: '0px' }}>
           <ReviewsSearchBar />
           <FilterDialog />
         </FlexBox>
-
         <FlexBox className={classes.textContainer}>
           <FlexBox className={classes.centeredContainer}>
             <Title className={classes.sectionText} level={TitleLevel.H4}>
@@ -99,7 +140,6 @@ export const Home: React.FC = () => {
             <Text className={classes.sectionText}>({filteredAverageReviews.length} RUs)</Text>
           </FlexBox>
         </FlexBox>
-
         <FlexBox className={classes.averageReviewsContainer}>
           <BusyIndicator
             delay={0}
@@ -111,7 +151,6 @@ export const Home: React.FC = () => {
               return <AverageReviewsCard key={index} averageReview={averageReview} />;
             })}
         </FlexBox>
-
         <FlexBox className={classes.textContainer}>
           <FlexBox className={classes.centeredContainer}>
             <Title className={classes.sectionText} level={TitleLevel.H4}>
@@ -120,7 +159,6 @@ export const Home: React.FC = () => {
             <Text className={classes.sectionText}>({filteredReviews.length} avaliações)</Text>
           </FlexBox>
         </FlexBox>
-
         <FlexBox className={classes.reviewsContainer}>
           <BusyIndicator
             delay={0}

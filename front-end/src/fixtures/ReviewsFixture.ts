@@ -19,7 +19,7 @@ const reviews: Review[] = [
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
     coursePeriod: '1',
-    dietaryPreference: DietaryPreference.VEGETARIAN,
+    dietaryPreference: DietaryPreference.OMNIVORE,
     city: 'Porto Alegre'
   },
   {
@@ -475,7 +475,23 @@ const reviews: Review[] = [
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Medicina',
     coursePeriod: '25',
-    dietaryPreference: DietaryPreference.OMNIVORE,
+    dietaryPreference: DietaryPreference.VEGETARIAN,
+    city: 'Goiânia'
+  },
+  {
+    ruCode: 'RU01',
+    universityName: 'UFG',
+    rating: 3,
+    comment: 'Não estava tão bom como normalmente é.',
+    tags: [
+      { name: 'Não aceita cartão', type: 'negative' },
+      { name: 'Fila curta', type: 'positive' },
+      { name: 'Ambiente sujo', type: 'negative' }
+    ],
+    mealPeriod: MealPeriod.LUNCH,
+    courseName: 'Medicina',
+    coursePeriod: '25',
+    dietaryPreference: DietaryPreference.VEGETARIAN,
     city: 'Goiânia'
   }
 ];

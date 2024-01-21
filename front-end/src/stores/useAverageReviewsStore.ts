@@ -39,7 +39,7 @@ const useAverageReviewsStore = create<AverageReviewsStore>((set, get) => ({
     const shouldFilterAverageReviews = get().shouldFilterAverageReviews;
     const setFilteredAverageReviews = get().setFilteredAverageReviews;
 
-    if (searchQuery.length > 0 && shouldFilterAverageReviews ) {
+    if (searchQuery.length > 0 && shouldFilterAverageReviews) {
       const filteredAverageReviews = averageReviews.filter((averageReview) => {
         const averageReviewString =
           `${averageReview.ruCode} ${averageReview.universityName} ${averageReview.city}`.toLowerCase();

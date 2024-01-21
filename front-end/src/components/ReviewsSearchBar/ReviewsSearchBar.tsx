@@ -6,13 +6,11 @@ import '@ui5/webcomponents-icons/dist/AllIcons';
 import {
   FlexBox,
   Icon,
-  Text,
   Input,
   Label,
   SegmentedButton,
   SegmentedButtonItem,
-  Switch,
-  ValueState
+  Switch
 } from '@ui5/webcomponents-react';
 import useReviewsStore from '../../stores/useReviewsStore';
 import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
@@ -24,19 +22,21 @@ export const ReviewsSearchBar = () => {
   const [
     isDialogOpen,
     setIsDialogOpen,
+    searchQuery,
     setReviewsSearchQuery,
     getFilteredReviews,
     shouldFilterReviews,
     setShouldFilterReviews,
-    shouldShowNoFilteredReviewsMessage
+    resetFilters
   ] = useReviewsStore((value) => [
     value.filterDialogState,
     value.setFilterDialogState,
+    value.searchQuery,
     value.setSearchQuery,
     value.getFilteredReviews,
     value.shouldFilterReviews,
     value.setShouldFilterReviews,
-    value.shouldShowNoFilteredReviewsMessage
+    value.resetFilters
   ]);
   const [
     setAverageReviewsSearchQuery,
@@ -98,19 +98,15 @@ export const ReviewsSearchBar = () => {
         placeholder="Pesquisar (código do RU, nome da universidade, cidade, tags)"
         icon={<Icon className={classes.searchBarIcon} name="search" />}
         onInputCapture={handleInputChange}
-        valueState={shouldShowNoFilteredReviewsMessage ? ValueState.Information : ValueState.None}
-        valueStateMessage={
-          <Text style={{ fontSize: '13px' }}>Nenhuma avaliação foi filtrada com sua pesquisa.</Text>
-        }
+        value={searchQuery}
       />
       <SegmentedButton className={classes.segmentedButton}>
-        <SegmentedButtonItem
-          icon="filter"
-          onClick={() => setIsDialogOpen(!isDialogOpen)}
-        >
+        <SegmentedButtonItem icon="filter" onClick={() => setIsDialogOpen(!isDialogOpen)}>
           Filtrar
         </SegmentedButtonItem>
-        <SegmentedButtonItem icon="sys-cancel">Limpar filtros</SegmentedButtonItem>
+        <SegmentedButtonItem onClick={() => resetFilters()} icon="sys-cancel">
+          Limpar filtros
+        </SegmentedButtonItem>
       </SegmentedButton>
       <FlexBox className={classes.switchContainer}>
         <Switch

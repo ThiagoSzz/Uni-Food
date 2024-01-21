@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import { Review } from '../interfaces/Review';
+import { DietaryPreference } from '../enums/DietaryPreferenceEnum';
+import { MealPeriod } from '../enums/MealPeriodEnum';
 
 export type ReviewsStore = {
   reviews: Review[];
@@ -16,6 +18,12 @@ export type ReviewsStore = {
   getFilteredReviews: () => void;
   setShouldFilterReviews: (value: boolean) => void;
   setShouldShowNoFilteredReviewsMessage: (value: boolean) => void;
+  addFilters: (
+    courseName: string,
+    dietaryPreference: DietaryPreference,
+    mealPeriod: MealPeriod
+  ) => void;
+  resetFilters: () => void;
 };
 
 const initialFilterDialogState: boolean = false;
@@ -68,7 +76,65 @@ const useReviewsStore = create<ReviewsStore>((set, get) => ({
   },
   shouldShowNoFilteredReviewsMessage: initialShouldShowNoFilteredReviewsMessage,
   setShouldShowNoFilteredReviewsMessage: (value: boolean) =>
-    set(() => ({ shouldShowNoFilteredReviewsMessage: value }))
+    set(() => ({ shouldShowNoFilteredReviewsMessage: value })),
+  addFilters: (
+    courseName: string,
+    dietaryPreference: DietaryPreference,
+    mealPeriod: MealPeriod
+  ) => {
+    const reviews = get().filteredReviews;
+    const shouldFilterReviews = get().shouldFilterReviews;
+    const setFilteredReviews = get().setFilteredReviews;
+    const setShouldShowNoFilteredReviewsMessage = get().setShouldShowNoFilteredReviewsMessage;
+
+    setShouldShowNoFilteredReviewsMessage(false);
+
+    if (
+      (courseName.length > 0 ||
+        dietaryPreference !== DietaryPreference.UNDEFINED ||
+        mealPeriod !== MealPeriod.UNDEFINED) &&
+      shouldFilterReviews
+    ) {
+      let filteredReviews;
+
+      if (courseName.length > 0) {
+        filteredReviews = reviews.filter((review) => {
+          return review.courseName.toLowerCase() === courseName.toLowerCase();
+        });
+      }
+
+      if (!filteredReviews) filteredReviews = reviews;
+
+      if (dietaryPreference !== DietaryPreference.UNDEFINED) {
+        filteredReviews = filteredReviews.filter((review) => {
+          return review.dietaryPreference.toLowerCase() === dietaryPreference.toLowerCase();
+        });
+      }
+
+      if (!filteredReviews) filteredReviews = reviews;
+
+      if (mealPeriod !== MealPeriod.UNDEFINED) {
+        filteredReviews = filteredReviews.filter((review) => {
+          return review.mealPeriod.toLowerCase() === mealPeriod.toLowerCase();
+        });
+      }
+
+      if (filteredReviews.length !== 0) {
+        setFilteredReviews(filteredReviews);
+      } else {
+        setShouldShowNoFilteredReviewsMessage(true);
+        setFilteredReviews(reviews);
+      }
+    } else {
+      setFilteredReviews(reviews);
+    }
+  },
+  resetFilters: () =>
+    set(() => ({
+      filteredReviews: get().reviews,
+      searchQuery: '',
+      shouldShowNoFilteredReviewsMessage: false
+    }))
 }));
 
 export default useReviewsStore;

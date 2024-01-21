@@ -6,9 +6,10 @@ type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
 const styles: JSSStyles = {
   boxesContainer: {
     justifyContent: 'center',
-    marginTop: '20px',
+    marginTop: '15px',
     width: '1200px',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginBottom: '5px'
   },
   box: {
     padding: '25px',
@@ -21,6 +22,24 @@ const styles: JSSStyles = {
     position: 'relative',
     boxShadow: 'rgba(85, 107, 130, 0.25) 0.5px 0.5px 4px',
     borderRadius: '8px'
+  },
+  messageStripBox: {
+    justifyContent: 'center',
+    marginTop: '5px',
+    width: '1200px',
+    alignSelf: 'center'
+  },
+  messageStripContainer: {
+    overflowX: 'hidden',
+    overflowY: 'auto',
+    width: '1200px',
+    height: 'fit-content',
+    alignItems: 'center'
+  },
+  messageStrip: {
+    margin: '2px',
+    height: '33px',
+    width: '100%'
   },
   formBox: {
     padding: '25px',
@@ -47,7 +66,7 @@ const styles: JSSStyles = {
   },
   objectPage: {
     justifyContent: 'center',
-    marginTop: '20px',
+    marginTop: '10px',
     marginBottom: '80px',
     width: '1200px',
     alignSelf: 'center',
@@ -57,7 +76,7 @@ const styles: JSSStyles = {
     backgroundColor: 'white'
   },
   objectPageSection: {
-    height: '500px',
+    height: '435px',
     marginTop: '10px',
     marginBottom: '20px'
   }

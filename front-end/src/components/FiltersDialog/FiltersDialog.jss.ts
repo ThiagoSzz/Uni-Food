@@ -43,6 +43,15 @@ const styles: JSSStyles = {
   },
   button: {
     height: '30px'
+  },
+  objectPageFooter: {
+    fontSize: '14px',
+    justifyContent: 'center',
+    color: 'gray',
+    borderTop: '1px solid #CAD2D8',
+    padding: '8px',
+    paddingBottom: '1px',
+    marginTop: '-10px'
   }
 };
 

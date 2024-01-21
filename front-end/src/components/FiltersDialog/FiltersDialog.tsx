@@ -22,13 +22,16 @@ import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
 export const FilterDialog = () => {
   const classes = useStyles();
 
-  const [isDialogOpen, setIsDialogOpen] = useReviewsStore((value) => [
+  const [isDialogOpen, setIsDialogOpen, addFilters] = useReviewsStore((value) => [
     value.filterDialogState,
-    value.setFilterDialogState
+    value.setFilterDialogState,
+    value.addFilters
   ]);
   const [courseNameValue, setCourseNameValue] = useState<string>('');
-  const [dietaryPreferenceValue, setDietaryPreferenceValue] = useState<string>('');
-  const [mealPeriodValue, setMealPeriodValue] = useState<string>('');
+  const [dietaryPreferenceValue, setDietaryPreferenceValue] = useState<DietaryPreference>(
+    DietaryPreference.UNDEFINED
+  );
+  const [mealPeriodValue, setMealPeriodValue] = useState<MealPeriod>(MealPeriod.UNDEFINED);
   const [numberOfActiveFilters, setNumberOfActiveFilters] = useState<number>(0);
 
   const handleCourseNameValueChange = (event) => {
@@ -46,8 +49,13 @@ export const FilterDialog = () => {
 
   const handleDialogAfterClose = () => {
     setCourseNameValue('');
-    setDietaryPreferenceValue('');
-    setMealPeriodValue('');
+    setDietaryPreferenceValue(DietaryPreference.UNDEFINED);
+    setMealPeriodValue(MealPeriod.UNDEFINED);
+  };
+
+  const handleApplyButtonClick = () => {
+    addFilters(courseNameValue, dietaryPreferenceValue, mealPeriodValue);
+    setIsDialogOpen(false);
   };
 
   const setActiveFilters = () => {
@@ -71,7 +79,11 @@ export const FilterDialog = () => {
       headerText="Filtrar por"
       footer={
         <FlexBox className={classes.footer}>
-          <Button design={ButtonDesign.Emphasized} className={classes.button}>
+          <Button
+            design={ButtonDesign.Emphasized}
+            className={classes.button}
+            onClick={handleApplyButtonClick}
+          >
             Aplicar ({numberOfActiveFilters})
           </Button>
           <Button
@@ -90,6 +102,11 @@ export const FilterDialog = () => {
           selectedSectionId="courseName"
           mode={ObjectPageMode.IconTabBar}
           className={classes.objectPage}
+          footer={
+            <FlexBox className={classes.objectPageFooter}>
+              Estes filtros não serão aplicados às médias por restaurante universitário
+            </FlexBox>
+          }
         >
           <ObjectPageSection id="courseName" titleText="Nome do curso">
             <Input

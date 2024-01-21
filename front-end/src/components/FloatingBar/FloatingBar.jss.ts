@@ -21,22 +21,13 @@ const styles: JSSStyles = {
     marginRight: '10px',
     marginTop: '20px',
     marginBottom: '10px',
-    width: '1200px'
-  },
-  messageStripContainer: {
-    position: 'fixed',
-    top: '0',
-    marginTop: '60px',
-    overflowX: 'hidden',
-    overflowY: 'auto',
-    margin: '10px',
     width: '1200px',
-    alignItems: 'center'
-  },
-  messageStrip: {
-    margin: '2px',
-    height: '33px',
-    width: '100%'
+    border: '1px solid transparent',
+    borderRadius: '8px',
+    boxShadow: 'rgba(85, 107, 130, 0.25) 0.5px 0.5px 4px',
+    justifyContent: 'flex-end',
+    backgroundColor: 'white',
+    padding: '6px'
   },
   footer: {
     gap: '10px',

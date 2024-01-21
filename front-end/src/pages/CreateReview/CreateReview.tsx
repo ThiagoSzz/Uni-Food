@@ -8,7 +8,9 @@ import {
   TitleLevel,
   ObjectPage,
   ObjectPageSection,
-  ObjectPageMode
+  ObjectPageMode,
+  MessageStrip,
+  MessageStripDesign
 } from '@ui5/webcomponents-react';
 
 import { useStyles } from './CreateReview.jss';
@@ -20,16 +22,37 @@ import { SelectTagsDialog } from '../../components/SelectTagsDialog/SelectTagsDi
 import { FloatingBar } from '../../components/FloatingBar/FloatingBar';
 import useNewReviewStore from '../../stores/useNewReviewStore';
 import { Tag } from '../../interfaces/Tags';
+import useReviewsStore from '../../stores/useReviewsStore';
 
 export const CreateReview: React.FC = () => {
   const classes = useStyles();
 
-  const clearNewReview = useNewReviewStore((value) => value.clearNewReview);
+  const setSearchQuery = useReviewsStore((value) => value.setSearchQuery);
+  const [clearNewReview, validationErrors] = useNewReviewStore((value) => [
+    value.clearNewReview,
+    value.validationErrors
+  ]);
 
   const [isSelectTagsDialogOpen, setIsSelectTagsDialogOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [showMessageStrip, setShowMessageStrip] = useState<boolean>(false);
 
   useEffect(() => {
+    if (validationErrors.length > 0) {
+      setShowMessageStrip(true);
+
+      const timeoutId = setTimeout(() => {
+        setShowMessageStrip(false);
+      }, 5000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [validationErrors]);
+
+  useEffect(() => {
+    setSearchQuery('');
     clearNewReview();
   }, []);
 
@@ -50,6 +73,26 @@ export const CreateReview: React.FC = () => {
           </FlexBox>
         </FlexBox>
       </FlexBox>
+
+      {validationErrors && showMessageStrip ? (
+        <FlexBox direction={FlexBoxDirection.Row} className={classes.messageStripBox}>
+          <FlexBox
+            id="messageStripContainer"
+            className={classes.messageStripContainer}
+            direction={FlexBoxDirection.Column}
+          >
+            <MessageStrip
+              design={MessageStripDesign.Negative}
+              className={classes.messageStrip}
+              onClose={() => setShowMessageStrip(false)}
+            >
+              {validationErrors[0]}
+            </MessageStrip>
+          </FlexBox>
+        </FlexBox>
+      ) : (
+        <></>
+      )}
 
       <ObjectPage className={classes.objectPage} mode={ObjectPageMode.IconTabBar}>
         <ObjectPageSection
