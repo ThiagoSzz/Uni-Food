@@ -1,6 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { FlexBox, FlexBoxDirection, Title, Text, TitleLevel } from '@ui5/webcomponents-react';
+import {
+  FlexBox,
+  FlexBoxDirection,
+  Title,
+  Text,
+  TitleLevel,
+  ObjectPage,
+  ObjectPageSection,
+  ObjectPageMode
+} from '@ui5/webcomponents-react';
 
 import { useStyles } from './CreateReview.jss';
 import '@ui5/webcomponents-icons/dist/AllIcons';
@@ -42,14 +51,12 @@ export const CreateReview: React.FC = () => {
         </FlexBox>
       </FlexBox>
 
-      <FlexBox
-        direction={FlexBoxDirection.Row}
-        className={classes.boxesContainer}
-        style={{
-          marginBottom: '80px'
-        }}
-      >
-        <FlexBox className={classes.formBox} direction={FlexBoxDirection.Column}>
+      <ObjectPage className={classes.objectPage} mode={ObjectPageMode.IconTabBar}>
+        <ObjectPageSection
+          id="reviewInfo"
+          titleText="Informações da Avaliação"
+          className={classes.objectPageSection}
+        >
           <FlexBox direction={FlexBoxDirection.Column}>
             <Title level={TitleLevel.H4}>1. Informações da Avaliação</Title>
             <Text className={classes.text}>
@@ -63,23 +70,29 @@ export const CreateReview: React.FC = () => {
               />
             </FlexBox>
           </FlexBox>
+        </ObjectPageSection>
 
+        <ObjectPageSection
+          id="optionalInfo"
+          titleText="Informações Opcionais"
+          className={classes.objectPageSection}
+        >
           <FlexBox direction={FlexBoxDirection.Column}>
             <Title level={TitleLevel.H4}>2. Informações Opcionais</Title>
             <Text className={classes.text}>Queremos saber um pouco mais sobre seu perfil.</Text>
             <FlexBox direction={FlexBoxDirection.Column}>
               <OptionalInfoForm />
-              <SelectTagsDialog
-                isSelectTagsDialogOpen={isSelectTagsDialogOpen}
-                setIsSelectTagsDialogOpen={setIsSelectTagsDialogOpen}
-                selectedTags={selectedTags}
-                setSelectedTags={setSelectedTags}
-              />
             </FlexBox>
           </FlexBox>
-        </FlexBox>
-      </FlexBox>
+        </ObjectPageSection>
+      </ObjectPage>
 
+      <SelectTagsDialog
+        isSelectTagsDialogOpen={isSelectTagsDialogOpen}
+        setIsSelectTagsDialogOpen={setIsSelectTagsDialogOpen}
+        selectedTags={selectedTags}
+        setSelectedTags={setSelectedTags}
+      />
       <FloatingBar />
     </FlexBox>
   );

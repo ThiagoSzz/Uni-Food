@@ -11,6 +11,9 @@ const styles: JSSStyles = {
     height: '30px',
     marginRight: '10px'
   },
+  floatingContainer: {
+    justifyContent: 'center'
+  },
   floatingBar: {
     position: 'fixed',
     bottom: '0',
@@ -18,7 +21,7 @@ const styles: JSSStyles = {
     marginRight: '10px',
     marginTop: '20px',
     marginBottom: '10px',
-    width: 'calc(100vw - 20px)'
+    width: '1200px'
   },
   messageStripContainer: {
     position: 'fixed',
@@ -27,7 +30,7 @@ const styles: JSSStyles = {
     overflowX: 'hidden',
     overflowY: 'auto',
     margin: '10px',
-    width: 'calc(100vw - 20px)',
+    width: '1200px',
     alignItems: 'center'
   },
   messageStrip: {

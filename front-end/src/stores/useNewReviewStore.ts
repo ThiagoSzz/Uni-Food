@@ -28,6 +28,7 @@ export type NewReviewStore = {
   setCoursePeriod: (value: string) => void;
   setDietaryPreference: (value: DietaryPreference) => void;
   setCity: (value: string) => void;
+  setNewReview: (value: Review) => void;
   createNewReview: () => void;
   clearNewReview: () => void;
   clearValidationErrors: () => void;
@@ -73,6 +74,7 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
   city: '',
   setCity: (value: string) => set(() => ({ city: value })),
   newReview: undefined,
+  setNewReview: (value: Review) => set(() => ({ newReview: value })),
   createNewReview: () => {
     const newReview: Review = {
       ruCode: get().ruCode,
@@ -88,9 +90,37 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
       toString
     };
 
-    set(() => ({ newReview }));
+    const setNewReview = get().setNewReview;
+    setNewReview(newReview);
   },
-  clearNewReview: () => set(() => ({ newReview: undefined })),
+  clearNewReview: () => {
+    const {
+      setRuCode,
+      setUniversityName,
+      setMealPeriod,
+      setComment,
+      setTags,
+      setRating,
+      setCourseName,
+      setCoursePeriod,
+      setDietaryPreference,
+      setCity,
+      setNewReview
+    } = get();
+
+    setRuCode('');
+    setUniversityName('');
+    setMealPeriod(MealPeriod.UNDEFINED);
+    setComment('');
+    setTags([]);
+    setRating(0);
+    setCourseName('');
+    setCoursePeriod('');
+    setDietaryPreference(DietaryPreference.UNDEFINED);
+    setCity('');
+
+    setNewReview(undefined);
+  },
   validationErrors: [],
   clearValidationErrors: () => set((state) => ({ validationErrors: [] })),
   validateFields: () => {

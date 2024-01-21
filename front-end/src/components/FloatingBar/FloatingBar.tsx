@@ -80,7 +80,7 @@ export const FloatingBar = () => {
   }, [validationErrors]);
 
   return (
-    <FlexBox>
+    <FlexBox className={classes.floatingContainer}>
       <Bar
         design={BarDesign.FloatingFooter}
         endContent={
