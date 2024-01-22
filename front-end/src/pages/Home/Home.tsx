@@ -100,8 +100,10 @@ export const Home: React.FC = () => {
 
   useEffect(() => {
     if (averageReviews.length > 0) {
-      setIsLoadingReviews(false);
-      setIsLoadingAverageReviews(false);
+      setTimeout(() => {
+        setIsLoadingReviews(false);
+        setIsLoadingAverageReviews(false);
+      }, 50);
     }
   }, [averageReviews]);
 
@@ -128,7 +130,10 @@ export const Home: React.FC = () => {
         ) : (
           <></>
         )}
-        <FlexBox className={classes.boxesContainer} style={{ marginTop: '10px', marginBottom: '0px' }}>
+        <FlexBox
+          className={classes.boxesContainer}
+          style={{ marginTop: '10px', marginBottom: '0px' }}
+        >
           <ReviewsSearchBar />
           <FilterDialog />
         </FlexBox>

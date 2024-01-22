@@ -41,7 +41,7 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
         disabled={createReviewDisabled}
         onClick={() => navigateToCreateReviewPage()}
       ></Button>
-      <Button design={ButtonDesign.Default} icon="visits"></Button>
+      <Button design={ButtonDesign.Default} disabled icon="visits"></Button>
       <Avatar icon="employee" colorScheme={AvatarColorScheme.Accent6} size={AvatarSize.S}></Avatar>
     </ShellBar>
   );
