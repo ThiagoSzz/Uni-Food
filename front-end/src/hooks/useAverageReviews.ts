@@ -75,7 +75,7 @@ export const useAverageReviews = () => {
 
         return {
           ...other,
-          averageRating: totalRating / other.reviewsAmount,
+          averageRating: parseFloat((totalRating / other.reviewsAmount).toFixed(1)),
           isRising: totalRating / other.reviewsAmount >= 3.9,
           isDescending: totalRating / other.reviewsAmount <= 2.6,
           isBestReviewed: bestRU === other.ruCode,

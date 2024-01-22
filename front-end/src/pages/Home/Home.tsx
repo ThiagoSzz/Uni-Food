@@ -16,7 +16,6 @@ import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomS
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
 import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
 import { FilterDialog } from '../../components/FiltersDialog/FiltersDialog';
-import { getReviewsList } from '../../fixtures/ReviewsFixture';
 import { CreateReviewInfoBox } from '../../components/CreateReviewInfoBox/CreateReviewInfoBox';
 import { SearchReviewInfoBox } from '../../components/SearchReviewInfoBox/SearchReviewInfoBox';
 import { ReviewsSearchBar } from '../../components/ReviewsSearchBar/ReviewsSearchBar';
@@ -24,6 +23,11 @@ import useNewReviewStore from '../../stores/useNewReviewStore';
 import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
 import useReviewsStore from '../../stores/useReviewsStore';
 import { useAverageReviews } from '../../hooks/useAverageReviews';
+import { useReviewsMutation } from '../../hooks/useReviewsMutation';
+import { mapToReviews } from '../../mappers/reviewsMapper';
+import { getReviewsList } from '../../fixtures/ReviewsFixture';
+
+const USE_BACKEND_REVIEWS = false;
 
 export const Home: React.FC = () => {
   const classes = useStyles();
@@ -58,6 +62,18 @@ export const Home: React.FC = () => {
 
   const { getUniversityRuStandings, groupReviewsByRuAndUniversity } = useAverageReviews();
 
+  const reviewsMutation = useReviewsMutation();
+
+  const fetchReviews = async () => {
+    try {
+      const result = await reviewsMutation.mutateAsync();
+      const reviews = mapToReviews(result.data);
+
+      setReviews(reviews);
+      setFilteredReviews(reviews);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     if (shouldShowNoFilteredReviewsMessage) {
       setShowMessageStrip(true);
@@ -79,12 +95,16 @@ export const Home: React.FC = () => {
   useEffect(() => {
     setIsLoadingReviews(true);
     setIsLoadingAverageReviews(true);
-
     clearValidationErrors();
 
-    const reviewsFixture = getReviewsList();
-    setReviews(reviewsFixture);
-    setFilteredReviews(reviewsFixture);
+    if (USE_BACKEND_REVIEWS) {
+      fetchReviews();
+    } else {
+      const reviewsFixture = getReviewsList();
+
+      setReviews(reviewsFixture);
+      setFilteredReviews(reviewsFixture);
+    }
   }, []);
 
   useEffect(() => {
@@ -128,7 +148,10 @@ export const Home: React.FC = () => {
         ) : (
           <></>
         )}
-        <FlexBox className={classes.boxesContainer} style={{ marginTop: '10px', marginBottom: '0px' }}>
+        <FlexBox
+          className={classes.boxesContainer}
+          style={{ marginTop: '10px', marginBottom: '0px' }}
+        >
           <ReviewsSearchBar />
           <FilterDialog />
         </FlexBox>
