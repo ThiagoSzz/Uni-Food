@@ -23,16 +23,21 @@ import useNewReviewStore from '../../stores/useNewReviewStore';
 import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
 import useReviewsStore from '../../stores/useReviewsStore';
 import { useAverageReviews } from '../../hooks/useAverageReviews';
-import { useReviewsMutation } from '../../hooks/useReviewsMutation';
+import { useGetReviewsMutation } from '../../hooks/mutations/useGetReviews';
 import { mapToReviews } from '../../mappers/reviewsMapper';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
+import { useCreateReviewMutation } from '../../hooks/mutations/useCreateReviewMutation';
+import { MealPeriod } from '../../enums/MealPeriodEnum';
 
 const USE_BACKEND_REVIEWS = false;
 
 export const Home: React.FC = () => {
   const classes = useStyles();
 
-  const clearValidationErrors = useNewReviewStore((value) => value.clearValidationErrors);
+  const [clearValidationErrors, newReview] = useNewReviewStore((value) => [
+    value.clearValidationErrors,
+    value.newReview
+  ]);
   const [
     reviews,
     setReviews,
@@ -62,7 +67,8 @@ export const Home: React.FC = () => {
 
   const { getUniversityRuStandings, groupReviewsByRuAndUniversity } = useAverageReviews();
 
-  const reviewsMutation = useReviewsMutation();
+  const reviewsMutation = useGetReviewsMutation();
+  const createReviewsMutation = useCreateReviewMutation();
 
   const fetchReviews = async () => {
     try {
@@ -71,6 +77,21 @@ export const Home: React.FC = () => {
 
       setReviews(reviews);
       setFilteredReviews(reviews);
+    } catch (error) {}
+  };
+
+  const insertNewReview = async () => {
+    try {
+      await createReviewsMutation.mutateAsync({
+        siglaRU: 'RU01',
+        siglaUniversidade: 'UFRGS',
+        emailUsuario: 'email397@email.com',
+        periodoNota: MealPeriod.LUNCH,
+        notaEstrelas: 4,
+        comentario: 'teste comentário teste comentário',
+        tags: 'Proteína macia, Carboidrato de qualidade, Leguminosa saborosa, Variedade de saladas',
+        duracaoNota: 90
+      });
     } catch (error) {}
   };
 
@@ -120,10 +141,16 @@ export const Home: React.FC = () => {
 
   useEffect(() => {
     if (averageReviews.length > 0) {
-      setIsLoadingReviews(false);
-      setIsLoadingAverageReviews(false);
+      setTimeout(() => {
+        setIsLoadingReviews(false);
+        setIsLoadingAverageReviews(false);
+      }, 50);
     }
   }, [averageReviews]);
+
+  useEffect(() => {
+    if (newReview) insertNewReview();
+  }, [newReview]);
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
