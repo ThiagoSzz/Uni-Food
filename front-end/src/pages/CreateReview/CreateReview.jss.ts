@@ -76,7 +76,7 @@ const styles: JSSStyles = {
     backgroundColor: 'white'
   },
   objectPageSection: {
-    height: '435px',
+    height: '445px',
     marginTop: '10px',
     marginBottom: '20px'
   }
