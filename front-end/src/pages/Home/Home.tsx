@@ -28,7 +28,7 @@ import { useGetReviewsMutation } from '../../hooks/queries/useGetReviews';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
 
 const USE_BACKEND_REVIEWS = true;
-const NUM_DISPLAYED_REVIEWS = 50;
+const NUM_DISPLAYED_REVIEWS = 52;
 
 export const Home: React.FC = () => {
   const classes = useStyles();
