@@ -23,7 +23,7 @@ public abstract class Val<E extends ED<PK>, PK>
 	{
 		if (ed == null)
 		{
-			throw new IllegalArgumentException(String.format("Não é possível consultar registro nulo.", entidade));
+			throw new IllegalArgumentException(String.format("Não é possível consultar registro de %s nulo.", entidade));
 		}
 		validaConsulta(ed.getId());
 	}
@@ -44,7 +44,6 @@ public abstract class Val<E extends ED<PK>, PK>
 	{
 		if (ed.getId() == null) 
 		{
-			
 			throw new IllegalArgumentException(String.format("Não é possível remover registro de %s sem o identificado primário.", entidade));
 		}
 	}
