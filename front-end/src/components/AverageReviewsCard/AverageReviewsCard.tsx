@@ -24,16 +24,16 @@ export const AverageReviewsCard = (props: AverageReviewCardProps) => {
       updatedCardTags.push({ name: 'Pior da universidade', status: CardTagColors.Negative });
     }
 
-    if (averageReview.averageRating >= 3.9) {
+    if (averageReview.averageRating >= 3.3) {
       updatedCardTags.push({ name: 'Bem avaliado', status: CardTagColors.Positive });
-    } else if (averageReview.averageRating <= 2.6) {
+    } else if (averageReview.averageRating <= 2.4) {
       updatedCardTags.push({ name: 'Mal avaliado', status: CardTagColors.Negative });
     } else {
       updatedCardTags.push({ name: 'Na média', status: CardTagColors.Neutral });
     }
 
     setCardTags(updatedCardTags);
-  }, []);
+  }, [averageReview]);
 
   return (
     <Card
@@ -80,11 +80,14 @@ export const AverageReviewsCard = (props: AverageReviewCardProps) => {
       </FlexBox>
 
       <FlexBox className={classes.badgesContainer}>
-        {cardTags.map((tag, index) => (
-          <Badge key={index} colorScheme={tag.status} className={classes.badge}>
-            {tag.name}
-          </Badge>
-        ))}
+        {cardTags.length > 0 &&
+          cardTags.map((tag, index) => {
+            return (
+              <Badge key={index} colorScheme={tag.status} className={classes.badge}>
+                {tag.name}
+              </Badge>
+            );
+          })}
       </FlexBox>
     </Card>
   );

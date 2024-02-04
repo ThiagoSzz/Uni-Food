@@ -24,10 +24,10 @@ import useNewReviewStore from '../../stores/useNewReviewStore';
 import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
 import useReviewsStore from '../../stores/useReviewsStore';
 import { useAverageReviews } from '../../hooks/useAverageReviews';
-import { useGetReviewsMutation } from '../../hooks/mutations/useGetReviews';
+import { useGetReviewsMutation } from '../../hooks/queries/useGetReviews';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
 
-const USE_BACKEND_REVIEWS = false;
+const USE_BACKEND_REVIEWS = true;
 const NUM_DISPLAYED_REVIEWS = 50;
 
 export const Home: React.FC = () => {
@@ -129,14 +129,16 @@ export const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const bestAndWorstRusByUniversity = getUniversityRuStandings(reviews);
-    const reviewsGroupedByRuAndUniversity = groupReviewsByRuAndUniversity(
-      reviews,
-      bestAndWorstRusByUniversity
-    );
+    if (reviews.length > 0) {
+      const bestAndWorstRusByUniversity = getUniversityRuStandings(reviews);
+      const reviewsGroupedByRuAndUniversity = groupReviewsByRuAndUniversity(
+        reviews,
+        bestAndWorstRusByUniversity
+      );
 
-    setAverageReviews(reviewsGroupedByRuAndUniversity);
-    setFilteredAverageReviews(reviewsGroupedByRuAndUniversity);
+      setAverageReviews(reviewsGroupedByRuAndUniversity);
+      setFilteredAverageReviews(reviewsGroupedByRuAndUniversity);
+    }
   }, [reviews]);
 
   useEffect(() => {
