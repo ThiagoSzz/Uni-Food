@@ -196,6 +196,20 @@
         }
       }
     },
+    "/avaliacao/lista_avaliacao_restaurante" : {
+      "get" : {
+        "tags" : [ "Avaliações" ],
+        "operationId" : "listaAvaliacaoRestaurante",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
     "/avaliacao/lista_restaurante_nota" : {
       "post" : {
         "tags" : [ "Avaliações" ],

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import com.unifood.bd.AvaliacaoBD;
 import com.unifood.ed.AvaliacaoED;
+import com.unifood.ed.AvaliacaoRestauranteED;
 import com.unifood.ed.AvaliacaoUsuarioED;
 import com.unifood.ed.NotaED;
 import com.unifood.ed.RestauranteED;
@@ -77,6 +78,10 @@ public class AvaliacaoRN extends RN<AvaliacaoED, Integer>
 		
 		avaliacaoED.setCodNota(avaliacaoED.getId());
 		altera(avaliacaoED);
+	}
+	
+	public List<AvaliacaoRestauranteED> listaAvaliacaoRestauranteED() {
+		return avaliacaoBD.listaAvaliacaoRestauranteED();
 	}
 
 }

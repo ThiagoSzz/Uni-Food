@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.unifood.ed.AvaliacaoED;
+import com.unifood.ed.AvaliacaoRestauranteED;
 import com.unifood.ed.AvaliacaoUsuarioED;
 import com.unifood.ed.RestauranteNotaED;
 import com.unifood.rn.AvaliacaoRN;
@@ -153,5 +154,27 @@ public class AvaliacaoRest extends Rest
 		}		
 		return response;				
 	}
+	
+	@GET
+	@Path("/lista_avaliacao_restaurante")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Tag(name = "Avaliações", description = "Operações relacionadas a avaliações")
+	public Response listaAvaliacaoRestaurante()
+	{
+		Response response;
+		try
+		{
+			List<AvaliacaoRestauranteED> lista = avaliacaoRN.listaAvaliacaoRestauranteED();	
+			response = addCorsHeaders(Response.ok().entity(lista)).build(); 
+		} catch (Exception e)
+		{
+			RespostaMensagem respostaMensagem = new RespostaMensagem(String.format("Erro ao listar Avaliações Restaurantes: %s", e.getMessage()));
+			response = addCorsHeaders(Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity(respostaMensagem)).build(); 
+		}		
+		return response;				
+	}
+	
 
 }
