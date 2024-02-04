@@ -3,7 +3,7 @@ import api from '../../config/api';
 import { AxiosResponse } from 'axios';
 
 const GET_REVIEWS_MUTATION_NAME = 'getReviewsMutation';
-const GET_REVIEWS_MUTATION_API = '/avaliacao/lista_restaurante_nota';
+const GET_REVIEWS_MUTATION_API = '/get-reviews';
 
 export const useGetReviewsMutation = (options?) => {
   return useMutation<AxiosResponse<any, any>, Error>({
@@ -15,7 +15,7 @@ export const useGetReviewsMutation = (options?) => {
 };
 
 const setGetReviewsMutation = async () => {
-  const result = await api.post(api.defaults.baseURL + GET_REVIEWS_MUTATION_API).then((result) => {
+  const result = await api.get(api.defaults.baseURL + GET_REVIEWS_MUTATION_API).then((result) => {
     return result;
   });
 

@@ -18,6 +18,7 @@ export type NewReviewStore = {
   city: string;
   newReview: Review | undefined;
   validationErrors: ValidationError[];
+  isReviewCreated: boolean;
   setRuCode: (value: string) => void;
   setUniversityName: (value: string) => void;
   setMealPeriod: (value: MealPeriod) => void;
@@ -34,6 +35,7 @@ export type NewReviewStore = {
   clearValidationErrors: () => void;
   validateFields: () => boolean;
   hasFilledFields: () => boolean;
+  setIsReviewCreated: (value: boolean) => void;
 };
 
 const toString = function (this: Review): string {
@@ -143,20 +145,19 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
       errors.push(ValidationError.RUCodeRequired);
     }
 
-    let updatedRUCode = ruCode;
-    if (ruCode && !updatedRUCode.toUpperCase().startsWith('RU')) {
-      updatedRUCode = `RU${updatedRUCode.slice(2)}`;
-
-      if (!updatedRUCode.startsWith('RU')) {
-        errors.push(ValidationError.RUCodeFormat);
-      }
+    const ruCodePattern = /^RU0[0-7]$/;
+    if (ruCode && !ruCodePattern.test(ruCode)) {
+      errors.push(ValidationError.RUCodeFormat);
     }
-    set(() => ({ ruCode: updatedRUCode }));
 
     if (!universityName) {
       errors.push(ValidationError.UniversityNameRequired);
     }
-    set(() => ({ universityName: universityName.toUpperCase() }));
+
+    const registeredUniversities = ['USP', 'UFMG', 'UFRJ', 'UNB', 'UFG', 'UFRGS', 'UTFPR', 'UFSC'];
+    if (universityName && !registeredUniversities.includes(universityName)) {
+      errors.push(ValidationError.UniversityNameNotRegistered);
+    }
 
     if (![MealPeriod.BREAKFAST, MealPeriod.LUNCH, MealPeriod.DINNER].includes(mealPeriod)) {
       errors.push(ValidationError.InvalidMealPeriod);
@@ -224,10 +225,14 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
       newReview.coursePeriod !== '' ||
       newReview.dietaryPreference !== '' ||
       newReview.city !== ''
-    )
+    ) {
       return true;
-    else return false;
-  }
+    } else {
+      return false;
+    }
+  },
+  isReviewCreated: false,
+  setIsReviewCreated: (value: boolean) => set(() => ({ isReviewCreated: value }))
 }));
 
 export default useNewReviewStore;

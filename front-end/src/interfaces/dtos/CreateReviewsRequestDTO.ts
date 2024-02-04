@@ -1,4 +1,5 @@
 import { MealPeriod } from '../../enums/MealPeriodEnum';
+import { Tag } from '../Tags';
 
 export interface CreateReviewRequestDTO {
   siglaRU: string;
@@ -7,6 +8,6 @@ export interface CreateReviewRequestDTO {
   periodoNota: MealPeriod;
   notaEstrelas: number;
   comentario: string;
-  tags: string;
+  tags: Tag[];
   duracaoNota: number;
 }

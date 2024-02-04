@@ -7,7 +7,8 @@ import {
   Text,
   Title,
   TitleLevel,
-  MessageStrip
+  MessageStrip,
+  MessageStripDesign
 } from '@ui5/webcomponents-react';
 
 import { useStyles } from './Home.jss';
@@ -24,20 +25,17 @@ import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
 import useReviewsStore from '../../stores/useReviewsStore';
 import { useAverageReviews } from '../../hooks/useAverageReviews';
 import { useGetReviewsMutation } from '../../hooks/mutations/useGetReviews';
-import { mapToReviews } from '../../mappers/reviewsMapper';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
-import { useCreateReviewMutation } from '../../hooks/mutations/useCreateReviewMutation';
-import { MealPeriod } from '../../enums/MealPeriodEnum';
 
 const USE_BACKEND_REVIEWS = false;
+const NUM_DISPLAYED_REVIEWS = 50;
 
 export const Home: React.FC = () => {
   const classes = useStyles();
 
-  const [clearValidationErrors, newReview] = useNewReviewStore((value) => [
-    value.clearValidationErrors,
-    value.newReview
-  ]);
+  const [clearValidationErrors, isReviewCreated, setIsReviewCreated] = useNewReviewStore(
+    (value) => [value.clearValidationErrors, value.isReviewCreated, value.setIsReviewCreated]
+  );
   const [
     reviews,
     setReviews,
@@ -53,9 +51,8 @@ export const Home: React.FC = () => {
     value.shouldShowNoFilteredReviewsMessage,
     value.searchQuery
   ]);
-  const [averageReviews, setAverageReviews, filteredAverageReviews, setFilteredAverageReviews] =
+  const [setAverageReviews, filteredAverageReviews, setFilteredAverageReviews] =
     useAverageReviewsStore((value) => [
-      value.averageReviews,
       value.setAverageReviews,
       value.filteredAverageReviews,
       value.setFilteredAverageReviews
@@ -63,44 +60,37 @@ export const Home: React.FC = () => {
 
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true);
   const [isLoadingAverageReviews, setIsLoadingAverageReviews] = useState<boolean>(true);
-  const [showMessageStrip, setShowMessageStrip] = useState<boolean>();
+  const [feedbackMessageStrip, setFeedbackMessageStrip] = useState<{
+    show: boolean;
+    message?: string;
+    value?: MessageStripDesign;
+  }>({
+    show: false
+  });
 
   const { getUniversityRuStandings, groupReviewsByRuAndUniversity } = useAverageReviews();
 
   const reviewsMutation = useGetReviewsMutation();
-  const createReviewsMutation = useCreateReviewMutation();
 
   const fetchReviews = async () => {
-    try {
-      const result = await reviewsMutation.mutateAsync();
-      const reviews = mapToReviews(result.data);
+    await reviewsMutation.mutateAsync().then((result) => {
+      const reviews = result.data;
 
       setReviews(reviews);
       setFilteredReviews(reviews);
-    } catch (error) {}
-  };
-
-  const insertNewReview = async () => {
-    try {
-      await createReviewsMutation.mutateAsync({
-        siglaRU: 'RU01',
-        siglaUniversidade: 'UFRGS',
-        emailUsuario: 'email397@email.com',
-        periodoNota: MealPeriod.LUNCH,
-        notaEstrelas: 4,
-        comentario: 'teste comentário teste comentário',
-        tags: 'Proteína macia, Carboidrato de qualidade, Leguminosa saborosa, Variedade de saladas',
-        duracaoNota: 90
-      });
-    } catch (error) {}
+    });
   };
 
   useEffect(() => {
     if (shouldShowNoFilteredReviewsMessage) {
-      setShowMessageStrip(true);
+      setFeedbackMessageStrip({
+        show: true,
+        message: 'Nenhuma avaliação foi filtrada com sua pesquisa.',
+        value: MessageStripDesign.Information
+      });
 
       const timeoutId = setTimeout(() => {
-        setShowMessageStrip(false);
+        setFeedbackMessageStrip({ show: false });
       }, 5000);
 
       return () => {
@@ -110,10 +100,20 @@ export const Home: React.FC = () => {
   }, [shouldShowNoFilteredReviewsMessage]);
 
   useEffect(() => {
-    setShowMessageStrip(false);
+    setFeedbackMessageStrip({ show: false });
   }, [searchQuery]);
 
   useEffect(() => {
+    if (isReviewCreated) {
+      setFeedbackMessageStrip({
+        show: true,
+        message: 'Sua avaliação foi criada com sucesso!',
+        value: MessageStripDesign.Positive
+      });
+
+      setIsReviewCreated(false);
+    }
+
     setIsLoadingReviews(true);
     setIsLoadingAverageReviews(true);
     clearValidationErrors();
@@ -140,17 +140,23 @@ export const Home: React.FC = () => {
   }, [reviews]);
 
   useEffect(() => {
-    if (averageReviews.length > 0) {
-      setTimeout(() => {
-        setIsLoadingReviews(false);
-        setIsLoadingAverageReviews(false);
-      }, 50);
+    if (filteredAverageReviews.length > 0) {
+      setIsLoadingReviews(false);
+      setIsLoadingAverageReviews(false);
     }
-  }, [averageReviews]);
+  }, [filteredAverageReviews]);
 
   useEffect(() => {
-    if (newReview) insertNewReview();
-  }, [newReview]);
+    if (feedbackMessageStrip.show) {
+      const timeoutId = setTimeout(() => {
+        setFeedbackMessageStrip({ show: false });
+      }, 5000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [feedbackMessageStrip.show]);
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
@@ -161,15 +167,14 @@ export const Home: React.FC = () => {
           <CreateReviewInfoBox />
           <SearchReviewInfoBox />
         </FlexBox>
-        {showMessageStrip ? (
+        {feedbackMessageStrip.show ? (
           <FlexBox className={classes.messageStripContainer}>
             <MessageStrip
               className={classes.messageStrip}
-              onClose={() => setShowMessageStrip(false)}
+              onClose={() => setFeedbackMessageStrip({ show: false })}
+              design={feedbackMessageStrip.value}
             >
-              <Text style={{ fontSize: '15px' }}>
-                Nenhuma avaliação foi filtrada com sua pesquisa.
-              </Text>
+              <Text style={{ fontSize: '15px' }}>{feedbackMessageStrip.message}</Text>
             </MessageStrip>
           </FlexBox>
         ) : (
@@ -187,7 +192,9 @@ export const Home: React.FC = () => {
             <Title className={classes.sectionText} level={TitleLevel.H4}>
               Médias por Restaurante Universitário
             </Title>
-            <Text className={classes.sectionText}>({filteredAverageReviews.length} RUs)</Text>
+            <Text className={classes.sectionText}>
+              ({filteredAverageReviews.length > 0 ? filteredAverageReviews.length : '??'} RUs)
+            </Text>
           </FlexBox>
         </FlexBox>
         <FlexBox className={classes.averageReviewsContainer}>
@@ -206,7 +213,9 @@ export const Home: React.FC = () => {
             <Title className={classes.sectionText} level={TitleLevel.H4}>
               Avaliações por Refeição
             </Title>
-            <Text className={classes.sectionText}>({filteredReviews.length} avaliações)</Text>
+            <Text className={classes.sectionText}>
+              ({filteredAverageReviews.length > 0 ? filteredReviews.length : '??'} avaliações)
+            </Text>
           </FlexBox>
         </FlexBox>
         <FlexBox className={classes.reviewsContainer}>
@@ -217,7 +226,7 @@ export const Home: React.FC = () => {
             style={{ marginBottom: '300px' }}
           />
           {!isLoadingReviews &&
-            filteredReviews.map((review, index) => {
+            filteredReviews.slice(0, NUM_DISPLAYED_REVIEWS).map((review, index) => {
               return <ReviewCard key={index} review={review} />;
             })}
         </FlexBox>

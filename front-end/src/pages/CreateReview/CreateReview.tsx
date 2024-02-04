@@ -23,19 +23,80 @@ import { FloatingBar } from '../../components/FloatingBar/FloatingBar';
 import useNewReviewStore from '../../stores/useNewReviewStore';
 import { Tag } from '../../interfaces/Tags';
 import useReviewsStore from '../../stores/useReviewsStore';
+import { useCreateReviewMutation } from '../../hooks/mutations/useCreateReviewMutation';
+import { AppRoute } from '../../enums/AppRoutesEnum';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateReview: React.FC = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const setSearchQuery = useReviewsStore((value) => value.setSearchQuery);
-  const [clearNewReview, validationErrors] = useNewReviewStore((value) => [
-    value.clearNewReview,
-    value.validationErrors
-  ]);
+  const [newReview, clearNewReview, validationErrors, isReviewCreated, setIsReviewCreated] =
+    useNewReviewStore((value) => [
+      value.newReview,
+      value.clearNewReview,
+      value.validationErrors,
+      value.isReviewCreated,
+      value.setIsReviewCreated
+    ]);
 
   const [isSelectTagsDialogOpen, setIsSelectTagsDialogOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [showMessageStrip, setShowMessageStrip] = useState<boolean>(false);
+  const [feedbackMessageStrip, setFeedbackMessageStrip] = useState<{
+    show: boolean;
+    message?: string;
+    value?: MessageStripDesign;
+  }>({
+    show: false
+  });
+
+  const createReviewsMutation = useCreateReviewMutation();
+
+  const insertNewReview = async () => {
+    let hasFailed = false;
+
+    await createReviewsMutation
+      .mutateAsync({
+        siglaRU: newReview.ruCode,
+        siglaUniversidade: newReview.universityName,
+        emailUsuario: `email${Math.floor(Math.random() * 1000) + 1}@email.com`,
+        periodoNota: newReview.mealPeriod,
+        notaEstrelas: newReview.rating,
+        comentario: newReview.comment,
+        tags: newReview.tags,
+        duracaoNota: 90
+      })
+      .catch((error) => {
+        hasFailed = true;
+        setIsReviewCreated(false);
+        setFeedbackMessageStrip({
+          show: true,
+          message: `Um erro (${error.message}) inesperado aconteceu. Volte para a página principal e tente novamente.`,
+          value: MessageStripDesign.Negative
+        });
+        return;
+      })
+      .then(() => {
+        if (!hasFailed) navigateToHomePage();
+      });
+  };
+
+  const navigateToHomePage = () => {
+    navigate(AppRoute.Home);
+  };
+
+  useEffect(() => {
+    if (isReviewCreated) {
+      setFeedbackMessageStrip({
+        show: true,
+        message: 'Sua avaliação está sendo criada e em breve você será redirecionado!',
+        value: MessageStripDesign.Information
+      });
+      insertNewReview();
+    }
+  }, [isReviewCreated]);
 
   useEffect(() => {
     if (validationErrors.length > 0) {
@@ -87,6 +148,26 @@ export const CreateReview: React.FC = () => {
               onClose={() => setShowMessageStrip(false)}
             >
               {validationErrors[0]}
+            </MessageStrip>
+          </FlexBox>
+        </FlexBox>
+      ) : (
+        <></>
+      )}
+
+      {feedbackMessageStrip.show ? (
+        <FlexBox direction={FlexBoxDirection.Row} className={classes.messageStripBox}>
+          <FlexBox
+            id="feedbackMessageStripContainer"
+            className={classes.messageStripContainer}
+            direction={FlexBoxDirection.Column}
+          >
+            <MessageStrip
+              design={feedbackMessageStrip.value}
+              className={classes.messageStrip}
+              onClose={() => setFeedbackMessageStrip({ show: false })}
+            >
+              {feedbackMessageStrip.message}
             </MessageStrip>
           </FlexBox>
         </FlexBox>
