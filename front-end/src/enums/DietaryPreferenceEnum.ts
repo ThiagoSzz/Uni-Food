@@ -1,6 +1,6 @@
 export enum DietaryPreference {
-  OMNIVORE = 'Onívora',
-  VEGETARIAN = 'Vegetariana',
-  VEGAN = 'Vegana',
+  OMNIVORE = 'Onívoro',
+  VEGETARIAN = 'Vegetariano',
+  VEGAN = 'Vegano',
   UNDEFINED = ''
 }

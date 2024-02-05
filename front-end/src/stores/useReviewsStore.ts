@@ -99,7 +99,9 @@ const useReviewsStore = create<ReviewsStore>((set, get) => ({
 
       if (courseName.length > 0) {
         filteredReviews = reviews.filter((review) => {
-          return review.courseName.toLowerCase() === courseName.toLowerCase();
+          if (review.courseName)
+            return review.courseName.toLowerCase() === courseName.toLowerCase();
+          else return false;
         });
       }
 
@@ -107,7 +109,9 @@ const useReviewsStore = create<ReviewsStore>((set, get) => ({
 
       if (dietaryPreference !== DietaryPreference.UNDEFINED) {
         filteredReviews = filteredReviews.filter((review) => {
-          return review.dietaryPreference.toLowerCase() === dietaryPreference.toLowerCase();
+          if (review.dietaryPreference)
+            return review.dietaryPreference.toLowerCase() === dietaryPreference.toLowerCase();
+          else return false;
         });
       }
 
@@ -115,7 +119,9 @@ const useReviewsStore = create<ReviewsStore>((set, get) => ({
 
       if (mealPeriod !== MealPeriod.UNDEFINED) {
         filteredReviews = filteredReviews.filter((review) => {
-          return review.mealPeriod.toLowerCase() === mealPeriod.toLowerCase();
+          if (review.mealPeriod)
+            return review.mealPeriod.toLowerCase() === mealPeriod.toLowerCase();
+          else return false;
         });
       }
 
