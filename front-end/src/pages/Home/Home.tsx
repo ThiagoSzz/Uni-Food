@@ -28,7 +28,7 @@ import { useGetReviewsMutation } from '../../hooks/queries/useGetReviews';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
 
 const USE_BACKEND_REVIEWS = true;
-const NUM_DISPLAYED_REVIEWS = 52;
+const NUM_DISPLAYED_REVIEWS = 40;
 
 export const Home: React.FC = () => {
   const classes = useStyles();
@@ -195,7 +195,7 @@ export const Home: React.FC = () => {
               Médias por Restaurante Universitário
             </Title>
             <Text className={classes.sectionText}>
-              ({filteredAverageReviews.length > 0 ? filteredAverageReviews.length : '??'} RUs)
+              ({!isLoadingAverageReviews ? filteredAverageReviews.length : '??'} RUs)
             </Text>
           </FlexBox>
         </FlexBox>
@@ -216,7 +216,7 @@ export const Home: React.FC = () => {
               Avaliações por Refeição
             </Title>
             <Text className={classes.sectionText}>
-              ({filteredAverageReviews.length > 0 ? filteredReviews.length : '??'} avaliações)
+              ({!isLoadingReviews ? filteredReviews.length : '??'} avaliações)
             </Text>
           </FlexBox>
         </FlexBox>
