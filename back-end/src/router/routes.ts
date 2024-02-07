@@ -1,8 +1,8 @@
 import express from 'express';
-import testQueryController from '../controller/testQueryController';
+import getReviewsController from '../controller/reviewsController';
 
 const router = express.Router();
 
-router.use('/testquery', testQueryController);
+router.use('/reviews', getReviewsController);
 
 export default router;

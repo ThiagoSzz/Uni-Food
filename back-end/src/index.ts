@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
-import router from './controller/testQueryController';
+import router from './controller/reviewsController';
 import { logger } from './config/logger';
 
 config();
