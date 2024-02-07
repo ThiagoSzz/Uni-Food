@@ -1,15 +1,12 @@
 import { useMutation } from 'react-query';
 import api from '../config/api';
 import { AxiosResponse } from 'axios';
+import { TestMutationRequest } from '../interfaces/dtos/TestMutationRequestDTO';
 
 const TEST_MUTATION_NAME = 'testMutation';
 const TEST_MUTATION_API = '/testmutation';
 
 const TIMEOUT_MUTATION = 5000;
-
-interface TestMutationRequest {
-  testData: string;
-}
 
 export const useTestMutation = (options?) => {
   return useMutation<AxiosResponse<any, any>, Error, TestMutationRequest>({

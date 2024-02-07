@@ -10,18 +10,6 @@ body,
   height: 100vh;
 }
 
-#root {
-  align-items: center;
-  justify-content: center;
-}
-
-body,
-input,
-button,
-textarea {
-  color: var(--color-text-base);
-}
-
 body {
   background: var(--color-background);
   margin: 0;
