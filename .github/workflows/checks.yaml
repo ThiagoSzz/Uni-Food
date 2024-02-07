@@ -11,7 +11,7 @@ on:
       - main
 
 jobs:
-  jest:
+  FE_jest:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -32,7 +32,7 @@ jobs:
       - name: Run Jest Tests
         run: npm run test
 
-  cypress:
+  FE_cypress:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -60,11 +60,56 @@ jobs:
         env:
           API_URI: http://localhost:3000/
 
-  prettier:
+  FE_prettier:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./front-end
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Check Code Formatting with Prettier
+        run: npm run format:check
+
+  BE_jest:
+    runs-on: ubuntu-latest
+    env:
+      PORT: ${{ secrets.PORT }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    defaults:
+      run:
+        working-directory: ./back-end
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Jest Tests
+        run: npm run test
+
+  BE_prettier:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./back-end
 
     steps:
       - name: Checkout Repository
