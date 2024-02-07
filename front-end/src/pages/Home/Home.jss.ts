@@ -10,7 +10,10 @@ const styles: JSSStyles = {
     width: '100%'
   },
   messageStrip: {
-    width: '1354px'
+    width: '1354px',
+    '@media (min-width: 1024px) and (max-width: 1439px)': {
+      width: '1010px'
+    }
   },
   boxesContainer: {
     gap: '20px',

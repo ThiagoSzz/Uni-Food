@@ -1,53 +1,14 @@
 import {
   BestAndWorstRatingsByRU,
-  UniversityRuStandings,
   CommonRuAndUniversityInfo,
-  BestAndWorstRatings,
-  AverageReview
+  AverageReview,
+  BestAndWorstRatings
 } from '../interfaces/AverageReview';
 import { Review } from '../interfaces/Review';
 
 export const useAverageReviews = () => {
-  const getUniversityRuStandings = (reviews: Review[]): BestAndWorstRatingsByRU => {
-    const initialStandings: Record<string, UniversityRuStandings> = {};
-
-    reviews.forEach((review) => {
-      let universityStanding = initialStandings[review.universityName];
-
-      if (!universityStanding) {
-        initialStandings[review.universityName] = {
-          bestRU: review.ruCode,
-          bestRating: review.rating,
-          worstRU: review.ruCode,
-          worstRating: review.rating
-        };
-      } else {
-        if (review.rating > universityStanding.bestRating) {
-          universityStanding.bestRU = review.ruCode;
-          universityStanding.bestRating = review.rating;
-        } else if (review.rating < universityStanding.worstRating) {
-          universityStanding.worstRU = review.ruCode;
-          universityStanding.worstRating = review.rating;
-        }
-      }
-    });
-
-    const finalStandings: Record<string, BestAndWorstRatings> = {};
-    for (let university in initialStandings) {
-      finalStandings[university] = {
-        bestRU: initialStandings[university].bestRU,
-        worstRU: initialStandings[university].worstRU
-      };
-    }
-
-    return finalStandings;
-  };
-
-  const groupReviewsByRuAndUniversity = (
-    reviews: Review[],
-    bestAndWorst: BestAndWorstRatingsByRU
-  ): AverageReview[] => {
-    const groupedReviews = reviews.reduce(
+  const getGroupedReviewsInfo = (reviews: Review[]): Record<string, CommonRuAndUniversityInfo> => {
+    return reviews.reduce(
       (ruForUniversityInfo, currentReview) => {
         const key = `${currentReview.ruCode}-${currentReview.universityName}`;
 
@@ -68,18 +29,80 @@ export const useAverageReviews = () => {
       },
       {} as Record<string, CommonRuAndUniversityInfo>
     );
+  };
+
+  const getBestAndWorstRus = (
+    ruAndUniversityInfo: {
+      ruCode: string;
+      universityName: string;
+      averageRating: number;
+    }[]
+  ): Record<string, BestAndWorstRatings> => {
+    const universityStandings: Record<string, BestAndWorstRatings> = {};
+
+    ruAndUniversityInfo.forEach((info) => {
+      const key = info.universityName;
+
+      if (!universityStandings[key]) {
+        universityStandings[key] = {
+          bestRU: info.ruCode,
+          worstRU: info.ruCode
+        };
+      } else {
+        const currentBestRating = ruAndUniversityInfo.find(
+          (r) => r.universityName === key && r.ruCode === universityStandings[key].bestRU
+        )?.averageRating;
+
+        const currentWorstRating = ruAndUniversityInfo.find(
+          (r) => r.universityName === key && r.ruCode === universityStandings[key].worstRU
+        )?.averageRating;
+
+        if (info.averageRating > currentBestRating) {
+          universityStandings[key].bestRU = info.ruCode;
+        }
+
+        if (info.averageRating < currentWorstRating) {
+          universityStandings[key].worstRU = info.ruCode;
+        }
+      }
+    });
+
+    return universityStandings;
+  };
+
+  const getUniversityRuStandings = (reviews: Review[]): BestAndWorstRatingsByRU => {
+    const groupedReviews = getGroupedReviewsInfo(reviews);
+
+    const ruAndUniversityInfo = Object.values(groupedReviews).map(({ totalRating, ...other }) => {
+      return {
+        ruCode: other.ruCode,
+        universityName: other.universityName,
+        averageRating: parseFloat((totalRating / other.reviewsAmount).toFixed(1))
+      };
+    });
+
+    return getBestAndWorstRus(ruAndUniversityInfo);
+  };
+
+  const groupReviewsByRuAndUniversity = (
+    reviews: Review[],
+    bestAndWorst: BestAndWorstRatingsByRU
+  ): AverageReview[] => {
+    const groupedReviews = getGroupedReviewsInfo(reviews);
 
     const ruAndUniversityInfo: AverageReview[] = Object.values(groupedReviews).map(
       ({ totalRating, ...other }) => {
         const { bestRU, worstRU } = bestAndWorst[other.universityName];
 
+        const averageRating = parseFloat((totalRating / other.reviewsAmount).toFixed(1));
+
         return {
           ...other,
-          averageRating: totalRating / other.reviewsAmount,
-          isRising: totalRating / other.reviewsAmount >= 3.9,
-          isDescending: totalRating / other.reviewsAmount <= 2.6,
+          averageRating: averageRating,
+          isRising: averageRating >= 3.0,
+          isDescending: averageRating < 3.0,
           isBestReviewed: bestRU === other.ruCode,
-          isWorstReviewed: worstRU === other.ruCode && !(bestRU === other.ruCode)
+          isWorstReviewed: worstRU === other.ruCode
         };
       }
     );

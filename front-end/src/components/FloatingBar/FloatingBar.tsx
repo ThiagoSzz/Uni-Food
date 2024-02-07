@@ -9,13 +9,19 @@ export const FloatingBar = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const [createNewReview, validateFields, clearValidationErrors, hasFilledFields] =
-    useNewReviewStore((value) => [
-      value.createNewReview,
-      value.validateFields,
-      value.clearValidationErrors,
-      value.hasFilledFields
-    ]);
+  const [
+    createNewReview,
+    validateFields,
+    clearValidationErrors,
+    hasFilledFields,
+    setIsReviewCreated
+  ] = useNewReviewStore((value) => [
+    value.createNewReview,
+    value.validateFields,
+    value.clearValidationErrors,
+    value.hasFilledFields,
+    value.setIsReviewCreated
+  ]);
 
   const [confirmActionDialogOpen, setConfirmActionDialogOpen] = useState<boolean>(false);
 
@@ -26,7 +32,7 @@ export const FloatingBar = () => {
   const onSendButtonClick = () => {
     if (validateFields()) {
       createNewReview();
-      navigateToHomePage();
+      setIsReviewCreated(true);
     }
   };
 
