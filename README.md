@@ -21,7 +21,6 @@ A plataforma UniFood é uma aplicação que permite aos estudantes avaliar resta
 ![Cypress](https://img.shields.io/badge/-Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)
 ![React Query](https://img.shields.io/badge/React%20Query-FF4154.svg?style=for-the-badge&logo=React-Query&logoColor=white)
 ![UI5 Web Components](https://img.shields.io/badge/-UI5%20Web%20Components-0C77B6?style=for-the-badge&logo=sap&logoColor=white)
-![HTML](https://img.shields.io/badge/-HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![JSS](https://img.shields.io/badge/JSS-F7DF1E.svg?style=for-the-badge&logo=JSS&logoColor=black)
 
 ### Back-End
