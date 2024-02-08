@@ -75,7 +75,6 @@ export const ReviewCard = (props: ReviewCardProps) => {
 
               return (
                 <Badge
-                  className={classes.badge}
                   colorScheme={
                     isTagPositive
                       ? CardTagColors.Positive

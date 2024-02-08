@@ -11,7 +11,7 @@
     "@ui5/webcomponents-icons": "^1.19.0",
     "@ui5/webcomponents-react": "^1.22.2",
     "axios": "^1.6.2",
-    "jest": "^26.6.0",
+    "jest": "26.6.0",
     "jest-environment-jsdom-sixteen": "^2.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -23,7 +23,9 @@
     "zustand": "^4.4.6"
   },
   "scripts": {
-    "start": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "start": "npm run start:unix || npm run start:win",
+    "start:unix": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "start:win": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "test": "react-scripts test --silent --env jest-environment-jsdom-sixteen --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "react-scripts eject",
@@ -48,13 +50,13 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@types/jest": "^29.5.11",
     "@types/node": "^15.12.4",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
     "cypress": "^13.5.1",
     "prettier": "^3.1.1",
     "react-error-overlay": "6.0.9",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "webpack": "^4.44.2"
   }
 }

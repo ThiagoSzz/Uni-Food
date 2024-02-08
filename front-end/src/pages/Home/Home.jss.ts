@@ -58,6 +58,9 @@ const styles: JSSStyles = {
     overflowY: 'auto',
     '@media (min-width: 1024px) and (max-width: 1439px)': {
       width: '1014px'
+    },
+    '&::-webkit-scrollbar': {
+      display: 'none',
     }
   },
   reviewsContainer: {
@@ -68,11 +71,15 @@ const styles: JSSStyles = {
     flexWrap: 'wrap',
     alignSelf: 'center',
     justifyContent: 'flex-start',
+    scrollbarGutter: '',
     overflowY: 'auto',
     '@media (min-width: 1024px) and (max-width: 1439px)': {
       width: '1014px'
+    },
+    '&::-webkit-scrollbar': {
+      display: 'none',
     }
-  }
+  },
 };
 
 export const useStyles = createUseStyles(styles, {

@@ -61,9 +61,6 @@ const styles: JSSStyles = {
     overflow: 'auto',
     marginLeft: '17px',
     marginBottom: '17px'
-  },
-  badge: {
-    padding: '4px'
   }
 };
 

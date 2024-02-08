@@ -27,17 +27,20 @@ const styles = {
     wordWrap: 'break-word',
     overflowWrap: 'break-word',
     whiteSpace: 'pre-wrap',
-    overflowY: 'scroll'
+    overflowY: 'scroll',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    }
   },
   badgesList: {
     marginTop: '10px',
     flexWrap: 'wrap',
     gap: '4px',
     maxHeight: '62px',
-    overflow: 'auto'
-  },
-  badge: {
-    padding: '4px'
+    overflow: 'auto',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    }
   }
 };
 

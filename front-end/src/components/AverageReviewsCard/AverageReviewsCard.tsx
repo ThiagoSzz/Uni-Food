@@ -83,7 +83,7 @@ export const AverageReviewsCard = (props: AverageReviewCardProps) => {
         {cardTags.length > 0 &&
           cardTags.map((tag, index) => {
             return (
-              <Badge key={index} colorScheme={tag.status} className={classes.badge}>
+              <Badge key={index} colorScheme={tag.status}>
                 {tag.name}
               </Badge>
             );
