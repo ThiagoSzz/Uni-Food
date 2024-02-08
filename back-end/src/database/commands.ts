@@ -1,3 +1,4 @@
+import { logger } from '../config/logger';
 import { sqlOperation } from './config';
 
 export const getAllReviews = async (): Promise<Record<string, any>[]> => {
@@ -27,12 +28,11 @@ export const getAllReviews = async (): Promise<Record<string, any>[]> => {
       Universidade U2 ON R.sigla_universidade = U2.sigla;
   `;
 
-  const operationDescription = 'Get all reviews';
-
   try {
-    return sqlOperation(operationCommand, [], operationDescription);
+    logger.info('Get all reviews: operation triggered');
+    return await sqlOperation(operationCommand, []);
   } catch (error) {
-    console.error(`Error in ${operationCommand} operation:`, error);
+    logger.error('Get all reviews: error', error);
     throw error;
   }
 };
@@ -44,12 +44,11 @@ export const getRuId = async (ruCode: string, universityName: string) => {
     WHERE sigla_ru = $1 AND sigla_universidade = $2
   `;
 
-  const operationDescription = 'Get university restaurant id';
-
   try {
-    return sqlOperation(operationCommand, [ruCode, universityName], operationDescription);
+    logger.info('Get university restaurant id: operation triggered');
+    return await sqlOperation(operationCommand, [ruCode, universityName]);
   } catch (error) {
-    console.error(`Error in ${operationCommand} operation:`, error);
+    logger.error('Get university restaurant id: error', error);
     throw error;
   }
 };
@@ -57,12 +56,11 @@ export const getRuId = async (ruCode: string, universityName: string) => {
 export const getNextReviewId = async () => {
   const operationCommand = `SELECT nextval('avaliacao_seq')`;
 
-  const operationDescription = 'Get next review id';
-
   try {
-    return sqlOperation(operationCommand, [], operationDescription);
+    logger.info('Get next review id: operation triggered');
+    return await sqlOperation(operationCommand, []);
   } catch (error) {
-    console.error(`Error in ${operationCommand} operation:`, error);
+    logger.error('Get next review id: error', error);
     throw error;
   }
 };
@@ -84,16 +82,14 @@ export const insertNewRating = async (
   const joinedTags: string = tags.map((tag) => `{"${tag.name}", ${tag.type}}`).join(', ');
   const formattedTags: string = `{${joinedTags}}`;
 
-  const operationDescription = 'Insert new rating';
-
   try {
-    return sqlOperation(
+    logger.info('Insert new rating: operation triggered');
+    return await sqlOperation(
       operationCommand,
-      [ratingId, userEmail, mealPeriod, rating, comment, formattedTags, ratingDuration],
-      operationDescription
+      [ratingId, userEmail, mealPeriod, rating, comment, formattedTags, ratingDuration]
     );
   } catch (error) {
-    console.error(`Error in ${operationCommand} operation:`, error);
+    logger.error('Insert new rating: error', error);
     throw error;
   }
 };
@@ -104,12 +100,11 @@ export const insertNewReview = async (reviewId: number, userEmail: string, ruId:
     VALUES ($1, $1, $2, $3) 
   `;
 
-  const operationDescription = 'Insert new review';
-
   try {
-    return sqlOperation(operationCommand, [reviewId, userEmail, ruId], operationDescription);
+    logger.info('Insert new review: operation triggered');
+    return await sqlOperation(operationCommand, [reviewId, userEmail, ruId]);
   } catch (error) {
-    console.error(`Error in ${operationCommand} operation:`, error);
+    logger.error('Insert new review: error', error);
     throw error;
   }
 };
