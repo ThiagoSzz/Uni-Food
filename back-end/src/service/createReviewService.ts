@@ -1,3 +1,4 @@
+import cache from 'memory-cache';
 import { getNextReviewId, getRuId, insertNewRating, insertNewReview } from '../database/commands';
 
 export class CreateReviewService {
@@ -11,6 +12,8 @@ export class CreateReviewService {
     tags: any[],
     ratingDuration: number
   ) => {
+    cache.del('get-reviews');
+
     const [{ cod_ru: ruId }] = await getRuId(ruCode, universityName);
 
     const [{ nextval: ratingId }] = await getNextReviewId();
