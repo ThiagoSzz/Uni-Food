@@ -1,7 +1,6 @@
 import {
   Card,
   CardHeader,
-  Avatar,
   List,
   ListSeparators,
   StandardListItem,
@@ -11,7 +10,10 @@ import {
   Badge,
   TitleLevel,
   Title,
-  Text
+  Text,
+  Avatar,
+  Button,
+  ButtonDesign
 } from '@ui5/webcomponents-react';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
 
@@ -20,6 +22,9 @@ import { ReviewCardProps } from '../../interfaces/props/ReviewCardProps';
 import { AvatarBackgroundColors, AvatarIconColors } from '../../enums/AvatarColorsEnum';
 import { useEffect, useState } from 'react';
 import { TagTypes } from '../../enums/TagTypes';
+import { Tooltip } from 'react-tippy';
+
+import 'react-tippy/dist/tippy.css';
 
 export const ReviewCard = (props: ReviewCardProps) => {
   const { review } = props;
@@ -31,6 +36,7 @@ export const ReviewCard = (props: ReviewCardProps) => {
     background: undefined,
     icon: undefined
   });
+  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const backgroundKeys = Object.keys(AvatarBackgroundColors);
@@ -52,11 +58,50 @@ export const ReviewCard = (props: ReviewCardProps) => {
     <Card
       className={classes.reviewCard}
       header={
-        <CardHeader
-          avatar={<Avatar icon="employee" className={classes.reviewCardAvatar} />}
-          titleText={review.ruCode + ' - ' + review.universityName}
-          subtitleText={review.city}
-        />
+        <FlexBox>
+          <CardHeader
+            onFocus={(e) => e.preventDefault()}
+            avatar={<Avatar icon="employee" className={classes.reviewCardAvatar} />}
+            titleText={review.ruCode + ' - ' + review.universityName}
+            subtitleText={review.city}
+            className={classes.cardHeader}
+          />
+          <Tooltip
+            html={
+              <span>
+                {review.courseName ? (
+                  <p>
+                    <strong>Curso: </strong>
+                    {review.courseName}
+                  </p>
+                ) : (
+                  <></>
+                )}
+                <p>
+                  <strong>Período da refeição: </strong>
+                  {review.mealPeriod}
+                </p>
+                <p>
+                  <strong>Preferência alimentar: </strong>
+                  {review.dietaryPreference}
+                </p>
+              </span>
+            }
+            open={isTooltipOpen}
+            position="bottom"
+            arrow
+            arrowSize="small"
+            className={classes.tooltip}
+          >
+            <Button
+              icon="toaster-top"
+              design={ButtonDesign.Default}
+              onMouseEnter={() => setIsTooltipOpen(true)}
+              onMouseLeave={() => setIsTooltipOpen(false)}
+              style={{ cursor: 'default' }}
+            />
+          </Tooltip>
+        </FlexBox>
       }
     >
       <List separators={ListSeparators.None}>

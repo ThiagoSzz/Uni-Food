@@ -29,7 +29,7 @@ const styles = {
     whiteSpace: 'pre-wrap',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
-      display: 'none',
+      display: 'none'
     }
   },
   badgesList: {
@@ -39,8 +39,19 @@ const styles = {
     maxHeight: '62px',
     overflow: 'auto',
     '&::-webkit-scrollbar': {
-      display: 'none',
+      display: 'none'
     }
+  },
+  tooltip: {
+    display: 'flex',
+    width: '40px',
+    height: 'fit-content',
+    position: 'relative',
+    justifySelf: 'flex-end',
+    alignSelf: 'center'
+  },
+  cardHeader: {
+    width: '275px'
   }
 };
 
