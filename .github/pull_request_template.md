@@ -15,4 +15,4 @@
 
 - [ ] Manual testing has been performed and no issues were found
 - [ ] If new tests were added, they are effective (i.e., they test the functionality correctly)
-- [ ] The implementation meets the requirements specified
+- [ ] The implementation meets the specified requirements
