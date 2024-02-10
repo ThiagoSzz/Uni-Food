@@ -3,7 +3,7 @@ import { logger } from '../config/logger';
 import { getAllReviews } from '../database/commands';
 
 const MINUTE = 60 * 1000;
-const CACHE_TIME = 10 * MINUTE;
+const CACHE_TIME = 30 * MINUTE;
 
 export class GetReviewsService {
   private isCacheExpired = false;
@@ -27,7 +27,7 @@ export class GetReviewsService {
     const cacheTimestamp = cache.get('get-reviews-timestamp');
     const currentTime = Date.now();
 
-    if (!cacheTimestamp || (currentTime - cacheTimestamp) > CACHE_TIME) {
+    if (!cacheTimestamp || currentTime - cacheTimestamp > CACHE_TIME) {
       if (!this.isCacheExpired) {
         logger.warn('Get all reviews: cache expired');
         this.isCacheExpired = true;
