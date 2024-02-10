@@ -207,7 +207,7 @@ export const Home: React.FC = () => {
           />
           {!isLoadingAverageReviews &&
             filteredAverageReviews.map((averageReview, index) => {
-              return <AverageReviewsCard key={index} averageReview={averageReview} />;
+              return <AverageReviewsCard key={`average-${index}`} averageReview={averageReview} />;
             })}
         </FlexBox>
         <FlexBox className={classes.textContainer}>
@@ -229,7 +229,7 @@ export const Home: React.FC = () => {
           />
           {!isLoadingReviews &&
             filteredReviews.slice(0, NUM_DISPLAYED_REVIEWS).map((review, index) => {
-              return <ReviewCard key={index} review={review} />;
+              return <ReviewCard key={`review-${index}`} review={review} />;
             })}
         </FlexBox>
       </FlexBox>

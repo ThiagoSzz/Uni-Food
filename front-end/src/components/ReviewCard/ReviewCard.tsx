@@ -19,6 +19,7 @@ import { useStyles } from './ReviewCard.jss';
 import { ReviewCardProps } from '../../interfaces/props/ReviewCardProps';
 import { AvatarBackgroundColors, AvatarIconColors } from '../../enums/AvatarColorsEnum';
 import { useEffect, useState } from 'react';
+import { TagTypes } from '../../enums/TagTypes';
 
 export const ReviewCard = (props: ReviewCardProps) => {
   const { review } = props;
@@ -69,12 +70,13 @@ export const ReviewCard = (props: ReviewCardProps) => {
         <StandardListItem type={ListItemType.Inactive} style={{ height: 'auto', marginTop: '5px' }}>
           <Title level={TitleLevel.H5}>Tags</Title>
           <FlexBox className={classes.badgesList}>
-            {review.tags.map((tag) => {
-              const isTagPositive = tag.type === 'positive';
-              const isTagNegative = tag.type === 'negative';
+            {review.tags.map((tag, index) => {
+              const isTagPositive = tag.type === TagTypes.Positive;
+              const isTagNegative = tag.type === TagTypes.Negative;
 
               return (
                 <Badge
+                  key={index}
                   colorScheme={
                     isTagPositive
                       ? CardTagColors.Positive

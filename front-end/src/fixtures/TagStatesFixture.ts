@@ -4,10 +4,9 @@ const positiveTags = [
   'Leguminosa saborosa',
   'Variedade de saladas',
   'Com opção de sobremesa',
-  'Ambiente harmonioso',
   'Bom cozimento dos alimentos',
   'Comida saborosa',
-  'Boa temperatura dos pratos',
+  'Boa temperatura dos alimentos',
   'Bom atendimento',
   'Fila curta'
 ];
@@ -17,11 +16,10 @@ const negativeTags = [
   'Carboidrato de baixa qualidade',
   'Leguminosa sem sabor',
   'Poucas opções de saladas',
-  'Sem opção de sobremesa',
-  'Ambiente barulhento',
+  'Sem sobremesa',
   'Mau cozimento dos alimentos',
   'Comida de baixa qualidade',
-  'Temperatura inadequada dos pratos',
+  'Temperatura inadequada dos alimentos',
   'Mau atendimento',
   'Fila grande'
 ];
@@ -32,8 +30,7 @@ const neutralTags = [
   'Cadeiras pequenas',
   'Talheres antigas',
   'Poucos funcionários',
-  'Não aceita cartão',
-  'Não aceita PIX',
+  'Poucos métodos de pagamento',
   'Localização conveniente',
   'Cardápio atualizado',
   'Sinal de Wi-Fi ruim',

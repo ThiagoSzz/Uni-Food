@@ -18,10 +18,8 @@ import '@ui5/webcomponents-icons/dist/AllIcons';
 import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomShellBar';
 import { ReviewInfoForm } from '../../components/ReviewInfoForm/ReviewInfoForm';
 import { OptionalInfoForm } from '../../components/OptionalInfoForm/OptionalInfoForm';
-import { SelectTagsDialog } from '../../components/SelectTagsDialog/SelectTagsDialog';
 import { FloatingBar } from '../../components/FloatingBar/FloatingBar';
 import useNewReviewStore from '../../stores/useNewReviewStore';
-import { Tag } from '../../interfaces/Tags';
 import useReviewsStore from '../../stores/useReviewsStore';
 import { useCreateReviewMutation } from '../../hooks/mutations/useCreateReviewMutation';
 import { AppRoute } from '../../enums/AppRoutesEnum';
@@ -41,8 +39,6 @@ export const CreateReview: React.FC = () => {
       value.setIsReviewCreated
     ]);
 
-  const [isSelectTagsDialogOpen, setIsSelectTagsDialogOpen] = useState(false);
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [showMessageStrip, setShowMessageStrip] = useState<boolean>(false);
   const [feedbackMessageStrip, setFeedbackMessageStrip] = useState<{
     show: boolean;
@@ -187,11 +183,7 @@ export const CreateReview: React.FC = () => {
               Precisamos de algumas informações para poder identificar o RU da sua avaliação.
             </Text>
             <FlexBox direction={FlexBoxDirection.Column}>
-              <ReviewInfoForm
-                setIsSelectTagsDialogOpen={setIsSelectTagsDialogOpen}
-                selectedTags={selectedTags}
-                setSelectedTags={setSelectedTags}
-              />
+              <ReviewInfoForm />
             </FlexBox>
           </FlexBox>
         </ObjectPageSection>
@@ -210,13 +202,6 @@ export const CreateReview: React.FC = () => {
           </FlexBox>
         </ObjectPageSection>
       </ObjectPage>
-
-      <SelectTagsDialog
-        isSelectTagsDialogOpen={isSelectTagsDialogOpen}
-        setIsSelectTagsDialogOpen={setIsSelectTagsDialogOpen}
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
-      />
       <FloatingBar />
     </FlexBox>
   );

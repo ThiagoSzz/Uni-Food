@@ -1,5 +1,6 @@
 import { DietaryPreference } from '../enums/DietaryPreferenceEnum';
 import { MealPeriod } from '../enums/MealPeriodEnum';
+import { TagTypes } from '../enums/TagTypes';
 import { Review } from '../interfaces/Review';
 
 const reviews: Review[] = [
@@ -10,11 +11,11 @@ const reviews: Review[] = [
     comment:
       'Gostei bastante! A comida estava saborosa, e o atendimento foi muito bom. Ambiente tranquilo e limpo.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -29,10 +30,10 @@ const reviews: Review[] = [
     comment:
       'Não gostei muito. A proteína estava dura demais, e não tinha muitas opções de proteína animal. Poderiam limpar melhor as mesas e cadeiras do RU.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Ambiente harmonioso', type: 'positive' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -47,9 +48,9 @@ const reviews: Review[] = [
     comment:
       'A comida estava fria e não tinha talheres para todos. Alguns frequentadores tiveram que comer só com garfo. Não tinha água pois o filtro estava quebrado.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Sinal de Wi-Fi ruim', type: 'neutral' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Sinal de Wi-Fi ruim', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -64,11 +65,11 @@ const reviews: Review[] = [
     comment:
       'A comida era boa, mas o local estava um pouco barulhento. No entanto, a fila estava curta, o que facilitou.',
     tags: [
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Leguminosa sem sabor', type: 'negative' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Leguminosa sem sabor', type: TagTypes.Negative },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Física',
@@ -81,12 +82,12 @@ const reviews: Review[] = [
     universityName: 'UNESP',
     rating: 4,
     comment:
-      'Ótima temperatura dos pratos e muita variedade de saladas frescas. A fila no horário do almoço estava curta.',
+      'Ótima temperatura dos alimentos e muita variedade de saladas frescas. A fila no horário do almoço estava curta.',
     tags: [
-      { name: 'Boa temperatura dos pratos', type: 'positive' },
-      { name: 'Água gratuita', type: 'neutral' },
-      { name: 'Variedade de saladas', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Boa temperatura dos alimentos', type: TagTypes.Positive },
+      { name: 'Água gratuita', type: TagTypes.Neutral },
+      { name: 'Variedade de saladas', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Química',
@@ -101,10 +102,10 @@ const reviews: Review[] = [
     comment:
       'Almoço razoável, mas o ambiente estava um pouco sujo. Fila no horário do almoço estava aceitável.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Com opção de sobremesa', type: 'positive' },
-      { name: 'Carboidrato de qualidade', type: 'positive' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Engenharia Civil',
@@ -117,12 +118,12 @@ const reviews: Review[] = [
     universityName: 'UFC',
     rating: 4,
     comment:
-      'Excelente experiência! Boa variedade de pratos, ambiente aconchegante e ótimo atendimento.',
+      'Excelente experiência! Boa variedade de alimentos, ambiente aconchegante e ótimo atendimento.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Com opção de sobremesa', type: 'positive' },
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Comida saborosa', type: 'positive' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Comida saborosa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Matemática',
@@ -137,10 +138,10 @@ const reviews: Review[] = [
     comment:
       'Comida fria e sem sabor. O atendimento deixou a desejar, e a fila estava grande demais.',
     tags: [
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Leguminosa sem sabor', type: 'negative' },
-      { name: 'Mau atendimento', type: 'negative' }
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Leguminosa sem sabor', type: TagTypes.Negative },
+      { name: 'Mau atendimento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Física',
@@ -154,10 +155,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Top demais! Comida deliciosa, ambiente limpo e organizado, e atendimento nota 10!',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Bom cozimento dos alimentos', type: 'positive' },
-      { name: 'Variedade de saladas', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Bom cozimento dos alimentos', type: TagTypes.Positive },
+      { name: 'Variedade de saladas', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Ciência da Computação',
@@ -172,11 +173,11 @@ const reviews: Review[] = [
     comment:
       'Bom almoço, mas a fila estava um pouco longa. Precisam melhorar a variedade de saladas.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'History',
@@ -190,10 +191,10 @@ const reviews: Review[] = [
     rating: 2,
     comment: 'Experiência ruim. Comida de baixa qualidade, ambiente sujo e atendimento péssimo.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Química',
@@ -207,10 +208,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'O melhor RU que já visitei! Comida incrível, ambiente limpo e atendimento impecável.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Boa temperatura dos pratos', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Fila grande', type: 'negative' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Boa temperatura dos alimentos', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Fila grande', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Matemática',
@@ -225,10 +226,10 @@ const reviews: Review[] = [
     comment:
       'Almoço satisfatório. Comida boa, ambiente agradável, mas a fila estava um pouco longa.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Sinal de Wi-Fi ruim', type: 'negative' },
-      { name: 'Leguminosa saborosa', type: 'positive' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Sinal de Wi-Fi ruim', type: TagTypes.Negative },
+      { name: 'Leguminosa saborosa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Física',
@@ -243,10 +244,10 @@ const reviews: Review[] = [
     comment:
       'Almoço regular. Comida boa, mas o ambiente estava um pouco barulhento. Fila aceitável.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Variedade de sobremesas', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Variedade de sobremesas', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -260,10 +261,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Ótima experiência! Comida saborosa, ambiente limpo e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' },
-      { name: 'Fila aceitável', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Fila aceitável', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Medicina',
@@ -277,10 +278,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Excelente! Comida de alta qualidade, ambiente agradável e atendimento excepcional.',
     tags: [
-      { name: 'Comida de alta qualidade', type: 'positive' },
-      { name: 'Ambiente aconchegante', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida de alta qualidade', type: TagTypes.Positive },
+      { name: 'Ambiente aconchegante', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Engenharia Civil',
@@ -295,10 +296,10 @@ const reviews: Review[] = [
     comment:
       'Almoço razoável. Comida boa, mas o atendimento deixou um pouco a desejar. Fila longa.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Atendimento aquém do esperado', type: 'negative' },
-      { name: 'Fila longa', type: 'negative' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Atendimento aquém do esperado', type: TagTypes.Negative },
+      { name: 'Fila longa', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Direito',
@@ -312,10 +313,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Boa opção para o almoço. Comida saborosa, ambiente limpo e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente limpo', type: 'positive' },
-      { name: 'Fila aceitável', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Ambiente limpo', type: TagTypes.Positive },
+      { name: 'Fila aceitável', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Psicologia',
@@ -329,10 +330,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Biology',
@@ -346,10 +347,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Incrível! Comida deliciosa, ambiente acolhedor e atendimento excepcional.',
     tags: [
-      { name: 'Comida deliciosa', type: 'positive' },
-      { name: 'Ambiente acolhedor', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida deliciosa', type: TagTypes.Positive },
+      { name: 'Ambiente acolhedor', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Física',
@@ -363,10 +364,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Química',
@@ -380,10 +381,10 @@ const reviews: Review[] = [
     rating: 2,
     comment: 'Experiência desagradável. Comida ruim, ambiente sujo e atendimento péssimo.',
     tags: [
-      { name: 'Comida ruim', type: 'negative' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Atendimento péssimo', type: 'negative' },
-      { name: 'Fila grande', type: 'negative' }
+      { name: 'Comida ruim', type: TagTypes.Negative },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Atendimento péssimo', type: TagTypes.Negative },
+      { name: 'Fila grande', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Matemática',
@@ -397,10 +398,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Ótimo almoço! Comida saborosa, ambiente agradável e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Ambiente agradável', type: 'positive' },
-      { name: 'Atendimento eficiente', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Ambiente agradável', type: TagTypes.Positive },
+      { name: 'Atendimento eficiente', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'História',
@@ -414,10 +415,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Física',
@@ -431,10 +432,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Incrível! Comida deliciosa, ambiente acolhedor e atendimento excepcional.',
     tags: [
-      { name: 'Comida deliciosa', type: 'positive' },
-      { name: 'Ambiente acolhedor', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida deliciosa', type: TagTypes.Positive },
+      { name: 'Ambiente acolhedor', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Química',
@@ -449,11 +450,11 @@ const reviews: Review[] = [
     comment:
       'Bom almoço, mas a fila estava um pouco longa. Precisam melhorar a variedade de saladas.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Comida de qualidade', type: 'positive' },
-      { name: 'Atendimento bom', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Comida de qualidade', type: TagTypes.Positive },
+      { name: 'Atendimento bom', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Engenharia Civil',
@@ -467,10 +468,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Almoço muito bom! Comida saborosa e variada, além de um ambiente agradável.',
     tags: [
-      { name: 'Comida de qualidade', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' },
-      { name: 'Atendimento eficiente', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida de qualidade', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Atendimento eficiente', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Medicina',
@@ -484,9 +485,9 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Não estava tão bom como normalmente é.',
     tags: [
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Ambiente sujo', type: 'negative' }
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Ambiente sujo', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Medicina',
@@ -501,11 +502,11 @@ const reviews: Review[] = [
     comment:
       'Gostei bastante! A comida estava saborosa, e o atendimento foi muito bom. Ambiente tranquilo e limpo.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -520,10 +521,10 @@ const reviews: Review[] = [
     comment:
       'Não gostei muito. A proteína estava dura demais, e não tinha muitas opções de proteína animal. Poderiam limpar melhor as mesas e cadeiras do RU.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Ambiente harmonioso', type: 'positive' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -538,9 +539,9 @@ const reviews: Review[] = [
     comment:
       'A comida estava fria e não tinha talheres para todos. Alguns frequentadores tiveram que comer só com garfo. Não tinha água pois o filtro estava quebrado.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Sinal de Wi-Fi ruim', type: 'neutral' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Sinal de Wi-Fi ruim', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -555,11 +556,11 @@ const reviews: Review[] = [
     comment:
       'A comida era boa, mas o local estava um pouco barulhento. No entanto, a fila estava curta, o que facilitou.',
     tags: [
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Leguminosa sem sabor', type: 'negative' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Leguminosa sem sabor', type: TagTypes.Negative },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Física',
@@ -572,12 +573,12 @@ const reviews: Review[] = [
     universityName: 'UNESP',
     rating: 4,
     comment:
-      'Ótima temperatura dos pratos e muita variedade de saladas frescas. A fila no horário do almoço estava curta.',
+      'Ótima temperatura dos alimentos e muita variedade de saladas frescas. A fila no horário do almoço estava curta.',
     tags: [
-      { name: 'Boa temperatura dos pratos', type: 'positive' },
-      { name: 'Água gratuita', type: 'neutral' },
-      { name: 'Variedade de saladas', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Boa temperatura dos alimentos', type: TagTypes.Positive },
+      { name: 'Água gratuita', type: TagTypes.Neutral },
+      { name: 'Variedade de saladas', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Química',
@@ -592,10 +593,10 @@ const reviews: Review[] = [
     comment:
       'Almoço razoável, mas o ambiente estava um pouco sujo. Fila no horário do almoço estava aceitável.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Com opção de sobremesa', type: 'positive' },
-      { name: 'Carboidrato de qualidade', type: 'positive' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Engenharia Civil',
@@ -608,12 +609,12 @@ const reviews: Review[] = [
     universityName: 'UFC',
     rating: 4,
     comment:
-      'Excelente experiência! Boa variedade de pratos, ambiente aconchegante e ótimo atendimento.',
+      'Excelente experiência! Boa variedade de alimentos, ambiente aconchegante e ótimo atendimento.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Com opção de sobremesa', type: 'positive' },
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Comida saborosa', type: 'positive' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Comida saborosa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Matemática',
@@ -628,10 +629,10 @@ const reviews: Review[] = [
     comment:
       'Comida fria e sem sabor. O atendimento deixou a desejar, e a fila estava grande demais.',
     tags: [
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Leguminosa sem sabor', type: 'negative' },
-      { name: 'Mau atendimento', type: 'negative' }
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Leguminosa sem sabor', type: TagTypes.Negative },
+      { name: 'Mau atendimento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Física',
@@ -645,10 +646,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Top demais! Comida deliciosa, ambiente limpo e organizado, e atendimento nota 10!',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Bom cozimento dos alimentos', type: 'positive' },
-      { name: 'Variedade de saladas', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Bom cozimento dos alimentos', type: TagTypes.Positive },
+      { name: 'Variedade de saladas', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Ciência da Computação',
@@ -663,11 +664,11 @@ const reviews: Review[] = [
     comment:
       'Bom almoço, mas a fila estava um pouco longa. Precisam melhorar a variedade de saladas.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'History',
@@ -681,10 +682,10 @@ const reviews: Review[] = [
     rating: 2,
     comment: 'Experiência ruim. Comida de baixa qualidade, ambiente sujo e atendimento péssimo.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Química',
@@ -698,10 +699,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'O melhor RU que já visitei! Comida incrível, ambiente limpo e atendimento impecável.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Boa temperatura dos pratos', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Fila grande', type: 'negative' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Boa temperatura dos alimentos', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Fila grande', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Matemática',
@@ -716,10 +717,10 @@ const reviews: Review[] = [
     comment:
       'Almoço satisfatório. Comida boa, ambiente agradável, mas a fila estava um pouco longa.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Sinal de Wi-Fi ruim', type: 'negative' },
-      { name: 'Leguminosa saborosa', type: 'positive' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Sinal de Wi-Fi ruim', type: TagTypes.Negative },
+      { name: 'Leguminosa saborosa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Física',
@@ -734,10 +735,10 @@ const reviews: Review[] = [
     comment:
       'Almoço regular. Comida boa, mas o ambiente estava um pouco barulhento. Fila aceitável.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Variedade de sobremesas', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Variedade de sobremesas', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -751,10 +752,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Ótima experiência! Comida saborosa, ambiente limpo e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' },
-      { name: 'Fila aceitável', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Fila aceitável', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Medicina',
@@ -768,10 +769,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Excelente! Comida de alta qualidade, ambiente agradável e atendimento excepcional.',
     tags: [
-      { name: 'Comida de alta qualidade', type: 'positive' },
-      { name: 'Ambiente aconchegante', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida de alta qualidade', type: TagTypes.Positive },
+      { name: 'Ambiente aconchegante', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Engenharia Civil',
@@ -786,10 +787,10 @@ const reviews: Review[] = [
     comment:
       'Almoço razoável. Comida boa, mas o atendimento deixou um pouco a desejar. Fila longa.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Atendimento aquém do esperado', type: 'negative' },
-      { name: 'Fila longa', type: 'negative' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Atendimento aquém do esperado', type: TagTypes.Negative },
+      { name: 'Fila longa', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Direito',
@@ -803,10 +804,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Boa opção para o almoço. Comida saborosa, ambiente limpo e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente limpo', type: 'positive' },
-      { name: 'Fila aceitável', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Ambiente limpo', type: TagTypes.Positive },
+      { name: 'Fila aceitável', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Psicologia',
@@ -820,10 +821,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Biology',
@@ -837,10 +838,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Incrível! Comida deliciosa, ambiente acolhedor e atendimento excepcional.',
     tags: [
-      { name: 'Comida deliciosa', type: 'positive' },
-      { name: 'Ambiente acolhedor', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida deliciosa', type: TagTypes.Positive },
+      { name: 'Ambiente acolhedor', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Física',
@@ -854,10 +855,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Química',
@@ -871,10 +872,10 @@ const reviews: Review[] = [
     rating: 2,
     comment: 'Experiência desagradável. Comida ruim, ambiente sujo e atendimento péssimo.',
     tags: [
-      { name: 'Comida ruim', type: 'negative' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Atendimento péssimo', type: 'negative' },
-      { name: 'Fila grande', type: 'negative' }
+      { name: 'Comida ruim', type: TagTypes.Negative },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Atendimento péssimo', type: TagTypes.Negative },
+      { name: 'Fila grande', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Matemática',
@@ -888,10 +889,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Ótimo almoço! Comida saborosa, ambiente agradável e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Ambiente agradável', type: 'positive' },
-      { name: 'Atendimento eficiente', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Ambiente agradável', type: TagTypes.Positive },
+      { name: 'Atendimento eficiente', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'História',
@@ -905,10 +906,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Física',
@@ -922,10 +923,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Incrível! Comida deliciosa, ambiente acolhedor e atendimento excepcional.',
     tags: [
-      { name: 'Comida deliciosa', type: 'positive' },
-      { name: 'Ambiente acolhedor', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida deliciosa', type: TagTypes.Positive },
+      { name: 'Ambiente acolhedor', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Química',
@@ -940,11 +941,11 @@ const reviews: Review[] = [
     comment:
       'Bom almoço, mas a fila estava um pouco longa. Precisam melhorar a variedade de saladas.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Comida de qualidade', type: 'positive' },
-      { name: 'Atendimento bom', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Comida de qualidade', type: TagTypes.Positive },
+      { name: 'Atendimento bom', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Engenharia Civil',
@@ -958,10 +959,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Almoço muito bom! Comida saborosa e variada, além de um ambiente agradável.',
     tags: [
-      { name: 'Comida de qualidade', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' },
-      { name: 'Atendimento eficiente', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida de qualidade', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Atendimento eficiente', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Medicina',
@@ -975,9 +976,9 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Não estava tão bom como normalmente é.',
     tags: [
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Ambiente sujo', type: 'negative' }
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Ambiente sujo', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Medicina',
@@ -992,11 +993,11 @@ const reviews: Review[] = [
     comment:
       'Gostei bastante! A comida estava saborosa, e o atendimento foi muito bom. Ambiente tranquilo e limpo.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -1011,10 +1012,10 @@ const reviews: Review[] = [
     comment:
       'Não gostei muito. A proteína estava dura demais, e não tinha muitas opções de proteína animal. Poderiam limpar melhor as mesas e cadeiras do RU.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Ambiente harmonioso', type: 'positive' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -1029,9 +1030,9 @@ const reviews: Review[] = [
     comment:
       'A comida estava fria e não tinha talheres para todos. Alguns frequentadores tiveram que comer só com garfo. Não tinha água pois o filtro estava quebrado.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Sinal de Wi-Fi ruim', type: 'neutral' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Sinal de Wi-Fi ruim', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -1046,11 +1047,11 @@ const reviews: Review[] = [
     comment:
       'A comida era boa, mas o local estava um pouco barulhento. No entanto, a fila estava curta, o que facilitou.',
     tags: [
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Leguminosa sem sabor', type: 'negative' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Leguminosa sem sabor', type: TagTypes.Negative },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Física',
@@ -1063,12 +1064,12 @@ const reviews: Review[] = [
     universityName: 'UNESP',
     rating: 4,
     comment:
-      'Ótima temperatura dos pratos e muita variedade de saladas frescas. A fila no horário do almoço estava curta.',
+      'Ótima temperatura dos alimentos e muita variedade de saladas frescas. A fila no horário do almoço estava curta.',
     tags: [
-      { name: 'Boa temperatura dos pratos', type: 'positive' },
-      { name: 'Água gratuita', type: 'neutral' },
-      { name: 'Variedade de saladas', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Boa temperatura dos alimentos', type: TagTypes.Positive },
+      { name: 'Água gratuita', type: TagTypes.Neutral },
+      { name: 'Variedade de saladas', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Química',
@@ -1083,10 +1084,10 @@ const reviews: Review[] = [
     comment:
       'Almoço razoável, mas o ambiente estava um pouco sujo. Fila no horário do almoço estava aceitável.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Com opção de sobremesa', type: 'positive' },
-      { name: 'Carboidrato de qualidade', type: 'positive' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Engenharia Civil',
@@ -1099,12 +1100,12 @@ const reviews: Review[] = [
     universityName: 'UFC',
     rating: 4,
     comment:
-      'Excelente experiência! Boa variedade de pratos, ambiente aconchegante e ótimo atendimento.',
+      'Excelente experiência! Boa variedade de alimentos, ambiente aconchegante e ótimo atendimento.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Com opção de sobremesa', type: 'positive' },
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Comida saborosa', type: 'positive' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Comida saborosa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Matemática',
@@ -1119,10 +1120,10 @@ const reviews: Review[] = [
     comment:
       'Comida fria e sem sabor. O atendimento deixou a desejar, e a fila estava grande demais.',
     tags: [
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Leguminosa sem sabor', type: 'negative' },
-      { name: 'Mau atendimento', type: 'negative' }
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Leguminosa sem sabor', type: TagTypes.Negative },
+      { name: 'Mau atendimento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Física',
@@ -1136,10 +1137,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Top demais! Comida deliciosa, ambiente limpo e organizado, e atendimento nota 10!',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Bom cozimento dos alimentos', type: 'positive' },
-      { name: 'Variedade de saladas', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Bom cozimento dos alimentos', type: TagTypes.Positive },
+      { name: 'Variedade de saladas', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Ciência da Computação',
@@ -1154,11 +1155,11 @@ const reviews: Review[] = [
     comment:
       'Bom almoço, mas a fila estava um pouco longa. Precisam melhorar a variedade de saladas.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'History',
@@ -1172,10 +1173,10 @@ const reviews: Review[] = [
     rating: 2,
     comment: 'Experiência ruim. Comida de baixa qualidade, ambiente sujo e atendimento péssimo.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Química',
@@ -1189,10 +1190,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'O melhor RU que já visitei! Comida incrível, ambiente limpo e atendimento impecável.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Boa temperatura dos pratos', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Fila grande', type: 'negative' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Boa temperatura dos alimentos', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Fila grande', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Matemática',
@@ -1207,10 +1208,10 @@ const reviews: Review[] = [
     comment:
       'Almoço satisfatório. Comida boa, ambiente agradável, mas a fila estava um pouco longa.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Sinal de Wi-Fi ruim', type: 'negative' },
-      { name: 'Leguminosa saborosa', type: 'positive' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Sinal de Wi-Fi ruim', type: TagTypes.Negative },
+      { name: 'Leguminosa saborosa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Física',
@@ -1225,10 +1226,10 @@ const reviews: Review[] = [
     comment:
       'Almoço regular. Comida boa, mas o ambiente estava um pouco barulhento. Fila aceitável.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Variedade de sobremesas', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Variedade de sobremesas', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -1242,10 +1243,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Ótima experiência! Comida saborosa, ambiente limpo e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' },
-      { name: 'Fila aceitável', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Fila aceitável', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Medicina',
@@ -1259,10 +1260,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Excelente! Comida de alta qualidade, ambiente agradável e atendimento excepcional.',
     tags: [
-      { name: 'Comida de alta qualidade', type: 'positive' },
-      { name: 'Ambiente aconchegante', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida de alta qualidade', type: TagTypes.Positive },
+      { name: 'Ambiente aconchegante', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Engenharia Civil',
@@ -1277,10 +1278,10 @@ const reviews: Review[] = [
     comment:
       'Almoço razoável. Comida boa, mas o atendimento deixou um pouco a desejar. Fila longa.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Atendimento aquém do esperado', type: 'negative' },
-      { name: 'Fila longa', type: 'negative' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Atendimento aquém do esperado', type: TagTypes.Negative },
+      { name: 'Fila longa', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Direito',
@@ -1294,10 +1295,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Boa opção para o almoço. Comida saborosa, ambiente limpo e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente limpo', type: 'positive' },
-      { name: 'Fila aceitável', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Ambiente limpo', type: TagTypes.Positive },
+      { name: 'Fila aceitável', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Psicologia',
@@ -1311,10 +1312,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Biology',
@@ -1328,10 +1329,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Incrível! Comida deliciosa, ambiente acolhedor e atendimento excepcional.',
     tags: [
-      { name: 'Comida deliciosa', type: 'positive' },
-      { name: 'Ambiente acolhedor', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida deliciosa', type: TagTypes.Positive },
+      { name: 'Ambiente acolhedor', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Física',
@@ -1345,10 +1346,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Química',
@@ -1362,10 +1363,10 @@ const reviews: Review[] = [
     rating: 2,
     comment: 'Experiência desagradável. Comida ruim, ambiente sujo e atendimento péssimo.',
     tags: [
-      { name: 'Comida ruim', type: 'negative' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Atendimento péssimo', type: 'negative' },
-      { name: 'Fila grande', type: 'negative' }
+      { name: 'Comida ruim', type: TagTypes.Negative },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Atendimento péssimo', type: TagTypes.Negative },
+      { name: 'Fila grande', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Matemática',
@@ -1379,10 +1380,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Ótimo almoço! Comida saborosa, ambiente agradável e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Ambiente agradável', type: 'positive' },
-      { name: 'Atendimento eficiente', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Ambiente agradável', type: TagTypes.Positive },
+      { name: 'Atendimento eficiente', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'História',
@@ -1396,10 +1397,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Física',
@@ -1413,10 +1414,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Incrível! Comida deliciosa, ambiente acolhedor e atendimento excepcional.',
     tags: [
-      { name: 'Comida deliciosa', type: 'positive' },
-      { name: 'Ambiente acolhedor', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida deliciosa', type: TagTypes.Positive },
+      { name: 'Ambiente acolhedor', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Química',
@@ -1431,11 +1432,11 @@ const reviews: Review[] = [
     comment:
       'Bom almoço, mas a fila estava um pouco longa. Precisam melhorar a variedade de saladas.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Comida de qualidade', type: 'positive' },
-      { name: 'Atendimento bom', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Comida de qualidade', type: TagTypes.Positive },
+      { name: 'Atendimento bom', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Engenharia Civil',
@@ -1449,10 +1450,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Almoço muito bom! Comida saborosa e variada, além de um ambiente agradável.',
     tags: [
-      { name: 'Comida de qualidade', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' },
-      { name: 'Atendimento eficiente', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida de qualidade', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Atendimento eficiente', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Medicina',
@@ -1466,9 +1467,9 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Não estava tão bom como normalmente é.',
     tags: [
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Ambiente sujo', type: 'negative' }
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Ambiente sujo', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Medicina',
@@ -1483,11 +1484,11 @@ const reviews: Review[] = [
     comment:
       'Gostei bastante! A comida estava saborosa, e o atendimento foi muito bom. Ambiente tranquilo e limpo.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -1502,10 +1503,10 @@ const reviews: Review[] = [
     comment:
       'Não gostei muito. A proteína estava dura demais, e não tinha muitas opções de proteína animal. Poderiam limpar melhor as mesas e cadeiras do RU.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Ambiente harmonioso', type: 'positive' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -1520,9 +1521,9 @@ const reviews: Review[] = [
     comment:
       'A comida estava fria e não tinha talheres para todos. Alguns frequentadores tiveram que comer só com garfo. Não tinha água pois o filtro estava quebrado.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Sinal de Wi-Fi ruim', type: 'neutral' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Sinal de Wi-Fi ruim', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -1537,11 +1538,11 @@ const reviews: Review[] = [
     comment:
       'A comida era boa, mas o local estava um pouco barulhento. No entanto, a fila estava curta, o que facilitou.',
     tags: [
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Leguminosa sem sabor', type: 'negative' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Leguminosa sem sabor', type: TagTypes.Negative },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Física',
@@ -1554,12 +1555,12 @@ const reviews: Review[] = [
     universityName: 'UNESP',
     rating: 4,
     comment:
-      'Ótima temperatura dos pratos e muita variedade de saladas frescas. A fila no horário do almoço estava curta.',
+      'Ótima temperatura dos alimentos e muita variedade de saladas frescas. A fila no horário do almoço estava curta.',
     tags: [
-      { name: 'Boa temperatura dos pratos', type: 'positive' },
-      { name: 'Água gratuita', type: 'neutral' },
-      { name: 'Variedade de saladas', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Boa temperatura dos alimentos', type: TagTypes.Positive },
+      { name: 'Água gratuita', type: TagTypes.Neutral },
+      { name: 'Variedade de saladas', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Química',
@@ -1574,10 +1575,10 @@ const reviews: Review[] = [
     comment:
       'Almoço razoável, mas o ambiente estava um pouco sujo. Fila no horário do almoço estava aceitável.',
     tags: [
-      { name: 'Proteína dura', type: 'negative' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Com opção de sobremesa', type: 'positive' },
-      { name: 'Carboidrato de qualidade', type: 'positive' }
+      { name: 'Proteína dura', type: TagTypes.Negative },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Engenharia Civil',
@@ -1590,12 +1591,12 @@ const reviews: Review[] = [
     universityName: 'UFC',
     rating: 4,
     comment:
-      'Excelente experiência! Boa variedade de pratos, ambiente aconchegante e ótimo atendimento.',
+      'Excelente experiência! Boa variedade de alimentos, ambiente aconchegante e ótimo atendimento.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Com opção de sobremesa', type: 'positive' },
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Comida saborosa', type: 'positive' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Comida saborosa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Matemática',
@@ -1610,10 +1611,10 @@ const reviews: Review[] = [
     comment:
       'Comida fria e sem sabor. O atendimento deixou a desejar, e a fila estava grande demais.',
     tags: [
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Leguminosa sem sabor', type: 'negative' },
-      { name: 'Mau atendimento', type: 'negative' }
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Leguminosa sem sabor', type: TagTypes.Negative },
+      { name: 'Mau atendimento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Física',
@@ -1627,10 +1628,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Top demais! Comida deliciosa, ambiente limpo e organizado, e atendimento nota 10!',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Bom cozimento dos alimentos', type: 'positive' },
-      { name: 'Variedade de saladas', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Bom cozimento dos alimentos', type: TagTypes.Positive },
+      { name: 'Variedade de saladas', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Ciência da Computação',
@@ -1645,11 +1646,11 @@ const reviews: Review[] = [
     comment:
       'Bom almoço, mas a fila estava um pouco longa. Precisam melhorar a variedade de saladas.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'History',
@@ -1663,10 +1664,10 @@ const reviews: Review[] = [
     rating: 2,
     comment: 'Experiência ruim. Comida de baixa qualidade, ambiente sujo e atendimento péssimo.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Sem palitos de dente', type: 'neutral' },
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Sem palitos de dente', type: TagTypes.Neutral },
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Química',
@@ -1680,10 +1681,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'O melhor RU que já visitei! Comida incrível, ambiente limpo e atendimento impecável.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Boa temperatura dos pratos', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Fila grande', type: 'negative' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Boa temperatura dos alimentos', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Fila grande', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Matemática',
@@ -1698,10 +1699,10 @@ const reviews: Review[] = [
     comment:
       'Almoço satisfatório. Comida boa, ambiente agradável, mas a fila estava um pouco longa.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Carboidrato de qualidade', type: 'positive' },
-      { name: 'Sinal de Wi-Fi ruim', type: 'negative' },
-      { name: 'Leguminosa saborosa', type: 'positive' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Carboidrato de qualidade', type: TagTypes.Positive },
+      { name: 'Sinal de Wi-Fi ruim', type: TagTypes.Negative },
+      { name: 'Leguminosa saborosa', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Física',
@@ -1716,10 +1717,10 @@ const reviews: Review[] = [
     comment:
       'Almoço regular. Comida boa, mas o ambiente estava um pouco barulhento. Fila aceitável.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Variedade de sobremesas', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Variedade de sobremesas', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Ciência da Computação',
@@ -1733,10 +1734,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Ótima experiência! Comida saborosa, ambiente limpo e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' },
-      { name: 'Fila aceitável', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Fila aceitável', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Medicina',
@@ -1750,10 +1751,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Excelente! Comida de alta qualidade, ambiente agradável e atendimento excepcional.',
     tags: [
-      { name: 'Comida de alta qualidade', type: 'positive' },
-      { name: 'Ambiente aconchegante', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida de alta qualidade', type: TagTypes.Positive },
+      { name: 'Ambiente aconchegante', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Engenharia Civil',
@@ -1768,10 +1769,10 @@ const reviews: Review[] = [
     comment:
       'Almoço razoável. Comida boa, mas o atendimento deixou um pouco a desejar. Fila longa.',
     tags: [
-      { name: 'Proteína macia', type: 'positive' },
-      { name: 'Ambiente barulhento', type: 'negative' },
-      { name: 'Atendimento aquém do esperado', type: 'negative' },
-      { name: 'Fila longa', type: 'negative' }
+      { name: 'Proteína macia', type: TagTypes.Positive },
+      { name: 'Comida de baixa qualidade', type: TagTypes.Negative },
+      { name: 'Atendimento aquém do esperado', type: TagTypes.Negative },
+      { name: 'Fila longa', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Direito',
@@ -1785,10 +1786,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Boa opção para o almoço. Comida saborosa, ambiente limpo e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Bom atendimento', type: 'positive' },
-      { name: 'Ambiente limpo', type: 'positive' },
-      { name: 'Fila aceitável', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Bom atendimento', type: TagTypes.Positive },
+      { name: 'Ambiente limpo', type: TagTypes.Positive },
+      { name: 'Fila aceitável', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Psicologia',
@@ -1802,10 +1803,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Biology',
@@ -1819,10 +1820,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Incrível! Comida deliciosa, ambiente acolhedor e atendimento excepcional.',
     tags: [
-      { name: 'Comida deliciosa', type: 'positive' },
-      { name: 'Ambiente acolhedor', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida deliciosa', type: TagTypes.Positive },
+      { name: 'Ambiente acolhedor', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Física',
@@ -1836,10 +1837,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Química',
@@ -1853,10 +1854,10 @@ const reviews: Review[] = [
     rating: 2,
     comment: 'Experiência desagradável. Comida ruim, ambiente sujo e atendimento péssimo.',
     tags: [
-      { name: 'Comida ruim', type: 'negative' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Atendimento péssimo', type: 'negative' },
-      { name: 'Fila grande', type: 'negative' }
+      { name: 'Comida ruim', type: TagTypes.Negative },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Atendimento péssimo', type: TagTypes.Negative },
+      { name: 'Fila grande', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Matemática',
@@ -1870,10 +1871,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Ótimo almoço! Comida saborosa, ambiente agradável e atendimento eficiente.',
     tags: [
-      { name: 'Comida saborosa', type: 'positive' },
-      { name: 'Ambiente agradável', type: 'positive' },
-      { name: 'Atendimento eficiente', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida saborosa', type: TagTypes.Positive },
+      { name: 'Ambiente agradável', type: TagTypes.Positive },
+      { name: 'Atendimento eficiente', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'História',
@@ -1887,10 +1888,10 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Almoço regular. Comida ok, mas o ambiente estava um pouco sujo. Fila aceitável.',
     tags: [
-      { name: 'Comida regular', type: 'neutral' },
-      { name: 'Ambiente sujo', type: 'negative' },
-      { name: 'Fila aceitável', type: 'positive' },
-      { name: 'Atendimento razoável', type: 'neutral' }
+      { name: 'Comida regular', type: TagTypes.Neutral },
+      { name: 'Ambiente sujo', type: TagTypes.Negative },
+      { name: 'Fila aceitável', type: TagTypes.Positive },
+      { name: 'Atendimento razoável', type: TagTypes.Neutral }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Física',
@@ -1904,10 +1905,10 @@ const reviews: Review[] = [
     rating: 5,
     comment: 'Incrível! Comida deliciosa, ambiente acolhedor e atendimento excepcional.',
     tags: [
-      { name: 'Comida deliciosa', type: 'positive' },
-      { name: 'Ambiente acolhedor', type: 'positive' },
-      { name: 'Atendimento excepcional', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida deliciosa', type: TagTypes.Positive },
+      { name: 'Ambiente acolhedor', type: TagTypes.Positive },
+      { name: 'Atendimento excepcional', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.BREAKFAST,
     courseName: 'Química',
@@ -1922,11 +1923,11 @@ const reviews: Review[] = [
     comment:
       'Bom almoço, mas a fila estava um pouco longa. Precisam melhorar a variedade de saladas.',
     tags: [
-      { name: 'Fila grande', type: 'negative' },
-      { name: 'Comida de qualidade', type: 'positive' },
-      { name: 'Atendimento bom', type: 'positive' },
-      { name: 'Poucas opções de saladas', type: 'negative' },
-      { name: 'Não aceita cartão', type: 'negative' }
+      { name: 'Fila grande', type: TagTypes.Negative },
+      { name: 'Comida de qualidade', type: TagTypes.Positive },
+      { name: 'Atendimento bom', type: TagTypes.Positive },
+      { name: 'Poucas opções de saladas', type: TagTypes.Negative },
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Engenharia Civil',
@@ -1940,10 +1941,10 @@ const reviews: Review[] = [
     rating: 4,
     comment: 'Almoço muito bom! Comida saborosa e variada, além de um ambiente agradável.',
     tags: [
-      { name: 'Comida de qualidade', type: 'positive' },
-      { name: 'Ambiente harmonioso', type: 'positive' },
-      { name: 'Atendimento eficiente', type: 'positive' },
-      { name: 'Fila curta', type: 'positive' }
+      { name: 'Comida de qualidade', type: TagTypes.Positive },
+      { name: 'Com opção de sobremesa', type: TagTypes.Positive },
+      { name: 'Atendimento eficiente', type: TagTypes.Positive },
+      { name: 'Fila curta', type: TagTypes.Positive }
     ],
     mealPeriod: MealPeriod.DINNER,
     courseName: 'Medicina',
@@ -1957,9 +1958,9 @@ const reviews: Review[] = [
     rating: 3,
     comment: 'Não estava tão bom como normalmente é.',
     tags: [
-      { name: 'Não aceita cartão', type: 'negative' },
-      { name: 'Fila curta', type: 'positive' },
-      { name: 'Ambiente sujo', type: 'negative' }
+      { name: 'Poucos métodos de pagamento', type: TagTypes.Negative },
+      { name: 'Fila curta', type: TagTypes.Positive },
+      { name: 'Ambiente sujo', type: TagTypes.Negative }
     ],
     mealPeriod: MealPeriod.LUNCH,
     courseName: 'Medicina',
