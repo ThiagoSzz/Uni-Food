@@ -60,7 +60,6 @@ export const ReviewCard = (props: ReviewCardProps) => {
       header={
         <FlexBox>
           <CardHeader
-            onFocus={(e) => e.preventDefault()}
             avatar={<Avatar icon="employee" className={classes.reviewCardAvatar} />}
             titleText={review.ruCode + ' - ' + review.universityName}
             subtitleText={review.city}
