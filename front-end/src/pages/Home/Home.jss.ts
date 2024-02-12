@@ -148,6 +148,13 @@ const styles: JSSStyles = {
     '&::-ms-scrollbar-thumb:hover': {
       backgroundColor: '#888'
     }
+  },
+  reviewsIllustratedMessage: {
+    width: 'auto',
+    height: '230px',
+    alignSelf: 'auto',
+    marginInline: 'auto',
+    marginTop: '100px'
   }
 };
 
