@@ -88,6 +88,7 @@ export const ReviewInfoForm = () => {
             className={classes.ruInput}
             value={ruCode}
             required
+            spellCheck={false}
           ></Input>
           <Input
             placeholder="Ex.: UFRGS"
@@ -95,6 +96,7 @@ export const ReviewInfoForm = () => {
             className={classes.universityInput}
             value={universityName}
             required
+            spellCheck={false}
           ></Input>
         </FormItem>
         <FormItem label="Período da Refeição">
@@ -121,6 +123,7 @@ export const ReviewInfoForm = () => {
             value={comment}
             rows={8}
             onInputCapture={handleCommentValueChange}
+            spellCheck={false}
           />
         </FormItem>
         <FormItem label="Tags (2 a 5)">

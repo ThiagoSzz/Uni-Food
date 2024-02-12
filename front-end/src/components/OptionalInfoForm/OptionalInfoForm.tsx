@@ -78,12 +78,14 @@ export const OptionalInfoForm = () => {
             onInputCapture={handleCourseNameChange}
             className={classes.courseNameInput}
             value={courseName}
+            spellCheck={false}
           ></Input>
           <Input
             placeholder="Ex.: 6"
             onInputCapture={handleCoursePeriodChange}
             className={classes.coursePeriodInput}
             value={coursePeriod}
+            spellCheck={false}
           ></Input>
         </FormItem>
         <FormItem label="Preferência Alimentar">
@@ -120,6 +122,7 @@ export const OptionalInfoForm = () => {
             onInputCapture={handleCityChange}
             className={classes.cityInput}
             value={city}
+            spellCheck={false}
           ></Input>
         </FormItem>
       </FormGroup>

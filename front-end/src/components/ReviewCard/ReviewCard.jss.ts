@@ -67,7 +67,7 @@ const styles = {
   searchHighlight: {
     backgroundColor: ThemingParameters.sapAccentBackgroundColor6,
     borderRadius: '4px',
-    color: ThemingParameters.sapTitleColor
+    color: 'inherit'
   }
 };
 
