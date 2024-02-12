@@ -115,6 +115,7 @@ export const FilterDialog = () => {
               placeholder="Ex.: Ciência da Computação"
               icon={<Icon className={classes.inputIcon} name="search" />}
               onInputCapture={handleCourseNameValueChange}
+              spellCheck={false}
             />
           </ObjectPageSection>
           <ObjectPageSection id="dietaryPreference" titleText="Preferência alimentar">

@@ -8,14 +8,15 @@ import {
   Title,
   TitleLevel,
   MessageStrip,
-  MessageStripDesign
+  MessageStripDesign,
+  IllustratedMessage,
+  IllustrationMessageSize,
+  IllustrationMessageType
 } from '@ui5/webcomponents-react';
 
 import { useStyles } from './Home.jss';
 import '@ui5/webcomponents-icons/dist/AllIcons';
 import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomShellBar';
-import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
-import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
 import { FilterDialog } from '../../components/FiltersDialog/FiltersDialog';
 import { CreateReviewInfoBox } from '../../components/CreateReviewInfoBox/CreateReviewInfoBox';
 import { SearchReviewInfoBox } from '../../components/SearchReviewInfoBox/SearchReviewInfoBox';
@@ -27,8 +28,13 @@ import { useAverageReviews } from '../../hooks/useAverageReviews';
 import { useGetReviewsMutation } from '../../hooks/queries/useGetReviews';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
 
+import '@ui5/webcomponents-fiori/dist/illustrations/NoData.js';
+import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
+import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
+
 const USE_BACKEND_REVIEWS = true;
 const NUM_DISPLAYED_REVIEWS = 40;
+const FEEDBACK_MESSAGE_TIMEOUT = 6000;
 
 export const Home: React.FC = () => {
   const classes = useStyles();
@@ -60,6 +66,7 @@ export const Home: React.FC = () => {
 
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true);
   const [isLoadingAverageReviews, setIsLoadingAverageReviews] = useState<boolean>(true);
+  const [hasNoData, setHasNoData] = useState<boolean>(false);
   const [feedbackMessageStrip, setFeedbackMessageStrip] = useState<{
     show: boolean;
     message?: string;
@@ -73,12 +80,23 @@ export const Home: React.FC = () => {
   const reviewsMutation = useGetReviewsMutation();
 
   const fetchReviews = async () => {
-    await reviewsMutation.mutateAsync().then((result) => {
-      const reviews = result.data;
+    await reviewsMutation
+      .mutateAsync()
+      .then((result) => {
+        const reviews = result.data;
 
-      setReviews(reviews);
-      setFilteredReviews(reviews);
-    });
+        setReviews(reviews);
+        setFilteredReviews(reviews);
+      })
+      .catch((error) => {
+        setFeedbackMessageStrip({
+          show: true,
+          message: `Um erro (${error.message}) ocorreu ao obter a lista de avaliações. É possível que o serviço esteja indisponível no momento.`,
+          value: MessageStripDesign.Negative
+        });
+
+        setHasNoData(true);
+      });
   };
 
   useEffect(() => {
@@ -88,14 +106,6 @@ export const Home: React.FC = () => {
         message: 'Nenhuma avaliação foi filtrada com sua pesquisa.',
         value: MessageStripDesign.Information
       });
-
-      const timeoutId = setTimeout(() => {
-        setFeedbackMessageStrip({ show: false });
-      }, 5000);
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
     }
   }, [shouldShowNoFilteredReviewsMessage]);
 
@@ -142,7 +152,7 @@ export const Home: React.FC = () => {
   }, [reviews]);
 
   useEffect(() => {
-    if (filteredAverageReviews.length > 0) {
+    if (filteredAverageReviews.length > 0 && isLoadingAverageReviews) {
       setIsLoadingReviews(false);
       setIsLoadingAverageReviews(false);
     }
@@ -152,7 +162,7 @@ export const Home: React.FC = () => {
     if (feedbackMessageStrip.show) {
       const timeoutId = setTimeout(() => {
         setFeedbackMessageStrip({ show: false });
-      }, 5000);
+      }, FEEDBACK_MESSAGE_TIMEOUT);
 
       return () => {
         clearTimeout(timeoutId);
@@ -202,12 +212,21 @@ export const Home: React.FC = () => {
         <FlexBox className={classes.averageReviewsContainer}>
           <BusyIndicator
             delay={0}
-            active={isLoadingAverageReviews}
+            active={isLoadingAverageReviews && !hasNoData}
             className={classes.busyIndicator}
           />
+          {hasNoData && (
+            <IllustratedMessage
+              name={IllustrationMessageType.NoData}
+              size={IllustrationMessageSize.Spot}
+              titleText="Ops... cadê as avaliações?"
+              titleLevel={TitleLevel.H4}
+              subtitleText="Um erro ocorreu ao obter as avaliações. Tente novamente em breve."
+            />
+          )}
           {!isLoadingAverageReviews &&
             filteredAverageReviews.map((averageReview, index) => {
-              return <AverageReviewsCard key={index} averageReview={averageReview} />;
+              return <AverageReviewsCard key={`average-${index}`} averageReview={averageReview} />;
             })}
         </FlexBox>
         <FlexBox className={classes.textContainer}>
@@ -223,13 +242,23 @@ export const Home: React.FC = () => {
         <FlexBox className={classes.reviewsContainer}>
           <BusyIndicator
             delay={0}
-            active={isLoadingReviews}
+            active={isLoadingReviews && !hasNoData}
             className={classes.busyIndicator}
             style={{ marginBottom: '300px' }}
           />
+          {hasNoData && (
+            <IllustratedMessage
+              name={IllustrationMessageType.NoData}
+              size={IllustrationMessageSize.Scene}
+              titleText="Ops... cadê as avaliações?"
+              titleLevel={TitleLevel.H3}
+              subtitleText="Um erro ocorreu ao obter as avaliações. Tente novamente em breve."
+              className={classes.reviewsIllustratedMessage}
+            />
+          )}
           {!isLoadingReviews &&
             filteredReviews.slice(0, NUM_DISPLAYED_REVIEWS).map((review, index) => {
-              return <ReviewCard key={index} review={review} />;
+              return <ReviewCard key={`review-${index}`} review={review} />;
             })}
         </FlexBox>
       </FlexBox>

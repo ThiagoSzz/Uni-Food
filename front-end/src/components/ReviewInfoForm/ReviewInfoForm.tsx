@@ -7,22 +7,16 @@ import {
   Select,
   Label,
   TextArea,
-  FlexBox,
-  Button,
-  Badge,
   RatingIndicator,
   Option,
   Form
 } from '@ui5/webcomponents-react';
-import { CardTagColors } from '../../enums/CardTagColorsEnum';
-import { useEffect } from 'react';
 import { useStyles } from '../ReviewInfoForm/ReviewInfoForm.jss';
-import { ReviewInfoFormProps } from '../../interfaces/props/ReviewInfoFormProps';
 import useNewReviewStore from '../../stores/useNewReviewStore';
 import { MealPeriod } from '../../enums/MealPeriodEnum';
+import { SelectTagsComboBox } from '../SelectTagsComboBox/SelectTagsComboBox';
 
-export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
-  const { setIsSelectTagsDialogOpen, selectedTags, setSelectedTags } = props;
+export const ReviewInfoForm = () => {
   const classes = useStyles();
 
   const [
@@ -35,7 +29,6 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
     setUniversityName,
     setMealPeriod,
     setComment,
-    setTags,
     setRating
   ] = useNewReviewStore((value) => [
     value.ruCode,
@@ -47,7 +40,6 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
     value.setUniversityName,
     value.setMealPeriod,
     value.setComment,
-    value.setTags,
     value.setRating
   ]);
 
@@ -76,10 +68,6 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
     );
   };
 
-  useEffect(() => {
-    setTags(selectedTags);
-  }, [selectedTags]);
-
   return (
     <Form
       backgroundDesign={FormBackgroundDesign.Transparent}
@@ -100,6 +88,7 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
             className={classes.ruInput}
             value={ruCode}
             required
+            spellCheck={false}
           ></Input>
           <Input
             placeholder="Ex.: UFRGS"
@@ -107,6 +96,7 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
             className={classes.universityInput}
             value={universityName}
             required
+            spellCheck={false}
           ></Input>
         </FormItem>
         <FormItem label="Período da Refeição">
@@ -133,39 +123,11 @@ export const ReviewInfoForm = (props: ReviewInfoFormProps) => {
             value={comment}
             rows={8}
             onInputCapture={handleCommentValueChange}
+            spellCheck={false}
           />
         </FormItem>
         <FormItem label="Tags (2 a 5)">
-          <FlexBox direction="Row" className={classes.tagListContainer}>
-            <Button
-              className={classes.tagsListButton}
-              onClick={() => setIsSelectTagsDialogOpen(true)}
-            >
-              Selecionar tags
-            </Button>
-            <Button className={classes.tagsListButton} onClick={() => setSelectedTags([])}>
-              Limpar
-            </Button>
-            <FlexBox className={classes.selectedBadgesList}>
-              <FlexBox className={classes.scrollContainer}>
-                {selectedTags.map((tag, index) => (
-                  <Badge
-                    className={classes.selectedBadgeItem}
-                    key={index}
-                    colorScheme={
-                      tag.type === 'positive'
-                        ? CardTagColors.Positive
-                        : tag.type === 'negative'
-                          ? CardTagColors.Negative
-                          : CardTagColors.Neutral
-                    }
-                  >
-                    {tag.name}
-                  </Badge>
-                ))}
-              </FlexBox>
-            </FlexBox>
-          </FlexBox>
+          <SelectTagsComboBox />
         </FormItem>
         <FormItem label="Nota">
           <RatingIndicator

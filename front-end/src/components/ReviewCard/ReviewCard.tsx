@@ -1,7 +1,5 @@
 import {
   Card,
-  CardHeader,
-  Avatar,
   List,
   ListSeparators,
   StandardListItem,
@@ -11,7 +9,11 @@ import {
   Badge,
   TitleLevel,
   Title,
-  Text
+  Text,
+  Avatar,
+  Button,
+  ButtonDesign,
+  FlexBoxDirection
 } from '@ui5/webcomponents-react';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
 
@@ -19,9 +21,22 @@ import { useStyles } from './ReviewCard.jss';
 import { ReviewCardProps } from '../../interfaces/props/ReviewCardProps';
 import { AvatarBackgroundColors, AvatarIconColors } from '../../enums/AvatarColorsEnum';
 import { useEffect, useState } from 'react';
+import { TagTypes } from '../../enums/TagTypes';
+import { Tooltip } from 'react-tippy';
+
+import 'react-tippy/dist/tippy.css';
+import Highlighter from 'react-highlight-words';
+import useReviewsStore from '../../stores/useReviewsStore';
 
 export const ReviewCard = (props: ReviewCardProps) => {
   const { review } = props;
+
+  const [searchQuery, shouldFilterReviews] = useReviewsStore((value) => [
+    value.searchQuery,
+    value.shouldFilterReviews
+  ]);
+
+  const highlightMatches = shouldFilterReviews ? searchQuery : '';
 
   const [avatarColors, setAvatarColors] = useState<{
     background: AvatarBackgroundColors;
@@ -30,6 +45,7 @@ export const ReviewCard = (props: ReviewCardProps) => {
     background: undefined,
     icon: undefined
   });
+  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const backgroundKeys = Object.keys(AvatarBackgroundColors);
@@ -51,11 +67,65 @@ export const ReviewCard = (props: ReviewCardProps) => {
     <Card
       className={classes.reviewCard}
       header={
-        <CardHeader
-          avatar={<Avatar icon="employee" className={classes.reviewCardAvatar} />}
-          titleText={review.ruCode + ' - ' + review.universityName}
-          subtitleText={review.city}
-        />
+        <FlexBox>
+          <FlexBox className={classes.cardHeader}>
+            <Avatar icon="employee" className={classes.reviewCardAvatar} />
+            <FlexBox
+              direction={FlexBoxDirection.Column}
+              className={classes.cardHeaderTextContainer}
+            >
+              <Title level="H6">
+                <Highlighter
+                  searchWords={[highlightMatches, highlightMatches.split(' ').join(' - ')]}
+                  textToHighlight={review.ruCode + ' - ' + review.universityName}
+                  highlightClassName={classes.searchHighlight}
+                />
+              </Title>
+              <Text className={classes.cardHeaderSubtitle}>
+                <Highlighter
+                  searchWords={[highlightMatches]}
+                  textToHighlight={review.city}
+                  highlightClassName={classes.searchHighlight}
+                />
+              </Text>
+            </FlexBox>
+          </FlexBox>
+          <Tooltip
+            html={
+              <span>
+                {review.courseName ? (
+                  <p>
+                    <strong>Curso: </strong>
+                    {review.courseName}
+                  </p>
+                ) : (
+                  <></>
+                )}
+                <p>
+                  <strong>Período da refeição: </strong>
+                  {review.mealPeriod}
+                </p>
+                <p>
+                  <strong>Preferência alimentar: </strong>
+                  {review.dietaryPreference}
+                </p>
+              </span>
+            }
+            open={isTooltipOpen}
+            position="bottom"
+            arrow
+            arrowSize="small"
+            className={classes.tooltip}
+          >
+            <Button
+              icon="toaster-top"
+              design={ButtonDesign.Default}
+              onMouseEnter={() => setIsTooltipOpen(true)}
+              onMouseLeave={() => setIsTooltipOpen(false)}
+              style={{ cursor: 'default' }}
+            />
+          </Tooltip>
+        </FlexBox>
       }
     >
       <List separators={ListSeparators.None}>
@@ -64,17 +134,24 @@ export const ReviewCard = (props: ReviewCardProps) => {
         </StandardListItem>
         <StandardListItem type={ListItemType.Inactive} style={{ height: 'auto', marginTop: '0px' }}>
           <Title level={TitleLevel.H5}>Comentários</Title>
-          <Text className={classes.reviewCardComments}>{review.comment}</Text>
+          <Text className={classes.reviewCardComments}>
+            <Highlighter
+              highlightClassName={classes.searchHighlight}
+              searchWords={[highlightMatches]}
+              textToHighlight={review.comment}
+            />
+          </Text>
         </StandardListItem>
         <StandardListItem type={ListItemType.Inactive} style={{ height: 'auto', marginTop: '5px' }}>
           <Title level={TitleLevel.H5}>Tags</Title>
           <FlexBox className={classes.badgesList}>
-            {review.tags.map((tag) => {
-              const isTagPositive = tag.type === 'positive';
-              const isTagNegative = tag.type === 'negative';
+            {review.tags.map((tag, index) => {
+              const isTagPositive = tag.type === TagTypes.Positive;
+              const isTagNegative = tag.type === TagTypes.Negative;
 
               return (
                 <Badge
+                  key={index}
                   colorScheme={
                     isTagPositive
                       ? CardTagColors.Positive
@@ -83,7 +160,11 @@ export const ReviewCard = (props: ReviewCardProps) => {
                         : CardTagColors.Neutral
                   }
                 >
-                  {tag.name}
+                  <Highlighter
+                    highlightClassName={classes.searchHighlight}
+                    searchWords={[highlightMatches]}
+                    textToHighlight={tag.name}
+                  />
                 </Badge>
               );
             })}

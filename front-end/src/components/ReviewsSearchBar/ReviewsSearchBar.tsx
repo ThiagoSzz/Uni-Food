@@ -99,6 +99,7 @@ export const ReviewsSearchBar = () => {
         icon={<Icon className={classes.searchBarIcon} name="search" />}
         onInputCapture={handleInputChange}
         value={searchQuery}
+        spellCheck={false}
       />
       <SegmentedButton className={classes.segmentedButton}>
         <SegmentedButtonItem icon="filter" onClick={() => setIsDialogOpen(!isDialogOpen)}>
