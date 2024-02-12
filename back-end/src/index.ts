@@ -16,3 +16,5 @@ UNIFOOD.use('/', router);
 UNIFOOD.listen(PORT, () => {
   logger.info(`UniFood back-end is running at http://localhost:${PORT}`);
 });
+
+module.exports = UNIFOOD;
