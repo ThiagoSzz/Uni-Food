@@ -6,9 +6,9 @@ A plataforma Uni-Food permite aos estudantes avaliar restaurantes universitário
 
 Buscamos incentivar melhorias nos estabelecimentos e auxiliar os estudantes na escolha de onde fazer suas refeições com base em avaliações escritas por outros usuários, bem como auxiliar os administradores de restaurantes universitários como métrica da qualidade de seus estabelecimentos.
 
-![Home page](image.png)
+![Home page](https://github.com/ThiagoSzz/Uni-Food/assets/49589136/97e3da1a-7ef3-4669-bf11-09ea75ed800e)
 
-![Create review page](image-2.png)
+![Create review page](https://github.com/ThiagoSzz/Uni-Food/assets/49589136/5252bc66-886d-44c1-9d75-a649ebff8ae9)
 
 ## Motivação e Objetivo
 
