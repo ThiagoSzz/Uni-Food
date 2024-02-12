@@ -1,6 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { Badge, Card, CardHeader, FlexBox, Icon, Label, Text } from '@ui5/webcomponents-react';
+import {
+  Badge,
+  Card,
+  FlexBox,
+  FlexBoxDirection,
+  Icon,
+  Label,
+  Text,
+  Title
+} from '@ui5/webcomponents-react';
 import { IconBadgeColors } from '../../enums/IconBadgeColorsEnum';
 import { useStyles } from '../AverageReviewsCard/AverageReviewsCard.jss';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
@@ -8,10 +17,19 @@ import {
   AverageReviewBadge,
   AverageReviewCardProps
 } from '../../interfaces/props/AverageReviewCardProps';
+import Highlighter from 'react-highlight-words';
+import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
 
 export const AverageReviewsCard = (props: AverageReviewCardProps) => {
   const { averageReview } = props;
   const classes = useStyles();
+
+  const [searchQuery, shouldFilterAverageReviews] = useAverageReviewsStore((value) => [
+    value.searchQuery,
+    value.shouldFilterAverageReviews
+  ]);
+
+  const highlightMatches = shouldFilterAverageReviews ? searchQuery : '';
 
   const [cardTags, setCardTags] = useState<AverageReviewBadge[]>([]);
 
@@ -39,36 +57,46 @@ export const AverageReviewsCard = (props: AverageReviewCardProps) => {
     <Card
       className={classes.averageCard}
       header={
-        <CardHeader
-          avatar={
-            <>
-              <Icon className={classes.cardIcon} name="competitor" />
-              <div
-                className={classes.iconBadge}
-                style={{
-                  backgroundColor: averageReview.isRising
-                    ? IconBadgeColors.Positive
-                    : averageReview.isDescending
-                      ? IconBadgeColors.Negative
-                      : IconBadgeColors.Neutral
-                }}
-              >
-                <Icon
-                  className={classes.badgeIcon}
-                  name={
-                    averageReview.isRising
-                      ? 'trend-up'
-                      : averageReview.isDescending
-                        ? 'trend-down'
-                        : 'bo-strategy-management'
-                  }
-                ></Icon>
-              </div>
-            </>
-          }
-          titleText={averageReview.ruCode + ' - ' + averageReview.universityName}
-          subtitleText={averageReview.city}
-        />
+        <FlexBox className={classes.cardHeader}>
+          <Icon className={classes.cardIcon} name="competitor" />
+          <div
+            className={classes.iconBadge}
+            style={{
+              backgroundColor: averageReview.isRising
+                ? IconBadgeColors.Positive
+                : averageReview.isDescending
+                  ? IconBadgeColors.Negative
+                  : IconBadgeColors.Neutral
+            }}
+          >
+            <Icon
+              className={classes.badgeIcon}
+              name={
+                averageReview.isRising
+                  ? 'trend-up'
+                  : averageReview.isDescending
+                    ? 'trend-down'
+                    : 'bo-strategy-management'
+              }
+            ></Icon>
+          </div>
+          <FlexBox direction={FlexBoxDirection.Column} className={classes.cardHeaderTextContainer}>
+            <Title level="H6">
+              <Highlighter
+                searchWords={[highlightMatches, highlightMatches.split(' ').join(' - ')]}
+                textToHighlight={averageReview.ruCode + ' - ' + averageReview.universityName}
+                highlightClassName={classes.searchHighlight}
+              />
+            </Title>
+            <Text className={classes.cardHeaderSubtitle}>
+              <Highlighter
+                searchWords={[highlightMatches]}
+                textToHighlight={averageReview.city}
+                highlightClassName={classes.searchHighlight}
+              />
+            </Text>
+          </FlexBox>
+        </FlexBox>
       }
     >
       <FlexBox className={classes.ratingContainer}>

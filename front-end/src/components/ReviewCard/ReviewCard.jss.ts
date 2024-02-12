@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createUseStyles } from 'react-jss';
 import { ReviewCardStyleProps } from '../../interfaces/props/ReviewCardStyleProps';
+import { ThemingParameters } from '@ui5/webcomponents-react-base';
 
 // type JSSStyles = { [keys: string]: React.CSSProperties | JSSStyles };
 
@@ -51,7 +52,22 @@ const styles = {
     alignSelf: 'center'
   },
   cardHeader: {
-    width: '275px'
+    width: '270px',
+    padding: '15px',
+    paddingBottom: '12px'
+  },
+  cardHeaderTextContainer: {
+    padding: '8px',
+    marginLeft: '6px'
+  },
+  cardHeaderSubtitle: {
+    color: ThemingParameters.sapObjectHeader_Subtitle_TextColor,
+    marginTop: '3px'
+  },
+  searchHighlight: {
+    backgroundColor: ThemingParameters.sapAccentBackgroundColor6,
+    borderRadius: '4px',
+    color: ThemingParameters.sapTitleColor
   }
 };
 

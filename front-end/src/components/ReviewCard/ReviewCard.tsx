@@ -1,6 +1,5 @@
 import {
   Card,
-  CardHeader,
   List,
   ListSeparators,
   StandardListItem,
@@ -13,7 +12,8 @@ import {
   Text,
   Avatar,
   Button,
-  ButtonDesign
+  ButtonDesign,
+  FlexBoxDirection
 } from '@ui5/webcomponents-react';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
 
@@ -25,9 +25,18 @@ import { TagTypes } from '../../enums/TagTypes';
 import { Tooltip } from 'react-tippy';
 
 import 'react-tippy/dist/tippy.css';
+import Highlighter from 'react-highlight-words';
+import useReviewsStore from '../../stores/useReviewsStore';
 
 export const ReviewCard = (props: ReviewCardProps) => {
   const { review } = props;
+
+  const [searchQuery, shouldFilterReviews] = useReviewsStore((value) => [
+    value.searchQuery,
+    value.shouldFilterReviews
+  ]);
+
+  const highlightMatches = shouldFilterReviews ? searchQuery : '';
 
   const [avatarColors, setAvatarColors] = useState<{
     background: AvatarBackgroundColors;
@@ -59,12 +68,28 @@ export const ReviewCard = (props: ReviewCardProps) => {
       className={classes.reviewCard}
       header={
         <FlexBox>
-          <CardHeader
-            avatar={<Avatar icon="employee" className={classes.reviewCardAvatar} />}
-            titleText={review.ruCode + ' - ' + review.universityName}
-            subtitleText={review.city}
-            className={classes.cardHeader}
-          />
+          <FlexBox className={classes.cardHeader}>
+            <Avatar icon="employee" className={classes.reviewCardAvatar} />
+            <FlexBox
+              direction={FlexBoxDirection.Column}
+              className={classes.cardHeaderTextContainer}
+            >
+              <Title level="H6">
+                <Highlighter
+                  searchWords={[highlightMatches, highlightMatches.split(' ').join(' - ')]}
+                  textToHighlight={review.ruCode + ' - ' + review.universityName}
+                  highlightClassName={classes.searchHighlight}
+                />
+              </Title>
+              <Text className={classes.cardHeaderSubtitle}>
+                <Highlighter
+                  searchWords={[highlightMatches]}
+                  textToHighlight={review.city}
+                  highlightClassName={classes.searchHighlight}
+                />
+              </Text>
+            </FlexBox>
+          </FlexBox>
           <Tooltip
             html={
               <span>
@@ -109,7 +134,13 @@ export const ReviewCard = (props: ReviewCardProps) => {
         </StandardListItem>
         <StandardListItem type={ListItemType.Inactive} style={{ height: 'auto', marginTop: '0px' }}>
           <Title level={TitleLevel.H5}>Comentários</Title>
-          <Text className={classes.reviewCardComments}>{review.comment}</Text>
+          <Text className={classes.reviewCardComments}>
+            <Highlighter
+              highlightClassName={classes.searchHighlight}
+              searchWords={[highlightMatches]}
+              textToHighlight={review.comment}
+            />
+          </Text>
         </StandardListItem>
         <StandardListItem type={ListItemType.Inactive} style={{ height: 'auto', marginTop: '5px' }}>
           <Title level={TitleLevel.H5}>Tags</Title>
@@ -129,7 +160,11 @@ export const ReviewCard = (props: ReviewCardProps) => {
                         : CardTagColors.Neutral
                   }
                 >
-                  {tag.name}
+                  <Highlighter
+                    highlightClassName={classes.searchHighlight}
+                    searchWords={[highlightMatches]}
+                    textToHighlight={tag.name}
+                  />
                 </Badge>
               );
             })}
