@@ -2,9 +2,9 @@ import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from '../../../config/client';
-import { Home } from '../Home';
 import { ThemeProvider } from '@ui5/webcomponents-react';
 import { expect } from '@jest/globals';
+import { Home } from '../Home';
 
 describe('Home page', () => {
   const setup = () => {
@@ -23,4 +23,14 @@ describe('Home page', () => {
     const view = setup();
     expect(view.container).toMatchSnapshot();
   });
+
+  it('Should load the search bar with the filters and switches', () => {});
+
+  it('Should load the list of reviews', () => {});
+
+  it('Should show the amount of reviews', () => {});
+
+  it('Should load the list of average reviews', () => {});
+
+  it('Should show the amount of average reviews', () => {});
 });

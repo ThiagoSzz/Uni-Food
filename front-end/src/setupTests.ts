@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/jest-globals';
 import ResizeObserverPolyfill from 'resize-observer-polyfill';
 
 beforeEach(() => {

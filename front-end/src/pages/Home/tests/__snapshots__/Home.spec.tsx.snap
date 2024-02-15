@@ -384,6 +384,7 @@ exports[`Home page Should match the snapshot 1`] = `
         <ui5-busy-indicator
           active="true"
           class="Home-busyIndicator-0-2-7"
+          data-testid="averageReviewsBusyIndicator"
           delay="0"
           ui5-busy-indicator=""
         />
@@ -416,6 +417,7 @@ exports[`Home page Should match the snapshot 1`] = `
         <ui5-busy-indicator
           active="true"
           class="Home-busyIndicator-0-2-7"
+          data-testid="reviewsBusyIndicator"
           delay="0"
           style="margin-bottom: 300px;"
           ui5-busy-indicator=""

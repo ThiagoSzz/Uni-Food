@@ -23,4 +23,10 @@ describe('Create Review page', () => {
     const view = setup();
     expect(view.container).toMatchSnapshot();
   });
+
+  it('Shoud load the review info form', () => {});
+
+  it('Should load the optional info form', () => {});
+
+  it('Should show the confirmation dialog when canceling with filled fields', () => {});
 });

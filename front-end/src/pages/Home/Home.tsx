@@ -214,6 +214,7 @@ export const Home: React.FC = () => {
             delay={0}
             active={isLoadingAverageReviews && !hasNoData}
             className={classes.busyIndicator}
+            data-testid="averageReviewsBusyIndicator"
           />
           {hasNoData && (
             <IllustratedMessage
@@ -226,7 +227,13 @@ export const Home: React.FC = () => {
           )}
           {!isLoadingAverageReviews &&
             filteredAverageReviews.map((averageReview, index) => {
-              return <AverageReviewsCard key={`average-${index}`} averageReview={averageReview} />;
+              return (
+                <AverageReviewsCard
+                  data-testid="averageReviewCard"
+                  key={`average-${index}`}
+                  averageReview={averageReview}
+                />
+              );
             })}
         </FlexBox>
         <FlexBox className={classes.textContainer}>
@@ -245,6 +252,7 @@ export const Home: React.FC = () => {
             active={isLoadingReviews && !hasNoData}
             className={classes.busyIndicator}
             style={{ marginBottom: '300px' }}
+            data-testid="reviewsBusyIndicator"
           />
           {hasNoData && (
             <IllustratedMessage
@@ -258,7 +266,9 @@ export const Home: React.FC = () => {
           )}
           {!isLoadingReviews &&
             filteredReviews.slice(0, NUM_DISPLAYED_REVIEWS).map((review, index) => {
-              return <ReviewCard key={`review-${index}`} review={review} />;
+              return (
+                <ReviewCard data-testid="reviewCard" key={`review-${index}`} review={review} />
+              );
             })}
         </FlexBox>
       </FlexBox>
