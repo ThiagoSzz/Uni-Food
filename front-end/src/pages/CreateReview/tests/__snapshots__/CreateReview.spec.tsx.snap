@@ -1,0 +1,636 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Review page Should match the snapshot 1`] = `
+<div>
+  <div
+    class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionColumn-0-2-25 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29"
+  >
+    <div
+      class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionRow-0-2-27 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29 ShellBar-shellbar-0-2-32"
+    >
+      <div
+        class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionRow-0-2-27 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29 ShellBar-logoContainer-0-2-33"
+      >
+        <img
+          alt="Logo"
+          class="ShellBar-logoImage-0-2-34"
+          src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
+        />
+        <ui5-title
+          level="H5"
+          ui5-title=""
+        >
+          UniFood
+        </ui5-title>
+      </div>
+      <div
+        class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionRow-0-2-27 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29 ShellBar-itemsContainer-0-2-36"
+      >
+        <div
+          aria-describedby="tippy-tooltip-1"
+          class=""
+          data-original-title="Pesquisar avaliações"
+          data-tooltipped=""
+          style="display: inline;"
+        >
+          <ui5-button
+            design="Emphasized"
+            icon="search"
+            tooltip=" "
+            ui5-button=""
+          />
+        </div>
+        <div
+          aria-describedby="tippy-tooltip-2"
+          class=""
+          data-original-title="Criar nova avaliação"
+          data-tooltipped=""
+          style="display: inline;"
+        >
+          <ui5-button
+            design="Emphasized"
+            disabled="true"
+            icon="add"
+            tooltip=" "
+            ui5-button=""
+          />
+        </div>
+        <div
+          aria-describedby="tippy-tooltip-3"
+          class=""
+          data-original-title="Entrar"
+          data-tooltipped=""
+          style="display: inline;"
+        >
+          <ui5-button
+            design="Default"
+            disabled="true"
+            icon="visits"
+            tooltip=" "
+            ui5-button=""
+          />
+        </div>
+        <ui5-avatar
+          color-scheme="Accent6"
+          icon="employee"
+          size="S"
+          ui5-avatar=""
+        />
+      </div>
+    </div>
+    <div
+      class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionRow-0-2-27 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29 CreateReview-boxesContainer-0-2-1"
+    >
+      <div
+        class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionRow-0-2-27 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29 CreateReview-box-0-2-2"
+      >
+        <div
+          class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionColumn-0-2-25 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29 CreateReview-boxTextContainer-0-2-7"
+        >
+          <ui5-title
+            level="H4"
+            ui5-title=""
+          >
+            Compartilhe seu feedback de uma refeição feita em um RU!
+          </ui5-title>
+          <span
+            class="Text-text-0-2-37 CreateReview-boxSubtitle-0-2-8"
+          >
+            Suas avaliações irão ajudar outros universitários a decidir qual é o melhor RU para frequentar.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ObjectPage-objectPage-0-2-44 sapScrollBar CreateReview-objectPage-0-2-10 ObjectPage-iconTabBarMode-0-2-45"
+      data-component-name="ObjectPage"
+    >
+      <header
+        aria-roledescription="Object Page header"
+        class="ObjectPage-header-0-2-49"
+        data-component-name="ObjectPageTopHeader"
+        data-not-clickable="true"
+        style="grid-auto-columns: min-content 100%; display: grid;"
+      />
+      <div
+        class="ObjectPage-tabContainer-0-2-53"
+        data-component-name="ObjectPageTabContainer"
+        style="top: 0px;"
+      >
+        <ui5-tabcontainer
+          class="ObjectPage-tabContainerComponent-0-2-54"
+          collapsed="true"
+          data-component-name="ObjectPageTabContainer"
+          data-sap-ui-fastnavgroup="true"
+          fixed="true"
+          ui5-tabcontainer=""
+        >
+          <ui5-tab
+            data-index="0"
+            data-section-id="reviewInfo"
+            selected="true"
+            text="Informações da Avaliação"
+            ui5-tab=""
+          >
+            <span
+              style="display: none;"
+            />
+          </ui5-tab>
+          <ui5-tab
+            data-index="1"
+            data-section-id="optionalInfo"
+            text="Informações Opcionais"
+            ui5-tab=""
+          >
+            <span
+              style="display: none;"
+            />
+          </ui5-tab>
+        </ui5-tabcontainer>
+      </div>
+      <div
+        class="ObjectPage-content-0-2-55"
+        data-component-name="ObjectPageContent"
+      >
+        <div
+          aria-hidden="true"
+          style="height: 0px;"
+        />
+        <section
+          class="ObjectPageSection-section-0-2-61 CreateReview-objectPageSection-0-2-11"
+          data-component-name="ObjectPageSection"
+          id="ObjectPageSection-reviewInfo"
+          role="region"
+        >
+          <div
+            aria-level="3"
+            class="ObjectPageSection-titleContainer-0-2-63"
+            data-component-name="ObjectPageSectionTitleText"
+            role="heading"
+          >
+            <div
+              class="ObjectPageSection-title-0-2-64 ObjectPageSection-uppercase-0-2-65"
+            >
+              Informações da Avaliação
+            </div>
+          </div>
+          <div
+            class="ObjectPageSection-sectionContent-0-2-67"
+          >
+            <div
+              class="ObjectPageSection-sectionContentInner-0-2-68"
+              data-component-name="ObjectPageSectionContent"
+            >
+              <div
+                class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionColumn-0-2-25 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29"
+              >
+                <ui5-title
+                  level="H4"
+                  ui5-title=""
+                >
+                  1. Informações da Avaliação
+                </ui5-title>
+                <span
+                  class="Text-text-0-2-37 CreateReview-text-0-2-9"
+                >
+                  Precisamos de algumas informações para poder identificar o RU da sua avaliação.
+                </span>
+                <div
+                  class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionColumn-0-2-25 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29"
+                >
+                  <form
+                    class="Form-formContainer-0-2-89"
+                    style="--_ui5wcr_form_label_span_s: 12; --_ui5wcr_form_label_span_m: 2; --_ui5wcr_form_label_span_l: 3; --_ui5wcr_form_label_span_xl: 4; --_ui5wcr_form_columns_s: 1; --_ui5wcr_form_columns_m: 1; --_ui5wcr_form_columns_l: 1; --_ui5wcr_form_columns_xl: 2;"
+                  >
+                    <div
+                      class="Form-form-0-2-90 Form-transparent-0-2-92"
+                    >
+                      <h6
+                        class="FormGroupTitle-title-0-2-106"
+                        data-component-name="FormGroupTitle"
+                        style="display: none; grid-column-start: 1; grid-row-start: 1;"
+                      />
+                      <ui5-label
+                        class="FormItem-label-0-2-107"
+                        data-label-span="3"
+                        show-colon="true"
+                        style="grid-column-start: 1; grid-row-start: 2;"
+                        ui5-label=""
+                        wrapping-type="Normal"
+                      >
+                        Código do RU e Sigla da Universidade
+                      </ui5-label>
+                      <div
+                        class="FormItem-content-0-2-108"
+                        data-id=":r3:"
+                        data-label-span="3"
+                        style="grid-column-start: 4; grid-row-start: 2;"
+                      >
+                        <ui5-input
+                          class="ReviewInfoForm-ruInput-0-2-69"
+                          id=":r3:-0"
+                          placeholder="Ex.: RU01"
+                          required="true"
+                          ui5-input=""
+                          value=""
+                        />
+                        <label
+                          aria-hidden="true"
+                          for=":r3:-0"
+                          style="display: none;"
+                        >
+                          Código do RU e Sigla da Universidade
+                        </label>
+                        <ui5-input
+                          class="ReviewInfoForm-universityInput-0-2-70"
+                          id=":r3:-1"
+                          placeholder="Ex.: UFRGS"
+                          required="true"
+                          ui5-input=""
+                          value=""
+                        />
+                        <label
+                          aria-hidden="true"
+                          for=":r3:-1"
+                          style="display: none;"
+                        >
+                          Código do RU e Sigla da Universidade
+                        </label>
+                      </div>
+                      <ui5-label
+                        class="FormItem-label-0-2-107"
+                        data-label-span="3"
+                        show-colon="true"
+                        style="grid-column-start: 1; grid-row-start: 3;"
+                        ui5-label=""
+                        wrapping-type="Normal"
+                      >
+                        Período da Refeição
+                      </ui5-label>
+                      <div
+                        class="FormItem-content-0-2-108"
+                        data-id=":r4:"
+                        data-label-span="3"
+                        style="grid-column-start: 4; grid-row-start: 3;"
+                      >
+                        <ui5-select
+                          class="ReviewInfoForm-mealPeriodSelect-0-2-71"
+                          id=":r4:-0"
+                          ui5-select=""
+                        >
+                          <ui5-option
+                            data-id="Select"
+                            ui5-option=""
+                          >
+                            Selecionar
+                          </ui5-option>
+                          <ui5-option
+                            data-id="Café da manhã"
+                            ui5-option=""
+                          >
+                            Café da manhã
+                          </ui5-option>
+                          <ui5-option
+                            data-id="Almoço"
+                            ui5-option=""
+                          >
+                            Almoço
+                          </ui5-option>
+                          <ui5-option
+                            data-id="Jantar"
+                            ui5-option=""
+                          >
+                            Jantar
+                          </ui5-option>
+                        </ui5-select>
+                        <label
+                          aria-hidden="true"
+                          for=":r4:-0"
+                          style="display: none;"
+                        >
+                          Período da Refeição
+                        </label>
+                      </div>
+                      <ui5-label
+                        class="FormItem-label-0-2-107 ReviewInfoForm-commentLabel-0-2-72"
+                        data-label-span="3"
+                        show-colon="true"
+                        style="grid-column-start: 1; grid-row-start: 4;"
+                        ui5-label=""
+                        wrapping-type="Normal"
+                      >
+                        Comentário
+                      </ui5-label>
+                      <div
+                        class="FormItem-content-0-2-108"
+                        data-id=":r5:"
+                        data-label-span="3"
+                        style="grid-column-start: 4; grid-row-start: 4;"
+                      >
+                        <ui5-textarea
+                          class="ReviewInfoForm-textArea-0-2-73"
+                          id=":r5:-0"
+                          placeholder="Ex.: Muito bom o restaurante!"
+                          rows="8"
+                          ui5-textarea=""
+                          value=""
+                        />
+                        <label
+                          aria-hidden="true"
+                          for=":r5:-0"
+                          style="display: none;"
+                        >
+                          Comentário
+                        </label>
+                      </div>
+                      <ui5-label
+                        class="FormItem-label-0-2-107"
+                        data-label-span="3"
+                        show-colon="true"
+                        style="grid-column-start: 1; grid-row-start: 5;"
+                        ui5-label=""
+                        wrapping-type="Normal"
+                      >
+                        Tags (2 a 5)
+                      </ui5-label>
+                      <div
+                        class="FormItem-content-0-2-108"
+                        data-id=":r6:"
+                        data-label-span="3"
+                        style="grid-column-start: 4; grid-row-start: 5;"
+                      >
+                        <ui5-multi-combobox
+                          class="SelectTagsComboBox-tags-0-2-110 SelectTagsComboBox-tags-d0-0-2-111"
+                          filter="Contains"
+                          placeholder="Ex.: Proteína macia, Fila grande, Água gratuita..."
+                          ui5-multi-combobox=""
+                          value-state="None"
+                        >
+                          <ui5-mcb-group-item
+                            text="Tags positivas"
+                            ui5-mcb-group-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Proteína macia"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Carboidrato de qualidade"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Leguminosa saborosa"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Variedade de saladas"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Com opção de sobremesa"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Bom cozimento dos alimentos"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Comida saborosa"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Boa temperatura dos alimentos"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Bom atendimento"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="positive"
+                            text="Fila curta"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-group-item
+                            text="Tags negativas"
+                            ui5-mcb-group-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Proteína dura"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Carboidrato de baixa qualidade"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Leguminosa sem sabor"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Poucas opções de saladas"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Sem sobremesa"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Mau cozimento dos alimentos"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Comida de baixa qualidade"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Temperatura inadequada dos alimentos"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Mau atendimento"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="negative"
+                            text="Fila grande"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-group-item
+                            text="Tags neutras"
+                            ui5-mcb-group-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Sem guardanapos"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Sem palitos de dente"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Cadeiras pequenas"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Talheres antigas"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Poucos funcionários"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Poucos métodos de pagamento"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Localização conveniente"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Cardápio atualizado"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Sinal de Wi-Fi ruim"
+                            ui5-mcb-item=""
+                          />
+                          <ui5-mcb-item
+                            id="neutral"
+                            text="Água gratuita"
+                            ui5-mcb-item=""
+                          />
+                        </ui5-multi-combobox>
+                        <label
+                          aria-hidden="true"
+                          for=":r6:-0"
+                          style="display: none;"
+                        >
+                          Tags (2 a 5)
+                        </label>
+                      </div>
+                      <ui5-label
+                        class="FormItem-label-0-2-107 FormItem-lastGroupItem-0-2-109"
+                        data-label-span="3"
+                        show-colon="true"
+                        style="grid-column-start: 1; grid-row-start: 6;"
+                        ui5-label=""
+                        wrapping-type="Normal"
+                      >
+                        Nota
+                      </ui5-label>
+                      <div
+                        class="FormItem-content-0-2-108 FormItem-lastGroupItem-0-2-109"
+                        data-id=":r7:"
+                        data-label-span="3"
+                        style="grid-column-start: 4; grid-row-start: 6;"
+                      >
+                        <ui5-rating-indicator
+                          class="ReviewInfoForm-ratingIndicator-0-2-88"
+                          id=":r7:-0"
+                          ui5-rating-indicator=""
+                          value="0"
+                        />
+                        <label
+                          aria-hidden="true"
+                          for=":r7:-0"
+                          style="display: none;"
+                        >
+                          Nota
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div
+          aria-hidden="true"
+          style="height: 0px;"
+        />
+      </div>
+    </div>
+    <div
+      class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionRow-0-2-27 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29 FloatingBar-floatingContainer-0-2-101"
+    >
+      <div
+        class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionRow-0-2-27 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29 FloatingBar-floatingBar-0-2-102"
+      >
+        <ui5-button
+          class="FloatingBar-sendButton-0-2-100"
+          design="Emphasized"
+          ui5-button=""
+        >
+          Enviar
+        </ui5-button>
+        <ui5-button
+          class="FloatingBar-cancelButton-0-2-99"
+          design="Transparent"
+          ui5-button=""
+        >
+          Cancelar
+        </ui5-button>
+      </div>
+      <ui5-dialog
+        header-text="Confirmar ação"
+        ui5-dialog=""
+      >
+        <div
+          class="FlexBox-flexBox-0-2-12 FlexBox-flexBoxDirectionRow-0-2-27 FlexBox-justifyContentStart-0-2-15 FlexBox-alignItemsStretch-0-2-23 FlexBox-flexWrapNoWrap-0-2-29 FloatingBar-footer-0-2-103"
+          slot="footer"
+        >
+          <ui5-button
+            class="FloatingBar-button-0-2-104"
+            design="Emphasized"
+            ui5-button=""
+          >
+            Continuar
+          </ui5-button>
+          <ui5-button
+            class="FloatingBar-button-0-2-104"
+            design="Transparent"
+            ui5-button=""
+          >
+            Cancelar
+          </ui5-button>
+        </div>
+        <span
+          class="Text-text-0-2-37 FloatingBar-text-0-2-105"
+        >
+          Caso prossiga, os campos preenchidos serão desconsiderados. Deseja continuar?
+        </span>
+      </ui5-dialog>
+    </div>
+  </div>
+</div>
+`;

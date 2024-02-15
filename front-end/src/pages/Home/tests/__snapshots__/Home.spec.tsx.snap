@@ -3,340 +3,423 @@
 exports[`Home page Should match the snapshot 1`] = `
 <div>
   <div
-    class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+    class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionColumn-0-2-24 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28"
   >
-    <ui5-shellbar
-      data-sap-ui-fastnavgroup="true"
-      primary-title="UniFood"
-      ui5-shellbar=""
-    >
-      <img
-        alt="UniFood Logo"
-        slot="logo"
-        src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
-      />
-      <ui5-avatar
-        color-scheme="Accent6"
-        initials="TH"
-        slot="profile"
-        ui5-avatar=""
-      />
-      <ui5-shellbar-item
-        icon="visits"
-        text="Entrar"
-        ui5-shellbar-item=""
-      />
-      <ui5-shellbar-item
-        icon="add-employee"
-        text="Cadastrar-se"
-        ui5-shellbar-item=""
-      />
-    </ui5-shellbar>
     <div
-      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-firstSection-0-2-1"
+      class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 ShellBar-shellbar-0-2-31"
     >
       <div
-        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-mainContainer-0-2-2"
+        class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 ShellBar-logoContainer-0-2-32"
       >
-        <span
-          class="Text-text-0-2-49 Home-firstSectionMainText-0-2-4"
+        <img
+          alt="Logo"
+          class="ShellBar-logoImage-0-2-33"
+          src="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
+        />
+        <ui5-title
+          level="H5"
+          ui5-title=""
         >
-          Compartilhe suas experiências gastronômicas em restaurantes universitários!
-        </span>
-        <span
-          class="Text-text-0-2-49 Home-firstSectionSecondaryText-0-2-5"
-        >
-          Sua opinião importa! Junte-se a nós e ajude a transformar a experiência gastronômica estudantil nas universidades brasileiras.
-        </span>
+          UniFood
+        </ui5-title>
+      </div>
+      <div
+        class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 ShellBar-itemsContainer-0-2-35"
+      >
         <div
-          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-buttonsFlexBox-0-2-6"
+          aria-describedby="tippy-tooltip-1"
+          class=""
+          data-original-title="Pesquisar avaliações"
+          data-tooltipped=""
+          style="display: inline;"
         >
           <ui5-button
-            class="Home-newReviewButton-0-2-7"
             design="Emphasized"
-            type="Button"
+            disabled="true"
+            icon="search"
+            tooltip=" "
             ui5-button=""
-          >
-            Deixar Avaliação
-          </ui5-button>
+          />
+        </div>
+        <div
+          aria-describedby="tippy-tooltip-2"
+          class=""
+          data-original-title="Criar nova avaliação"
+          data-tooltipped=""
+          style="display: inline;"
+        >
           <ui5-button
-            class="Home-searchReviewsButton-0-2-8"
-            design="Default"
-            type="Button"
+            design="Emphasized"
+            icon="add"
+            tooltip=" "
             ui5-button=""
+          />
+        </div>
+        <div
+          aria-describedby="tippy-tooltip-3"
+          class=""
+          data-original-title="Entrar"
+          data-tooltipped=""
+          style="display: inline;"
+        >
+          <ui5-button
+            design="Default"
+            disabled="true"
+            icon="visits"
+            tooltip=" "
+            ui5-button=""
+          />
+        </div>
+        <ui5-avatar
+          color-scheme="Accent6"
+          icon="employee"
+          size="S"
+          ui5-avatar=""
+        />
+      </div>
+    </div>
+    <div
+      class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionColumn-0-2-24 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28"
+    >
+      <div
+        class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 Home-boxesContainer-0-2-3"
+      >
+        <div
+          class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 CreateReviewInfoBox-box-0-2-36"
+        >
+          <div
+            class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionColumn-0-2-24 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 CreateReviewInfoBox-boxTextContainer-0-2-37"
           >
-            Pesquisar Avaliações
-          </ui5-button>
+            <ui5-title
+              level="H4"
+              ui5-title=""
+            >
+              Avalie sua experiência em um RU!
+            </ui5-title>
+            <span
+              class="Text-text-0-2-41 CreateReviewInfoBox-boxSubtitle-0-2-39"
+            >
+              Ajude outros universitários a escolher o melhor RU para frequentar.
+            </span>
+          </div>
+          <div
+            class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 CreateReviewInfoBox-boxButtonContainer-0-2-38"
+          >
+            <ui5-button
+              class="CreateReviewInfoBox-boxButton-0-2-40"
+              design="Emphasized"
+              icon="navigation-right-arrow"
+              icon-end="true"
+              ui5-button=""
+            >
+              Criar avaliação
+            </ui5-button>
+          </div>
+        </div>
+        <div
+          class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 SearchReviewInfoBox-box-0-2-48"
+        >
+          <div
+            class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionColumn-0-2-24 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 SearchReviewInfoBox-boxTextContainer-0-2-49"
+          >
+            <ui5-title
+              level="H4"
+              ui5-title=""
+              wrapping-type="Normal"
+            >
+              Descubra avaliações dos RUs que você frequenta!
+            </ui5-title>
+            <span
+              class="Text-text-0-2-41 SearchReviewInfoBox-boxSubtitle-0-2-50"
+            >
+              Procure por avaliações deixadas por outros usuários e filtre-as com base em diversas opções.
+            </span>
+          </div>
         </div>
       </div>
       <div
-        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-secondaryContainer-0-2-3"
+        class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 Home-boxesContainer-0-2-3"
+        style="margin-top: 10px; margin-bottom: 0px;"
       >
-        <ui5-card
-          class="Home-reviewCard-0-2-12"
-          ui5-card=""
+        <div
+          class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 ReviewsSearchBar-searchBox-0-2-51"
         >
-          <ui5-card-header
-            slot="header"
-            subtitle-text="Porto Alegre, Rio Grande do Sul"
-            title-text="RU1 - UFRGS"
-            ui5-card-header=""
+          <ui5-input
+            class="ReviewsSearchBar-searchBar-0-2-52"
+            placeholder="Pesquisar (código do RU, nome da universidade, cidade, tags)"
+            ui5-input=""
+            value=""
           >
             <ui5-icon
-              design="Default"
-              name="official-service"
-              slot="avatar"
+              class="ReviewsSearchBar-searchBarIcon-0-2-53"
+              name="search"
+              slot="icon"
               ui5-icon=""
             />
-          </ui5-card-header>
-          <ui5-list
-            accessible-role="list"
-            busy-delay="1000"
-            data-sap-ui-fastnavgroup="true"
-            growing="None"
-            mode="None"
-            separators="None"
-            ui5-list=""
+          </ui5-input>
+          <ui5-segmented-button
+            ui5-segmented-button=""
           >
-            <ui5-li
-              additional-text-state="None"
-              type="Inactive"
-              ui5-li=""
+            <ui5-segmented-button-item
+              icon="filter"
+              ui5-segmented-button-item=""
             >
-              <ui5-rating-indicator
-                max="5"
-                readonly="true"
-                ui5-rating-indicator=""
-                value="4"
+              Filtrar
+            </ui5-segmented-button-item>
+            <ui5-segmented-button-item
+              icon="sys-cancel"
+              ui5-segmented-button-item=""
+            >
+              Limpar filtros
+            </ui5-segmented-button-item>
+          </ui5-segmented-button>
+          <div
+            class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 ReviewsSearchBar-switchContainer-0-2-54"
+          >
+            <ui5-switch
+              ui5-switch=""
+            />
+            <ui5-label
+              class="ReviewsSearchBar-switchLabelText-0-2-55"
+              ui5-label=""
+            >
+              Filtrar médias
+            </ui5-label>
+            <ui5-switch
+              checked="true"
+              ui5-switch=""
+            />
+            <ui5-label
+              class="ReviewsSearchBar-switchLabelText-0-2-55"
+              ui5-label=""
+            >
+              Filtrar avaliações
+            </ui5-label>
+          </div>
+        </div>
+        <ui5-dialog
+          class="FilterDialog-dialog-0-2-56"
+          header-text="Filtrar por"
+          ui5-dialog=""
+        >
+          <div
+            class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 FilterDialog-footer-0-2-62"
+            slot="footer"
+          >
+            <ui5-button
+              class="FilterDialog-button-0-2-63"
+              design="Emphasized"
+              ui5-button=""
+            >
+              Aplicar (
+              0
+              )
+            </ui5-button>
+            <ui5-button
+              class="FilterDialog-button-0-2-63"
+              design="Transparent"
+              ui5-button=""
+            >
+              Cancelar
+            </ui5-button>
+          </div>
+          <div
+            class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionColumn-0-2-24 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28"
+          >
+            <div
+              class="ObjectPage-objectPage-0-2-65 sapScrollBar FilterDialog-objectPage-0-2-57 ObjectPage-iconTabBarMode-0-2-66"
+              data-component-name="ObjectPage"
+            >
+              <header
+                aria-roledescription="Object Page header"
+                class="ObjectPage-header-0-2-70"
+                data-component-name="ObjectPageTopHeader"
+                data-not-clickable="true"
+                style="grid-auto-columns: min-content 100%; display: grid;"
               />
-            </ui5-li>
-            <ui5-li
-              additional-text-state="None"
-              style="height: auto; margin-top: 20px;"
-              type="Inactive"
-              ui5-li=""
-            >
-              <h4>
-                Comentários
-              </h4>
-              <p
-                class="Home-reviewCardComments-0-2-13"
-              >
-                Minha experiência no Restaurante Universitário foi positiva em vários aspectos. A agilidade no atendimento, com filas curtas, facilitou bastante o processo de refeição. No entanto, a ausência de guardanapos foi um ponto negativo que não pude ignorar. A diversidade de pratos disponíveis é uma vantagem, embora tenha sentido falta de opções vegetarianas para atender diferentes preferências alimentares.
-              </p>
-            </ui5-li>
-            <ui5-li
-              additional-text-state="None"
-              style="height: auto; margin-top: 20px;"
-              type="Inactive"
-              ui5-li=""
-            >
-              <h4>
-                Tags
-              </h4>
               <div
-                class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-badgesList-0-2-14"
+                class="ObjectPage-tabContainer-0-2-74"
+                data-component-name="ObjectPageTabContainer"
+                style="top: 0px;"
               >
-                <ui5-badge
-                  class="Home-badge-0-2-15"
-                  color-scheme="8"
-                  ui5-badge=""
+                <ui5-tabcontainer
+                  class="ObjectPage-tabContainerComponent-0-2-75"
+                  collapsed="true"
+                  data-component-name="ObjectPageTabContainer"
+                  data-sap-ui-fastnavgroup="true"
+                  fixed="true"
+                  ui5-tabcontainer=""
                 >
-                  Fila curta
-                </ui5-badge>
-                <ui5-badge
-                  class="Home-badge-0-2-15"
-                  color-scheme="1"
-                  ui5-badge=""
-                >
-                  Sem guardanapos
-                </ui5-badge>
-                <ui5-badge
-                  class="Home-badge-0-2-15"
-                  color-scheme="2"
-                  ui5-badge=""
-                >
-                  Sem opção vegetariana
-                </ui5-badge>
-                <ui5-badge
-                  class="Home-badge-0-2-15"
-                  color-scheme="8"
-                  ui5-badge=""
-                >
-                  Boa variedade
-                </ui5-badge>
-                <ui5-badge
-                  class="Home-badge-0-2-15"
-                  color-scheme="8"
-                  ui5-badge=""
-                >
-                  Limpeza
-                </ui5-badge>
+                  <ui5-tab
+                    data-index="0"
+                    data-section-id="courseName"
+                    selected="true"
+                    text="Nome do curso"
+                    ui5-tab=""
+                  >
+                    <span
+                      style="display: none;"
+                    />
+                  </ui5-tab>
+                  <ui5-tab
+                    data-index="1"
+                    data-section-id="dietaryPreference"
+                    text="Preferência alimentar"
+                    ui5-tab=""
+                  >
+                    <span
+                      style="display: none;"
+                    />
+                  </ui5-tab>
+                  <ui5-tab
+                    data-index="2"
+                    data-section-id="mealPeriod"
+                    text="Período da refeição"
+                    ui5-tab=""
+                  >
+                    <span
+                      style="display: none;"
+                    />
+                  </ui5-tab>
+                </ui5-tabcontainer>
               </div>
-            </ui5-li>
-          </ui5-list>
-        </ui5-card>
+              <div
+                class="ObjectPage-content-0-2-76"
+                data-component-name="ObjectPageContent"
+              >
+                <div
+                  aria-hidden="true"
+                  style="height: 0px;"
+                />
+                <section
+                  class="ObjectPageSection-section-0-2-82"
+                  data-component-name="ObjectPageSection"
+                  id="ObjectPageSection-courseName"
+                  role="region"
+                >
+                  <div
+                    aria-level="3"
+                    class="ObjectPageSection-titleContainer-0-2-84"
+                    data-component-name="ObjectPageSectionTitleText"
+                    role="heading"
+                  >
+                    <div
+                      class="ObjectPageSection-title-0-2-85 ObjectPageSection-uppercase-0-2-86"
+                    >
+                      Nome do curso
+                    </div>
+                  </div>
+                  <div
+                    class="ObjectPageSection-sectionContent-0-2-88"
+                  >
+                    <div
+                      class="ObjectPageSection-sectionContentInner-0-2-89"
+                      data-component-name="ObjectPageSectionContent"
+                    >
+                      <ui5-input
+                        class="FilterDialog-input-0-2-58"
+                        placeholder="Ex.: Ciência da Computação"
+                        ui5-input=""
+                        value=""
+                      >
+                        <ui5-icon
+                          class="FilterDialog-inputIcon-0-2-59"
+                          name="search"
+                          slot="icon"
+                          ui5-icon=""
+                        />
+                      </ui5-input>
+                    </div>
+                  </div>
+                </section>
+                <div
+                  aria-hidden="true"
+                  style="height: 0px;"
+                />
+              </div>
+              <div
+                aria-hidden="true"
+                class="ObjectPage-footerSpacer-0-2-78"
+                data-component-name="ObjectPageFooterSpacer"
+              />
+              <footer
+                class="ObjectPage-footer-0-2-77"
+                data-component-name="ObjectPageFooter"
+              >
+                <div
+                  class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 FilterDialog-objectPageFooter-0-2-64"
+                >
+                  Estes filtros não serão aplicados às médias por restaurante universitário
+                </div>
+              </footer>
+            </div>
+          </div>
+        </ui5-dialog>
       </div>
-    </div>
-    <div
-      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-secondSection-0-2-9"
-    >
-      <span
-        class="Text-text-0-2-49 Home-secondSectionMainText-0-2-10"
-      >
-        Veja as avaliações dos RUs mais frequentados!
-      </span>
-      <span
-        class="Text-text-0-2-49 Home-secondSectionSecondaryText-0-2-11"
-      >
-        Veja a média das avaliações deixadas por outros estudantes.
-      </span>
-    </div>
-    <div
-      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-thirdSection-0-2-16"
-    >
-      <span
-        class="Text-text-0-2-49 Home-secondSectionMainText-0-2-10"
-      >
-        Leia avaliações reais de estudantes como você
-      </span>
-      <span
-        class="Text-text-0-2-49 Home-secondSectionSecondaryText-0-2-11"
-      >
-        Descubra as experiências mais recentes dos estudantes nos RUs.
-      </span>
-    </div>
-    <div
-      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-fourthSection-0-2-19"
-    >
       <div
-        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-fourthSectionMainContainer-0-2-20"
-      >
-        <ui5-badge
-          color-scheme="8"
-          style="padding: 5px;"
-          ui5-badge=""
-        >
-          FAQ
-        </ui5-badge>
-        <span
-          class="Text-text-0-2-49 Home-fourthSectionMainText-0-2-21"
-        >
-          Perguntas comuns
-        </span>
-      </div>
-      <div
-        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
-        style="padding: 100px; gap: 50px;"
+        class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 Home-textContainer-0-2-4"
       >
         <div
-          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+          class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 Home-centeredContainer-0-2-5"
         >
-          <span
-            class="Text-text-0-2-49 Home-questionText-0-2-23"
+          <ui5-title
+            class="Home-sectionText-0-2-6"
+            level="H4"
+            ui5-title=""
           >
-            O que devo considerar em minha avaliação?
-          </span>
+            Médias por Restaurante Universitário
+          </ui5-title>
           <span
-            class="Text-text-0-2-49 Home-answerText-0-2-24"
+            class="Text-text-0-2-41 Home-sectionText-0-2-6"
           >
-            Ao avaliar o restaurante universitário, você pode considerar diversos aspectos, tais como a qualidade da comida, o atendimento, a limpeza do ambiente e a variedade de opções oferecidas. 
-            <br />
-             
-            <br />
-            É importante que você leve em conta a realidade dos RUs ao fazer comparações, evitando considerar restaurantes que podem ter preços muito mais altos. Afinal, o valor pago no RU é significativamente mais acessível e a proposta do local é atender às necessidades dos estudantes.
-          </span>
-        </div>
-        <div
-          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
-        >
-          <span
-            class="Text-text-0-2-49 Home-questionText-0-2-23"
-          >
-            Meu nome ficará exposto na avaliação?
-          </span>
-          <span
-            class="Text-text-0-2-49 Home-answerText-0-2-24"
-          >
-            Não, todas as avaliações são anônimas. Seu nome não será exibido e sua identidade será mantida em sigilo.
-          </span>
-        </div>
-        <div
-          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
-        >
-          <span
-            class="Text-text-0-2-49 Home-questionText-0-2-23"
-          >
-            Qual é o objetivo da plataforma?
-          </span>
-          <span
-            class="Text-text-0-2-49 Home-answerText-0-2-24"
-          >
-            O objetivo da plataforma é proporcionar um espaço para que estudantes possam compartilhar suas experiências nos restaurantes universitários, permitindo que outros alunos conheçam as avaliações e façam escolhas informadas sobre onde comer. 
-            <br />
-            <br />
-             Além disso, acreditamos que os orgãos gerenciadores dos RUs avaliados pelos usuários em nossa plataforma podem contribuir para a evolução dos restaurantes de um modo geral. Dessa forma, as avaliações podem servir como uma métrica de qualidade destes estabelecimentos.
-          </span>
-        </div>
-        <div
-          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
-        >
-          <span
-            class="Text-text-0-2-49 Home-questionText-0-2-23"
-          >
-            Durante quanto tempo uma avaliação fica disponível?
-          </span>
-          <span
-            class="Text-text-0-2-49 Home-answerText-0-2-24"
-          >
-            Uma avaliação fica disponível por até um mês após ser enviada. Nós optamos por manter as avaliações temporárias porque acreditamos que os RUs têm a capacidade de evoluir e se adaptar às necessidades dos estudantes ao longo do tempo.
-          </span>
-        </div>
-        <div
-          class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
-        >
-          <span
-            class="Text-text-0-2-49 Home-questionText-0-2-23"
-          >
-            Sou estudante e gostaria de obter acesso às avaliações, é possível?
-          </span>
-          <span
-            class="Text-text-0-2-49 Home-answerText-0-2-24"
-          >
-            Sim, é possível obter acesso às avaliações em nossa plataforma. Se você é estudante e deseja ter acesso às avaliações, por favor, entre em contato conosco pelo e-mail
-             
-            <u>
-              unifood.tech@gmail.com
-            </u>
-            . Vamos avaliar sua solicitação e fornecer os detalhes sobre as condições de utilização dos dados de avaliações em nossa plataforma. 
-            <br />
-            <br />
-             Lembramos que é fundamental respeitar a Lei Geral de Proteção de Dados (LGPD) e as políticas de privacidade em vigor. Portanto, as informações fornecidas a você estarão de acordo com as regulamentações e garantirão a privacidade e anonimato dos avaliadores.
+            (
+            ??
+             RUs)
           </span>
         </div>
       </div>
-    </div>
-    <div
-      class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionRow-0-2-44 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46 Home-footer-0-2-25"
-    >
-      <span
-        class="Text-text-0-2-49 Home-footerText-0-2-26"
-      >
-        A missão da plataforma UniFood é tornar a experiência gastronômica universitária ainda mais especial e prática. Nossa proposta é simples: fornecer um espaço onde você possa avaliar os restaurantes universitários (RUs) com facilidade e compartilhar suas experiências. Suas avaliações podem contribuir para melhorar a experiência de todos que utilizam os mesmos RUs que você!
-      </span>
       <div
-        class="FlexBox-flexBox-0-2-29 FlexBox-flexBoxDirectionColumn-0-2-42 FlexBox-justifyContentStart-0-2-32 FlexBox-alignItemsStretch-0-2-40 FlexBox-flexWrapNoWrap-0-2-46"
+        class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 Home-averageReviewsContainer-0-2-8"
       >
-        <span
-          class="Text-text-0-2-49 Home-footerContactHeader-0-2-27"
+        <ui5-busy-indicator
+          active="true"
+          class="Home-busyIndicator-0-2-7"
+          delay="0"
+          ui5-busy-indicator=""
+        />
+      </div>
+      <div
+        class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 Home-textContainer-0-2-4"
+      >
+        <div
+          class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 Home-centeredContainer-0-2-5"
         >
-          Contato: 
-        </span>
-        <span
-          class="Text-text-0-2-49 Home-footerContact-0-2-28"
-        >
-          unifood.tech@gmail.com
-        </span>
+          <ui5-title
+            class="Home-sectionText-0-2-6"
+            level="H4"
+            ui5-title=""
+          >
+            Avaliações por Refeição
+          </ui5-title>
+          <span
+            class="Text-text-0-2-41 Home-sectionText-0-2-6"
+          >
+            (
+            ??
+             avaliações)
+          </span>
+        </div>
+      </div>
+      <div
+        class="FlexBox-flexBox-0-2-11 FlexBox-flexBoxDirectionRow-0-2-26 FlexBox-justifyContentStart-0-2-14 FlexBox-alignItemsStretch-0-2-22 FlexBox-flexWrapNoWrap-0-2-28 Home-reviewsContainer-0-2-9"
+      >
+        <ui5-busy-indicator
+          active="true"
+          class="Home-busyIndicator-0-2-7"
+          delay="0"
+          style="margin-bottom: 300px;"
+          ui5-busy-indicator=""
+        />
       </div>
     </div>
   </div>
