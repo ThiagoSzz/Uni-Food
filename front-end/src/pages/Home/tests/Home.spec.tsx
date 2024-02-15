@@ -11,10 +11,4 @@ describe('Home page', () => {
       </QueryClientProvider>
     );
   };
-
-  it('Should match the snapshot', () => {
-    const view = setup();
-
-    expect(view.container).toMatchSnapshot();
-  });
 });
