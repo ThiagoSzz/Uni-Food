@@ -202,7 +202,7 @@ export const Home: React.FC = () => {
         <FlexBox className={classes.textContainer}>
           <FlexBox className={classes.centeredContainer}>
             <Title className={classes.sectionText} level={TitleLevel.H4}>
-              Médias por Restaurante Universitário
+              Teste1
             </Title>
             <Text className={classes.sectionText}>
               ({!isLoadingAverageReviews ? filteredAverageReviews.length : '??'} RUs)
@@ -232,7 +232,7 @@ export const Home: React.FC = () => {
         <FlexBox className={classes.textContainer}>
           <FlexBox className={classes.centeredContainer}>
             <Title className={classes.sectionText} level={TitleLevel.H4}>
-              Avaliações por Refeição
+              Teste2
             </Title>
             <Text className={classes.sectionText}>
               ({!isLoadingReviews ? filteredReviews.length : '??'} avaliações)
