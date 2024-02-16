@@ -15,6 +15,7 @@ import {
 import useReviewsStore from '../../stores/useReviewsStore';
 import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
 import { useEffect } from 'react';
+import { debounce } from '@ui5/webcomponents-react-base';
 
 export const ReviewsSearchBar = () => {
   const classes = useStyles();
@@ -49,18 +50,6 @@ export const ReviewsSearchBar = () => {
     value.shouldFilterAverageReviews,
     value.setShouldFilterAverageReviews
   ]);
-
-  const debounce = (func: Function, delay: number) => {
-    let timeout: NodeJS.Timeout;
-
-    return (...args: any[]) => {
-      clearTimeout(timeout);
-
-      timeout = setTimeout(() => {
-        func(...args);
-      }, delay);
-    };
-  };
 
   const handleApplyFilters = debounce((searchQuery: string) => {
     setReviewsSearchQuery(searchQuery);

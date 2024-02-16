@@ -47,15 +47,13 @@ export const Home: React.FC = () => {
     setReviews,
     filteredReviews,
     setFilteredReviews,
-    shouldShowNoFilteredReviewsMessage,
-    searchQuery
+    shouldShowNoFilteredReviewsMessage
   ] = useReviewsStore((value) => [
     value.reviews,
     value.setReviews,
     value.filteredReviews,
     value.setFilteredReviews,
-    value.shouldShowNoFilteredReviewsMessage,
-    value.searchQuery
+    value.shouldShowNoFilteredReviewsMessage
   ]);
   const [setAverageReviews, filteredAverageReviews, setFilteredAverageReviews] =
     useAverageReviewsStore((value) => [
@@ -106,12 +104,10 @@ export const Home: React.FC = () => {
         message: 'Nenhuma avaliação foi filtrada com sua pesquisa.',
         value: MessageStripDesign.Information
       });
+    } else {
+      setFeedbackMessageStrip({ show: false });
     }
   }, [shouldShowNoFilteredReviewsMessage]);
-
-  useEffect(() => {
-    setFeedbackMessageStrip({ show: false });
-  }, [searchQuery]);
 
   useEffect(() => {
     if (isReviewCreated) {
