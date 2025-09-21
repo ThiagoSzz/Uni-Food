@@ -3,7 +3,9 @@ import {
   ButtonDesign,
   Avatar,
   AvatarColorScheme,
-  AvatarSize
+  AvatarSize,
+  MessageStrip,
+  MessageStripDesign
 } from '@ui5/webcomponents-react';
 
 import { ShellBar } from '../ShellBar';
@@ -15,6 +17,7 @@ import { AuthPopover } from '../../AuthPopover/AuthPopover';
 import { useState } from 'react';
 import { Tooltip } from 'react-tippy';
 import { useTranslation } from 'react-i18next';
+import { useMessageStrip } from '../../../hooks/useMessageStrip';
 
 export const CustomShellBar = (props: CustomShellBarProps) => {
   const { t } = useTranslation();
@@ -22,6 +25,7 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
   const { searchDisabled, createReviewDisabled } = props;
   const { isAuthenticated, user, logout } = useAuth();
   const [isAuthPopoverOpen, setIsAuthPopoverOpen] = useState(false);
+  const { message, showInfoMessage, hideMessage } = useMessageStrip(5000);
 
   const navigate = useNavigate();
 
@@ -30,6 +34,10 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
   };
 
   const navigateToCreateReviewPage = () => {
+    if (!isAuthenticated) {
+      showInfoMessage(t('auth.loginRequired'));
+      return;
+    }
     navigate(AppRoute.CreateReview);
   };
 
@@ -48,6 +56,22 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
 
   return (
     <>
+      {message && (
+        <MessageStrip
+          design={MessageStripDesign.Information}
+          onClose={hideMessage}
+          style={{
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            right: '0',
+            zIndex: 1000,
+            margin: '0'
+          }}
+        >
+          {message.text}
+        </MessageStrip>
+      )}
       <ShellBar
         image="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
         text={t('nav.appName')}
@@ -65,7 +89,7 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
           <Button
             design={ButtonDesign.Emphasized}
             icon="add"
-            disabled={createReviewDisabled || !isAuthenticated}
+            disabled={createReviewDisabled}
             onClick={() => navigateToCreateReviewPage()}
             tooltip=" "
           />

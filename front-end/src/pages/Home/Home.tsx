@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   BusyIndicator,
   FlexBox,
@@ -7,8 +7,6 @@ import {
   Text,
   Title,
   TitleLevel,
-  MessageStrip,
-  MessageStripDesign,
   IllustratedMessage,
   IllustrationMessageSize,
   IllustrationMessageType
@@ -27,18 +25,20 @@ import useReviewsStore from '../../stores/useReviewsStore';
 import { useAverageReviews } from '../../hooks/useAverageReviews';
 import { useGetReviewsMutation } from '../../hooks/queries/useGetReviews';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
+import { useMessageStrip } from '../../hooks/useMessageStrip';
 
 import '@ui5/webcomponents-fiori/dist/illustrations/NoData.js';
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
 import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
-import { t } from 'i18next';
+import { MessageStripContainer } from '../../components/MessageStripContainer/MessageStripContainer';
+import { useTranslation } from 'react-i18next';
 
 const USE_BACKEND_REVIEWS = true;
 const NUM_DISPLAYED_REVIEWS = 40;
-const FEEDBACK_MESSAGE_TIMEOUT = 6000;
 
 export const Home: React.FC = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const [clearValidationErrors, isReviewCreated, setIsReviewCreated] = useNewReviewStore(
     (value) => [value.clearValidationErrors, value.isReviewCreated, value.setIsReviewCreated]
@@ -68,19 +68,20 @@ export const Home: React.FC = () => {
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true);
   const [isLoadingAverageReviews, setIsLoadingAverageReviews] = useState<boolean>(true);
   const [hasNoData, setHasNoData] = useState<boolean>(false);
-  const [feedbackMessageStrip, setFeedbackMessageStrip] = useState<{
-    show: boolean;
-    message?: string;
-    value?: MessageStripDesign;
-  }>({
-    show: false
-  });
+
+  const {
+    message: feedbackMessage,
+    showSuccessMessage,
+    showErrorMessage,
+    showInfoMessage,
+    hideMessage: hideFeedbackMessage
+  } = useMessageStrip(6000);
 
   const { getUniversityRuStandings, groupReviewsByRuAndUniversity } = useAverageReviews();
 
   const reviewsMutation = useGetReviewsMutation();
 
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     await reviewsMutation
       .mutateAsync()
       .then((result) => {
@@ -90,38 +91,25 @@ export const Home: React.FC = () => {
         setFilteredReviews(reviews);
       })
       .catch((error) => {
-        setFeedbackMessageStrip({
-          show: true,
-          message: `Um erro (${error.message}) ocorreu ao obter a lista de avaliações. É possível que o serviço esteja indisponível no momento.`,
-          value: MessageStripDesign.Negative
-        });
+        showErrorMessage(t('messages.reviewsFetchError', { message: error.message }));
 
         setHasNoData(true);
       });
-  };
+  }, [reviewsMutation, setReviews, setFilteredReviews, showErrorMessage, t, setHasNoData]);
 
   useEffect(() => {
     if (shouldShowNoFilteredReviewsMessage) {
-      setFeedbackMessageStrip({
-        show: true,
-        message: 'Nenhuma avaliação foi filtrada com sua pesquisa.',
-        value: MessageStripDesign.Information
-      });
+      showInfoMessage(t('messages.noFilteredReviews'));
     }
-  }, [shouldShowNoFilteredReviewsMessage]);
+  }, [shouldShowNoFilteredReviewsMessage, showInfoMessage, t]);
 
   useEffect(() => {
-    setFeedbackMessageStrip({ show: false });
-  }, [searchQuery]);
+    hideFeedbackMessage();
+  }, [searchQuery, hideFeedbackMessage]);
 
   useEffect(() => {
     if (isReviewCreated) {
-      setFeedbackMessageStrip({
-        show: true,
-        message: 'Sua avaliação foi criada com sucesso!',
-        value: MessageStripDesign.Positive
-      });
-
+      showSuccessMessage(t('messages.reviewCreatedSuccess'));
       setIsReviewCreated(false);
     }
 
@@ -137,7 +125,7 @@ export const Home: React.FC = () => {
       setReviews(reviewsFixture);
       setFilteredReviews(reviewsFixture);
     }
-  }, []);
+  }, [showSuccessMessage, t, fetchReviews]);
 
   useEffect(() => {
     if (reviews.length > 0) {
@@ -157,19 +145,7 @@ export const Home: React.FC = () => {
       setIsLoadingReviews(false);
       setIsLoadingAverageReviews(false);
     }
-  }, [filteredAverageReviews]);
-
-  useEffect(() => {
-    if (feedbackMessageStrip.show) {
-      const timeoutId = setTimeout(() => {
-        setFeedbackMessageStrip({ show: false });
-      }, FEEDBACK_MESSAGE_TIMEOUT);
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
-  }, [feedbackMessageStrip.show]);
+  }, [filteredAverageReviews, isLoadingAverageReviews]);
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
@@ -180,15 +156,13 @@ export const Home: React.FC = () => {
           <CreateReviewInfoBox />
           <SearchReviewInfoBox />
         </FlexBox>
-        {feedbackMessageStrip.show ? (
+        {feedbackMessage ? (
           <FlexBox className={classes.messageStripContainer}>
-            <MessageStrip
+            <MessageStripContainer
+              message={feedbackMessage}
+              onClose={hideFeedbackMessage}
               className={classes.messageStrip}
-              onClose={() => setFeedbackMessageStrip({ show: false })}
-              design={feedbackMessageStrip.value}
-            >
-              <Text style={{ fontSize: '15px' }}>{feedbackMessageStrip.message}</Text>
-            </MessageStrip>
+            />
           </FlexBox>
         ) : (
           <></>
