@@ -3,10 +3,12 @@ import { useStyles } from './ShellBar.jss';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../enums/AppRoutesEnum';
 import { ShellBarProps } from '../../interfaces/props/ShellBarProps';
+import { useTranslation } from 'react-i18next';
 
 export const ShellBar = (props: ShellBarProps) => {
   const { image, text, children } = props;
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ export const ShellBar = (props: ShellBarProps) => {
           className={classes.logoImage}
           onClick={() => navigateToHomePage()}
         />
-        <Title level={TitleLevel.H5}>{text}</Title>
+        <Title level={TitleLevel.H5}>{text || t('nav.home')}</Title>
       </FlexBox>
       <FlexBox className={classes.itemsContainer}>{children}</FlexBox>
     </FlexBox>

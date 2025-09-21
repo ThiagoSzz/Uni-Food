@@ -11,10 +11,12 @@ import {
   Button,
   ButtonDesign
 } from '@ui5/webcomponents-react';
+import { useTranslation } from 'react-i18next';
 
 export const CreateReviewInfoBox = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const navigateToCreateReviewPage = () => {
     navigate(AppRoute.CreateReview);
@@ -23,10 +25,8 @@ export const CreateReviewInfoBox = () => {
   return (
     <FlexBox className={classes.box} direction={FlexBoxDirection.Row}>
       <FlexBox className={classes.boxTextContainer} direction={FlexBoxDirection.Column}>
-        <Title level={TitleLevel.H4}>Avalie sua experiência em um RU!</Title>
-        <Text className={classes.boxSubtitle}>
-          Ajude outros universitários a escolher o melhor RU para frequentar.
-        </Text>
+        <Title level={TitleLevel.H4}>{t('reviews.writeYourReview')}</Title>
+        <Text className={classes.boxSubtitle}>{t('reviews.writeYourReviewDesc')}</Text>
       </FlexBox>
       <FlexBox className={classes.boxButtonContainer}>
         <Button
@@ -36,7 +36,7 @@ export const CreateReviewInfoBox = () => {
           iconEnd
           onClick={() => navigateToCreateReviewPage()}
         >
-          Criar avaliação
+          {t('review.form.submit')}
         </Button>
       </FlexBox>
     </FlexBox>

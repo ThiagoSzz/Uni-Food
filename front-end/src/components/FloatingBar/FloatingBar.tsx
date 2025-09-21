@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStyles } from '../FloatingBar/FloatingBar.jss';
 import { Button, ButtonDesign, Dialog, FlexBox, Text } from '@ui5/webcomponents-react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../enums/AppRoutesEnum';
 import useNewReviewStore from '../../stores/useNewReviewStore';
@@ -8,6 +9,7 @@ import useNewReviewStore from '../../stores/useNewReviewStore';
 export const FloatingBar = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [
     createNewReview,
@@ -52,18 +54,18 @@ export const FloatingBar = () => {
           className={classes.sendButton}
           onClick={onSendButtonClick}
         >
-          Enviar
+          {t('floating.send')}
         </Button>
         <Button
           design={ButtonDesign.Transparent}
           className={classes.cancelButton}
           onClick={onCancelButtonClick}
         >
-          Cancelar
+          {t('btn.cancel')}
         </Button>
       </FlexBox>
       <Dialog
-        headerText="Confirmar ação"
+        headerText={t('floating.confirmHeader')}
         open={confirmActionDialogOpen}
         footer={
           <FlexBox className={classes.footer}>
@@ -72,20 +74,22 @@ export const FloatingBar = () => {
               onClick={() => navigateToHomePage()}
               className={classes.button}
             >
-              Continuar
+              {t('floating.continue')}
             </Button>
             <Button
               design={ButtonDesign.Transparent}
               onClick={() => setConfirmActionDialogOpen(false)}
               className={classes.button}
             >
-              Cancelar
+              {t('btn.cancel')}
             </Button>
           </FlexBox>
         }
       >
         <Text className={classes.text}>
-          Caso prossiga, os campos preenchidos serão desconsiderados. Deseja continuar?
+          {t(
+            'floating.confirmText'
+          )}
         </Text>
       </Dialog>
     </FlexBox>

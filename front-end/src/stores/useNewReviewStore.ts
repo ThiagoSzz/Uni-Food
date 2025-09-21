@@ -217,13 +217,13 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
     if (
       newReview.ruCode !== '' ||
       newReview.universityName !== '' ||
-      newReview.mealPeriod !== '' ||
+      newReview.mealPeriod !== MealPeriod.UNDEFINED ||
       newReview.comment !== '' ||
       newReview.tags.length !== 0 ||
       newReview.rating !== 0 ||
       newReview.courseName !== '' ||
       newReview.coursePeriod !== '' ||
-      newReview.dietaryPreference !== '' ||
+      newReview.dietaryPreference !== DietaryPreference.UNDEFINED ||
       newReview.city !== ''
     ) {
       return true;

@@ -14,8 +14,11 @@ import { useAuth } from '../../../contexts/AuthContext';
 import { AuthPopover } from '../../AuthPopover/AuthPopover';
 import { useState } from 'react';
 import { Tooltip } from 'react-tippy';
+import { useTranslation } from 'react-i18next';
 
 export const CustomShellBar = (props: CustomShellBarProps) => {
+  const { t } = useTranslation();
+
   const { searchDisabled, createReviewDisabled } = props;
   const { isAuthenticated, user, logout } = useAuth();
   const [isAuthPopoverOpen, setIsAuthPopoverOpen] = useState(false);
@@ -47,9 +50,9 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
     <>
       <ShellBar
         image="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
-        text="UniFood"
+        text={t('nav.appName')}
       >
-        <Tooltip title="Pesquisar avaliações" arrow arrowSize="small">
+        <Tooltip title={t('nav.searchReviews')} arrow arrowSize="small">
           <Button
             design={ButtonDesign.Emphasized}
             icon="search"
@@ -58,7 +61,7 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
             tooltip=" "
           />
         </Tooltip>
-        <Tooltip title="Criar nova avaliação" arrow arrowSize="small">
+        <Tooltip title={t('nav.createReview')} arrow arrowSize="small">
           <Button
             design={ButtonDesign.Emphasized}
             icon="add"
@@ -70,7 +73,7 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
 
         {isAuthenticated ? (
           <>
-            <Tooltip title="Sair" arrow arrowSize="small">
+            <Tooltip title={t('nav.logout')} arrow arrowSize="small">
               <Button design={ButtonDesign.Default} icon="log" onClick={handleLogout} tooltip=" " />
             </Tooltip>
             <Tooltip title={`Olá, ${user?.nome || 'Usuário'}`} arrow arrowSize="small">
@@ -79,7 +82,7 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
           </>
         ) : (
           <>
-            <Tooltip title="Entrar" arrow arrowSize="small">
+            <Tooltip title={t('nav.login')} arrow arrowSize="small">
               <Button
                 id="login-button"
                 design={ButtonDesign.Default}

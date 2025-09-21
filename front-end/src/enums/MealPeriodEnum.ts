@@ -1,6 +1,6 @@
 export enum MealPeriod {
-  BREAKFAST = 'Café da manhã',
-  LUNCH = 'Almoço',
-  DINNER = 'Jantar',
-  UNDEFINED = ''
+  BREAKFAST = 'BREAKFAST',
+  LUNCH = 'LUNCH',
+  DINNER = 'DINNER',
+  UNDEFINED = 'UNDEFINED'
 }

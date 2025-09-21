@@ -12,6 +12,7 @@ import {
   MessageStrip,
   MessageStripDesign
 } from '@ui5/webcomponents-react';
+import { useTranslation } from 'react-i18next';
 
 import { useStyles } from './CreateReview.jss';
 import '@ui5/webcomponents-icons/dist/AllIcons';
@@ -28,6 +29,7 @@ import { useNavigate } from 'react-router-dom';
 export const CreateReview: React.FC = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const setSearchQuery = useReviewsStore((value) => value.setSearchQuery);
   const [newReview, clearNewReview, validationErrors, isReviewCreated, setIsReviewCreated] =
@@ -68,7 +70,7 @@ export const CreateReview: React.FC = () => {
         setIsReviewCreated(false);
         setFeedbackMessageStrip({
           show: true,
-          message: `Um erro (${error.message}) inesperado aconteceu. Volte para a página principal e tente novamente.`,
+          message: t('createReview.unexpectedError', { message: error.message }),
           value: MessageStripDesign.Negative
         });
         return;
@@ -86,7 +88,9 @@ export const CreateReview: React.FC = () => {
     if (isReviewCreated) {
       setFeedbackMessageStrip({
         show: true,
-        message: 'Sua avaliação está sendo criada e em breve você será redirecionado!',
+        message: t(
+          'createReview.creatingRedirect'
+        ),
         value: MessageStripDesign.Information
       });
       insertNewReview();
@@ -119,13 +123,8 @@ export const CreateReview: React.FC = () => {
       <FlexBox direction={FlexBoxDirection.Row} className={classes.boxesContainer}>
         <FlexBox className={classes.box} direction={FlexBoxDirection.Row}>
           <FlexBox className={classes.boxTextContainer} direction={FlexBoxDirection.Column}>
-            <Title level={TitleLevel.H4}>
-              Compartilhe seu feedback de uma refeição feita em um RU!
-            </Title>
-            <Text className={classes.boxSubtitle}>
-              Suas avaliações irão ajudar outros universitários a decidir qual é o melhor RU para
-              frequentar.
-            </Text>
+            <Title level={TitleLevel.H4}>{t('createReview.header')}</Title>
+            <Text className={classes.boxSubtitle}>{t('createReview.subtitle')}</Text>
           </FlexBox>
         </FlexBox>
       </FlexBox>
@@ -173,13 +172,17 @@ export const CreateReview: React.FC = () => {
       <ObjectPage className={classes.objectPage} mode={ObjectPageMode.IconTabBar}>
         <ObjectPageSection
           id="reviewInfo"
-          titleText="Informações da Avaliação"
+          titleText={t('createReview.section1')}
           className={classes.objectPageSection}
         >
           <FlexBox direction={FlexBoxDirection.Column}>
-            <Title level={TitleLevel.H4}>1. Informações da Avaliação</Title>
+            <Title level={TitleLevel.H4}>
+              {t('createReview.section1')}
+            </Title>
             <Text className={classes.text}>
-              Precisamos de algumas informações para poder identificar o RU da sua avaliação.
+              {t(
+                'createReview.needInfo'
+              )}
             </Text>
             <FlexBox direction={FlexBoxDirection.Column}>
               <ReviewInfoForm />
@@ -189,12 +192,16 @@ export const CreateReview: React.FC = () => {
 
         <ObjectPageSection
           id="optionalInfo"
-          titleText="Informações Opcionais"
+          titleText={t('createReview.section2')}
           className={classes.objectPageSection}
         >
           <FlexBox direction={FlexBoxDirection.Column}>
-            <Title level={TitleLevel.H4}>2. Informações Opcionais</Title>
-            <Text className={classes.text}>Queremos saber um pouco mais sobre seu perfil.</Text>
+            <Title level={TitleLevel.H4}>
+              {t('createReview.section2')}
+            </Title>
+            <Text className={classes.text}>
+              {t('createReview.wantKnow')}
+            </Text>
             <FlexBox direction={FlexBoxDirection.Column}>
               <OptionalInfoForm />
             </FlexBox>

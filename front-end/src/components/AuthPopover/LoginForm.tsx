@@ -7,6 +7,7 @@ import {
   FlexBox,
   FlexBoxDirection
 } from '@ui5/webcomponents-react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
 import { AuthApiService } from '../../services/authService';
 import { LoginRequest } from '../../interfaces/Auth';
@@ -24,6 +25,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   isLoading,
   setIsLoading
 }) => {
+  const { t } = useTranslation();
   const { login } = useAuth();
 
   const [formData, setFormData] = useState<LoginRequest>({
@@ -42,7 +44,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
     event.preventDefault();
 
     if (!formData.email || !formData.senha) {
-      onError('Por favor, preencha todos os campos');
+      onError(t('auth.fillAllFields'));
       return;
     }
 
@@ -60,9 +62,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           response.message?.includes('Invalid email or password') ||
           response.message?.includes('Email ou senha inválidos')
         ) {
-          onError('Email ou senha incorretos');
+          onError(t('auth.invalidCredentials'));
         } else {
-          onError(response.message || 'Erro ao fazer login');
+          onError(response.message || t('auth.loginError'));
         }
       }
     } catch (error: any) {
@@ -71,9 +73,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         error.message?.includes('Invalid email or password') ||
         error.message?.includes('Email ou senha inválidos')
       ) {
-        onError('Email ou senha incorretos');
+        onError(t('auth.invalidCredentials'));
       } else {
-        onError('Erro inesperado. Tente novamente.');
+        onError(t('auth.unexpectedError'));
       }
     } finally {
       setIsLoading(false);
@@ -84,24 +86,24 @@ export const LoginForm: React.FC<LoginFormProps> = ({
     <div style={{ width: '100%', boxSizing: 'border-box' }}>
       <FlexBox direction={FlexBoxDirection.Column} style={{ gap: '1rem', width: '100%' }}>
         <div style={{ width: '100%' }}>
-          <Label required>Email:</Label>
+          <Label required>{t('auth.email')}:</Label>
           <Input
             type="Email"
             value={formData.email}
             onChange={handleInputChange('email')}
-            placeholder="seu.email@universidade.br"
+            placeholder={t('auth.emailPlaceholder')}
             required
             style={{ width: '100%', boxSizing: 'border-box' }}
           />
         </div>
 
         <div style={{ width: '100%' }}>
-          <Label required>Senha:</Label>
+          <Label required>{t('auth.password')}:</Label>
           <Input
             type="Password"
             value={formData.senha}
             onChange={handleInputChange('senha')}
-            placeholder="Digite sua senha"
+            placeholder={t('auth.passwordPlaceholder')}
             required
             style={{ width: '100%', boxSizing: 'border-box' }}
           />
@@ -113,7 +115,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           onClick={handleSubmit}
           style={{ width: '100%', marginTop: '1rem', boxSizing: 'border-box' }}
         >
-          {isLoading ? 'Entrando...' : 'Entrar'}
+          {isLoading ? t('auth.loggingIn') : t('auth.login')}
         </Button>
       </FlexBox>
     </div>

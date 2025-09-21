@@ -13,6 +13,7 @@ import useNewReviewStore from '../../stores/useNewReviewStore';
 import { MultiComboBoxSelectionChangeEventDetail } from '@ui5/webcomponents/dist/MultiComboBox';
 import { TagTypes } from '../../enums/TagTypes';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const SelectTagsComboBox = () => {
   const setTags = useNewReviewStore((value) => value.setTags);
@@ -34,6 +35,7 @@ export const SelectTagsComboBox = () => {
     .join(', ');
 
   const classes = useStyles({ positiveRange, negativeRange, neutralRange });
+  const { t } = useTranslation();
 
   const onChangeSelectedTags = (
     event: Ui5CustomEvent<MultiComboBoxDomRef, MultiComboBoxSelectionChangeEventDetail>
@@ -55,21 +57,21 @@ export const SelectTagsComboBox = () => {
   return (
     <MultiComboBox
       className={classes.tags}
-      placeholder="Ex.: Proteína macia, Fila grande, Água gratuita..."
+      placeholder={t('tags.placeholder')}
       filter={ComboBoxFilter.Contains}
       onSelectionChange={onChangeSelectedTags}
       valueState={valueState}
-      valueStateMessage={'Você deve selecionar entre 2 e 5 tags'}
+      valueStateMessage={t('tags.valueState')}
     >
-      <MultiComboBoxGroupItem text="Tags positivas" />
+      <MultiComboBoxGroupItem text={t('tags.positiveGroup')} />
       {[...positiveTags].map((tag) => (
         <MultiComboBoxItem id={TagTypes.Positive} text={tag} key={tag} />
       ))}
-      <MultiComboBoxGroupItem text="Tags negativas" />
+      <MultiComboBoxGroupItem text={t('tags.negativeGroup')} />
       {[...negativeTags].map((tag) => (
         <MultiComboBoxItem id={TagTypes.Negative} text={tag} key={tag} />
       ))}
-      <MultiComboBoxGroupItem text="Tags neutras" />
+      <MultiComboBoxGroupItem text={t('tags.neutralGroup')} />
       {[...neutralTags].map((tag) => (
         <MultiComboBoxItem id={TagTypes.Neutral} text={tag} key={tag} />
       ))}

@@ -27,9 +27,11 @@ import { Tooltip } from 'react-tippy';
 import 'react-tippy/dist/tippy.css';
 import Highlighter from 'react-highlight-words';
 import useReviewsStore from '../../stores/useReviewsStore';
+import { useTranslation } from 'react-i18next';
 
 export const ReviewCard = (props: ReviewCardProps) => {
   const { review } = props;
+  const { t } = useTranslation();
 
   const [searchQuery, shouldFilterReviews] = useReviewsStore((value) => [
     value.searchQuery,
@@ -95,19 +97,19 @@ export const ReviewCard = (props: ReviewCardProps) => {
               <span>
                 {review.courseName ? (
                   <p>
-                    <strong>Curso: </strong>
+                    <strong>{t('review.course')}: </strong>
                     {review.courseName}
                   </p>
                 ) : (
                   <></>
                 )}
                 <p>
-                  <strong>Período da refeição: </strong>
-                  {review.mealPeriod}
+                  <strong>{t('review.mealPeriod')}: </strong>
+                  {t(`meal.${review.mealPeriod.toLowerCase()}`)}
                 </p>
                 <p>
-                  <strong>Preferência alimentar: </strong>
-                  {review.dietaryPreference}
+                  <strong>{t('review.diet')}: </strong>
+                  {t(`diet.${review.dietaryPreference.toLowerCase()}`)}
                 </p>
               </span>
             }
@@ -133,7 +135,7 @@ export const ReviewCard = (props: ReviewCardProps) => {
           <RatingIndicator readonly value={review.rating} className={classes.reviewCardStars} />
         </StandardListItem>
         <StandardListItem type={ListItemType.Inactive} style={{ height: 'auto', marginTop: '0px' }}>
-          <Title level={TitleLevel.H5}>Comentários</Title>
+          <Title level={TitleLevel.H5}>{t('review.comments')}</Title>
           <Text className={classes.reviewCardComments}>
             <Highlighter
               highlightClassName={classes.searchHighlight}
@@ -143,7 +145,7 @@ export const ReviewCard = (props: ReviewCardProps) => {
           </Text>
         </StandardListItem>
         <StandardListItem type={ListItemType.Inactive} style={{ height: 'auto', marginTop: '5px' }}>
-          <Title level={TitleLevel.H5}>Tags</Title>
+          <Title level={TitleLevel.H5}>{t('review.tags')}</Title>
           <FlexBox className={classes.badgesList}>
             {review.tags.map((tag, index) => {
               const isTagPositive = tag.type === TagTypes.Positive;

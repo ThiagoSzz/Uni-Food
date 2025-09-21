@@ -10,9 +10,11 @@ import {
 import { useStyles } from '../OptionalInfoForm/OptionalInfoForm.jss';
 import useNewReviewStore from '../../stores/useNewReviewStore';
 import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
+import { useTranslation } from 'react-i18next';
 
 export const OptionalInfoForm = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const [
     courseName,
@@ -45,13 +47,7 @@ export const OptionalInfoForm = () => {
   };
 
   const handleChangeDietaryPreferenceSelection = (dietaryPreference: string) => {
-    setDietaryPreference(
-      dietaryPreference === 'Onívora'
-        ? DietaryPreference.OMNIVORE
-        : dietaryPreference === 'Vegetariana'
-          ? DietaryPreference.VEGETARIAN
-          : DietaryPreference.VEGAN
-    );
+    setDietaryPreference(dietaryPreference as DietaryPreference);
   };
 
   const handleCityChange = (event) => {
@@ -72,53 +68,53 @@ export const OptionalInfoForm = () => {
       labelSpanXL={4}
     >
       <FormGroup>
-        <FormItem label="Curso e Período">
+        <FormItem label={t('optional.courseAndPeriod')}>
           <Input
-            placeholder="Ex.: Ciência da Computação"
+            placeholder={t('auth.coursePlaceholder')}
             onInputCapture={handleCourseNameChange}
             className={classes.courseNameInput}
             value={courseName}
             spellCheck={false}
           ></Input>
           <Input
-            placeholder="Ex.: 6"
+            placeholder={t('optional.coursePeriodPlaceholder')}
             onInputCapture={handleCoursePeriodChange}
             className={classes.coursePeriodInput}
             value={coursePeriod}
             spellCheck={false}
           ></Input>
         </FormItem>
-        <FormItem label="Preferência Alimentar">
+        <FormItem label={t('optional.dietLabel')}>
           <Select
             onChange={(e) =>
               handleChangeDietaryPreferenceSelection(e.detail.selectedOption.dataset.id)
             }
             className={classes.dietaryPreferenceSelect}
           >
-            <Option data-id="Select">Selecionar</Option>
+            <Option data-id="Select">{t('auth.select')}</Option>
             <Option
               selected={dietaryPreference === DietaryPreference.OMNIVORE}
               data-id={DietaryPreference.OMNIVORE}
             >
-              {DietaryPreference.OMNIVORE}
+              {t('diet.omnivore')}
             </Option>
             <Option
               selected={dietaryPreference === DietaryPreference.VEGETARIAN}
               data-id={DietaryPreference.VEGETARIAN}
             >
-              {DietaryPreference.VEGETARIAN}
+              {t('diet.vegetarian')}
             </Option>
             <Option
               selected={dietaryPreference === DietaryPreference.VEGAN}
               data-id={DietaryPreference.VEGAN}
             >
-              {DietaryPreference.VEGAN}
+              {t('diet.vegan')}
             </Option>
           </Select>
         </FormItem>
-        <FormItem label="Cidade">
+        <FormItem label={t('optional.city')}>
           <Input
-            placeholder="Ex.: Porto Alegre"
+            placeholder={t('optional.cityPlaceholder')}
             onInputCapture={handleCityChange}
             className={classes.cityInput}
             value={city}

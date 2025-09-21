@@ -15,6 +15,7 @@ import {
 } from '@ui5/webcomponents-react';
 import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm';
+import { useTranslation } from 'react-i18next';
 
 interface AuthPopoverProps {
   opener?: string;
@@ -23,6 +24,8 @@ interface AuthPopoverProps {
 }
 
 export const AuthPopover: React.FC<AuthPopoverProps> = ({ opener, open, onClose }) => {
+  const { t } = useTranslation();
+
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -87,11 +90,9 @@ export const AuthPopover: React.FC<AuthPopoverProps> = ({ opener, open, onClose 
           alignItems={FlexBoxAlignItems.Center}
           style={{ marginBottom: '1.5rem' }}
         >
-          <Title level={TitleLevel.H3}>{isLoginMode ? 'Login' : 'Cadastro'}</Title>
+          <Title level={TitleLevel.H3}>{isLoginMode ? t('auth.login') : t('auth.register')}</Title>
           <Text style={{ textAlign: 'center', marginTop: '0.5rem' }}>
-            {isLoginMode
-              ? 'Entre na sua conta para acessar o UniFood'
-              : 'Crie sua conta para acessar o UniFood'}
+            {isLoginMode ? t('auth.loginDesc') : t('auth.registerDesc')}
           </Text>
         </FlexBox>
 
@@ -133,7 +134,7 @@ export const AuthPopover: React.FC<AuthPopoverProps> = ({ opener, open, onClose 
 
         <FlexBox justifyContent={FlexBoxJustifyContent.Center} style={{ marginTop: '1.5rem' }}>
           <Text>
-            {isLoginMode ? 'Não tem conta? ' : 'Já tem conta? '}
+            {isLoginMode ? t('auth.noAccount') : t('auth.hasAccount')}
             <Button
               design={ButtonDesign.Transparent}
               onClick={switchMode}
@@ -145,7 +146,7 @@ export const AuthPopover: React.FC<AuthPopoverProps> = ({ opener, open, onClose 
                 minHeight: 'auto'
               }}
             >
-              {isLoginMode ? 'Cadastre-se aqui' : 'Faça login aqui'}
+              {isLoginMode ? t('auth.registerCta') : t('auth.loginCta')}
             </Button>
           </Text>
         </FlexBox>

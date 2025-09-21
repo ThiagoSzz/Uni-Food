@@ -18,9 +18,11 @@ import { MealPeriod } from '../../enums/MealPeriodEnum';
 import useReviewsStore from '../../stores/useReviewsStore';
 import { useEffect, useState } from 'react';
 import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
+import { useTranslation } from 'react-i18next';
 
 export const FilterDialog = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const [isDialogOpen, setIsDialogOpen, addFilters] = useReviewsStore((value) => [
     value.filterDialogState,
@@ -62,8 +64,8 @@ export const FilterDialog = () => {
     let numberOfFilters = 0;
 
     courseNameValue !== '' && numberOfFilters++;
-    dietaryPreferenceValue !== '' && numberOfFilters++;
-    mealPeriodValue !== '' && numberOfFilters++;
+    dietaryPreferenceValue !== DietaryPreference.UNDEFINED && numberOfFilters++;
+    mealPeriodValue !== MealPeriod.UNDEFINED && numberOfFilters++;
 
     setNumberOfActiveFilters(numberOfFilters);
   };
@@ -76,7 +78,7 @@ export const FilterDialog = () => {
     <Dialog
       open={isDialogOpen}
       className={classes.dialog}
-      headerText="Filtrar por"
+      headerText={t('filters.header')}
       footer={
         <FlexBox className={classes.footer}>
           <Button
@@ -84,14 +86,14 @@ export const FilterDialog = () => {
             className={classes.button}
             onClick={handleApplyButtonClick}
           >
-            Aplicar ({numberOfActiveFilters})
+            {t('filters.apply')} ({numberOfActiveFilters})
           </Button>
           <Button
             design={ButtonDesign.Transparent}
             onClick={() => setIsDialogOpen(false)}
             className={classes.button}
           >
-            Cancelar
+            {t('btn.cancel')}
           </Button>
         </FlexBox>
       }
@@ -102,69 +104,71 @@ export const FilterDialog = () => {
           selectedSectionId="courseName"
           mode={ObjectPageMode.IconTabBar}
           className={classes.objectPage}
-          footer={
-            <FlexBox className={classes.objectPageFooter}>
-              Estes filtros não serão aplicados às médias por restaurante universitário
-            </FlexBox>
-          }
+          footer={<FlexBox className={classes.objectPageFooter}>{t('filters.footerNote')}</FlexBox>}
         >
-          <ObjectPageSection id="courseName" titleText="Nome do curso">
+          <ObjectPageSection id="courseName" titleText={t('filters.courseName')}>
             <Input
               className={classes.input}
               value={courseNameValue}
-              placeholder="Ex.: Ciência da Computação"
+              placeholder={t('auth.coursePlaceholder')}
               icon={<Icon className={classes.inputIcon} name="search" />}
               onInputCapture={handleCourseNameValueChange}
               spellCheck={false}
             />
           </ObjectPageSection>
-          <ObjectPageSection id="dietaryPreference" titleText="Preferência alimentar">
+          <ObjectPageSection
+            id="dietaryPreference"
+            titleText={t('filters.dietaryPreference')}
+          >
             <Select
               className={classes.dietaryPreferenceSelect}
               onChange={(event) =>
                 handleDietaryPreferenceValueChange(event.detail.selectedOption.dataset.id)
               }
             >
-              <Option data-id="Select">Selecionar</Option>
+              <Option data-id="Select">{t('auth.select')}</Option>
               <Option
                 selected={dietaryPreferenceValue === DietaryPreference.OMNIVORE}
                 data-id={DietaryPreference.OMNIVORE}
               >
-                {DietaryPreference.OMNIVORE}
+                {t('diet.omnivore')}
               </Option>
               <Option
                 selected={dietaryPreferenceValue === DietaryPreference.VEGETARIAN}
                 data-id={DietaryPreference.VEGETARIAN}
               >
-                {DietaryPreference.VEGETARIAN}
+                {t('diet.vegetarian')}
               </Option>
               <Option
                 selected={dietaryPreferenceValue === DietaryPreference.VEGAN}
                 data-id={DietaryPreference.VEGAN}
               >
-                {DietaryPreference.VEGAN}
+                {t('diet.vegan')}
               </Option>
             </Select>
           </ObjectPageSection>
-          <ObjectPageSection id="mealPeriod" titleText="Período da refeição">
+          <ObjectPageSection
+            id="mealPeriod"
+            titleText={t('filters.mealPeriod')}
+          >
             <Select
               className={classes.mealPeriodSelect}
               onChange={(event) =>
                 handleMealPeriodValueChange(event.detail.selectedOption.dataset.id)
               }
             >
-              <Option data-id="Select">Selecionar</Option>
+              <Option data-id="Select">{t('auth.select')}</Option>
               <Option
                 selected={mealPeriodValue === MealPeriod.BREAKFAST}
                 data-id={MealPeriod.BREAKFAST}
               >
-                {MealPeriod.BREAKFAST}
+                {t('meal.breakfast')}
               </Option>
               <Option selected={mealPeriodValue === MealPeriod.LUNCH} data-id={MealPeriod.LUNCH}>
-                {MealPeriod.LUNCH}
+                {t('meal.lunch')}
               </Option>
               <Option selected={mealPeriodValue === MealPeriod.DINNER} data-id={MealPeriod.DINNER}>
-                {MealPeriod.DINNER}
+                {t('meal.dinner')}
               </Option>
             </Select>
           </ObjectPageSection>

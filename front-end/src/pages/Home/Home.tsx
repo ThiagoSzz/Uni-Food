@@ -31,6 +31,7 @@ import { getReviewsList } from '../../fixtures/ReviewsFixture';
 import '@ui5/webcomponents-fiori/dist/illustrations/NoData.js';
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
 import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
+import { t } from 'i18next';
 
 const USE_BACKEND_REVIEWS = true;
 const NUM_DISPLAYED_REVIEWS = 40;
@@ -202,10 +203,12 @@ export const Home: React.FC = () => {
         <FlexBox className={classes.textContainer}>
           <FlexBox className={classes.centeredContainer}>
             <Title className={classes.sectionText} level={TitleLevel.H4}>
-              Médias por Restaurante Universitário
+              {t('reviews.averageReviewsTitle')}
             </Title>
             <Text className={classes.sectionText}>
-              ({!isLoadingAverageReviews ? filteredAverageReviews.length : '??'} RUs)
+              {t('reviews.averageReviewsCounter', {
+                count: !isLoadingAverageReviews ? filteredAverageReviews.length : 0
+              })}
             </Text>
           </FlexBox>
         </FlexBox>
@@ -219,9 +222,9 @@ export const Home: React.FC = () => {
             <IllustratedMessage
               name={IllustrationMessageType.NoData}
               size={IllustrationMessageSize.Spot}
-              titleText="Ops... cadê as avaliações?"
+              titleText={t('reviews.noResults')}
               titleLevel={TitleLevel.H4}
-              subtitleText="Um erro ocorreu ao obter as avaliações. Tente novamente em breve."
+              subtitleText={t('reviews.noResultsDesc')}
             />
           )}
           {!isLoadingAverageReviews &&
@@ -232,10 +235,12 @@ export const Home: React.FC = () => {
         <FlexBox className={classes.textContainer}>
           <FlexBox className={classes.centeredContainer}>
             <Title className={classes.sectionText} level={TitleLevel.H4}>
-              Avaliações por Refeição
+              {t('reviews.reviewsTitle')}
             </Title>
             <Text className={classes.sectionText}>
-              ({!isLoadingReviews ? filteredReviews.length : '??'} avaliações)
+              {t('reviews.reviewsCounter', {
+                count: !isLoadingReviews ? filteredReviews.length : 0
+              })}
             </Text>
           </FlexBox>
         </FlexBox>
@@ -250,9 +255,9 @@ export const Home: React.FC = () => {
             <IllustratedMessage
               name={IllustrationMessageType.NoData}
               size={IllustrationMessageSize.Scene}
-              titleText="Ops... cadê as avaliações?"
+              titleText={t('reviews.noResults')}
               titleLevel={TitleLevel.H3}
-              subtitleText="Um erro ocorreu ao obter as avaliações. Tente novamente em breve."
+              subtitleText={t('reviews.noResultsDesc')}
               className={classes.reviewsIllustratedMessage}
             />
           )}

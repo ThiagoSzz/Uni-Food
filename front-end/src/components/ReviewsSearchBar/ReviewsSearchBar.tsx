@@ -15,9 +15,11 @@ import {
 import useReviewsStore from '../../stores/useReviewsStore';
 import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const ReviewsSearchBar = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const [
     isDialogOpen,
@@ -95,7 +97,7 @@ export const ReviewsSearchBar = () => {
     <FlexBox className={classes.searchBox}>
       <Input
         className={classes.searchBar}
-        placeholder="Pesquisar (código do RU, nome da universidade, cidade, tags)"
+        placeholder={t('search.placeholder')}
         icon={<Icon className={classes.searchBarIcon} name="search" />}
         onInputCapture={handleInputChange}
         value={searchQuery}
@@ -103,10 +105,10 @@ export const ReviewsSearchBar = () => {
       />
       <SegmentedButton className={classes.segmentedButton}>
         <SegmentedButtonItem icon="filter" onClick={() => setIsDialogOpen(!isDialogOpen)}>
-          Filtrar
+          {t('search.filter')}
         </SegmentedButtonItem>
         <SegmentedButtonItem onClick={() => resetFilters()} icon="sys-cancel">
-          Limpar filtros
+          {t('search.clearFilters')}
         </SegmentedButtonItem>
       </SegmentedButton>
       <FlexBox className={classes.switchContainer}>
@@ -114,9 +116,13 @@ export const ReviewsSearchBar = () => {
           checked={shouldFilterAverageReviews}
           onChange={handleToggleFilterAverageReviewsSwitch}
         />
-        <Label className={classes.switchLabelText}>Filtrar médias</Label>
+        <Label className={classes.switchLabelText}>
+          {t('search.filterAverages')}
+        </Label>
         <Switch checked={shouldFilterReviews} onChange={handleToggleFilterReviewsSwitch} />
-        <Label className={classes.switchLabelText}>Filtrar avaliações</Label>
+        <Label className={classes.switchLabelText}>
+          {t('search.filterReviews')}
+        </Label>
       </FlexBox>
     </FlexBox>
   );

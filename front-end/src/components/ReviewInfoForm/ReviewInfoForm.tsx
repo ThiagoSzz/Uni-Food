@@ -15,9 +15,11 @@ import { useStyles } from '../ReviewInfoForm/ReviewInfoForm.jss';
 import useNewReviewStore from '../../stores/useNewReviewStore';
 import { MealPeriod } from '../../enums/MealPeriodEnum';
 import { SelectTagsComboBox } from '../SelectTagsComboBox/SelectTagsComboBox';
+import { useTranslation } from 'react-i18next';
 
 export const ReviewInfoForm = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const [
     ruCode,
@@ -81,9 +83,9 @@ export const ReviewInfoForm = () => {
       labelSpanXL={4}
     >
       <FormGroup>
-        <FormItem label="Código do RU e Sigla da Universidade">
+        <FormItem label={t('review.form.codeAndUniversity')}>
           <Input
-            placeholder="Ex.: RU01"
+            placeholder={t('review.form.ruPlaceholder')}
             onInputCapture={handleRuCodeValueChange}
             className={classes.ruInput}
             value={ruCode}
@@ -91,7 +93,7 @@ export const ReviewInfoForm = () => {
             spellCheck={false}
           ></Input>
           <Input
-            placeholder="Ex.: UFRGS"
+            placeholder={t('review.form.universityPlaceholder')}
             onChange={handleUniversityNameValueChange}
             className={classes.universityInput}
             value={universityName}
@@ -99,37 +101,39 @@ export const ReviewInfoForm = () => {
             spellCheck={false}
           ></Input>
         </FormItem>
-        <FormItem label="Período da Refeição">
+        <FormItem label={t('review.form.mealPeriodLabel')}>
           <Select
             onChange={(e) => handleChangeMealPeriodSelection(e.detail.selectedOption.dataset.id)}
             className={classes.mealPeriodSelect}
           >
-            <Option data-id="Select">Selecionar</Option>
+            <Option data-id="Select">{t('auth.select')}</Option>
             <Option selected={mealPeriod === MealPeriod.BREAKFAST} data-id={MealPeriod.BREAKFAST}>
-              {MealPeriod.BREAKFAST}
+              {t('meal.breakfast')}
             </Option>
             <Option selected={mealPeriod === MealPeriod.LUNCH} data-id={MealPeriod.LUNCH}>
-              {MealPeriod.LUNCH}
+              {t('meal.lunch')}
             </Option>
             <Option selected={mealPeriod === MealPeriod.DINNER} data-id={MealPeriod.DINNER}>
-              {MealPeriod.DINNER}
+              {t('meal.dinner')}
             </Option>
           </Select>
         </FormItem>
-        <FormItem label={<Label className={classes.commentLabel}>Comentário</Label>}>
+        <FormItem
+          label={<Label className={classes.commentLabel}>{t('review.form.commentLabel')}</Label>}
+        >
           <TextArea
             className={classes.textArea}
-            placeholder="Ex.: Muito bom o restaurante!"
+            placeholder={t('review.form.commentPlaceholder')}
             value={comment}
             rows={8}
             onInputCapture={handleCommentValueChange}
             spellCheck={false}
           />
         </FormItem>
-        <FormItem label="Tags (2 a 5)">
+        <FormItem label={t('review.form.tagsLabel')}>
           <SelectTagsComboBox />
         </FormItem>
-        <FormItem label="Nota">
+        <FormItem label={t('review.form.ratingLabel')}>
           <RatingIndicator
             className={classes.ratingIndicator}
             onChange={(e) => setRating(e.target.value)}
