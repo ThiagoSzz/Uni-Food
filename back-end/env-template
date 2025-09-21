@@ -1,2 +1,11 @@
-PORT=<port>
-DATABASE_URL=<database url>
+PORT=8080
+
+# Database connection using individual parameters
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=unifood_user
+DB_PASSWORD=unifood_password
+DB_NAME=unifood_db
+
+# DATABASE_URL (for node-pg-migrate compatibility)
+DATABASE_URL=postgresql://unifood_user:unifood_password@localhost:5432/unifood_db

@@ -3,21 +3,24 @@
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "memory-cache": "^0.2.0",
-    "winston": "^3.11.0",
     "express": "^4.18.2",
-    "nodemon": "^2.0.8"
+    "memory-cache": "^0.2.0",
+    "node-pg-migrate": "^7.0.0",
+    "nodemon": "^2.0.8",
+    "pg": "^8.11.0",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
-    "@neondatabase/serverless": "^0.6.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.11",
     "@types/memory-cache": "^0.2.5",
     "@types/node": "^20.10.4",
+    "@types/pg": "^8.10.0",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "depcheck": "^1.4.7",
+    "dotenv-cli": "^7.3.0",
     "eslint": "^8.56.0",
     "express": "^4.18.2",
     "jest": "^29.7.0",
@@ -36,8 +39,16 @@
     "start": "nodemon --ignore ts-node src/**/*.ts || exit 0",
     "build": "tsc",
     "test": "jest",
+    "dev:full": "docker-compose up -d && npm start",
     "format": "prettier --write 'src/**/*.{js,ts,json,md}'",
     "format:check": "prettier --check 'src/**/*.{js,ts,json,md}'",
-    "vercel-start": "node index.js"
+    "vercel-start": "node index.js",
+    "db:setup": "npm run db:up && sleep 5 && npm run migrate",
+    "db:up": "docker-compose up -d postgres",
+    "db:down": "docker-compose down",
+    "migrate": "dotenv -e .env node-pg-migrate up",
+    "migrate:down": "dotenv -e .env node-pg-migrate down",
+    "migrate:create": "dotenv -e .env node-pg-migrate create",
+    "migrate:status": "dotenv -e .env node-pg-migrate up --dry-run"
   }
 }

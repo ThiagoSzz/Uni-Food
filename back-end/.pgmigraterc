@@ -1,0 +1,11 @@
+{
+  "database-url-var": "DATABASE_URL",
+  "migrationsTable": "pgmigrations",
+  "migrationsDir": "migrations",
+  "dir": "migrations",
+  "checkOrder": true,
+  "verbose": true,
+  "createSchema": true,
+  "createMigrationsSchema": false,
+  "single-transaction": false
+}
