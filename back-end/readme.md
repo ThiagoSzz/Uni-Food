@@ -4,15 +4,15 @@
 
 1. Certifique-se de ter a versão 18.x do [Node](https://nodejs.org/en/about/previous-releases) instalada.
 
-    ```bash
-    node -v
-    ```
+   ```bash
+   node -v
+   ```
 
 2. Clone o repositório:
 
-    ```bash
-    git clone https://github.com/ThiagoSzz/Uni-Food.git
-    ```
+   ```bash
+   git clone https://github.com/ThiagoSzz/Uni-Food.git
+   ```
 
 ### Executar o projeto
 
@@ -20,56 +20,90 @@
 
 2. Navegue até o diretório do back-end:
 
-    ```bash
-    cd Uni-Food/back-end
-    ```
+   ```bash
+   cd Uni-Food/back-end
+   ```
 
 3. Instale as dependências:
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
-4. Inicie o servidor de desenvolvimento:
+4. Configure e inicie o banco de dados:
 
-    ```bash
-    npm run start
-    ```
+   ```bash
+   npm run db:setup
+   ```
+
+5. Inicie o servidor de desenvolvimento:
+
+   ```bash
+   npm run start
+   ```
 
 O back-end estará disponível em `http://localhost:{PORT}`, onde PORT é o valor da porta que foi definido no arquivo `.env`.
+
+### Gerenciamento do Banco de Dados
+
+#### Iniciar o banco de dados
+
+Para iniciar o banco de dados PostgreSQL (Docker):
+
+```bash
+npm run db:up
+```
+
+#### Parar o banco de dados
+
+Para parar o banco de dados PostgreSQL:
+
+```bash
+npm run db:down
+```
+
+#### Criar uma nova migração
+
+Para criar uma nova migração do banco de dados:
+
+```bash
+npm run migrate:create nome_da_migracao
+```
+
+Este comando criará um novo arquivo de migração no diretório `migrations/` com o timestamp atual e o nome especificado.
 
 ### Executar os testes - Jest
 
 1. Navegue até o diretório do back-end:
 
-    ```bash
-    cd Uni-Food/back-end
-    ```
+   ```bash
+   cd Uni-Food/back-end
+   ```
 
 2. Para executar os testes do Jest, utilize o seguinte comando:
 
-    ```bash
-    npm run test
-    ```
+   ```bash
+   npm run test
+   ```
 
 ### Executar o formatador de código - Prettier
 
 1. Navegue até o diretório do back-end:
 
-    ```bash
-    cd Uni-Food/back-end
-    ```
-    
+   ```bash
+   cd Uni-Food/back-end
+   ```
+
 2. Para verificar se a formatação está correta, execute o comando:
 
-    ```bash
-    npm run format:check
-    ```
+   ```bash
+   npm run format:check
+   ```
 
 3. Caso a formatação de algum arquivo esteja incorreta, execute o comando:
 
-    ```bash
-    npm run format
-    ```
+   ```bash
+   npm run format
+   ```
 
 Após a execução do Prettier, deve ser exibida uma mensagem indicando que a formatação foi concluída.
