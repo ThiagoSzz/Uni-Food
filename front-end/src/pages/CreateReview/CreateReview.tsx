@@ -57,7 +57,6 @@ export const CreateReview: React.FC = () => {
       .mutateAsync({
         siglaRU: newReview.ruCode,
         siglaUniversidade: newReview.universityName,
-        emailUsuario: `email${Math.floor(Math.random() * 1000) + 1}@email.com`,
         periodoNota: newReview.mealPeriod,
         notaEstrelas: newReview.rating,
         comentario: newReview.comment,

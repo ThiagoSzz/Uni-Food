@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
-import router from './controller/reviewsController';
+import reviewsRouter from './controller/reviewsController';
+import authRouter from './controller/authController';
 import { logger } from './config/logger';
 import { closePool } from './database/config';
 
@@ -12,7 +13,8 @@ const PORT = process.env.PORT || 8080;
 UNIFOOD.use(express.json());
 UNIFOOD.use(cors());
 
-UNIFOOD.use('/', router);
+UNIFOOD.use('/api/auth', authRouter);
+UNIFOOD.use('/api', reviewsRouter);
 
 const server = UNIFOOD.listen(PORT, () => {
   logger.info(`UniFood back-end is running at http://localhost:${PORT}`);

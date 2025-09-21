@@ -17,7 +17,7 @@ export const useCreateReviewMutation = (options?) => {
 
 const setCreateReviewMutation = async (data: CreateReviewRequestDTO) => {
   try {
-    const response = await api.post(api.defaults.baseURL + CREATE_REVIEWS_MUTATION_API, data);
+    const response = await api.post(CREATE_REVIEWS_MUTATION_API, data);
     return response.data;
   } catch (error) {
     throw error;
