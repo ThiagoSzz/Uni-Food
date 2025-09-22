@@ -16,7 +16,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const SelectTagsComboBox = () => {
-  const setTags = useNewReviewStore((value) => value.setTags);
+  const [tags, setTags] = useNewReviewStore((value) => [value.tags, value.setTags]);
 
   const [valueState, setValueState] = useState<ValueState>(ValueState.None);
 
@@ -65,15 +65,36 @@ export const SelectTagsComboBox = () => {
     >
       <MultiComboBoxGroupItem text={t('tags.positiveGroup')} />
       {[...positiveTags].map((tag) => (
-        <MultiComboBoxItem id={TagTypes.Positive} text={tag} key={tag} />
+        <MultiComboBoxItem
+          id={TagTypes.Positive}
+          text={tag}
+          key={tag}
+          selected={tags.some(
+            (selectedTag) => selectedTag.name === tag && selectedTag.type === TagTypes.Positive
+          )}
+        />
       ))}
       <MultiComboBoxGroupItem text={t('tags.negativeGroup')} />
       {[...negativeTags].map((tag) => (
-        <MultiComboBoxItem id={TagTypes.Negative} text={tag} key={tag} />
+        <MultiComboBoxItem
+          id={TagTypes.Negative}
+          text={tag}
+          key={tag}
+          selected={tags.some(
+            (selectedTag) => selectedTag.name === tag && selectedTag.type === TagTypes.Negative
+          )}
+        />
       ))}
       <MultiComboBoxGroupItem text={t('tags.neutralGroup')} />
       {[...neutralTags].map((tag) => (
-        <MultiComboBoxItem id={TagTypes.Neutral} text={tag} key={tag} />
+        <MultiComboBoxItem
+          id={TagTypes.Neutral}
+          text={tag}
+          key={tag}
+          selected={tags.some(
+            (selectedTag) => selectedTag.name === tag && selectedTag.type === TagTypes.Neutral
+          )}
+        />
       ))}
     </MultiComboBox>
   );
