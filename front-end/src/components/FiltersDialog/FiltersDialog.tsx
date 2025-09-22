@@ -131,19 +131,19 @@ export const FilterDialog = () => {
                 selected={dietaryPreferenceValue === DietaryPreference.OMNIVORE}
                 data-id={DietaryPreference.OMNIVORE}
               >
-                {t('diet.omnivore')}
+                {t('diet.onívoro')}
               </Option>
               <Option
                 selected={dietaryPreferenceValue === DietaryPreference.VEGETARIAN}
                 data-id={DietaryPreference.VEGETARIAN}
               >
-                {t('diet.vegetarian')}
+                {t('diet.vegetariano')}
               </Option>
               <Option
                 selected={dietaryPreferenceValue === DietaryPreference.VEGAN}
                 data-id={DietaryPreference.VEGAN}
               >
-                {t('diet.vegan')}
+                {t('diet.vegano')}
               </Option>
             </Select>
           </ObjectPageSection>

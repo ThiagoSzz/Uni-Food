@@ -82,20 +82,36 @@ export const Home: React.FC = () => {
   const reviewsMutation = useGetReviewsMutation();
 
   const fetchReviews = useCallback(async () => {
-    await reviewsMutation
-      .mutateAsync()
-      .then((result) => {
-        const reviews = result.data;
+    try {
+      const result = await reviewsMutation.mutateAsync();
+      const reviews = result.data;
 
-        setReviews(reviews);
-        setFilteredReviews(reviews);
-      })
-      .catch((error) => {
-        showErrorMessage(t('messages.reviewsFetchError', { message: error.message }));
+      setReviews(reviews);
+      setFilteredReviews(reviews);
+    } catch (error) {
+      showErrorMessage(t('messages.reviewsFetchError', { message: error.message }));
+      setHasNoData(true);
+    }
+  }, [reviewsMutation]);
 
-        setHasNoData(true);
-      });
-  }, [reviewsMutation, setReviews, setFilteredReviews, showErrorMessage, t, setHasNoData]);
+  // Effect for initial loading
+  useEffect(() => {
+    const loadInitialData = async () => {
+      setIsLoadingReviews(true);
+      setIsLoadingAverageReviews(true);
+      clearValidationErrors();
+
+      if (USE_BACKEND_REVIEWS) {
+        await fetchReviews();
+      } else {
+        const reviewsFixture = getReviewsList();
+        setReviews(reviewsFixture);
+        setFilteredReviews(reviewsFixture);
+      }
+    };
+
+    loadInitialData();
+  }, []);
 
   useEffect(() => {
     if (shouldShowNoFilteredReviewsMessage) {
@@ -112,20 +128,14 @@ export const Home: React.FC = () => {
       showSuccessMessage(t('messages.reviewCreatedSuccess'));
       setIsReviewCreated(false);
     }
+  }, [isReviewCreated, showSuccessMessage, t, setIsReviewCreated]);
 
-    setIsLoadingReviews(true);
-    setIsLoadingAverageReviews(true);
-    clearValidationErrors();
-
-    if (USE_BACKEND_REVIEWS) {
+  // Refetch reviews when a new review is created
+  useEffect(() => {
+    if (isReviewCreated && USE_BACKEND_REVIEWS) {
       fetchReviews();
-    } else {
-      const reviewsFixture = getReviewsList();
-
-      setReviews(reviewsFixture);
-      setFilteredReviews(reviewsFixture);
     }
-  }, [showSuccessMessage, t, fetchReviews]);
+  }, [isReviewCreated, fetchReviews]);
 
   useEffect(() => {
     if (reviews.length > 0) {

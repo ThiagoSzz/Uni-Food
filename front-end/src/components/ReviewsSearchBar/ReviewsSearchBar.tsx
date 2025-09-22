@@ -70,7 +70,7 @@ export const ReviewsSearchBar = () => {
 
     getFilteredReviews();
     getFilteredAverageReviews();
-  }, 500);
+  }, 1000);
 
   const handleInputChange = (event) => {
     const { value } = event.target;
@@ -116,13 +116,9 @@ export const ReviewsSearchBar = () => {
           checked={shouldFilterAverageReviews}
           onChange={handleToggleFilterAverageReviewsSwitch}
         />
-        <Label className={classes.switchLabelText}>
-          {t('search.filterAverages')}
-        </Label>
+        <Label className={classes.switchLabelText}>{t('search.filterAverages')}</Label>
         <Switch checked={shouldFilterReviews} onChange={handleToggleFilterReviewsSwitch} />
-        <Label className={classes.switchLabelText}>
-          {t('search.filterReviews')}
-        </Label>
+        <Label className={classes.switchLabelText}>{t('search.filterReviews')}</Label>
       </FlexBox>
     </FlexBox>
   );

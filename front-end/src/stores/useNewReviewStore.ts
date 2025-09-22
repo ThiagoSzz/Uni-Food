@@ -145,18 +145,8 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
       errors.push(ValidationError.RUCodeRequired);
     }
 
-    const ruCodePattern = /^RU0[0-7]$/;
-    if (ruCode && !ruCodePattern.test(ruCode)) {
-      errors.push(ValidationError.RUCodeFormat);
-    }
-
     if (!universityName) {
       errors.push(ValidationError.UniversityNameRequired);
-    }
-
-    const registeredUniversities = ['USP', 'UFMG', 'UFRJ', 'UNB', 'UFG', 'UFRGS', 'UTFPR', 'UFSC'];
-    if (universityName && !registeredUniversities.includes(universityName)) {
-      errors.push(ValidationError.UniversityNameNotRegistered);
     }
 
     if (![MealPeriod.BREAKFAST, MealPeriod.LUNCH, MealPeriod.DINNER].includes(mealPeriod)) {

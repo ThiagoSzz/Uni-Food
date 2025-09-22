@@ -1,5 +1,10 @@
 import cache from 'memory-cache';
-import { getNextReviewId, getRuId, insertNewRating, insertNewReview } from '../database/commands';
+import {
+  getNextReviewId,
+  getOrCreateRuId,
+  insertNewRating,
+  insertNewReview
+} from '../database/commands';
 
 export class CreateReviewService {
   public createReview = async (
@@ -14,7 +19,15 @@ export class CreateReviewService {
   ) => {
     cache.del('get-reviews');
 
-    const [{ cod_ru: ruId }] = await getRuId(ruCode, universityName);
+    const ruResult = await getOrCreateRuId(ruCode, universityName);
+
+    if (!ruResult || ruResult.length === 0) {
+      throw new Error(
+        `Failed to create or find restaurant for RU code: ${ruCode} and university: ${universityName}`
+      );
+    }
+
+    const [{ cod_ru: ruId }] = ruResult;
 
     const [{ nextval: ratingId }] = await getNextReviewId();
 

@@ -96,19 +96,19 @@ export const OptionalInfoForm = () => {
               selected={dietaryPreference === DietaryPreference.OMNIVORE}
               data-id={DietaryPreference.OMNIVORE}
             >
-              {t('diet.omnivore')}
+              {t('diet.onívoro')}
             </Option>
             <Option
               selected={dietaryPreference === DietaryPreference.VEGETARIAN}
               data-id={DietaryPreference.VEGETARIAN}
             >
-              {t('diet.vegetarian')}
+              {t('diet.vegetariano')}
             </Option>
             <Option
               selected={dietaryPreference === DietaryPreference.VEGAN}
               data-id={DietaryPreference.VEGAN}
             >
-              {t('diet.vegan')}
+              {t('diet.vegano')}
             </Option>
           </Select>
         </FormItem>

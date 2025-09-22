@@ -53,6 +53,111 @@ export const getRuId = async (ruCode: string, universityName: string) => {
   }
 };
 
+export const createUniversityIfNotExists = async (
+  universityCode: string,
+  universityName?: string
+) => {
+  // First check if university exists
+  const checkUniversityCommand = `
+    SELECT sigla FROM Universidade WHERE sigla = $1
+  `;
+
+  try {
+    logger.info('Check university exists: operation triggered');
+    const existingUniversity = await sqlOperation(checkUniversityCommand, [
+      universityCode.padEnd(10)
+    ]);
+
+    if (existingUniversity.length === 0) {
+      // University doesn't exist, create it
+      const insertUniversityCommand = `
+        INSERT INTO Universidade (sigla, nome, estado_uf, cidade)
+        VALUES ($1, $2, $3, $4)
+      `;
+
+      logger.info('Create university: operation triggered');
+      await sqlOperation(insertUniversityCommand, [
+        universityCode.padEnd(10),
+        universityName || `Universidade ${universityCode}`,
+        'XX', // Use 2-character placeholder for state
+        'N/A' // City can be longer
+      ]);
+    }
+  } catch (error) {
+    logger.error('Create university if not exists: error', error);
+    throw error;
+  }
+};
+
+export const createRestaurantIfNotExists = async (ruCode: string, universityCode: string) => {
+  // First check if restaurant exists
+  const checkRestaurantCommand = `
+    SELECT cod_ru FROM Restaurante WHERE sigla_ru = $1 AND sigla_universidade = $2
+  `;
+
+  try {
+    logger.info('Check restaurant exists: operation triggered');
+    const existingRestaurant = await sqlOperation(checkRestaurantCommand, [
+      ruCode,
+      universityCode.padEnd(10)
+    ]);
+
+    if (existingRestaurant.length === 0) {
+      // Restaurant doesn't exist, create it
+      const getNextRuIdCommand = `
+        SELECT COALESCE(MAX(cod_ru), 0) + 1 as next_id FROM Restaurante
+      `;
+
+      const nextIdResult = await sqlOperation(getNextRuIdCommand, []);
+      const nextId = nextIdResult[0].next_id;
+
+      const insertRestaurantCommand = `
+        INSERT INTO Restaurante (cod_ru, sigla_ru, campus, sigla_universidade)
+        VALUES ($1, $2, $3, $4)
+      `;
+
+      logger.info('Create restaurant: operation triggered');
+      await sqlOperation(insertRestaurantCommand, [
+        nextId,
+        ruCode,
+        `Campus ${ruCode}`, // Default campus name
+        universityCode.padEnd(10)
+      ]);
+
+      return nextId;
+    } else {
+      return existingRestaurant[0].cod_ru;
+    }
+  } catch (error) {
+    logger.error('Create restaurant if not exists: error', error);
+    throw error;
+  }
+};
+
+export const getOrCreateRuId = async (ruCode: string, universityName: string) => {
+  try {
+    // First, ensure the university exists
+    await createUniversityIfNotExists(universityName);
+
+    // Then, ensure the restaurant exists
+    const ruId = await createRestaurantIfNotExists(ruCode, universityName);
+
+    // Finally, get the restaurant ID
+    const operationCommand = `
+      SELECT cod_ru
+      FROM Restaurante
+      WHERE sigla_ru = $1 AND sigla_universidade = $2
+    `;
+
+    logger.info('Get university restaurant id: operation triggered');
+    const result = await sqlOperation(operationCommand, [ruCode, universityName.padEnd(10)]);
+    return result;
+  } catch (error) {
+    logger.error('Get or create university restaurant id: error', error);
+    throw error;
+  }
+};
+
 export const getNextReviewId = async () => {
   const operationCommand = `SELECT nextval('avaliacao_seq')`;
 
@@ -84,10 +189,15 @@ export const insertNewRating = async (
 
   try {
     logger.info('Insert new rating: operation triggered');
-    return await sqlOperation(
-      operationCommand,
-      [ratingId, userEmail, mealPeriod, rating, comment, formattedTags, ratingDuration]
-    );
+    return await sqlOperation(operationCommand, [
+      ratingId,
+      userEmail,
+      mealPeriod,
+      rating,
+      comment,
+      formattedTags,
+      ratingDuration
+    ]);
   } catch (error) {
     logger.error('Insert new rating: error', error);
     throw error;
