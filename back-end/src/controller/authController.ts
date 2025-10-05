@@ -11,7 +11,6 @@ const PROFILE = '/profile';
 const router = express.Router();
 const authService = new AuthService();
 
-// Validation rules
 const registerValidation = [
   body('email')
     .isEmail()
@@ -45,10 +44,8 @@ const loginValidation = [
   body('senha').notEmpty().withMessage('A senha é obrigatória')
 ];
 
-// Register endpoint
 router.post(REGISTER, registerValidation, async (req: express.Request, res: express.Response) => {
   try {
-    // Check validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -98,10 +95,8 @@ router.post(REGISTER, registerValidation, async (req: express.Request, res: expr
   }
 });
 
-// Login endpoint
 router.post(LOGIN, loginValidation, async (req: express.Request, res: express.Response) => {
   try {
-    // Check validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -140,10 +135,8 @@ router.post(LOGIN, loginValidation, async (req: express.Request, res: express.Re
   }
 });
 
-// Profile endpoint (requires authentication - middleware will be added later)
 router.get(PROFILE, authenticateToken, async (req: express.Request, res: express.Response) => {
   try {
-    // Extract user email from the request object (set by auth middleware)
     const userEmail = (req as any).user?.email;
 
     if (!userEmail) {

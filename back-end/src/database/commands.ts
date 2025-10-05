@@ -57,7 +57,6 @@ export const createUniversityIfNotExists = async (
   universityCode: string,
   universityName?: string
 ) => {
-  // First check if university exists
   const checkUniversityCommand = `
     SELECT sigla FROM Universidade WHERE sigla = $1
   `;
@@ -69,7 +68,6 @@ export const createUniversityIfNotExists = async (
     ]);
 
     if (existingUniversity.length === 0) {
-      // University doesn't exist, create it
       const insertUniversityCommand = `
         INSERT INTO Universidade (sigla, nome, estado_uf, cidade)
         VALUES ($1, $2, $3, $4)
@@ -90,7 +88,6 @@ export const createUniversityIfNotExists = async (
 };
 
 export const createRestaurantIfNotExists = async (ruCode: string, universityCode: string) => {
-  // First check if restaurant exists
   const checkRestaurantCommand = `
     SELECT cod_ru FROM Restaurante WHERE sigla_ru = $1 AND sigla_universidade = $2
   `;
@@ -103,7 +100,6 @@ export const createRestaurantIfNotExists = async (ruCode: string, universityCode
     ]);
 
     if (existingRestaurant.length === 0) {
-      // Restaurant doesn't exist, create it
       const getNextRuIdCommand = `
         SELECT COALESCE(MAX(cod_ru), 0) + 1 as next_id FROM Restaurante
       `;
@@ -136,13 +132,10 @@ export const createRestaurantIfNotExists = async (ruCode: string, universityCode
 
 export const getOrCreateRuId = async (ruCode: string, universityName: string) => {
   try {
-    // First, ensure the university exists
     await createUniversityIfNotExists(universityName);
 
-    // Then, ensure the restaurant exists
     const ruId = await createRestaurantIfNotExists(ruCode, universityName);
 
-    // Finally, get the restaurant ID
     const operationCommand = `
       SELECT cod_ru
       FROM Restaurante

@@ -5,7 +5,6 @@ import AppRoutes from './routes';
 import { useResizeObserverErrorHandler } from './hooks/useResizeObserverErrorHandler';
 
 function App() {
-  // Handle ResizeObserver errors
   useResizeObserverErrorHandler();
 
   return (

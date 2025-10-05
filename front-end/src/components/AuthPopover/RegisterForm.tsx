@@ -77,7 +77,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         login(response.data.token, response.data.user);
         onSuccess();
       } else {
-        // Handle specific error messages
         if (
           response.message?.includes('User already exists') ||
           response.message?.includes('Usuário já existe')
@@ -88,7 +87,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         }
       }
     } catch (error: any) {
-      // Handle thrown errors
       if (
         error.message?.includes('User already exists') ||
         error.message?.includes('Usuário já existe')

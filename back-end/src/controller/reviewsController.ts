@@ -45,7 +45,6 @@ router.post(
   authenticateToken,
   async (req: express.Request, res: express.Response) => {
     try {
-      // Get user email from the authenticated request
       const emailUsuario = req.user?.email;
 
       if (!emailUsuario) {

@@ -32,7 +32,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const isAuthenticated = !!user && !!token;
 
-  // Check if token is expired
   const isTokenExpired = (token: string): boolean => {
     try {
       const decoded = jwtDecode<JWTPayload>(token);
@@ -51,27 +50,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const storedUser = localStorage.getItem('auth_user');
 
       if (storedToken && storedUser) {
-        // Check if token is expired
         if (isTokenExpired(storedToken)) {
-          // Token expired, clear auth data
           localStorage.removeItem('auth_token');
           localStorage.removeItem('auth_user');
           setUser(null);
           setToken(null);
         } else {
-          // Token is valid, restore auth state
           const parsedUser = JSON.parse(storedUser) as User;
           setToken(storedToken);
           setUser(parsedUser);
         }
       } else {
-        // No auth data found
         setUser(null);
         setToken(null);
       }
     } catch (error) {
       console.error('Error checking auth status:', error);
-      // Clear potentially corrupted data
       localStorage.removeItem('auth_token');
       localStorage.removeItem('auth_user');
       setUser(null);
@@ -81,14 +75,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
-  // Initialize auth state from localStorage
   useEffect(() => {
     checkAuthStatus();
   }, [checkAuthStatus]);
 
   const login = (newToken: string, newUser: User) => {
     try {
-      // Validate token before storing
       if (isTokenExpired(newToken)) {
         throw new Error('Token is expired');
       }

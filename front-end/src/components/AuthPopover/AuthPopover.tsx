@@ -31,7 +31,6 @@ export const AuthPopover: React.FC<AuthPopoverProps> = ({ opener, open, onClose 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  // Reset to login mode and clear messages when popover opens
   useEffect(() => {
     if (open) {
       setIsLoginMode(true);
@@ -54,7 +53,6 @@ export const AuthPopover: React.FC<AuthPopoverProps> = ({ opener, open, onClose 
   const handleSuccess = () => {
     setSuccess(isLoginMode ? 'Login realizado com sucesso!' : 'Conta criada com sucesso!');
 
-    // If it was a registration, switch to login mode for next time
     if (!isLoginMode) {
       setIsLoginMode(true);
     }

@@ -94,7 +94,6 @@ export const Home: React.FC = () => {
     }
   }, [reviewsMutation]);
 
-  // Effect for initial loading
   useEffect(() => {
     const loadInitialData = async () => {
       setIsLoadingReviews(true);
@@ -130,7 +129,6 @@ export const Home: React.FC = () => {
     }
   }, [isReviewCreated, showSuccessMessage, t, setIsReviewCreated]);
 
-  // Refetch reviews when a new review is created
   useEffect(() => {
     if (isReviewCreated && USE_BACKEND_REVIEWS) {
       fetchReviews();

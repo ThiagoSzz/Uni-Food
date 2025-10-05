@@ -20,17 +20,14 @@ export class AuthService {
       registerData;
 
     try {
-      // Check if user already exists
       const existingUser = await this.getUserByEmail(email);
       if (existingUser) {
         throw new Error('Usuário já existe com este email');
       }
 
-      // Hash password
       const saltRounds = 12;
       const hashedPassword = await bcrypt.hash(senha, saltRounds);
 
-      // Create funcao record for this user
       const tipoMap: { [key: number]: string } = {
         1: 'Estudante',
         6: 'Professor',
@@ -53,7 +50,6 @@ export class AuthService {
 
       const funcaoId = funcaoResult[0].cod_funcao;
 
-      // Insert new user with the funcao reference
       const insertQuery = `
         INSERT INTO usuario (email, senha, nome, sexo, idade, preferencia_alimentar, tipo)
         VALUES ($1, $2, $3, $4, $5, $6, $7)
@@ -76,7 +72,6 @@ export class AuthService {
         periodo: periodo?.trim() || null
       };
 
-      // Generate JWT token
       const token = this.generateToken(user);
 
       logger.info(`New user registered: ${email}`);
@@ -92,19 +87,16 @@ export class AuthService {
     const { email, senha } = loginData;
 
     try {
-      // Get user with password
       const user = await this.getUserByEmail(email, true);
       if (!user) {
         throw new Error('Email ou senha inválidos');
       }
 
-      // Verify password
       const isPasswordValid = await bcrypt.compare(senha, user.senha);
       if (!isPasswordValid) {
         throw new Error('Email ou senha inválidos');
       }
 
-      // Remove password from user object
       const userWithoutPassword: UserWithoutPassword = {
         email: user.email,
         nome: user.nome,
@@ -116,7 +108,6 @@ export class AuthService {
         periodo: user.periodo
       };
 
-      // Generate JWT token
       const token = this.generateToken(userWithoutPassword);
 
       logger.info(`User logged in: ${email}`);

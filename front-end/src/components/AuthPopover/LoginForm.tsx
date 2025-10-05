@@ -57,7 +57,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         login(response.data.token, response.data.user);
         onSuccess();
       } else {
-        // Translate specific error messages to Portuguese
         if (
           response.message?.includes('Invalid email or password') ||
           response.message?.includes('Email ou senha inválidos')
@@ -68,7 +67,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         }
       }
     } catch (error: any) {
-      // Handle thrown errors (like from the backend service)
       if (
         error.message?.includes('Invalid email or password') ||
         error.message?.includes('Email ou senha inválidos')

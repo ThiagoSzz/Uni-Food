@@ -4,7 +4,6 @@ import { logger } from '../config/logger';
 
 const authService = new AuthService();
 
-// Extend the Request interface to include user property
 declare global {
   namespace Express {
     interface Request {
@@ -22,9 +21,8 @@ export const authenticateToken = (
   next: express.NextFunction
 ) => {
   try {
-    // Get token from Authorization header
     const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+    const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
       return res.status(401).json({
@@ -33,10 +31,8 @@ export const authenticateToken = (
       });
     }
 
-    // Verify token
     const payload = authService.verifyToken(token);
 
-    // Add user info to request object
     req.user = {
       email: payload.email,
       nome: payload.nome
@@ -70,7 +66,6 @@ export const optionalAuthentication = (
           nome: payload.nome
         };
       } catch (error) {
-        // Token is invalid, but we don't fail the request
         logger.warn('Optional authentication: invalid token provided');
       }
     }
@@ -78,6 +73,6 @@ export const optionalAuthentication = (
     next();
   } catch (error: any) {
     logger.error('Optional authentication error:', error);
-    next(); // Continue anyway
+    next();
   }
 };
