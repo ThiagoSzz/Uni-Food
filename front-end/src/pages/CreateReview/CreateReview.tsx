@@ -8,7 +8,6 @@ import {
   TitleLevel,
   ObjectPage,
   ObjectPageSection,
-  ObjectPageMode,
   MessageStrip,
   MessageStripDesign
 } from '@ui5/webcomponents-react';
@@ -18,7 +17,6 @@ import { useStyles } from './CreateReview.jss';
 import '@ui5/webcomponents-icons/dist/AllIcons';
 import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomShellBar';
 import { ReviewInfoForm } from '../../components/ReviewInfoForm/ReviewInfoForm';
-import { OptionalInfoForm } from '../../components/OptionalInfoForm/OptionalInfoForm';
 import { FloatingBar } from '../../components/FloatingBar/FloatingBar';
 import useNewReviewStore from '../../stores/useNewReviewStore';
 import useReviewsStore from '../../stores/useReviewsStore';
@@ -88,9 +86,7 @@ export const CreateReview: React.FC = () => {
     if (isReviewCreated) {
       setFeedbackMessageStrip({
         show: true,
-        message: t(
-          'createReview.creatingRedirect'
-        ),
+        message: t('createReview.creatingRedirect'),
         value: MessageStripDesign.Information
       });
       insertNewReview();
@@ -169,41 +165,17 @@ export const CreateReview: React.FC = () => {
         <></>
       )}
 
-      <ObjectPage className={classes.objectPage} mode={ObjectPageMode.IconTabBar}>
+      <ObjectPage className={classes.objectPage}>
         <ObjectPageSection
           id="reviewInfo"
           titleText={t('createReview.section1')}
           className={classes.objectPageSection}
         >
           <FlexBox direction={FlexBoxDirection.Column}>
-            <Title level={TitleLevel.H4}>
-              {t('createReview.section1')}
-            </Title>
-            <Text className={classes.text}>
-              {t(
-                'createReview.needInfo'
-              )}
-            </Text>
+            <Title level={TitleLevel.H4}>{t('createReview.section1')}</Title>
+            <Text className={classes.text}>{t('createReview.needInfo')}</Text>
             <FlexBox direction={FlexBoxDirection.Column}>
               <ReviewInfoForm />
-            </FlexBox>
-          </FlexBox>
-        </ObjectPageSection>
-
-        <ObjectPageSection
-          id="optionalInfo"
-          titleText={t('createReview.section2')}
-          className={classes.objectPageSection}
-        >
-          <FlexBox direction={FlexBoxDirection.Column}>
-            <Title level={TitleLevel.H4}>
-              {t('createReview.section2')}
-            </Title>
-            <Text className={classes.text}>
-              {t('createReview.wantKnow')}
-            </Text>
-            <FlexBox direction={FlexBoxDirection.Column}>
-              <OptionalInfoForm />
             </FlexBox>
           </FlexBox>
         </ObjectPageSection>

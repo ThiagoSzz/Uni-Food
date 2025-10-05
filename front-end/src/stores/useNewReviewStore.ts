@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { DietaryPreference } from '../enums/DietaryPreferenceEnum';
 import { MealPeriod } from '../enums/MealPeriodEnum';
 import { Review } from '../interfaces/Review';
 import { ValidationError } from '../enums/NewReviewValidationErrorsEnum';
@@ -12,10 +11,6 @@ export type NewReviewStore = {
   comment: string;
   tags: Tag[];
   rating: number;
-  courseName: string;
-  coursePeriod: string;
-  dietaryPreference: DietaryPreference;
-  city: string;
   newReview: Review | undefined;
   validationErrors: ValidationError[];
   isReviewCreated: boolean;
@@ -25,10 +20,6 @@ export type NewReviewStore = {
   setComment: (value: string) => void;
   setTags: (value: Tag[]) => void;
   setRating: (value: number) => void;
-  setCourseName: (value: string) => void;
-  setCoursePeriod: (value: string) => void;
-  setDietaryPreference: (value: DietaryPreference) => void;
-  setCity: (value: string) => void;
   setNewReview: (value: Review) => void;
   createNewReview: () => void;
   clearNewReview: () => void;
@@ -47,10 +38,6 @@ const toString = function (this: Review): string {
     - Comment: ${this.comment}
     - Tags: ${JSON.stringify(this.tags)}
     - Rating: ${this.rating}
-    - Course Name: ${this.courseName}
-    - Course Period: ${this.coursePeriod}
-    - Dietary Preference: ${this.dietaryPreference}
-    - City: ${this.city}
   `;
 };
 
@@ -67,14 +54,6 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
   setTags: (value: Tag[]) => set(() => ({ tags: value })),
   rating: 0,
   setRating: (value: number) => set(() => ({ rating: value })),
-  courseName: '',
-  setCourseName: (value: string) => set(() => ({ courseName: value })),
-  coursePeriod: '',
-  setCoursePeriod: (value: string) => set(() => ({ coursePeriod: value })),
-  dietaryPreference: DietaryPreference.UNDEFINED,
-  setDietaryPreference: (value: DietaryPreference) => set(() => ({ dietaryPreference: value })),
-  city: '',
-  setCity: (value: string) => set(() => ({ city: value })),
   newReview: undefined,
   setNewReview: (value: Review) => set(() => ({ newReview: value })),
   createNewReview: () => {
@@ -85,10 +64,6 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
       comment: get().comment,
       tags: get().tags,
       rating: get().rating,
-      courseName: get().courseName,
-      coursePeriod: get().coursePeriod,
-      dietaryPreference: get().dietaryPreference,
-      city: get().city,
       toString
     };
 
@@ -103,10 +78,6 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
       setComment,
       setTags,
       setRating,
-      setCourseName,
-      setCoursePeriod,
-      setDietaryPreference,
-      setCity,
       setNewReview
     } = get();
 
@@ -116,28 +87,13 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
     setComment('');
     setTags([]);
     setRating(0);
-    setCourseName('');
-    setCoursePeriod('');
-    setDietaryPreference(DietaryPreference.UNDEFINED);
-    setCity('');
 
     setNewReview(undefined);
   },
   validationErrors: [],
   clearValidationErrors: () => set((state) => ({ validationErrors: [] })),
   validateFields: () => {
-    const {
-      ruCode,
-      universityName,
-      mealPeriod,
-      comment,
-      tags,
-      rating,
-      courseName,
-      coursePeriod,
-      dietaryPreference,
-      city
-    } = get();
+    const { ruCode, universityName, mealPeriod, comment, tags, rating } = get();
 
     const errors: ValidationError[] = [];
 
@@ -165,27 +121,6 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
       errors.push(ValidationError.RatingRequired);
     }
 
-    if (courseName && !coursePeriod) {
-      errors.push(ValidationError.CoursePeriodRequired);
-    }
-
-    if (!courseName && coursePeriod) {
-      errors.push(ValidationError.CourseNameRequired);
-    }
-
-    if (
-      dietaryPreference &&
-      ![DietaryPreference.OMNIVORE, DietaryPreference.VEGETARIAN, DietaryPreference.VEGAN].includes(
-        dietaryPreference
-      )
-    ) {
-      errors.push(ValidationError.InvalidDietaryPreference);
-    }
-
-    if (city && city.length > 50) {
-      errors.push(ValidationError.InvalidCityLength);
-    }
-
     set(() => ({ validationErrors: errors }));
 
     return errors.length === 0;
@@ -197,11 +132,7 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
       mealPeriod: get().mealPeriod,
       comment: get().comment,
       tags: get().tags,
-      rating: get().rating,
-      courseName: get().courseName,
-      coursePeriod: get().coursePeriod,
-      dietaryPreference: get().dietaryPreference,
-      city: get().city
+      rating: get().rating
     };
 
     if (
@@ -210,11 +141,7 @@ const useNewReviewStore = create<NewReviewStore>((set, get) => ({
       newReview.mealPeriod !== MealPeriod.UNDEFINED ||
       newReview.comment !== '' ||
       newReview.tags.length !== 0 ||
-      newReview.rating !== 0 ||
-      newReview.courseName !== '' ||
-      newReview.coursePeriod !== '' ||
-      newReview.dietaryPreference !== DietaryPreference.UNDEFINED ||
-      newReview.city !== ''
+      newReview.rating !== 0
     ) {
       return true;
     } else {

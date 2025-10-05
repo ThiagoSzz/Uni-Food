@@ -1,7 +1,13 @@
-/* eslint-disable camelcase */
-
+/**
+ * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
+ */
 exports.shorthands = undefined;
 
+/**
+ * @param pgm {import('node-pg-migrate').MigrationBuilder}
+ * @param run {() => void | undefined}
+ * @returns {Promise<void> | void}
+ */
 exports.up = (pgm) => {
   // Create sequence for avaliacoes
   pgm.createSequence('avaliacao_seq', {
@@ -112,6 +118,11 @@ exports.up = (pgm) => {
   pgm.createIndex('frequentacao', 'sigla_universidade', { name: 'idx_frequentacao_universidade' });
 };
 
+/**
+ * @param pgm {import('node-pg-migrate').MigrationBuilder}
+ * @param run {() => void | undefined}
+ * @returns {Promise<void> | void}
+ */
 exports.down = (pgm) => {
   // Drop tables in reverse order (respecting foreign keys)
   pgm.dropTable('frequentacao');

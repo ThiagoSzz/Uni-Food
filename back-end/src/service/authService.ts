@@ -30,35 +30,30 @@ export class AuthService {
       const saltRounds = 12;
       const hashedPassword = await bcrypt.hash(senha, saltRounds);
 
-      // Create funcao record first if course name and period are provided
-      let funcaoId = tipo; // Default to the original tipo value
+      // Create funcao record for this user
+      const tipoMap: { [key: number]: string } = {
+        1: 'Estudante',
+        6: 'Professor',
+        7: 'Funcionário'
+      };
 
-      if (nome_curso && periodo) {
-        // Map tipo numbers to descriptive strings
-        const tipoMap: { [key: number]: string } = {
-          1: 'Estudante',
-          6: 'Professor',
-          7: 'Funcionário'
-        };
+      const tipoString = tipoMap[tipo || 1] || 'Estudante';
 
-        const tipoString = tipoMap[tipo || 1] || 'Estudante';
+      const funcaoQuery = `
+        INSERT INTO funcao (tipo, nome_curso, periodo)
+        VALUES ($1, $2, $3)
+        RETURNING cod_funcao
+      `;
 
-        const funcaoQuery = `
-          INSERT INTO funcao (tipo, nome_curso, periodo)
-          VALUES ($1, $2, $3)
-          RETURNING cod_funcao
-        `;
+      const funcaoResult = await sqlOperation(funcaoQuery, [
+        tipoString,
+        nome_curso?.trim() || null,
+        periodo?.trim() || null
+      ]);
 
-        const funcaoResult = await sqlOperation(funcaoQuery, [
-          tipoString,
-          nome_curso.trim(),
-          periodo.trim()
-        ]);
+      const funcaoId = funcaoResult[0].cod_funcao;
 
-        funcaoId = funcaoResult[0].cod_funcao;
-      }
-
-      // Insert new user with the correct funcao reference
+      // Insert new user with the funcao reference
       const insertQuery = `
         INSERT INTO usuario (email, senha, nome, sexo, idade, preferencia_alimentar, tipo)
         VALUES ($1, $2, $3, $4, $5, $6, $7)

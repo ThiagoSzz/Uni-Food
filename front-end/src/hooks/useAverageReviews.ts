@@ -16,7 +16,7 @@ export const useAverageReviews = () => {
           ruForUniversityInfo[key] = {
             ruCode: currentReview.ruCode,
             universityName: currentReview.universityName,
-            city: currentReview.city,
+            city: currentReview.city || '',
             totalRating: 0,
             reviewsAmount: 0
           };

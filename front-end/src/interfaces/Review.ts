@@ -9,9 +9,9 @@ export interface Review {
   comment: string;
   tags: Tag[];
   rating: number;
-  courseName: string;
-  coursePeriod: string;
-  dietaryPreference: DietaryPreference;
-  city: string;
+  courseName?: string;
+  coursePeriod?: string;
+  dietaryPreference?: DietaryPreference;
+  city?: string;
   toString?: () => string;
 }

@@ -59,7 +59,7 @@ const useReviewsStore = create<ReviewsStore>((set, get) => ({
       const filteredReviews = reviews.filter((review) => {
         const reviewString = `${review.ruCode} ${review.universityName} ${
           review.comment
-        } ${review.tags.map((tag) => tag.name).join(' ')} ${review.city}`.toLowerCase();
+        } ${review.tags.map((tag) => tag.name).join(' ')} ${review.city || ''}`.toLowerCase();
 
         return reviewString.includes(searchQuery);
       });
