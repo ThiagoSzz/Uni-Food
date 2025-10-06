@@ -18,7 +18,6 @@ import {
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
 
 import { useStyles } from './ReviewCard.jss';
-import { ReviewCardProps } from '../../interfaces/props/ReviewCardProps';
 import { AvatarBackgroundColors, AvatarIconColors } from '../../enums/AvatarColorsEnum';
 import { useEffect, useState } from 'react';
 import { TagTypes } from '../../enums/TagTypes';
@@ -26,19 +25,16 @@ import { Tooltip } from 'react-tippy';
 
 import 'react-tippy/dist/tippy.css';
 import Highlighter from 'react-highlight-words';
-import useReviewsStore from '../../stores/useReviewsStore';
 import { useTranslation } from 'react-i18next';
+import { Review } from '../../interfaces/Review';
 
-export const ReviewCard = (props: ReviewCardProps) => {
-  const { review } = props;
+interface ReviewCardProps {
+  review: Review;
+  highlightMatches?: string;
+}
+
+export const ReviewCard = ({ review, highlightMatches = '' }: ReviewCardProps) => {
   const { t } = useTranslation();
-
-  const [searchQuery, shouldFilterReviews] = useReviewsStore((value) => [
-    value.searchQuery,
-    value.shouldFilterReviews
-  ]);
-
-  const highlightMatches = shouldFilterReviews ? searchQuery : '';
 
   const [avatarColors, setAvatarColors] = useState<{
     background: AvatarBackgroundColors;

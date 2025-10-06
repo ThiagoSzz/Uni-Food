@@ -16,25 +16,44 @@ import {
 import { useStyles } from './FiltersDialog.jss';
 import { MealPeriod } from '../../enums/MealPeriodEnum';
 import useReviewsStore from '../../stores/useReviewsStore';
+import useSearchFilterStore, { FilterCriteria } from '../../stores/useSearchFilterStore';
 import { useEffect, useState } from 'react';
 import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
 import { useTranslation } from 'react-i18next';
 
-export const FilterDialog = () => {
+interface FilterDialogProps {
+  filterCriteria: FilterCriteria;
+}
+
+export const FilterDialog = ({ filterCriteria }: FilterDialogProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
-  const [isDialogOpen, setIsDialogOpen, addFilters] = useReviewsStore((value) => [
+  const [isDialogOpen, setIsDialogOpen] = useReviewsStore((value) => [
     value.filterDialogState,
-    value.setFilterDialogState,
-    value.addFilters
+    value.setFilterDialogState
   ]);
-  const [courseNameValue, setCourseNameValue] = useState<string>('');
+
+  const { setFilterCriteria } = useSearchFilterStore();
+
+  const activeFiltersCount = [
+    filterCriteria.courseName.trim() !== '',
+    filterCriteria.dietaryPreference !== DietaryPreference.UNDEFINED,
+    filterCriteria.mealPeriod !== MealPeriod.UNDEFINED
+  ].filter(Boolean).length;
+
+  const [courseNameValue, setCourseNameValue] = useState<string>(filterCriteria.courseName);
   const [dietaryPreferenceValue, setDietaryPreferenceValue] = useState<DietaryPreference>(
-    DietaryPreference.UNDEFINED
+    filterCriteria.dietaryPreference
   );
-  const [mealPeriodValue, setMealPeriodValue] = useState<MealPeriod>(MealPeriod.UNDEFINED);
-  const [numberOfActiveFilters, setNumberOfActiveFilters] = useState<number>(0);
+  const [mealPeriodValue, setMealPeriodValue] = useState<MealPeriod>(filterCriteria.mealPeriod);
+
+  // Update local state when filterCriteria prop changes
+  useEffect(() => {
+    setCourseNameValue(filterCriteria.courseName);
+    setDietaryPreferenceValue(filterCriteria.dietaryPreference);
+    setMealPeriodValue(filterCriteria.mealPeriod);
+  }, [filterCriteria]);
 
   const handleCourseNameValueChange = (event) => {
     const { value } = event.target;
@@ -50,29 +69,20 @@ export const FilterDialog = () => {
   };
 
   const handleDialogAfterClose = () => {
-    setCourseNameValue('');
-    setDietaryPreferenceValue(DietaryPreference.UNDEFINED);
-    setMealPeriodValue(MealPeriod.UNDEFINED);
+    // Reset local state to current filterCriteria when dialog closes
+    setCourseNameValue(filterCriteria.courseName);
+    setDietaryPreferenceValue(filterCriteria.dietaryPreference);
+    setMealPeriodValue(filterCriteria.mealPeriod);
   };
 
   const handleApplyButtonClick = () => {
-    addFilters(courseNameValue, dietaryPreferenceValue, mealPeriodValue);
+    setFilterCriteria({
+      courseName: courseNameValue,
+      dietaryPreference: dietaryPreferenceValue,
+      mealPeriod: mealPeriodValue
+    });
     setIsDialogOpen(false);
   };
-
-  const setActiveFilters = () => {
-    let numberOfFilters = 0;
-
-    courseNameValue !== '' && numberOfFilters++;
-    dietaryPreferenceValue !== DietaryPreference.UNDEFINED && numberOfFilters++;
-    mealPeriodValue !== MealPeriod.UNDEFINED && numberOfFilters++;
-
-    setNumberOfActiveFilters(numberOfFilters);
-  };
-
-  useEffect(() => {
-    setActiveFilters();
-  }, [courseNameValue, dietaryPreferenceValue, mealPeriodValue]);
 
   return (
     <Dialog
@@ -86,7 +96,7 @@ export const FilterDialog = () => {
             className={classes.button}
             onClick={handleApplyButtonClick}
           >
-            {t('filters.apply')} ({numberOfActiveFilters})
+            {t('filters.apply')} ({activeFiltersCount})
           </Button>
           <Button
             design={ButtonDesign.Transparent}
@@ -116,10 +126,7 @@ export const FilterDialog = () => {
               spellCheck={false}
             />
           </ObjectPageSection>
-          <ObjectPageSection
-            id="dietaryPreference"
-            titleText={t('filters.dietaryPreference')}
-          >
+          <ObjectPageSection id="dietaryPreference" titleText={t('filters.dietaryPreference')}>
             <Select
               className={classes.dietaryPreferenceSelect}
               onChange={(event) =>
@@ -147,10 +154,7 @@ export const FilterDialog = () => {
               </Option>
             </Select>
           </ObjectPageSection>
-          <ObjectPageSection
-            id="mealPeriod"
-            titleText={t('filters.mealPeriod')}
-          >
+          <ObjectPageSection id="mealPeriod" titleText={t('filters.mealPeriod')}>
             <Select
               className={classes.mealPeriodSelect}
               onChange={(event) =>

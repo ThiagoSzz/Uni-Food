@@ -8,6 +8,8 @@ import {
   MessageStripDesign
 } from '@ui5/webcomponents-react';
 
+import logo from '../../../assets/images/logo.png';
+
 import { ShellBar } from '../ShellBar';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../../enums/AppRoutesEnum';
@@ -72,10 +74,7 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
           {message.text}
         </MessageStrip>
       )}
-      <ShellBar
-        image="https://static-00.iconduck.com/assets.00/fork-and-knife-with-plate-emoji-2048x2048-4e58vsav.png"
-        text={t('nav.appName')}
-      >
+      <ShellBar image={logo} text={t('nav.appName')}>
         <Tooltip title={t('nav.searchReviews')} arrow arrowSize="small">
           <Button
             design={ButtonDesign.Emphasized}

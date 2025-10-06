@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import {
   BusyIndicator,
   FlexBox,
@@ -22,16 +22,21 @@ import { ReviewsSearchBar } from '../../components/ReviewsSearchBar/ReviewsSearc
 import useNewReviewStore from '../../stores/useNewReviewStore';
 import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
 import useReviewsStore from '../../stores/useReviewsStore';
+import useSearchFilterStore from '../../stores/useSearchFilterStore';
 import { useAverageReviews } from '../../hooks/useAverageReviews';
 import { useGetReviewsMutation } from '../../hooks/queries/useGetReviews';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
 import { useMessageStrip } from '../../hooks/useMessageStrip';
+import { useSearch } from '../../hooks/useSearch';
+import { useFilter } from '../../hooks/useFilter';
 
 import '@ui5/webcomponents-fiori/dist/illustrations/NoData.js';
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
 import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
 import { MessageStripContainer } from '../../components/MessageStripContainer/MessageStripContainer';
 import { useTranslation } from 'react-i18next';
+import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
+import { MealPeriod } from '../../enums/MealPeriodEnum';
 
 const USE_BACKEND_REVIEWS = true;
 const NUM_DISPLAYED_REVIEWS = 40;
@@ -43,27 +48,14 @@ export const Home: React.FC = () => {
   const [clearValidationErrors, isReviewCreated, setIsReviewCreated] = useNewReviewStore(
     (value) => [value.clearValidationErrors, value.isReviewCreated, value.setIsReviewCreated]
   );
-  const [
-    reviews,
-    setReviews,
-    filteredReviews,
-    setFilteredReviews,
-    shouldShowNoFilteredReviewsMessage,
-    searchQuery
-  ] = useReviewsStore((value) => [
-    value.reviews,
-    value.setReviews,
-    value.filteredReviews,
-    value.setFilteredReviews,
-    value.shouldShowNoFilteredReviewsMessage,
-    value.searchQuery
+  const [reviews, setReviews] = useReviewsStore((value) => [value.reviews, value.setReviews]);
+  const [averageReviews, setAverageReviews] = useAverageReviewsStore((value) => [
+    value.averageReviews,
+    value.setAverageReviews
   ]);
-  const [setAverageReviews, filteredAverageReviews, setFilteredAverageReviews] =
-    useAverageReviewsStore((value) => [
-      value.setAverageReviews,
-      value.filteredAverageReviews,
-      value.setFilteredAverageReviews
-    ]);
+
+  const { searchQuery, shouldFilterReviews, shouldFilterAverageReviews, filterCriteria } =
+    useSearchFilterStore();
 
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true);
   const [isLoadingAverageReviews, setIsLoadingAverageReviews] = useState<boolean>(true);
@@ -77,22 +69,66 @@ export const Home: React.FC = () => {
     hideMessage: hideFeedbackMessage
   } = useMessageStrip(6000);
 
+  const { searchReviews, searchAverageReviews } = useSearch();
+  const { filterReviews } = useFilter();
   const { getUniversityRuStandings, groupReviewsByRuAndUniversity } = useAverageReviews();
 
   const reviewsMutation = useGetReviewsMutation();
+
+  const hasActiveFilters = useMemo(() => {
+    return (
+      filterCriteria.courseName.trim() !== '' ||
+      filterCriteria.dietaryPreference !== DietaryPreference.UNDEFINED ||
+      filterCriteria.mealPeriod !== MealPeriod.UNDEFINED
+    );
+  }, [filterCriteria]);
+
+  const filteredReviews = useMemo(() => {
+    if (!shouldFilterReviews) return reviews;
+
+    let result = reviews;
+
+    if (hasActiveFilters) {
+      result = filterReviews(result, filterCriteria);
+    }
+
+    if (searchQuery.trim()) {
+      result = searchReviews(result, searchQuery);
+    }
+
+    return result;
+  }, [
+    reviews,
+    shouldFilterReviews,
+    hasActiveFilters,
+    filterReviews,
+    filterCriteria,
+    searchQuery,
+    searchReviews
+  ]);
+
+  const filteredAverageReviews = useMemo(() => {
+    if (!shouldFilterAverageReviews || !searchQuery.trim()) return averageReviews;
+
+    return searchAverageReviews(averageReviews, searchQuery);
+  }, [averageReviews, shouldFilterAverageReviews, searchQuery, searchAverageReviews]);
+
+  const shouldShowNoFilteredReviewsMessage =
+    shouldFilterReviews &&
+    (hasActiveFilters || searchQuery.trim()) &&
+    filteredReviews.length === 0 &&
+    reviews.length > 0;
 
   const fetchReviews = useCallback(async () => {
     try {
       const result = await reviewsMutation.mutateAsync();
       const reviews = result.data;
-
       setReviews(reviews);
-      setFilteredReviews(reviews);
     } catch (error) {
       showErrorMessage(t('messages.reviewsFetchError', { message: error.message }));
       setHasNoData(true);
     }
-  }, [reviewsMutation]);
+  }, [reviewsMutation, setReviews, showErrorMessage, t]);
 
   useEffect(() => {
     const loadInitialData = async () => {
@@ -105,7 +141,6 @@ export const Home: React.FC = () => {
       } else {
         const reviewsFixture = getReviewsList();
         setReviews(reviewsFixture);
-        setFilteredReviews(reviewsFixture);
       }
     };
 
@@ -117,10 +152,6 @@ export const Home: React.FC = () => {
       showInfoMessage(t('messages.noFilteredReviews'));
     }
   }, [shouldShowNoFilteredReviewsMessage, showInfoMessage, t]);
-
-  useEffect(() => {
-    hideFeedbackMessage();
-  }, [searchQuery, hideFeedbackMessage]);
 
   useEffect(() => {
     if (isReviewCreated) {
@@ -144,16 +175,15 @@ export const Home: React.FC = () => {
       );
 
       setAverageReviews(reviewsGroupedByRuAndUniversity);
-      setFilteredAverageReviews(reviewsGroupedByRuAndUniversity);
     }
   }, [reviews]);
 
   useEffect(() => {
-    if (filteredAverageReviews.length > 0 && isLoadingAverageReviews) {
+    if (averageReviews.length > 0 && isLoadingAverageReviews) {
       setIsLoadingReviews(false);
       setIsLoadingAverageReviews(false);
     }
-  }, [filteredAverageReviews, isLoadingAverageReviews]);
+  }, [averageReviews, isLoadingAverageReviews]);
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>
@@ -179,8 +209,8 @@ export const Home: React.FC = () => {
           className={classes.boxesContainer}
           style={{ marginTop: '10px', marginBottom: '0px' }}
         >
-          <ReviewsSearchBar />
-          <FilterDialog />
+          <ReviewsSearchBar searchQuery={searchQuery} />
+          <FilterDialog filterCriteria={filterCriteria} />
         </FlexBox>
         <FlexBox className={classes.textContainer}>
           <FlexBox className={classes.centeredContainer}>
@@ -211,7 +241,13 @@ export const Home: React.FC = () => {
           )}
           {!isLoadingAverageReviews &&
             filteredAverageReviews.map((averageReview, index) => {
-              return <AverageReviewsCard key={`average-${index}`} averageReview={averageReview} />;
+              return (
+                <AverageReviewsCard
+                  key={`average-${index}`}
+                  averageReview={averageReview}
+                  highlightMatches={shouldFilterAverageReviews ? searchQuery : ''}
+                />
+              );
             })}
         </FlexBox>
         <FlexBox className={classes.textContainer}>
@@ -245,7 +281,13 @@ export const Home: React.FC = () => {
           )}
           {!isLoadingReviews &&
             filteredReviews.slice(0, NUM_DISPLAYED_REVIEWS).map((review, index) => {
-              return <ReviewCard key={`review-${index}`} review={review} />;
+              return (
+                <ReviewCard
+                  key={`review-${index}`}
+                  review={review}
+                  highlightMatches={shouldFilterReviews ? searchQuery : ''}
+                />
+              );
             })}
         </FlexBox>
       </FlexBox>

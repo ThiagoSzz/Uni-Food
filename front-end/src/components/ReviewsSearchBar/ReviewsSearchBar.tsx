@@ -13,85 +13,63 @@ import {
   Switch
 } from '@ui5/webcomponents-react';
 import useReviewsStore from '../../stores/useReviewsStore';
-import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
-import { useEffect } from 'react';
+import useSearchFilterStore from '../../stores/useSearchFilterStore';
+import { useCallback, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { debounce } from 'lodash';
 
-export const ReviewsSearchBar = () => {
+interface ReviewsSearchBarProps {
+  searchQuery: string;
+}
+
+export const ReviewsSearchBar = ({ searchQuery }: ReviewsSearchBarProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
-  const [
-    isDialogOpen,
-    setIsDialogOpen,
-    searchQuery,
-    setReviewsSearchQuery,
-    getFilteredReviews,
-    shouldFilterReviews,
-    setShouldFilterReviews,
-    resetFilters
-  ] = useReviewsStore((value) => [
+  const [isDialogOpen, setIsDialogOpen] = useReviewsStore((value) => [
     value.filterDialogState,
-    value.setFilterDialogState,
-    value.searchQuery,
-    value.setSearchQuery,
-    value.getFilteredReviews,
-    value.shouldFilterReviews,
-    value.setShouldFilterReviews,
-    value.resetFilters
+    value.setFilterDialogState
   ]);
-  const [
-    setAverageReviewsSearchQuery,
-    getFilteredAverageReviews,
+
+  const {
+    shouldFilterReviews,
     shouldFilterAverageReviews,
-    setShouldFilterAverageReviews
-  ] = useAverageReviewsStore((value) => [
-    value.setSearchQuery,
-    value.getFilteredAverageReviews,
-    value.shouldFilterAverageReviews,
-    value.setShouldFilterAverageReviews
-  ]);
+    setSearchQuery,
+    setShouldFilterReviews,
+    setShouldFilterAverageReviews,
+    clearAllFilters
+  } = useSearchFilterStore();
 
-  const debounce = (func: Function, delay: number) => {
-    let timeout: NodeJS.Timeout;
+  const debouncedSearchRef = useRef(
+    debounce((query: string) => {
+      setSearchQuery(query);
+    }, 300)
+  );
 
-    return (...args: any[]) => {
-      clearTimeout(timeout);
+  useEffect(() => {
+    debouncedSearchRef.current = debounce((query: string) => {
+      setSearchQuery(query);
+    }, 300);
+  }, [setSearchQuery]);
 
-      timeout = setTimeout(() => {
-        func(...args);
-      }, delay);
+  useEffect(() => {
+    return () => {
+      debouncedSearchRef.current.cancel();
     };
-  };
+  }, []);
 
-  const handleApplyFilters = debounce((searchQuery: string) => {
-    setReviewsSearchQuery(searchQuery);
-    setAverageReviewsSearchQuery(searchQuery);
-
-    getFilteredReviews();
-    getFilteredAverageReviews();
-  }, 1000);
-
-  const handleInputChange = (event) => {
+  const handleInputChange = useCallback((event: any) => {
     const { value } = event.target;
-    handleApplyFilters(value);
-  };
+    debouncedSearchRef.current(value);
+  }, []);
 
-  const handleToggleFilterReviewsSwitch = () => {
+  const handleToggleFilterReviews = useCallback(() => {
     setShouldFilterReviews(!shouldFilterReviews);
-  };
+  }, [shouldFilterReviews, setShouldFilterReviews]);
 
-  const handleToggleFilterAverageReviewsSwitch = () => {
+  const handleToggleFilterAverageReviews = useCallback(() => {
     setShouldFilterAverageReviews(!shouldFilterAverageReviews);
-  };
-
-  useEffect(() => {
-    getFilteredAverageReviews();
-  }, [shouldFilterAverageReviews]);
-
-  useEffect(() => {
-    getFilteredReviews();
-  }, [shouldFilterReviews]);
+  }, [shouldFilterAverageReviews, setShouldFilterAverageReviews]);
 
   return (
     <FlexBox className={classes.searchBox}>
@@ -100,24 +78,21 @@ export const ReviewsSearchBar = () => {
         placeholder={t('search.placeholder')}
         icon={<Icon className={classes.searchBarIcon} name="search" />}
         onInputCapture={handleInputChange}
-        value={searchQuery}
+        defaultValue={searchQuery}
         spellCheck={false}
       />
       <SegmentedButton className={classes.segmentedButton}>
         <SegmentedButtonItem icon="filter" onClick={() => setIsDialogOpen(!isDialogOpen)}>
           {t('search.filter')}
         </SegmentedButtonItem>
-        <SegmentedButtonItem onClick={() => resetFilters()} icon="sys-cancel">
+        <SegmentedButtonItem onClick={clearAllFilters} icon="sys-cancel">
           {t('search.clearFilters')}
         </SegmentedButtonItem>
       </SegmentedButton>
       <FlexBox className={classes.switchContainer}>
-        <Switch
-          checked={shouldFilterAverageReviews}
-          onChange={handleToggleFilterAverageReviewsSwitch}
-        />
+        <Switch checked={shouldFilterAverageReviews} onChange={handleToggleFilterAverageReviews} />
         <Label className={classes.switchLabelText}>{t('search.filterAverages')}</Label>
-        <Switch checked={shouldFilterReviews} onChange={handleToggleFilterReviewsSwitch} />
+        <Switch checked={shouldFilterReviews} onChange={handleToggleFilterReviews} />
         <Label className={classes.switchLabelText}>{t('search.filterReviews')}</Label>
       </FlexBox>
     </FlexBox>

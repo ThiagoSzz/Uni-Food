@@ -19,7 +19,6 @@ import { CustomShellBar } from '../../components/ShellBar/CustomShellBar/CustomS
 import { ReviewInfoForm } from '../../components/ReviewInfoForm/ReviewInfoForm';
 import { FloatingBar } from '../../components/FloatingBar/FloatingBar';
 import useNewReviewStore from '../../stores/useNewReviewStore';
-import useReviewsStore from '../../stores/useReviewsStore';
 import { useCreateReviewMutation } from '../../hooks/mutations/useCreateReviewMutation';
 import { AppRoute } from '../../enums/AppRoutesEnum';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +28,6 @@ export const CreateReview: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const setSearchQuery = useReviewsStore((value) => value.setSearchQuery);
   const [newReview, clearNewReview, validationErrors, isReviewCreated, setIsReviewCreated] =
     useNewReviewStore((value) => [
       value.newReview,
@@ -108,9 +106,8 @@ export const CreateReview: React.FC = () => {
   }, [validationErrors]);
 
   useEffect(() => {
-    setSearchQuery('');
     clearNewReview();
-  }, []);
+  }, [clearNewReview]);
 
   return (
     <FlexBox direction={FlexBoxDirection.Column}>

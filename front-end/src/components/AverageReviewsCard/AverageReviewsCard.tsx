@@ -13,23 +13,24 @@ import {
 import { IconBadgeColors } from '../../enums/IconBadgeColorsEnum';
 import { useStyles } from '../AverageReviewsCard/AverageReviewsCard.jss';
 import { CardTagColors } from '../../enums/CardTagColorsEnum';
-import {
-  AverageReviewBadge,
-  AverageReviewCardProps
-} from '../../interfaces/props/AverageReviewCardProps';
 import Highlighter from 'react-highlight-words';
-import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
+import { AverageReview } from '../../interfaces/AverageReview';
 
-export const AverageReviewsCard = (props: AverageReviewCardProps) => {
-  const { averageReview } = props;
+interface AverageReviewCardProps {
+  averageReview: AverageReview;
+  highlightMatches?: string;
+}
+
+interface AverageReviewBadge {
+  name: string;
+  status: CardTagColors;
+}
+
+export const AverageReviewsCard = ({
+  averageReview,
+  highlightMatches = ''
+}: AverageReviewCardProps) => {
   const classes = useStyles();
-
-  const [searchQuery, shouldFilterAverageReviews] = useAverageReviewsStore((value) => [
-    value.searchQuery,
-    value.shouldFilterAverageReviews
-  ]);
-
-  const highlightMatches = shouldFilterAverageReviews ? searchQuery : '';
 
   const [cardTags, setCardTags] = useState<AverageReviewBadge[]>([]);
 
