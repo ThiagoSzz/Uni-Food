@@ -8,19 +8,20 @@ import {
   TitleLevel,
   WrappingType
 } from '@ui5/webcomponents-react';
+import { useTranslation } from 'react-i18next';
 
 export const SearchReviewInfoBox = () => {
+  const { t } = useTranslation();
   const classes = useStyles();
 
   return (
     <FlexBox className={classes.box}>
       <FlexBox className={classes.boxTextContainer} direction={FlexBoxDirection.Column}>
         <Title wrappingType={WrappingType.Normal} level={TitleLevel.H4}>
-          Descubra avaliações dos RUs que você frequenta!
+          {t('reviews.searchReviews')}
         </Title>
         <Text wrapping className={classes.boxSubtitle}>
-          Procure por avaliações deixadas por outros usuários e filtre-as com base em diversas
-          opções.
+          {t('reviews.searchReviewsDesc')}
         </Text>
       </FlexBox>
     </FlexBox>
