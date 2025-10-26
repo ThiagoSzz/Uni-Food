@@ -35,15 +35,3 @@ Nossa ideia com o Uni-Food é criar um ambiente de feedback constante em que os 
 ![Nodemon](https://img.shields.io/badge/Nodemon-76D04B.svg?style=for-the-badge&logo=Nodemon&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
 ![Jest](https://img.shields.io/badge/-Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
-
-## Contribuição
-
-Caso deseje contribuir com o projeto, entre em contato pelo e-mail `unifood.tech.contact@gmail.com`.
-
-Veja instruções detalhadas de como executar localmente o projeto, os testes e o formatador nas docs disponíveis em [front-end](front-end/readme.md) e [back-end](back-end/readme.md).
-
-## Créditos
-
-- Thiago Haab
-- Laura Speggiorin
-- Rui Cardozo

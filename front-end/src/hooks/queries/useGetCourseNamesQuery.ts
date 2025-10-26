@@ -1,21 +1,21 @@
 import { useQuery } from 'react-query';
 import api from '../../config/api';
 
-const COURSE_NAMES_QUERY_KEY = 'courseNames';
-const GET_COURSE_NAMES_API = '/get-course-names';
+const GET_COURSE_NAMES_QUERY_NAME = 'getCourseNames';
+const GET_COURSE_NAMES_QUERY_API = '/get-course-names';
 
-export const useCourseNames = () => {
+export const useGetCourseNamesQuery = (options?) => {
   return useQuery<string[], Error>({
-    queryKey: COURSE_NAMES_QUERY_KEY,
+    queryKey: GET_COURSE_NAMES_QUERY_NAME,
     queryFn: () => getCourseNamesQuery(),
-    staleTime: 1000 * 60 * 5,
-    cacheTime: 1000 * 60 * 10
+    retry: false,
+    ...options
   });
 };
 
 const getCourseNamesQuery = async (): Promise<string[]> => {
   try {
-    const response = await api.get<string[]>(GET_COURSE_NAMES_API);
+    const response = await api.get<string[]>(GET_COURSE_NAMES_QUERY_API);
     return response.data;
   } catch (error: any) {
     console.error('Error fetching course names:', error);

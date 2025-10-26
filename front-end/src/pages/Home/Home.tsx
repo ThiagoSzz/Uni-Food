@@ -24,7 +24,6 @@ import useAverageReviewsStore from '../../stores/useAverageReviewsStore';
 import useReviewsStore from '../../stores/useReviewsStore';
 import useSearchFilterStore from '../../stores/useSearchFilterStore';
 import { useAverageReviews } from '../../hooks/useAverageReviews';
-import { useGetReviewsMutation } from '../../hooks/queries/useGetReviews';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
 import { useFeedbackMessage } from '../../hooks/useFeedbackMessage';
 import { useSearch } from '../../hooks/useSearch';
@@ -37,6 +36,7 @@ import { FeedbackMessageDisplay } from '../../components/FeedbackMessageDisplay/
 import { useTranslation } from 'react-i18next';
 import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
 import { MealPeriod } from '../../enums/MealPeriodEnum';
+import { useGetReviewsQuery } from '../../hooks/queries/useGetReviews';
 
 const USE_BACKEND_REVIEWS = true;
 const NUM_DISPLAYED_REVIEWS = 40;
@@ -67,7 +67,19 @@ export const Home: React.FC = () => {
   const { filterReviews } = useFilter();
   const { getUniversityRuStandings, groupReviewsByRuAndUniversity } = useAverageReviews();
 
-  const reviewsMutation = useGetReviewsMutation();
+  const reviewsQuery = useGetReviewsQuery({
+    enabled: USE_BACKEND_REVIEWS,
+    onSuccess: (data) => {
+      setReviews(data);
+    },
+    onError: (error) => {
+      showErrorMessage(t('messages.reviewsFetchError', { message: error.message }));
+      setHasNoData(true);
+    }
+  });
+
+  const isLoadingFromBackend = USE_BACKEND_REVIEWS ? reviewsQuery.isLoading : false;
+  const isActuallyLoadingReviews = USE_BACKEND_REVIEWS ? isLoadingFromBackend : isLoadingReviews;
 
   const hasActiveFilters = useMemo(() => {
     return (
@@ -113,33 +125,21 @@ export const Home: React.FC = () => {
     filteredReviews.length === 0 &&
     reviews.length > 0;
 
-  const fetchReviews = useCallback(async () => {
-    try {
-      const result = await reviewsMutation.mutateAsync();
-      const reviews = result.data;
-      setReviews(reviews);
-    } catch (error) {
-      showErrorMessage(t('messages.reviewsFetchError', { message: error.message }));
-      setHasNoData(true);
+  const fetchReviews = useCallback(() => {
+    if (USE_BACKEND_REVIEWS) {
+      reviewsQuery.refetch();
     }
-  }, [reviewsMutation, setReviews, showErrorMessage, t]);
+  }, [reviewsQuery]);
 
   useEffect(() => {
-    const loadInitialData = async () => {
-      setIsLoadingReviews(true);
-      setIsLoadingAverageReviews(true);
-      clearValidationErrors();
+    clearValidationErrors();
 
-      if (USE_BACKEND_REVIEWS) {
-        await fetchReviews();
-      } else {
-        const reviewsFixture = getReviewsList();
-        setReviews(reviewsFixture);
-      }
-    };
-
-    loadInitialData();
-  }, []);
+    if (!USE_BACKEND_REVIEWS) {
+      const reviewsFixture = getReviewsList();
+      setReviews(reviewsFixture);
+      setIsLoadingReviews(false);
+    }
+  }, [clearValidationErrors, setReviews]);
 
   useEffect(() => {
     if (shouldShowNoFilteredReviewsMessage) {
@@ -244,7 +244,7 @@ export const Home: React.FC = () => {
             </Title>
             <Text className={classes.sectionText}>
               {t('reviews.reviewsCounter', {
-                count: !isLoadingReviews ? filteredReviews.length : 0
+                count: !isActuallyLoadingReviews ? filteredReviews.length : 0
               })}
             </Text>
           </FlexBox>
@@ -252,7 +252,7 @@ export const Home: React.FC = () => {
         <FlexBox className={classes.reviewsContainer}>
           <BusyIndicator
             delay={0}
-            active={isLoadingReviews && !hasNoData}
+            active={isActuallyLoadingReviews && !hasNoData}
             className={classes.busyIndicator}
             style={{ marginBottom: '300px' }}
           />
@@ -266,7 +266,7 @@ export const Home: React.FC = () => {
               className={classes.reviewsIllustratedMessage}
             />
           )}
-          {!isLoadingReviews &&
+          {!isActuallyLoadingReviews &&
             filteredReviews.slice(0, NUM_DISPLAYED_REVIEWS).map((review, index) => {
               return (
                 <ReviewCard

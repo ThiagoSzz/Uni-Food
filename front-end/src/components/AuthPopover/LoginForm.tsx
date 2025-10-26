@@ -9,7 +9,7 @@ import {
 } from '@ui5/webcomponents-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
-import { AuthApiService } from '../../services/authService';
+import { useLoginMutation } from '../../hooks/mutations/useLoginMutation';
 import { LoginRequest } from '../../interfaces/Auth';
 
 interface LoginFormProps {
@@ -27,6 +27,34 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 }) => {
   const { t } = useTranslation();
   const { login } = useAuth();
+
+  const loginMutation = useLoginMutation({
+    onSuccess: (response) => {
+      if (response.success && response.data) {
+        login(response.data.token, response.data.user);
+        onSuccess();
+      } else {
+        if (
+          response.message?.includes('Email ou senha incorretos')
+        ) {
+          onError(t('auth.invalidCredentials'));
+        } else {
+          onError(response.message || t('auth.loginError'));
+        }
+      }
+      setIsLoading(false);
+    },
+    onError: (error: any) => {
+      if (
+        error.message?.includes('Email ou senha incorretos')
+      ) {
+        onError(t('auth.invalidCredentials'));
+      } else {
+        onError(t('auth.unexpectedError'));
+      }
+      setIsLoading(false);
+    }
+  });
 
   const [formData, setFormData] = useState<LoginRequest>({
     email: '',
@@ -49,35 +77,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
     }
 
     setIsLoading(true);
-
-    try {
-      const response = await AuthApiService.login(formData);
-
-      if (response.success && response.data) {
-        login(response.data.token, response.data.user);
-        onSuccess();
-      } else {
-        if (
-          response.message?.includes('Invalid email or password') ||
-          response.message?.includes('Email ou senha inválidos')
-        ) {
-          onError(t('auth.invalidCredentials'));
-        } else {
-          onError(response.message || t('auth.loginError'));
-        }
-      }
-    } catch (error: any) {
-      if (
-        error.message?.includes('Invalid email or password') ||
-        error.message?.includes('Email ou senha inválidos')
-      ) {
-        onError(t('auth.invalidCredentials'));
-      } else {
-        onError(t('auth.unexpectedError'));
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    loginMutation.mutate(formData);
   };
 
   return (

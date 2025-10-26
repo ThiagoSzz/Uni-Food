@@ -11,7 +11,7 @@ import {
 } from '@ui5/webcomponents-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
-import { AuthApiService } from '../../services/authService';
+import { useRegisterMutation } from '../../hooks/mutations/useRegisterMutation';
 import { RegisterRequest } from '../../interfaces/Auth';
 
 interface RegisterFormProps {
@@ -29,6 +29,30 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 }) => {
   const { t } = useTranslation();
   const { login } = useAuth();
+
+  const registerMutation = useRegisterMutation({
+    onSuccess: (response) => {
+      if (response.success && response.data) {
+        login(response.data.token, response.data.user);
+        onSuccess();
+      } else {
+        if (response.message?.includes('Este email já está cadastrado')) {
+          onError(t('auth.emailExists'));
+        } else {
+          onError(response.message || t('auth.registerError'));
+        }
+      }
+      setIsLoading(false);
+    },
+    onError: (error: any) => {
+      if (error.message?.includes('Este email já está cadastrado')) {
+        onError(t('auth.emailExists'));
+      } else {
+        onError(t('auth.unexpectedError'));
+      }
+      setIsLoading(false);
+    }
+  });
 
   const [formData, setFormData] = useState<RegisterRequest>({
     email: '',
@@ -69,35 +93,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     }
 
     setIsLoading(true);
-
-    try {
-      const response = await AuthApiService.register(formData);
-
-      if (response.success && response.data) {
-        login(response.data.token, response.data.user);
-        onSuccess();
-      } else {
-        if (
-          response.message?.includes('User already exists') ||
-          response.message?.includes('Usuário já existe')
-        ) {
-          onError(t('auth.emailExists'));
-        } else {
-          onError(response.message || t('auth.registerError'));
-        }
-      }
-    } catch (error: any) {
-      if (
-        error.message?.includes('User already exists') ||
-        error.message?.includes('Usuário já existe')
-      ) {
-        onError(t('auth.emailExists'));
-      } else {
-        onError(t('auth.unexpectedError'));
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    registerMutation.mutate(formData);
   };
 
   return (

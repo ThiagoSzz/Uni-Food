@@ -1,23 +1,19 @@
-import { useMutation } from 'react-query';
+import { useQuery } from 'react-query';
 import api from '../../config/api';
-import { AxiosResponse } from 'axios';
 
-const GET_REVIEWS_MUTATION_NAME = 'getReviewsMutation';
-const GET_REVIEWS_MUTATION_API = '/get-reviews';
+const GET_REVIEWS_QUERY_NAME = 'getReviews';
+const GET_REVIEWS_QUERY_API = '/get-reviews';
 
-export const useGetReviewsMutation = (options?) => {
-  return useMutation<AxiosResponse<any, any>, Error>({
-    mutationKey: GET_REVIEWS_MUTATION_NAME,
-    mutationFn: () => setGetReviewsMutation(),
+export const useGetReviewsQuery = (options?) => {
+  return useQuery<any, Error>({
+    queryKey: GET_REVIEWS_QUERY_NAME,
+    queryFn: () => getReviewsQuery(),
     retry: false,
     ...options
   });
 };
 
-const setGetReviewsMutation = async () => {
-  const result = await api.get(api.defaults.baseURL + GET_REVIEWS_MUTATION_API).then((result) => {
-    return result;
-  });
-
-  return result;
+const getReviewsQuery = async () => {
+  const response = await api.get(GET_REVIEWS_QUERY_API);
+  return response.data;
 };
