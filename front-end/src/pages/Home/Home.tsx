@@ -26,14 +26,14 @@ import useSearchFilterStore from '../../stores/useSearchFilterStore';
 import { useAverageReviews } from '../../hooks/useAverageReviews';
 import { useGetReviewsMutation } from '../../hooks/queries/useGetReviews';
 import { getReviewsList } from '../../fixtures/ReviewsFixture';
-import { useMessageStrip } from '../../hooks/useMessageStrip';
+import { useFeedbackMessage } from '../../hooks/useFeedbackMessage';
 import { useSearch } from '../../hooks/useSearch';
 import { useFilter } from '../../hooks/useFilter';
 
 import '@ui5/webcomponents-fiori/dist/illustrations/NoData.js';
 import { ReviewCard } from '../../components/ReviewCard/ReviewCard';
 import { AverageReviewsCard } from '../../components/AverageReviewsCard/AverageReviewsCard';
-import { MessageStripContainer } from '../../components/MessageStripContainer/MessageStripContainer';
+import { FeedbackMessageDisplay } from '../../components/FeedbackMessageDisplay/FeedbackMessageDisplay';
 import { useTranslation } from 'react-i18next';
 import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
 import { MealPeriod } from '../../enums/MealPeriodEnum';
@@ -61,13 +61,7 @@ export const Home: React.FC = () => {
   const [isLoadingAverageReviews, setIsLoadingAverageReviews] = useState<boolean>(true);
   const [hasNoData, setHasNoData] = useState<boolean>(false);
 
-  const {
-    message: feedbackMessage,
-    showSuccessMessage,
-    showErrorMessage,
-    showInfoMessage,
-    hideMessage: hideFeedbackMessage
-  } = useMessageStrip(6000);
+  const { showSuccessMessage, showErrorMessage, showInfoMessage } = useFeedbackMessage();
 
   const { searchReviews, searchAverageReviews } = useSearch();
   const { filterReviews } = useFilter();
@@ -194,17 +188,10 @@ export const Home: React.FC = () => {
           <CreateReviewInfoBox />
           <SearchReviewInfoBox />
         </FlexBox>
-        {feedbackMessage ? (
-          <FlexBox className={classes.messageStripContainer}>
-            <MessageStripContainer
-              message={feedbackMessage}
-              onClose={hideFeedbackMessage}
-              className={classes.messageStrip}
-            />
-          </FlexBox>
-        ) : (
-          <></>
-        )}
+        <FeedbackMessageDisplay
+          className={classes.messageStripContainer}
+          messageClassName={classes.messageStrip}
+        />
         <FlexBox
           className={classes.boxesContainer}
           style={{ marginTop: '10px', marginBottom: '0px' }}

@@ -3,15 +3,18 @@ import { Review } from '../interfaces/Review';
 import { Tag, TagTypes } from '../interfaces/Tags';
 import { CreateReviewService } from '../service/createReviewService';
 import { GetReviewsService } from '../service/getReviewsService';
+import { GetCourseNamesService } from '../service/getCourseNamesService';
 import { authenticateToken } from '../middleware/authMiddleware';
 
 const GET_REVIEWS = '/get-reviews';
 const CREATE_REVIEW = '/create-review';
+const GET_COURSE_NAMES = '/get-course-names';
 
 const router = express.Router();
 
 const getReviewsService = new GetReviewsService();
 const createReviewsService = new CreateReviewService();
+const getCourseNamesService = new GetCourseNamesService();
 
 router.get(GET_REVIEWS, async (req: express.Request, res: express.Response) => {
   try {
@@ -88,5 +91,15 @@ router.post(
     }
   }
 );
+
+router.get(GET_COURSE_NAMES, async (req: express.Request, res: express.Response) => {
+  try {
+    const courseNames = await getCourseNamesService.getCourseNames();
+    res.status(200).json(courseNames);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 export default router;

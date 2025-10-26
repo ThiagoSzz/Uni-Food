@@ -211,3 +211,20 @@ export const insertNewReview = async (reviewId: number, userEmail: string, ruId:
     throw error;
   }
 };
+
+export const getCourseNames = async (): Promise<Record<string, any>[]> => {
+  const operationCommand = `
+    SELECT DISTINCT nome_curso
+    FROM funcao
+    WHERE nome_curso IS NOT NULL
+    ORDER BY nome_curso ASC
+  `;
+
+  try {
+    logger.info('Get course names: operation triggered');
+    return await sqlOperation(operationCommand, []);
+  } catch (error) {
+    logger.error('Get course names: error', error);
+    throw error;
+  }
+};

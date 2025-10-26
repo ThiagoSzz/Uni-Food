@@ -9,20 +9,18 @@ import {
   Text,
   TitleLevel,
   Button,
-  ButtonDesign,
-  MessageStrip,
-  MessageStripDesign
+  ButtonDesign
 } from '@ui5/webcomponents-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
-import { useMessageStrip } from '../../hooks/useMessageStrip';
+import { useFeedbackMessage } from '../../hooks/useFeedbackMessage';
 
 export const CreateReviewInfoBox = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { isAuthenticated } = useAuth();
-  const { message, showInfoMessage, hideMessage } = useMessageStrip(5000);
+  const { showInfoMessage } = useFeedbackMessage();
 
   const navigateToCreateReviewPage = () => {
     if (!isAuthenticated) {
@@ -34,22 +32,6 @@ export const CreateReviewInfoBox = () => {
 
   return (
     <>
-      {message && (
-        <MessageStrip
-          design={MessageStripDesign.Information}
-          onClose={hideMessage}
-          style={{
-            position: 'fixed',
-            top: '0',
-            left: '0',
-            right: '0',
-            zIndex: 1000,
-            margin: '0'
-          }}
-        >
-          {message.text}
-        </MessageStrip>
-      )}
       <FlexBox className={classes.box} direction={FlexBoxDirection.Row}>
         <FlexBox className={classes.boxTextContainer} direction={FlexBoxDirection.Column}>
           <Title level={TitleLevel.H4}>{t('reviews.writeYourReview')}</Title>

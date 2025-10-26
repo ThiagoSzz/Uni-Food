@@ -7,11 +7,9 @@ import {
   FlexBoxDirection,
   ObjectPage,
   ObjectPageSection,
-  Input,
   ObjectPageMode,
   Select,
-  Option,
-  Icon
+  Option
 } from '@ui5/webcomponents-react';
 import { useStyles } from './FiltersDialog.jss';
 import { MealPeriod } from '../../enums/MealPeriodEnum';
@@ -20,6 +18,7 @@ import useSearchFilterStore, { FilterCriteria } from '../../stores/useSearchFilt
 import { useEffect, useState } from 'react';
 import { DietaryPreference } from '../../enums/DietaryPreferenceEnum';
 import { useTranslation } from 'react-i18next';
+import { useCourseNames } from '../../hooks/queries/useCourseNames';
 
 interface FilterDialogProps {
   filterCriteria: FilterCriteria;
@@ -28,6 +27,7 @@ interface FilterDialogProps {
 export const FilterDialog = ({ filterCriteria }: FilterDialogProps) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const { data: courseNames = [], isLoading: courseNamesLoading } = useCourseNames();
 
   const [isDialogOpen, setIsDialogOpen] = useReviewsStore((value) => [
     value.filterDialogState,
@@ -56,8 +56,8 @@ export const FilterDialog = ({ filterCriteria }: FilterDialogProps) => {
   }, [filterCriteria]);
 
   const handleCourseNameValueChange = (event) => {
-    const { value } = event.target;
-    setCourseNameValue(value);
+    const value = event.detail.selectedOption.dataset.id;
+    setCourseNameValue(value || '');
   };
 
   const handleDietaryPreferenceValueChange = (value) => {
@@ -117,14 +117,22 @@ export const FilterDialog = ({ filterCriteria }: FilterDialogProps) => {
           footer={<FlexBox className={classes.objectPageFooter}>{t('filters.footerNote')}</FlexBox>}
         >
           <ObjectPageSection id="courseName" titleText={t('filters.courseName')}>
-            <Input
+            <Select
               className={classes.input}
-              value={courseNameValue}
-              placeholder={t('auth.coursePlaceholder')}
-              icon={<Icon className={classes.inputIcon} name="search" />}
-              onInputCapture={handleCourseNameValueChange}
-              spellCheck={false}
-            />
+              onChange={handleCourseNameValueChange}
+              disabled={courseNamesLoading}
+            >
+              <Option data-id="">{t('auth.select')}</Option>
+              {courseNames.map((courseName) => (
+                <Option
+                  key={courseName}
+                  data-id={courseName}
+                  selected={courseNameValue === courseName}
+                >
+                  {courseName}
+                </Option>
+              ))}
+            </Select>
           </ObjectPageSection>
           <ObjectPageSection id="dietaryPreference" titleText={t('filters.dietaryPreference')}>
             <Select

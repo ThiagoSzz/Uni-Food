@@ -3,9 +3,7 @@ import {
   ButtonDesign,
   Avatar,
   AvatarColorScheme,
-  AvatarSize,
-  MessageStrip,
-  MessageStripDesign
+  AvatarSize
 } from '@ui5/webcomponents-react';
 
 import logo from '../../../assets/images/logo.png';
@@ -19,7 +17,7 @@ import { AuthPopover } from '../../AuthPopover/AuthPopover';
 import { useState } from 'react';
 import { Tooltip } from 'react-tippy';
 import { useTranslation } from 'react-i18next';
-import { useMessageStrip } from '../../../hooks/useMessageStrip';
+import { useFeedbackMessage } from '../../../hooks/useFeedbackMessage';
 
 export const CustomShellBar = (props: CustomShellBarProps) => {
   const { t } = useTranslation();
@@ -27,7 +25,7 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
   const { searchDisabled, createReviewDisabled } = props;
   const { isAuthenticated, user, logout } = useAuth();
   const [isAuthPopoverOpen, setIsAuthPopoverOpen] = useState(false);
-  const { message, showInfoMessage, hideMessage } = useMessageStrip(5000);
+  const { showInfoMessage } = useFeedbackMessage();
 
   const navigate = useNavigate();
 
@@ -58,22 +56,6 @@ export const CustomShellBar = (props: CustomShellBarProps) => {
 
   return (
     <>
-      {message && (
-        <MessageStrip
-          design={MessageStripDesign.Information}
-          onClose={hideMessage}
-          style={{
-            position: 'fixed',
-            top: '0',
-            left: '0',
-            right: '0',
-            zIndex: 1000,
-            margin: '0'
-          }}
-        >
-          {message.text}
-        </MessageStrip>
-      )}
       <ShellBar image={logo} text={t('nav.appName')}>
         <Tooltip title={t('nav.searchReviews')} arrow arrowSize="small">
           <Button
