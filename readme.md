@@ -22,8 +22,6 @@ Nossa ideia com o Uni-Food é criar um ambiente de feedback constante em que os 
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)
-![Jest](https://img.shields.io/badge/-Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
-![Cypress](https://img.shields.io/badge/-Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)
 ![React Query](https://img.shields.io/badge/React%20Query-FF4154.svg?style=for-the-badge&logo=React-Query&logoColor=white)
 ![UI5 Web Components](https://img.shields.io/badge/-UI5%20Web%20Components-0C77B6?style=for-the-badge&logo=sap&logoColor=white)
 ![JSS](https://img.shields.io/badge/JSS-F7DF1E.svg?style=for-the-badge&logo=JSS&logoColor=black)
@@ -34,4 +32,3 @@ Nossa ideia com o Uni-Food é criar um ambiente de feedback constante em que os 
 ![Express.js](https://img.shields.io/badge/Express.js-000000.svg?style=for-the-badge&logo=Express&logoColor=white)
 ![Nodemon](https://img.shields.io/badge/Nodemon-76D04B.svg?style=for-the-badge&logo=Nodemon&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
-![Jest](https://img.shields.io/badge/-Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
