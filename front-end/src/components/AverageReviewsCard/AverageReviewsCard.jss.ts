@@ -36,7 +36,7 @@ const styles: JSSStyles = {
   ratingContainer: {
     alignItems: 'flex-end',
     marginLeft: '17px',
-    marginTop: '-5px',
+    marginTop: '5px',
     transform: 'scale(1.06)',
     transformOrigin: 'left'
   },

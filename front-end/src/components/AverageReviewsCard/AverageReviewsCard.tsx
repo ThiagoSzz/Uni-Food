@@ -89,13 +89,6 @@ export const AverageReviewsCard = ({
                 highlightClassName={classes.searchHighlight}
               />
             </Title>
-            <Text className={classes.cardHeaderSubtitle}>
-              <Highlighter
-                searchWords={[highlightMatches]}
-                textToHighlight={averageReview.city}
-                highlightClassName={classes.searchHighlight}
-              />
-            </Text>
           </FlexBox>
         </FlexBox>
       }
