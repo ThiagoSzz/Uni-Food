@@ -5,6 +5,7 @@ import { CreateReviewService } from '../service/createReviewService';
 import { GetReviewsService } from '../service/getReviewsService';
 import { GetCourseNamesService } from '../service/getCourseNamesService';
 import { authenticateToken } from '../middleware/authMiddleware';
+import { DietaryPreference } from '../enums/DietaryPreferenceEnum';
 
 const GET_REVIEWS = '/get-reviews';
 const CREATE_REVIEW = '/create-review';
@@ -32,7 +33,13 @@ router.get(GET_REVIEWS, async (req: express.Request, res: express.Response) => {
       rating: parseInt(review.rating),
       courseName: review.coursename,
       coursePeriod: review.courseperiod,
-      dietaryPreference: review.dietarypreference,
+      dietaryPreference: (() => {
+        const dbValue = review.dietarypreference as any;
+        if (dbValue === 'Onívoro') return DietaryPreference.OMNIVORE;
+        if (dbValue === 'Vegetariano') return DietaryPreference.VEGETARIAN;
+        if (dbValue === 'Vegano') return DietaryPreference.VEGAN;
+        return DietaryPreference.UNDEFINED;
+      })(),
       city: review.city.trim()
     }));
 

@@ -141,24 +141,29 @@ export const FilterDialog = ({ filterCriteria }: FilterDialogProps) => {
                 handleDietaryPreferenceValueChange(event.detail.selectedOption.dataset.id)
               }
             >
-              <Option data-id="Select">{t('auth.select')}</Option>
+              <Option
+                selected={dietaryPreferenceValue === DietaryPreference.UNDEFINED}
+                data-id={DietaryPreference.UNDEFINED}
+              >
+                {t('auth.select')}
+              </Option>
               <Option
                 selected={dietaryPreferenceValue === DietaryPreference.OMNIVORE}
                 data-id={DietaryPreference.OMNIVORE}
               >
-                {t('diet.onívoro')}
+                {t('diet.omnivore')}
               </Option>
               <Option
                 selected={dietaryPreferenceValue === DietaryPreference.VEGETARIAN}
                 data-id={DietaryPreference.VEGETARIAN}
               >
-                {t('diet.vegetariano')}
+                {t('diet.vegetarian')}
               </Option>
               <Option
                 selected={dietaryPreferenceValue === DietaryPreference.VEGAN}
                 data-id={DietaryPreference.VEGAN}
               >
-                {t('diet.vegano')}
+                {t('diet.vegan')}
               </Option>
             </Select>
           </ObjectPageSection>
@@ -169,7 +174,12 @@ export const FilterDialog = ({ filterCriteria }: FilterDialogProps) => {
                 handleMealPeriodValueChange(event.detail.selectedOption.dataset.id)
               }
             >
-              <Option data-id="Select">{t('auth.select')}</Option>
+              <Option
+                selected={mealPeriodValue === MealPeriod.UNDEFINED}
+                data-id={MealPeriod.UNDEFINED}
+              >
+                {t('auth.select')}
+              </Option>
               <Option
                 selected={mealPeriodValue === MealPeriod.BREAKFAST}
                 data-id={MealPeriod.BREAKFAST}

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { Review } from '../interfaces/Review';
 import { DietaryPreference } from '../enums/DietaryPreferenceEnum';
 import { MealPeriod } from '../enums/MealPeriodEnum';
@@ -10,33 +10,12 @@ interface FilterCriteria {
 }
 
 interface UseFilterReturn {
-  filterCriteria: FilterCriteria;
-  setFilterCriteria: (criteria: Partial<FilterCriteria>) => void;
-  filterReviews: (reviews: Review[], criteria?: Partial<FilterCriteria>) => Review[];
-  clearFilters: () => void;
-  hasActiveFilters: boolean;
-  activeFiltersCount: number;
+  filterReviews: (reviews: Review[], criteria: Partial<FilterCriteria>) => Review[];
 }
 
-const initialFilterCriteria: FilterCriteria = {
-  courseName: '',
-  dietaryPreference: DietaryPreference.UNDEFINED,
-  mealPeriod: MealPeriod.UNDEFINED
-};
-
 export const useFilter = (): UseFilterReturn => {
-  const [filterCriteria, setFilterCriteriaState] = useState<FilterCriteria>(initialFilterCriteria);
-
-  const setFilterCriteria = useCallback((criteria: Partial<FilterCriteria>) => {
-    setFilterCriteriaState((prev) => ({ ...prev, ...criteria }));
-  }, []);
-
-  const clearFilters = useCallback(() => {
-    setFilterCriteriaState(initialFilterCriteria);
-  }, []);
-
   const filterReviews = useCallback(
-    (reviews: Review[], criteria: Partial<FilterCriteria> = {}): Review[] => {
+    (reviews: Review[], criteria: Partial<FilterCriteria>): Review[] => {
       let filteredReviews = reviews;
 
       // Filter by course name
@@ -56,8 +35,7 @@ export const useFilter = (): UseFilterReturn => {
       ) {
         filteredReviews = filteredReviews.filter((review) => {
           return (
-            review.dietaryPreference &&
-            review.dietaryPreference.toLowerCase() === criteria.dietaryPreference!.toLowerCase()
+            review.dietaryPreference && review.dietaryPreference === criteria.dietaryPreference
           );
         });
       }
@@ -77,23 +55,7 @@ export const useFilter = (): UseFilterReturn => {
     []
   );
 
-  const hasActiveFilters =
-    filterCriteria.courseName.trim() !== '' ||
-    filterCriteria.dietaryPreference !== DietaryPreference.UNDEFINED ||
-    filterCriteria.mealPeriod !== MealPeriod.UNDEFINED;
-
-  const activeFiltersCount = [
-    filterCriteria.courseName.trim() !== '',
-    filterCriteria.dietaryPreference !== DietaryPreference.UNDEFINED,
-    filterCriteria.mealPeriod !== MealPeriod.UNDEFINED
-  ].filter(Boolean).length;
-
   return {
-    filterCriteria,
-    setFilterCriteria,
-    filterReviews,
-    clearFilters,
-    hasActiveFilters,
-    activeFiltersCount
+    filterReviews
   };
 };

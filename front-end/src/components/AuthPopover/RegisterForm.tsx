@@ -174,9 +174,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             style={{ width: '100%', boxSizing: 'border-box' }}
           >
             <Option value="">{t('auth.select')}</Option>
-            <Option value="Onívoro">{t('diet.onívoro')}</Option>
-            <Option value="Vegetariano">{t('diet.vegetariano')}</Option>
-            <Option value="Vegano">{t('diet.vegano')}</Option>
+            <Option value="Onívoro">{t('diet.omnivore')}</Option>
+            <Option value="Vegetariano">{t('diet.vegetarian')}</Option>
+            <Option value="Vegano">{t('diet.vegan')}</Option>
           </Select>
         </div>
 
